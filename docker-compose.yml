@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env.example
+    volumes:
+      - deal_radar_data:/app/data
+    environment:
+      - DATABASE_URL=sqlite:////app/data/deal_radar.db
+    restart: unless-stopped
+
+volumes:
+  deal_radar_data:

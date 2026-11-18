@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Deal Radar — Polymorphic Shopping Mission Engine">
+  <title>Deal Radar — Flutter + FastAPI Command Center</title>
+  <script>
+    // Synchronous History API shim for blob: iframe environments (Antigravity Local Site Preview)
+    (function() {
+      const origReplaceState = History.prototype.replaceState;
+      const origPushState = History.prototype.pushState;
+      const origStateDesc = Object.getOwnPropertyDescriptor(History.prototype, "state");
+      let _fallbackHistoryState = null;
+
+      History.prototype.replaceState = function(state, title, url) {
+        _fallbackHistoryState = state;
+        try {
+          if (window.location.protocol === "blob:") {
+            return origReplaceState.call(this, state, title);
+          }
+          return origReplaceState.apply(this, arguments);
+        } catch (_) {
+          try { return origReplaceState.call(this, state, title); } catch (_2) {}
+        }
+      };
+      History.prototype.pushState = function(state, title, url) {
+        _fallbackHistoryState = state;
+        try {
+          if (window.location.protocol === "blob:") {
+            return origPushState.call(this, state, title);
+          }
+          return origPushState.apply(this, arguments);
+        } catch (_) {
+          try { return origPushState.call(this, state, title); } catch (_2) {}
+        }
+      };
+      if (origStateDesc && origStateDesc.get) {
+        Object.defineProperty(History.prototype, "state", {
+          configurable: true,
+          enumerable: true,
+          get: function() {
+            try {
+              const val = origStateDesc.get.call(this);
+              if (val !== null && val !== undefined) return val;
+            } catch (_) {}
+            return _fallbackHistoryState;
+          }
+        });
+      }
+    })();
+  </script>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #090C10;
+      color: #E2E8F0;
+      font-family: sans-serif;
+      height: 100%;
+      width: 100%;
+    }
+    #boot-loader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #090C10;
+      z-index: 9999;
+      transition: opacity 0.25s ease;
+    }
+    .spinner {
+      width: 34px;
+      height: 34px;
+      border: 3px solid rgba(56, 189, 248, 0.2);
+      border-top-color: #38BDF8;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+  <script type="module">
+    const statusEl = document.getElementById("boot-status");
+    function logStep(msg) {
+      if (statusEl) statusEl.textContent = msg;
+      fetch("api/client-log", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ step: msg, href: window.location.href })
+      }).catch(() => {});
+    }
+
+    window.addEventListener("error", (e) => {
+      const dartEx = e.error && e.error.dartException ? String(e.error.dartException) : "";
+      logStep("JS Error: " + e.message + " | dartEx=" + dartEx + " | stack=" + (e.error && e.error.stack ? e.error.stack : ""));
+    });
+    window.addEventListener("unhandledrejection", (e) => {
+      logStep("Unhandled Rejection: " + (e.reason && e.reason.message ? e.reason.message : String(e.reason)));
+    });
+
+    const baseHref = new URL("./", document.baseURI).href;
+    window.flutterConfiguration = {
+      assetBase: baseHref,
+      canvasKitBaseUrl: new URL("canvaskit/", baseHref).href
+    };
+
+    window.flutterCanvasKitLoaded = (async () => {
+      logStep("Loading local CanvasKit WebAssembly...");
+      const ckUrl = new URL("canvaskit/canvaskit.js", document.baseURI).href;
+      const { default: MainCanvasKit } = await import(ckUrl);
+      const ck = await MainCanvasKit({
+        locateFile: (file) => new URL("canvaskit/" + file, document.baseURI).href
+      });
+      window.flutterCanvasKit = ck;
+      logStep("CanvasKit ready — starting Flutter engine...");
+      return ck;
+    })();
+
+    // Hide boot-loader as soon as <flutter-view> mounts into the DOM
+    const observer = new MutationObserver(() => {
+      if (document.querySelector("flutter-view")) {
+        const loader = document.getElementById("boot-loader");
+        if (loader) {
+          loader.style.opacity = "0";
+          setTimeout(() => loader.remove(), 200);
+        }
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+  </script>
+  <script src="main.dart.js" defer></script>
+</head>
+<body>
+  <div id="boot-loader">
+    <div class="spinner"></div>
+    <div id="boot-status" style="font-size: 13px; color: #94A3B8; font-family: monospace;">
+      Booting Flutter Web Engine...
+    </div>
+  </div>
+</body>
+</html>
