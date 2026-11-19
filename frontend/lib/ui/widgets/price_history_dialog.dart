@@ -20,6 +20,7 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
   late final TextEditingController _atlCtrl;
   late final TextEditingController _couponCtrl;
   late final TextEditingController _strikeCtrl;
+  late final TextEditingController _asinCtrl;
   final TextEditingController _camelPasteCtrl = TextEditingController();
 
   String _sourceTag = 'camelcamelcamel';
@@ -35,6 +36,7 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
     _atlCtrl = TextEditingController(text: o.allTimeLow.toStringAsFixed(2));
     _couponCtrl = TextEditingController(text: o.clipCouponAmount.toStringAsFixed(2));
     _strikeCtrl = TextEditingController(text: o.strikePrice.toStringAsFixed(2));
+    _asinCtrl = TextEditingController(text: o.extractedAsin ?? o.asinOrSku);
   }
 
   @override
@@ -44,6 +46,7 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
     _atlCtrl.dispose();
     _couponCtrl.dispose();
     _strikeCtrl.dispose();
+    _asinCtrl.dispose();
     _camelPasteCtrl.dispose();
     super.dispose();
   }
@@ -138,6 +141,7 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
       final atl = double.tryParse(_atlCtrl.text.trim());
       final coupon = double.tryParse(_couponCtrl.text.trim());
       final strike = double.tryParse(_strikeCtrl.text.trim());
+      final asinRaw = _asinCtrl.text.trim();
 
       await ref.read(dealDashboardProvider.notifier).patchOption(
             optionId: widget.option.id,
@@ -146,6 +150,7 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
             allTimeLow: atl,
             clipCouponAmount: coupon,
             strikePrice: strike,
+            asinOrSku: asinRaw.isNotEmpty ? asinRaw : null,
             priceSource: _sourceTag,
             appendHistoryPoint: true,
             historyNote: _sourceTag == 'camelcamelcamel'
@@ -156,7 +161,7 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Price history saved to device storage (localStorage).'),
+            content: Text('Saved to device storage (localStorage).'),
           ),
         );
       }
@@ -455,11 +460,22 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
 
                       // Editable Price Fields
                       const Text(
-                        'Log Verified Price & Historical Benchmarks (Saved in localStorage)',
+                        'Log Verified Price, Amazon ASIN/URL & Historical Benchmarks (localStorage)',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
                           color: Colors.white70,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: _asinCtrl,
+                        style: const TextStyle(fontSize: 12.5, fontFamily: 'monospace'),
+                        decoration: const InputDecoration(
+                          labelText: 'Amazon ASIN or Product URL (optional -- unlocks direct /dp/ link & chart)',
+                          hintText: 'e.g. B09FXD3ZCF or https://www.amazon.com/dp/B09FXD3ZCF',
+                          isDense: true,
+                          border: OutlineInputBorder(),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -546,8 +562,25 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
 
               // Footer actions
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  TextButton.icon(
+                    onPressed: _saving
+                        ? null
+                        : () async {
+                            await ref
+                                .read(dealDashboardProvider.notifier)
+                                .deleteMission(opt.missionId);
+                            if (context.mounted) {
+                              Navigator.of(context).pop();
+                            }
+                          },
+                    icon: const Icon(Icons.delete_outline, size: 16, color: Color(0xFFF87171)),
+                    label: const Text(
+                      'Delete Mission',
+                      style: TextStyle(color: Color(0xFFF87171)),
+                    ),
+                  ),
+                  const Spacer(),
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
                     child: const Text('Cancel'),

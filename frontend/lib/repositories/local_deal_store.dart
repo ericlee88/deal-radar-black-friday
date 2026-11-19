@@ -397,6 +397,7 @@ class LocalDealStore {
     bool? snsEligible,
     bool? selectedInStack,
     bool? snagged,
+    String? asinOrSku,
     String? priceSource,
     bool appendHistoryPoint = false,
     String? historyNote,
@@ -425,6 +426,10 @@ class LocalDealStore {
     if (snsEligible != null) target['sns_eligible'] = snsEligible;
     if (selectedInStack != null) target['selected_in_stack'] = selectedInStack;
     if (snagged != null) target['snagged'] = snagged;
+    if (asinOrSku != null && asinOrSku.trim().isNotEmpty) {
+      final extracted = _extractAmazonAsin(asinOrSku);
+      target['asin_or_sku'] = extracted ?? asinOrSku.trim();
+    }
     if (priceSource != null && priceSource.isNotEmpty) {
       target['price_source'] = priceSource;
     }
@@ -477,10 +482,32 @@ class LocalDealStore {
     }
 
     final asin = _extractAmazonAsin(trimmed) ?? '';
-    final cleanTitle = trimmed.length > 52 ? '${trimmed.substring(0, 52)}...' : trimmed;
-    final strike = budgetHint ?? 49.99;
-    final current = double.parse((strike * 1.15).toStringAsFixed(2));
-    final msrp = double.parse((strike * 1.4).toStringAsFixed(2));
+
+    // Extract inline $price if user typed e.g. "AirPods Pro 2 $189"
+    double? inlinePrice;
+    final priceMatch = RegExp(r'\$([0-9]+(?:\.[0-9]{1,2})?)').firstMatch(trimmed);
+    if (priceMatch != null) {
+      inlinePrice = double.tryParse(priceMatch.group(1)!);
+    }
+
+    // Extract readable title from Amazon URL slug if user pasted a full URL
+    String displayTitle = trimmed;
+    final urlSlugMatch = RegExp(r'amazon\.com/([^/]+)/dp/B0[A-Z0-9]{8}', caseSensitive: false)
+        .firstMatch(trimmed);
+    if (urlSlugMatch != null) {
+      displayTitle = urlSlugMatch.group(1)!.replaceAll('-', ' ').trim();
+    } else if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+      displayTitle = asin.isNotEmpty ? 'Amazon Item ($asin)' : 'Custom Amazon Item';
+    } else {
+      displayTitle = trimmed.replaceAll(RegExp(r'\s*\$[0-9]+(?:\.[0-9]{1,2})?'), '').trim();
+    }
+
+    final cleanTitle = displayTitle.length > 56
+        ? '${displayTitle.substring(0, 56)}...'
+        : displayTitle;
+    final strike = budgetHint ?? inlinePrice ?? 49.99;
+    final current = inlinePrice ?? double.parse((strike * 1.10).toStringAsFixed(2));
+    final msrp = double.parse((current * 1.25).toStringAsFixed(2));
     final slug = 'custom-$nextMissionId-${DateTime.now().millisecondsSinceEpoch}';
 
     final newMission = <String, dynamic>{
@@ -491,7 +518,7 @@ class LocalDealStore {
       'node_type': asin.isNotEmpty ? 'EXACT_SKU' : 'CATEGORY_FUNNEL',
       'category_tag': 'custom',
       'icon': '',
-      'decision_framing': 'Saved on your device. Edit strike price or paste an Amazon ASIN anytime.',
+      'decision_framing': 'Saved on your device. Tap the chart icon to view CamelCamelCamel history or log prices.',
       'options': [
         {
           'id': nextOptionId,
@@ -502,7 +529,7 @@ class LocalDealStore {
           'is_trap_warning': false,
           'title': cleanTitle.isEmpty ? 'Custom Amazon Deal' : cleanTitle,
           'asin_or_sku': asin,
-          'amazon_query': Uri.encodeQueryComponent(trimmed),
+          'amazon_query': Uri.encodeQueryComponent(cleanTitle.isEmpty ? trimmed : cleanTitle),
           'msrp': msrp,
           'avg_90d_price': current,
           'current_price': current,
@@ -517,7 +544,8 @@ class LocalDealStore {
           'unit_name': 'item',
           'unit_quantity': 1.0,
           'price_history': [msrp, current, current],
-          'scout_notes': 'Added via browser device storage. Tap Edit Price to log Black Friday drops.',
+          'price_source': inlinePrice != null ? 'manual' : 'estimated',
+          'scout_notes': 'Saved to device storage. Tap the chart icon to check CamelCamelCamel or log the real price.',
         }
       ],
     };

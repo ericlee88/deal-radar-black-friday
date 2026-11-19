@@ -35,7 +35,14 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
     final text = (preset ?? _quickAddCtrl.text).trim();
     if (text.isEmpty) return;
     _quickAddCtrl.clear();
-    await ref.read(dealDashboardProvider.notifier).translateAndAddIntent(text);
+    final created =
+        await ref.read(dealDashboardProvider.notifier).translateAndAddIntent(text);
+    if (mounted && created.options.isNotEmpty) {
+      showDialog(
+        context: context,
+        builder: (_) => PriceHistoryDialog(option: created.options.first),
+      );
+    }
   }
 
   Future<void> _launchAmazon(String url) async {
@@ -334,7 +341,7 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
                     style: const TextStyle(fontSize: 14, color: Colors.white),
                     decoration: const InputDecoration(
                       hintText:
-                          'Add another item to your shopping list (e.g., "AirPods Pro 2" or "cast iron skillet")...',
+                          'Paste an Amazon URL/ASIN or type an item + target price (e.g., "AirPods Pro 2 \$189")...',
                       hintStyle: TextStyle(color: Colors.white38, fontSize: 13.5),
                       border: InputBorder.none,
                       isDense: true,

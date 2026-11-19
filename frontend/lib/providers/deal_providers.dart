@@ -84,14 +84,15 @@ class DealDashboardNotifier extends AsyncNotifier<DealDashboardState> {
     state = await AsyncValue.guard(() => _fetchAll());
   }
 
-  Future<void> translateAndAddIntent(String rawIntent, {double? budgetHint}) async {
+  Future<ShoppingMission> translateAndAddIntent(String rawIntent, {double? budgetHint}) async {
     final current = state.valueOrNull;
     if (current != null) {
       state = AsyncData(current.copyWith(isBusy: true));
     }
     final repo = ref.read(dealRepositoryProvider);
-    await repo.createMissionFromIntent(rawIntent: rawIntent, budgetHint: budgetHint);
+    final created = await repo.createMissionFromIntent(rawIntent: rawIntent, budgetHint: budgetHint);
     state = await AsyncValue.guard(() => _fetchAll());
+    return created;
   }
 
   Future<void> deleteMission(int missionId) async {
@@ -110,6 +111,7 @@ class DealDashboardNotifier extends AsyncNotifier<DealDashboardState> {
     bool? snsEligible,
     bool? selectedInStack,
     bool? snagged,
+    String? asinOrSku,
     String? priceSource,
     bool appendHistoryPoint = false,
     String? historyNote,
@@ -125,6 +127,7 @@ class DealDashboardNotifier extends AsyncNotifier<DealDashboardState> {
       snsEligible: snsEligible,
       selectedInStack: selectedInStack,
       snagged: snagged,
+      asinOrSku: asinOrSku,
       priceSource: priceSource,
       appendHistoryPoint: appendHistoryPoint,
       historyNote: historyNote,
