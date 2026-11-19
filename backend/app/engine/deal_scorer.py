@@ -37,21 +37,25 @@ def compute_effective_price(node: DealOptionNode, sns_tier_rate: float = 0.15) -
 
 def enrich_option_node(node: DealOptionNode, sns_tier_rate: float = 0.15) -> DealOptionRead:
     """Converts a DB DealOptionNode into a fully scored DealOptionRead DTO."""
-    eff = compute_effective_price(node, sns_tier_rate=sns_tier_rate)
+    has_price = (node.current_price or 0.0) > 0.0
+    eff = compute_effective_price(node, sns_tier_rate=sns_tier_rate) if has_price else 0.0
     qty = max(0.001, node.unit_quantity or 1.0)
-    unit_eff = round(eff / qty, 2)
-    pct_off = int(round(((node.msrp - eff) / node.msrp) * 100)) if node.msrp > 0 else 0
+    unit_eff = round(eff / qty, 2) if has_price else 0.0
+    pct_off = int(round(((node.msrp - eff) / node.msrp) * 100)) if (has_price and node.msrp > 0) else 0
 
-    if node.is_trap_warning or eff > node.msrp * 1.1:
+    if node.is_trap_warning or (has_price and node.msrp > 0 and eff > node.msrp * 1.1):
         grade_code = "TRAP"
         grade_label = "⚠️ SCALPER / TRAP — DO NOT BUY"
-    elif eff <= node.all_time_low + 0.50:
+    elif not has_price:
+        grade_code = "UNPRICED"
+        grade_label = f"LOG PRICE TO TRACK (Target ${node.strike_price:.0f})"
+    elif node.all_time_low > 0 and eff <= node.all_time_low + 0.50:
         grade_code = "ATL"
         grade_label = f"🔥 ALL-TIME LOW ZONE (-{pct_off}%)"
-    elif eff <= node.strike_price:
+    elif node.strike_price > 0 and eff <= node.strike_price:
         grade_code = "STRIKE"
         grade_label = f"✅ AT STRIKE TARGET (-{pct_off}%)"
-    elif eff <= node.avg_90d_price * 0.94:
+    elif node.avg_90d_price > 0 and eff <= node.avg_90d_price * 0.94:
         grade_code = "HOLD"
         grade_label = f"⏳ NEAR TARGET (-{pct_off}% • Target ${node.strike_price:.0f})"
     else:
@@ -60,13 +64,16 @@ def enrich_option_node(node: DealOptionNode, sns_tier_rate: float = 0.15) -> Dea
 
     try:
         history = json.loads(node.price_history_json or "[]")
-        if not isinstance(history, list) or not history:
-            history = [node.msrp, node.avg_90d_price, eff]
+        if not isinstance(history, list):
+            history = []
         else:
-            history = [float(x) for x in history]
-            history[-1] = eff
+            history = [float(x) for x in history if float(x) > 0]
+            if has_price and history:
+                history[-1] = eff
+            elif has_price:
+                history = [eff]
     except Exception:
-        history = [node.msrp, node.avg_90d_price, eff]
+        history = [eff] if has_price else []
 
     return DealOptionRead(
         id=node.id or 0,
@@ -98,7 +105,7 @@ def enrich_option_node(node: DealOptionNode, sns_tier_rate: float = 0.15) -> Dea
         discount_pct_off_msrp=pct_off,
         deal_grade_code=grade_code,
         deal_grade_label=grade_label,
-        is_below_strike=(eff <= node.strike_price and not node.is_trap_warning),
+        is_below_strike=(has_price and node.strike_price > 0 and eff <= node.strike_price and not node.is_trap_warning),
         amazon_url=(
             f"https://www.amazon.com/dp/{asin}?psc=1"
             if (asin := extract_amazon_asin(node.asin_or_sku))

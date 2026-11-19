@@ -178,7 +178,7 @@ async def run_export(poll_live: bool) -> None:
 
     init_db()
     with Session(engine) as session:
-        seed_initial_missions(session, force_reset=False)
+        seed_initial_missions(session, force_reset=True)
         for node in session.exec(select(DealOptionNode)).all():
             verified = _SEED_ASIN_BACKFILL.get(node.branch_key)
             if verified and node.asin_or_sku != verified:

@@ -123,6 +123,8 @@ class DealOptionNode {
     required this.camelUrl,
   });
 
+  bool get hasPrice => currentPrice > 0.0;
+
   bool get isVerifiedPrice =>
       priceSource == 'camelcamelcamel' ||
       priceSource == 'manual' ||

@@ -31,11 +31,21 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
   void initState() {
     super.initState();
     final o = widget.option;
-    _currentCtrl = TextEditingController(text: o.currentPrice.toStringAsFixed(2));
-    _avgCtrl = TextEditingController(text: o.avg90dPrice.toStringAsFixed(2));
-    _atlCtrl = TextEditingController(text: o.allTimeLow.toStringAsFixed(2));
-    _couponCtrl = TextEditingController(text: o.clipCouponAmount.toStringAsFixed(2));
-    _strikeCtrl = TextEditingController(text: o.strikePrice.toStringAsFixed(2));
+    _currentCtrl = TextEditingController(
+      text: o.currentPrice > 0 ? o.currentPrice.toStringAsFixed(2) : '',
+    );
+    _avgCtrl = TextEditingController(
+      text: o.avg90dPrice > 0 ? o.avg90dPrice.toStringAsFixed(2) : '',
+    );
+    _atlCtrl = TextEditingController(
+      text: o.allTimeLow > 0 ? o.allTimeLow.toStringAsFixed(2) : '',
+    );
+    _couponCtrl = TextEditingController(
+      text: o.clipCouponAmount > 0 ? o.clipCouponAmount.toStringAsFixed(2) : '',
+    );
+    _strikeCtrl = TextEditingController(
+      text: o.strikePrice > 0 ? o.strikePrice.toStringAsFixed(2) : '',
+    );
     _asinCtrl = TextEditingController(text: o.extractedAsin ?? o.asinOrSku);
   }
 

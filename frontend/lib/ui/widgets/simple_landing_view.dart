@@ -835,60 +835,97 @@ class _SimpleProductCard extends ConsumerWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
-                '\$${opt.effectivePrice.toStringAsFixed(2)}',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  color: opt.isTrapWarning
-                      ? const Color(0xFFEF4444)
-                      : const Color(0xFF22C55E),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 3),
-                child: Text(
-                  '\$${opt.msrp.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: Colors.white38,
-                    decoration: TextDecoration.lineThrough,
+              if (opt.hasPrice) ...[
+                Text(
+                  '\$${opt.effectivePrice.toStringAsFixed(2)}',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w900,
+                    color: opt.isTrapWarning
+                        ? const Color(0xFFEF4444)
+                        : const Color(0xFF22C55E),
                   ),
                 ),
-              ),
-              const SizedBox(width: 6),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: InkWell(
-                  onTap: () => showDialog(
-                    context: context,
-                    builder: (_) => PriceHistoryDialog(option: opt),
-                  ),
-                  borderRadius: BorderRadius.circular(5),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: opt.isVerifiedPrice
-                          ? const Color(0xFF22C55E).withValues(alpha: 0.16)
-                          : const Color(0xFFF59E0B).withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+                if (opt.msrp > opt.effectivePrice) ...[
+                  const SizedBox(width: 8),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 3),
                     child: Text(
-                      opt.isVerifiedPrice ? 'VERIFIED' : 'EST',
-                      style: TextStyle(
-                        fontSize: 9.5,
-                        fontWeight: FontWeight.w800,
+                      '\$${opt.msrp.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Colors.white38,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                  ),
+                ],
+                const SizedBox(width: 6),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: InkWell(
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (_) => PriceHistoryDialog(option: opt),
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                      decoration: BoxDecoration(
                         color: opt.isVerifiedPrice
-                            ? const Color(0xFF4ADE80)
-                            : const Color(0xFFFBBF24),
+                            ? const Color(0xFF22C55E).withValues(alpha: 0.16)
+                            : const Color(0xFFF59E0B).withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        opt.isVerifiedPrice ? 'VERIFIED' : 'EST',
+                        style: TextStyle(
+                          fontSize: 9.5,
+                          fontWeight: FontWeight.w800,
+                          color: opt.isVerifiedPrice
+                              ? const Color(0xFF4ADE80)
+                              : const Color(0xFFFBBF24),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              ] else ...[
+                InkWell(
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (_) => PriceHistoryDialog(option: opt),
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF0EA5E9).withValues(alpha: 0.16),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: const Color(0xFF0EA5E9).withValues(alpha: 0.45),
+                      ),
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.add_chart_rounded, size: 14, color: Color(0xFF38BDF8)),
+                        SizedBox(width: 5),
+                        Text(
+                          'Log Live Price / CCC',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF38BDF8),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
               const Spacer(),
-              if (!opt.isTrapWarning && savingsDollar > 0)
+              if (opt.hasPrice && !opt.isTrapWarning && savingsDollar > 0)
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
@@ -902,6 +939,16 @@ class _SimpleProductCard extends ConsumerWidget {
                       fontWeight: FontWeight.w700,
                       color: Color(0xFF4ADE80),
                     ),
+                  ),
+                )
+              else if (!opt.hasPrice && opt.strikePrice > 0)
+                Text(
+                  'Target: \$${opt.strikePrice.toStringAsFixed(0)}',
+                  style: const TextStyle(
+                    fontSize: 11.5,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white54,
+                    fontFamily: 'monospace',
                   ),
                 ),
             ],
@@ -998,8 +1045,15 @@ class _SimpleProductCard extends ConsumerWidget {
     if (opt.b2g1Eligible) {
       parts.add('Buy 2 Get 1 Free eligible');
     }
+    if (!opt.hasPrice) {
+      final promoSuffix = parts.isEmpty ? '' : ' | ${parts.join(" + ")}';
+      return 'No price logged yet -- tap Log Live Price to check CamelCamelCamel$promoSuffix';
+    }
     if (parts.isEmpty) {
-      return '90-day avg: \$${opt.avg90dPrice.toStringAsFixed(2)} | Target: \$${opt.strikePrice.toStringAsFixed(2)}';
+      final avgStr = opt.avg90dPrice > 0
+          ? '90-day avg: \$${opt.avg90dPrice.toStringAsFixed(2)} | '
+          : '';
+      return '${avgStr}Target: \$${opt.strikePrice.toStringAsFixed(2)}';
     }
     return 'Includes ${parts.join(" + ")}';
   }

@@ -406,29 +406,33 @@ class _OptionBranchTile extends ConsumerWidget {
                         textBaseline: TextBaseline.alphabetic,
                         children: [
                           Text(
-                            '\$${option.effectivePrice.toStringAsFixed(2)}',
+                            option.hasPrice
+                                ? '\$${option.effectivePrice.toStringAsFixed(2)}'
+                                : 'Unpriced',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: option.hasPrice ? 20 : 16,
                               fontWeight: FontWeight.w800,
-                              color: gColor,
+                              color: option.hasPrice ? gColor : const Color(0xFF38BDF8),
                               fontFamily: 'monospace',
                             ),
                           ),
-                          const SizedBox(width: 6),
-                          Text(
-                            '\$${option.msrp.toStringAsFixed(2)}',
-                            style: const TextStyle(
-                              fontSize: 11.5,
-                              decoration: TextDecoration.lineThrough,
-                              color: Colors.white38,
-                              fontFamily: 'monospace',
+                          if (option.hasPrice && option.msrp > option.effectivePrice) ...[
+                            const SizedBox(width: 6),
+                            Text(
+                              '\$${option.msrp.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                fontSize: 11.5,
+                                decoration: TextDecoration.lineThrough,
+                                color: Colors.white38,
+                                fontFamily: 'monospace',
+                              ),
                             ),
-                          ),
+                          ],
                         ],
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        'Strike: \$${option.strikePrice.toStringAsFixed(2)} | ATL: \$${option.allTimeLow.toStringAsFixed(2)}',
+                        'Strike: \$${option.strikePrice.toStringAsFixed(2)}${option.allTimeLow > 0 ? " | ATL: \$${option.allTimeLow.toStringAsFixed(2)}" : ""}',
                         style: const TextStyle(
                           fontSize: 10.5,
                           color: Colors.white60,
@@ -445,7 +449,9 @@ class _OptionBranchTile extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        '${option.isVerifiedPrice ? "[VERIFIED]" : "[EST]"} 90d Avg: \$${option.avg90dPrice.toStringAsFixed(2)}',
+                        option.hasPrice
+                            ? '${option.isVerifiedPrice ? "[VERIFIED]" : "[EST]"} ${option.avg90dPrice > 0 ? "90d Avg: \$${option.avg90dPrice.toStringAsFixed(2)}" : ""}'
+                            : 'Tap to log CCC price',
                         style: TextStyle(
                           fontSize: 10,
                           color: option.isVerifiedPrice

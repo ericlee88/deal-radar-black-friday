@@ -187,6 +187,22 @@ class LocalDealStore {
           if ((snapOpt['camel_url'] as String? ?? '').isNotEmpty) {
             om['camel_url'] = snapOpt['camel_url'];
           }
+          // Clear legacy unverified fake seed prices while preserving user-verified prices
+          final src = (om['price_source'] as String? ?? '').toLowerCase();
+          final isUserVerified = src == 'camelcamelcamel' ||
+              src == 'manual' ||
+              src == 'live' ||
+              src == 'keepa';
+          final snapPrice = (snapOpt['current_price'] as num? ?? 0).toDouble();
+          if (!isUserVerified && snapPrice <= 0.0) {
+            om['current_price'] = 0.0;
+            om['msrp'] = 0.0;
+            om['avg_90d_price'] = 0.0;
+            om['all_time_low'] = 0.0;
+            om['clip_coupon_amount'] = 0.0;
+            om['price_history'] = <double>[];
+            om['price_source'] = 'untracked';
+          }
         }
       }
     }
@@ -505,9 +521,9 @@ class LocalDealStore {
     final cleanTitle = displayTitle.length > 56
         ? '${displayTitle.substring(0, 56)}...'
         : displayTitle;
-    final strike = budgetHint ?? inlinePrice ?? 49.99;
-    final current = inlinePrice ?? double.parse((strike * 1.10).toStringAsFixed(2));
-    final msrp = double.parse((current * 1.25).toStringAsFixed(2));
+    final strike = budgetHint ?? inlinePrice ?? 0.0;
+    final current = inlinePrice ?? 0.0;
+    final msrp = 0.0;
     final slug = 'custom-$nextMissionId-${DateTime.now().millisecondsSinceEpoch}';
 
     final newMission = <String, dynamic>{
@@ -531,11 +547,11 @@ class LocalDealStore {
           'asin_or_sku': asin,
           'amazon_query': Uri.encodeQueryComponent(cleanTitle.isEmpty ? trimmed : cleanTitle),
           'msrp': msrp,
-          'avg_90d_price': current,
+          'avg_90d_price': 0.0,
           'current_price': current,
           'clip_coupon_amount': 0.0,
           'strike_price': strike,
-          'all_time_low': double.parse((strike * 0.92).toStringAsFixed(2)),
+          'all_time_low': 0.0,
           'sns_eligible': false,
           'pg_stockup_eligible': false,
           'b2g1_eligible': false,
@@ -543,8 +559,8 @@ class LocalDealStore {
           'snagged': false,
           'unit_name': 'item',
           'unit_quantity': 1.0,
-          'price_history': [msrp, current, current],
-          'price_source': inlinePrice != null ? 'manual' : 'estimated',
+          'price_history': current > 0 ? [current] : <double>[],
+          'price_source': inlinePrice != null ? 'manual' : 'untracked',
           'scout_notes': 'Saved to device storage. Tap the chart icon to check CamelCamelCamel or log the real price.',
         }
       ],
@@ -654,33 +670,41 @@ class LocalDealStore {
   void _recomputeAll() {
     final snsRate = _currentSnsRate();
     for (final o in _allOptions()) {
-      final current = (o['current_price'] as num).toDouble();
+      final current = (o['current_price'] as num? ?? 0).toDouble();
       final coupon = (o['clip_coupon_amount'] as num? ?? 0).toDouble();
-      final msrp = (o['msrp'] as num).toDouble();
-      final avg90 = (o['avg_90d_price'] as num).toDouble();
-      final strike = (o['strike_price'] as num).toDouble();
-      final atl = (o['all_time_low'] as num).toDouble();
+      final msrp = (o['msrp'] as num? ?? 0).toDouble();
+      final avg90 = (o['avg_90d_price'] as num? ?? 0).toDouble();
+      final strike = (o['strike_price'] as num? ?? 0).toDouble();
+      final atl = (o['all_time_low'] as num? ?? 0).toDouble();
       final snsElig = o['sns_eligible'] == true;
       final isTrap = o['is_trap_warning'] == true;
       final qty = math.max(0.001, (o['unit_quantity'] as num? ?? 1).toDouble());
+      final hasPrice = current > 0.0;
 
-      final snsDiscount = snsElig ? current * snsRate : 0.0;
-      final eff = double.parse(math.max(0.01, current - coupon - snsDiscount).toStringAsFixed(2));
-      final unitEff = double.parse((eff / qty).toStringAsFixed(2));
-      final pctOff = msrp > 0 ? (((msrp - eff) / msrp) * 100).round() : 0;
+      final snsDiscount = (hasPrice && snsElig) ? current * snsRate : 0.0;
+      final eff = hasPrice
+          ? double.parse(math.max(0.01, current - coupon - snsDiscount).toStringAsFixed(2))
+          : 0.0;
+      final unitEff = hasPrice ? double.parse((eff / qty).toStringAsFixed(2)) : 0.0;
+      final pctOff = (hasPrice && msrp > 0) ? (((msrp - eff) / msrp) * 100).round() : 0;
 
       String gradeCode;
       String gradeLabel;
-      if (isTrap || eff > msrp * 1.1) {
+      if (isTrap || (hasPrice && msrp > 0 && eff > msrp * 1.1)) {
         gradeCode = 'TRAP';
         gradeLabel = 'SCALPER / TRAP -- DO NOT BUY';
-      } else if (eff <= atl + 0.50) {
+      } else if (!hasPrice) {
+        gradeCode = 'UNPRICED';
+        gradeLabel = strike > 0
+            ? 'LOG PRICE TO TRACK (Target \$${strike.toStringAsFixed(0)})'
+            : 'LOG PRICE TO TRACK';
+      } else if (atl > 0 && eff <= atl + 0.50) {
         gradeCode = 'ATL';
         gradeLabel = 'ALL-TIME LOW ZONE (-$pctOff%)';
-      } else if (eff <= strike) {
+      } else if (strike > 0 && eff <= strike) {
         gradeCode = 'STRIKE';
         gradeLabel = 'AT STRIKE TARGET (-$pctOff%)';
-      } else if (eff <= avg90 * 0.94) {
+      } else if (avg90 > 0 && eff <= avg90 * 0.94) {
         gradeCode = 'HOLD';
         gradeLabel = 'NEAR TARGET (-$pctOff% | Target \$${strike.toStringAsFixed(0)})';
       } else {
@@ -698,17 +722,24 @@ class LocalDealStore {
           : 'https://camelcamelcamel.com/search?sq=$query';
 
       final histRaw = (o['price_history'] as List<dynamic>? ?? []);
-      final hist = histRaw.isEmpty
-          ? <double>[msrp, avg90, eff]
-          : histRaw.map((e) => (e as num).toDouble()).toList();
-      hist[hist.length - 1] = eff;
+      final hist = histRaw
+          .map((e) => (e as num).toDouble())
+          .where((v) => v > 0)
+          .toList();
+      if (hasPrice) {
+        if (hist.isEmpty) {
+          hist.add(eff);
+        } else {
+          hist[hist.length - 1] = eff;
+        }
+      }
 
       o['effective_price'] = eff;
       o['unit_effective_price'] = unitEff;
       o['discount_pct_off_msrp'] = pctOff;
       o['deal_grade_code'] = gradeCode;
       o['deal_grade_label'] = gradeLabel;
-      o['is_below_strike'] = !isTrap && eff <= strike;
+      o['is_below_strike'] = hasPrice && strike > 0 && !isTrap && eff <= strike;
       o['amazon_url'] = amazonUrl;
       o['camel_url'] = camelUrl;
       o['price_history'] = hist;
