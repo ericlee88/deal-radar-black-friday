@@ -174,9 +174,17 @@ def _build_snapshot(session: Session) -> Dict[str, Any]:
 
 
 async def run_export(poll_live: bool) -> None:
+    from app.main import _SEED_ASIN_BACKFILL
+
     init_db()
     with Session(engine) as session:
         seed_initial_missions(session, force_reset=False)
+        for node in session.exec(select(DealOptionNode)).all():
+            verified = _SEED_ASIN_BACKFILL.get(node.branch_key)
+            if verified and node.asin_or_sku != verified:
+                node.asin_or_sku = verified
+                session.add(node)
+        session.commit()
         _merge_user_state_if_present(session)
         if poll_live:
             alerts = await run_price_poll_cycle(session, simulate_drop=False)

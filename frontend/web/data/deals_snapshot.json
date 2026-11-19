@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-19T06:27:56.265229+00:00",
+  "generated_at": "2026-11-19T07:02:40.096591+00:00",
   "missions": [
     {
       "id": 1,
@@ -20,7 +20,7 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "Mercer Culinary Hell's Handle Heavy-Duty Stainless Steel Fish/Slotted Turner (M18320)",
-          "asin_or_sku": "B00DT1XEMS / M18320",
+          "asin_or_sku": "B001E17ZYS / M18320",
           "amazon_query": "Mercer+Culinary+Hells+Handle+Stainless+Steel+Turner+Spatula",
           "msrp": 26.99,
           "avg_90d_price": 21.5,
@@ -52,8 +52,8 @@
           "deal_grade_code": "ATL",
           "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-44%)",
           "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B00DT1XEMS?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B00DT1XEMS"
+          "amazon_url": "https://www.amazon.com/dp/B001E17ZYS?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B001E17ZYS"
         },
         {
           "id": 2,
@@ -63,7 +63,7 @@
           "is_recommended_branch": false,
           "is_trap_warning": false,
           "title": "OXO Good Grips Restaurant Stainless Steel Turner & Brushed Steel Spatula Set",
-          "asin_or_sku": "B00004OCL8",
+          "asin_or_sku": "B082N73YPV",
           "amazon_query": "OXO+Good+Grips+Restaurant+Stainless+Steel+Turner",
           "msrp": 22.95,
           "avg_90d_price": 17.99,
@@ -95,8 +95,8 @@
           "deal_grade_code": "ATL",
           "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-43%)",
           "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B00004OCL8?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B00004OCL8"
+          "amazon_url": "https://www.amazon.com/dp/B082N73YPV?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B082N73YPV"
         },
         {
           "id": 3,
@@ -106,11 +106,11 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "SUS304 Stainless Steel 2-in-1 Microporous Rice Washing Bowl & Side-Sieve Vegetable Basin Set",
-          "asin_or_sku": "B089G45BF7 / SUS304-BASIN-2IN1",
+          "asin_or_sku": "B0H4QL9G8M / SUS304-BASIN-2IN1",
           "amazon_query": "304+stainless+steel+rice+washing+bowl+strainer+colander+basin+set",
           "msrp": 32.99,
           "avg_90d_price": 25.99,
-          "current_price": 19.99,
+          "current_price": 20.49,
           "clip_coupon_amount": 2.0,
           "strike_price": 18.0,
           "all_time_low": 15.99,
@@ -129,17 +129,17 @@
             26.99,
             22.99,
             19.99,
-            17.99
+            18.49
           ],
           "scout_notes": "Laser-drilled 1.5mm side-drain perforations retain short/medium grain rice while draining starchy water rapidly; dishwasher safe without rusting.",
-          "effective_price": 17.99,
-          "unit_effective_price": 8.99,
-          "discount_pct_off_msrp": 45,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-45%)",
-          "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B089G45BF7?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B089G45BF7"
+          "effective_price": 18.49,
+          "unit_effective_price": 9.24,
+          "discount_pct_off_msrp": 44,
+          "deal_grade_code": "HOLD",
+          "deal_grade_label": "\u23f3 NEAR TARGET (-44% \u2022 Target $18)",
+          "is_below_strike": false,
+          "amazon_url": "https://www.amazon.com/dp/B0H4QL9G8M?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B0H4QL9G8M"
         }
       ]
     },
@@ -161,11 +161,11 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
-          "asin_or_sku": "B09FW876ZC / WSSA0004772",
+          "asin_or_sku": "B09FXD3ZCF / WSSA0004772",
           "amazon_query": "Work+Sharp+Precision+Adjust+Upgrade+Kit+WSSA0004772",
           "msrp": 79.95,
           "avg_90d_price": 69.95,
-          "current_price": 58.99,
+          "current_price": 59.49,
           "clip_coupon_amount": 0.0,
           "strike_price": 56.0,
           "all_time_low": 49.99,
@@ -184,17 +184,17 @@
             67.5,
             64.99,
             59.95,
-            58.99
+            59.49
           ],
           "scout_notes": "Upgrades your 3-grit base system with Coarse (220/320/400 diamond), Fine (600/800 diamond + ceramic), and Leather Strop + ceramic rod for serrations.",
-          "effective_price": 58.99,
-          "unit_effective_price": 8.43,
+          "effective_price": 59.49,
+          "unit_effective_price": 8.5,
           "discount_pct_off_msrp": 26,
           "deal_grade_code": "HOLD",
           "deal_grade_label": "\u23f3 NEAR TARGET (-26% \u2022 Target $56)",
           "is_below_strike": false,
-          "amazon_url": "https://www.amazon.com/dp/B09FW876ZC?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B09FW876ZC"
+          "amazon_url": "https://www.amazon.com/dp/B09FXD3ZCF?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B09FXD3ZCF"
         }
       ]
     },
@@ -220,7 +220,7 @@
           "amazon_query": "DeWalt+DCA1820+adapter+DCB205-2C+battery+kit",
           "msrp": 239.0,
           "avg_90d_price": 179.0,
-          "current_price": 147.0,
+          "current_price": 147.5,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 138.0,
@@ -239,11 +239,11 @@
             175.0,
             165.0,
             154.0,
-            147.0
+            147.5
           ],
           "scout_notes": "Best if you own 4+ legacy 18V tools. Always remove adapter from battery when stored to prevent parasitic Vampire drain!",
-          "effective_price": 147.0,
-          "unit_effective_price": 14.7,
+          "effective_price": 147.5,
+          "unit_effective_price": 14.75,
           "discount_pct_off_msrp": 38,
           "deal_grade_code": "STRIKE",
           "deal_grade_label": "\u2705 AT STRIKE TARGET (-38%)",
@@ -259,11 +259,11 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "DeWalt 20V MAX XR Brushless 1/2\" Cordless Hammer Drill Kit (DCD805D2 / DCD798D1)",
-          "asin_or_sku": "B09YY1WTHJ / DCD805D2",
+          "asin_or_sku": "B09YXSNV98 / DCD805D2",
           "amazon_query": "DeWalt+DCD805D2+OR+DCD798D1+20V+MAX+Brushless+Hammer+Drill+Kit",
           "msrp": 239.0,
           "avg_90d_price": 189.0,
-          "current_price": 158.0,
+          "current_price": 158.5,
           "clip_coupon_amount": 10.0,
           "strike_price": 149.0,
           "all_time_low": 139.0,
@@ -282,17 +282,17 @@
             189.0,
             179.0,
             169.0,
-            148.0
+            148.5
           ],
           "scout_notes": "During Black Friday Week, getting a brand-new brushless XR 1/2\" hammer drill + 2 batteries + charger costs the same as batteries alone! Add a $16 adapter for old 18V tools.",
-          "effective_price": 148.0,
-          "unit_effective_price": 148.0,
+          "effective_price": 148.5,
+          "unit_effective_price": 148.5,
           "discount_pct_off_msrp": 38,
           "deal_grade_code": "STRIKE",
           "deal_grade_label": "\u2705 AT STRIKE TARGET (-38%)",
           "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B09YY1WTHJ?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B09YY1WTHJ"
+          "amazon_url": "https://www.amazon.com/dp/B09YXSNV98?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98"
         },
         {
           "id": 7,
@@ -302,7 +302,7 @@
           "is_recommended_branch": false,
           "is_trap_warning": true,
           "title": "Discontinued DeWalt DCA2203C 18V-to-20V Adapter Starter Kit (3rd-Party Reseller Markup)",
-          "asin_or_sku": "B016K1UEPS / DCA2203C (DISCONTINUED)",
+          "asin_or_sku": "DCA2203C (DISCONTINUED)",
           "amazon_query": "DeWalt+DCA2203C",
           "msrp": 149.0,
           "avg_90d_price": 299.0,
@@ -334,8 +334,8 @@
           "deal_grade_code": "TRAP",
           "deal_grade_label": "\u26a0\ufe0f SCALPER / TRAP \u2014 DO NOT BUY",
           "is_below_strike": false,
-          "amazon_url": "https://www.amazon.com/dp/B016K1UEPS?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B016K1UEPS"
+          "amazon_url": "https://www.amazon.com/s?k=DeWalt+DCA2203C&rh=p_6%3AATVPDKIKX0DER",
+          "camel_url": "https://camelcamelcamel.com/search?sq=DeWalt+DCA2203C"
         }
       ]
     },
@@ -357,11 +357,11 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "Dyson Car+Boat Handheld Vacuum (50-Min Run Time + Mini Motorized Hair Screw Tool)",
-          "asin_or_sku": "B0C2J7X5WR / DYSON-CAR-BOAT",
+          "asin_or_sku": "B0DLXGDHBX / DYSON-CAR-BOAT",
           "amazon_query": "Dyson+Car+Boat+Handheld+Vacuum",
           "msrp": 299.99,
           "avg_90d_price": 279.99,
-          "current_price": 230.99,
+          "current_price": 230.49,
           "clip_coupon_amount": 0.0,
           "strike_price": 229.99,
           "all_time_low": 219.99,
@@ -380,17 +380,17 @@
             269.99,
             249.99,
             229.99,
-            230.99
+            230.49
           ],
           "scout_notes": "Live early Black Friday drop at $229.99 (-23%). Includes anti-tangle conical brush bar, crevice tool, and combination tool.",
-          "effective_price": 230.99,
-          "unit_effective_price": 4.62,
+          "effective_price": 230.49,
+          "unit_effective_price": 4.61,
           "discount_pct_off_msrp": 23,
           "deal_grade_code": "HOLD",
           "deal_grade_label": "\u23f3 NEAR TARGET (-23% \u2022 Target $230)",
           "is_below_strike": false,
-          "amazon_url": "https://www.amazon.com/dp/B0C2J7X5WR?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0C2J7X5WR"
+          "amazon_url": "https://www.amazon.com/dp/B0DLXGDHBX?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX"
         },
         {
           "id": 9,
@@ -400,7 +400,7 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "Dyson V8 Cyclone Cordless Vacuum (1-Click Detachable Handheld + Full Floor Wand)",
-          "asin_or_sku": "B0B5HJJ7K7 / DYSON-V8-CYCLONE",
+          "asin_or_sku": "B09YS9N7H2 / DYSON-V8-CYCLONE",
           "amazon_query": "Dyson+V8+Cordless+Vacuum",
           "msrp": 399.99,
           "avg_90d_price": 349.99,
@@ -432,8 +432,8 @@
           "deal_grade_code": "STRIKE",
           "deal_grade_label": "\u2705 AT STRIKE TARGET (-25%)",
           "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B0B5HJJ7K7?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0B5HJJ7K7"
+          "amazon_url": "https://www.amazon.com/dp/B09YS9N7H2?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B09YS9N7H2"
         },
         {
           "id": 10,
@@ -443,11 +443,11 @@
           "is_recommended_branch": false,
           "is_trap_warning": false,
           "title": "Dyson V12 Detect Slim / Humdinger (Single-Button Power, No Trigger Hold, 2.2 lb Handheld)",
-          "asin_or_sku": "B0B1V2G7R2 / DYSON-V12-SLIM",
+          "asin_or_sku": "B0B4X3H4MZ / DYSON-V12-SLIM",
           "amazon_query": "Dyson+V12+Detect+Slim+Cordless+Vacuum",
           "msrp": 649.99,
           "avg_90d_price": 519.99,
-          "current_price": 398.99,
+          "current_price": 399.49,
           "clip_coupon_amount": 0.0,
           "strike_price": 399.99,
           "all_time_low": 379.99,
@@ -466,17 +466,17 @@
             489.99,
             449.99,
             399.99,
-            398.99
+            399.49
           ],
           "scout_notes": "30% lighter in handheld mode (2.2 lbs vs 3.3 lbs) and uses a push-button ON/OFF switch so you don't hold a trigger while detailing car seats.",
-          "effective_price": 398.99,
-          "unit_effective_price": 6.65,
+          "effective_price": 399.49,
+          "unit_effective_price": 6.66,
           "discount_pct_off_msrp": 39,
           "deal_grade_code": "STRIKE",
           "deal_grade_label": "\u2705 AT STRIKE TARGET (-39%)",
           "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B0B1V2G7R2?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0B1V2G7R2"
+          "amazon_url": "https://www.amazon.com/dp/B0B4X3H4MZ?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B0B4X3H4MZ"
         }
       ]
     },
@@ -498,11 +498,11 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "Metamucil Fiber + Collagen Peptides Rejuvenation Blend (Orange Smooth, 52 Servings)",
-          "asin_or_sku": "B09V35B9K1",
+          "asin_or_sku": "METAMUCIL-COLLAGEN-52",
           "amazon_query": "Metamucil+Fiber+Collagen+Rejuvenation+Blend",
           "msrp": 34.99,
           "avg_90d_price": 29.99,
-          "current_price": 25.99,
+          "current_price": 24.49,
           "clip_coupon_amount": 5.0,
           "strike_price": 19.5,
           "all_time_low": 17.4,
@@ -521,17 +521,17 @@
             29.99,
             28.49,
             26.99,
-            17.09
+            15.82
           ],
           "scout_notes": "Clip the $5 first-delivery coupon + 15% S&S to drop net cost to $17.94 ($0.34/serving). Qualifies for P&G Spend $100 Get $25 credit.",
-          "effective_price": 17.09,
-          "unit_effective_price": 0.33,
-          "discount_pct_off_msrp": 51,
+          "effective_price": 15.82,
+          "unit_effective_price": 0.3,
+          "discount_pct_off_msrp": 55,
           "deal_grade_code": "ATL",
-          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-51%)",
+          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-55%)",
           "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B09V35B9K1?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B09V35B9K1"
+          "amazon_url": "https://www.amazon.com/s?k=Metamucil+Fiber+Collagen+Rejuvenation+Blend&rh=p_6%3AATVPDKIKX0DER",
+          "camel_url": "https://camelcamelcamel.com/search?sq=Metamucil+Fiber+Collagen+Rejuvenation+Blend"
         },
         {
           "id": 12,
@@ -545,7 +545,7 @@
           "amazon_query": "Vital+Proteins+Collagen+Peptides+20oz+Metamucil+180",
           "msrp": 67.98,
           "avg_90d_price": 54.5,
-          "current_price": 46.99,
+          "current_price": 47.49,
           "clip_coupon_amount": 6.0,
           "strike_price": 36.0,
           "all_time_low": 32.5,
@@ -564,14 +564,14 @@
             52.0,
             49.99,
             46.99,
-            33.94
+            34.37
           ],
           "scout_notes": "Vital Proteins drops 35% on Black Friday; mixing 1 scoop with standard Metamucil cuts cost per gram of collagen + psyllium by 48%.",
-          "effective_price": 33.94,
+          "effective_price": 34.37,
           "unit_effective_price": 0.23,
-          "discount_pct_off_msrp": 50,
+          "discount_pct_off_msrp": 49,
           "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-50%)",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-49%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B00K6JUG4K?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K"
@@ -600,7 +600,7 @@
           "amazon_query": "Bounty+Quick+Size+Paper+Towels+16+Family+Rolls",
           "msrp": 42.99,
           "avg_90d_price": 38.99,
-          "current_price": 36.49,
+          "current_price": 35.99,
           "clip_coupon_amount": 4.0,
           "strike_price": 28.0,
           "all_time_low": 25.49,
@@ -619,14 +619,14 @@
             38.99,
             37.49,
             36.49,
-            27.02
+            26.59
           ],
           "scout_notes": "Counts $36.49 toward the $100 P&G threshold before coupon/S&S deductions.",
-          "effective_price": 27.02,
-          "unit_effective_price": 1.69,
-          "discount_pct_off_msrp": 37,
+          "effective_price": 26.59,
+          "unit_effective_price": 1.66,
+          "discount_pct_off_msrp": 38,
           "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-37%)",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-38%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B079VP6DH5?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B079VP6DH5"
@@ -639,11 +639,11 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "Charmin Ultra Soft Cushiony Touch Toilet Paper (24 Mega XL Rolls = 144 Regular)",
-          "asin_or_sku": "B09M76689J",
+          "asin_or_sku": "B0D87QKHHP",
           "amazon_query": "Charmin+Ultra+Soft+24+Mega+XL+Rolls",
           "msrp": 36.99,
           "avg_90d_price": 33.49,
-          "current_price": 30.49,
+          "current_price": 28.99,
           "clip_coupon_amount": 3.5,
           "strike_price": 24.5,
           "all_time_low": 22.8,
@@ -662,17 +662,17 @@
             33.49,
             32.49,
             31.49,
-            22.42
+            21.14
           ],
           "scout_notes": "P&G stock-up eligible; target <$0.20 per 100 sheets after 15% S&S.",
-          "effective_price": 22.42,
-          "unit_effective_price": 0.93,
-          "discount_pct_off_msrp": 39,
+          "effective_price": 21.14,
+          "unit_effective_price": 0.88,
+          "discount_pct_off_msrp": 43,
           "deal_grade_code": "ATL",
-          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-39%)",
+          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-43%)",
           "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B09M76689J?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B09M76689J"
+          "amazon_url": "https://www.amazon.com/dp/B0D87QKHHP?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B0D87QKHHP"
         },
         {
           "id": 15,
@@ -682,11 +682,11 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "Cascade Platinum Plus ActionPacs Dishwasher Detergent Pods (81 Count Tub)",
-          "asin_or_sku": "B0B7627GZY",
+          "asin_or_sku": "B0CHD7GLN9",
           "amazon_query": "Cascade+Platinum+Plus+ActionPacs+81+Count",
           "msrp": 28.99,
           "avg_90d_price": 25.99,
-          "current_price": 25.49,
+          "current_price": 23.99,
           "clip_coupon_amount": 3.0,
           "strike_price": 18.0,
           "all_time_low": 16.49,
@@ -705,17 +705,17 @@
             25.99,
             24.99,
             23.99,
-            18.67
+            17.39
           ],
           "scout_notes": "Pushes your P&G subtotal over $100 when paired with Metamucil, Bounty, and Charmin!",
-          "effective_price": 18.67,
-          "unit_effective_price": 0.23,
-          "discount_pct_off_msrp": 36,
-          "deal_grade_code": "HOLD",
-          "deal_grade_label": "\u23f3 NEAR TARGET (-36% \u2022 Target $18)",
-          "is_below_strike": false,
-          "amazon_url": "https://www.amazon.com/dp/B0B7627GZY?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0B7627GZY"
+          "effective_price": 17.39,
+          "unit_effective_price": 0.21,
+          "discount_pct_off_msrp": 40,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-40%)",
+          "is_below_strike": true,
+          "amazon_url": "https://www.amazon.com/dp/B0CHD7GLN9?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B0CHD7GLN9"
         },
         {
           "id": 16,
@@ -725,11 +725,11 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "Glad ForceFlexPlus 13-Gallon Tall Kitchen Drawstring Trash Bags (110 Count)",
-          "asin_or_sku": "B078772M6F",
+          "asin_or_sku": "B00ASBOT2Q",
           "amazon_query": "Glad+ForceFlexPlus+13+Gallon+110+Count",
           "msrp": 23.99,
           "avg_90d_price": 20.99,
-          "current_price": 17.99,
+          "current_price": 17.49,
           "clip_coupon_amount": 2.0,
           "strike_price": 14.5,
           "all_time_low": 13.2,
@@ -748,17 +748,17 @@
             20.5,
             19.49,
             18.49,
-            13.29
+            12.87
           ],
           "scout_notes": "5th item in the box\u2014locks in the full 15% Subscribe & Save discount across all items.",
-          "effective_price": 13.29,
+          "effective_price": 12.87,
           "unit_effective_price": 0.12,
-          "discount_pct_off_msrp": 45,
+          "discount_pct_off_msrp": 46,
           "deal_grade_code": "ATL",
-          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-45%)",
+          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-46%)",
           "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B078772M6F?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B078772M6F"
+          "amazon_url": "https://www.amazon.com/dp/B00ASBOT2Q?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B00ASBOT2Q"
         }
       ]
     },
@@ -784,7 +784,7 @@
           "amazon_query": "Cascadia+Board+Game+AEG",
           "msrp": 39.99,
           "avg_90d_price": 31.99,
-          "current_price": 21.99,
+          "current_price": 20.49,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.0,
           "all_time_low": 19.99,
@@ -803,14 +803,14 @@
             29.99,
             27.99,
             24.99,
-            21.99
+            20.49
           ],
           "scout_notes": "BGG 8.0/10. Zero mean blocking; kids draft wildlife tokens and spatial habitat tiles.",
-          "effective_price": 21.99,
-          "unit_effective_price": 21.99,
-          "discount_pct_off_msrp": 45,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-45%)",
+          "effective_price": 20.49,
+          "unit_effective_price": 20.49,
+          "discount_pct_off_msrp": 49,
+          "deal_grade_code": "ATL",
+          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-49%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B093H8RGXX?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B093H8RGXX"
@@ -823,11 +823,11 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "Ticket to Ride (or Ticket to Ride Europe) Strategy Board Game (Ages 8+)",
-          "asin_or_sku": "B0002TV2LU",
+          "asin_or_sku": "B000809OAO",
           "amazon_query": "Ticket+to+Ride+Board+Game",
           "msrp": 54.99,
           "avg_90d_price": 41.99,
-          "current_price": 26.49,
+          "current_price": 24.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 23.99,
@@ -846,17 +846,17 @@
             39.99,
             34.99,
             28.99,
-            26.49
+            24.99
           ],
           "scout_notes": "Gold-standard family game for 8yo+. Pairs with Cascadia & GraviTrax in the $24\u2013$26 3-for-2 sweet spot.",
-          "effective_price": 26.49,
-          "unit_effective_price": 26.49,
-          "discount_pct_off_msrp": 52,
+          "effective_price": 24.99,
+          "unit_effective_price": 24.99,
+          "discount_pct_off_msrp": 55,
           "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-52%)",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-55%)",
           "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B0002TV2LU?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0002TV2LU"
+          "amazon_url": "https://www.amazon.com/dp/B000809OAO?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B000809OAO"
         },
         {
           "id": 19,
@@ -866,7 +866,7 @@
           "is_recommended_branch": true,
           "is_trap_warning": false,
           "title": "Ravensburger GraviTrax Starter Set (122-Piece Interactive Marble Run STEM Puzzle, Ages 8+)",
-          "asin_or_sku": "B07B7HNLMG",
+          "asin_or_sku": "B0BSXKTRYZ",
           "amazon_query": "Ravensburger+GraviTrax+Starter+Set",
           "msrp": 69.99,
           "avg_90d_price": 44.99,
@@ -898,8 +898,8 @@
           "deal_grade_code": "STRIKE",
           "deal_grade_label": "\u2705 AT STRIKE TARGET (-64%)",
           "is_below_strike": true,
-          "amazon_url": "https://www.amazon.com/dp/B07B7HNLMG?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B07B7HNLMG"
+          "amazon_url": "https://www.amazon.com/dp/B0BSXKTRYZ?psc=1",
+          "camel_url": "https://camelcamelcamel.com/product/B0BSXKTRYZ"
         },
         {
           "id": 20,
@@ -913,7 +913,7 @@
           "amazon_query": "ThinkFun+Gravity+Maze+Marble+Run",
           "msrp": 32.99,
           "avg_90d_price": 26.99,
-          "current_price": 17.99,
+          "current_price": 16.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 19.5,
           "all_time_low": 16.99,
@@ -932,22 +932,132 @@
             24.99,
             22.99,
             19.99,
-            17.99
+            16.99
           ],
           "scout_notes": "Brilliant solo/co-op spatial logic tower puzzle for 8+ year olds.",
-          "effective_price": 17.99,
-          "unit_effective_price": 0.3,
-          "discount_pct_off_msrp": 45,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-45%)",
+          "effective_price": 16.99,
+          "unit_effective_price": 0.28,
+          "discount_pct_off_msrp": 48,
+          "deal_grade_code": "ATL",
+          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-48%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B00IUAAK2A?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B00IUAAK2A"
         }
       ]
+    },
+    {
+      "id": 8,
+      "slug": "anker-prime-250w-gan-charger-or-ugre-fork",
+      "title": "Decision Fork: Anker Prime 250W GaN Charger",
+      "raw_intent": "Anker Prime 250W GaN Charger or Ugreen Nexode 300W desktop charger",
+      "node_type": "XOR_FORK",
+      "category_tag": "tech",
+      "icon": "\ud83d\udd00",
+      "decision_framing": "Evaluates whether to buy 'Anker Prime 250W GaN Charger' standalone or step up to 'Ugreen Nexode 300W desktop charger' during Black Friday bundle markdowns.",
+      "options": [
+        {
+          "id": 21,
+          "mission_id": 8,
+          "branch_key": "path_a",
+          "branch_label": "Path A \u2022 Incremental / Modular Route",
+          "is_recommended_branch": false,
+          "is_trap_warning": false,
+          "title": "Anker Prime 250W GaN Charger",
+          "asin_or_sku": "MODULAR-OPTION-A",
+          "amazon_query": "Anker+Prime+250W+GaN+Charger",
+          "msrp": 160.65,
+          "avg_90d_price": 138.16,
+          "current_price": 118.88,
+          "clip_coupon_amount": 0.0,
+          "strike_price": 119.0,
+          "all_time_low": 110.67,
+          "sns_eligible": false,
+          "pg_stockup_eligible": false,
+          "b2g1_eligible": false,
+          "selected_in_stack": false,
+          "snagged": false,
+          "unit_name": "unit",
+          "unit_quantity": 1.0,
+          "price_history": [
+            160.65,
+            149.41,
+            138.16,
+            118.88
+          ],
+          "scout_notes": "Lower upfront spend for Anker Prime 250W GaN Charger; verify Sold by Amazon.com.",
+          "effective_price": 118.88,
+          "unit_effective_price": 118.88,
+          "discount_pct_off_msrp": 26,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-26%)",
+          "is_below_strike": true,
+          "amazon_url": "https://www.amazon.com/s?k=Anker+Prime+250W+GaN+Charger&rh=p_6%3AATVPDKIKX0DER",
+          "camel_url": "https://camelcamelcamel.com/search?sq=Anker+Prime+250W+GaN+Charger"
+        },
+        {
+          "id": 22,
+          "mission_id": 8,
+          "branch_key": "path_b",
+          "branch_label": "Path B \u2022 Full Bundle / Next-Gen Upgrade",
+          "is_recommended_branch": true,
+          "is_trap_warning": false,
+          "title": "Ugreen Nexode 300W desktop charger",
+          "asin_or_sku": "BUNDLE-OPTION-B",
+          "amazon_query": "Ugreen+Nexode+300W+desktop+charger",
+          "msrp": 200.81,
+          "avg_90d_price": 163.03,
+          "current_price": 132.65,
+          "clip_coupon_amount": 12.85,
+          "strike_price": 130.9,
+          "all_time_low": 119.52,
+          "sns_eligible": false,
+          "pg_stockup_eligible": false,
+          "b2g1_eligible": false,
+          "selected_in_stack": false,
+          "snagged": false,
+          "unit_name": "unit",
+          "unit_quantity": 1.0,
+          "price_history": [
+            200.81,
+            181.92,
+            163.03,
+            119.8
+          ],
+          "scout_notes": "Black Friday bundle pricing on Ugreen Nexode 300W desktop charger narrows the gap to <12%.",
+          "effective_price": 119.8,
+          "unit_effective_price": 119.8,
+          "discount_pct_off_msrp": 40,
+          "deal_grade_code": "ATL",
+          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-40%)",
+          "is_below_strike": true,
+          "amazon_url": "https://www.amazon.com/s?k=Ugreen+Nexode+300W+desktop+charger&rh=p_6%3AATVPDKIKX0DER",
+          "camel_url": "https://camelcamelcamel.com/search?sq=Ugreen+Nexode+300W+desktop+charger"
+        }
+      ]
     }
   ],
   "alerts": [
+    {
+      "id": 8,
+      "option_id": 15,
+      "option_title": "Cascade Platinum Plus ActionPacs Dishwasher Detergent Pods (81 Count Tub)",
+      "effective_price": 17.39,
+      "strike_price": 18.0,
+      "channel": "local_inbox",
+      "status": "logged_locally",
+      "created_at": "2026-11-19T06:49:20.430214+00:00"
+    },
+    {
+      "id": 7,
+      "option_id": 4,
+      "option_title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
+      "effective_price": 52.0,
+      "strike_price": 56.0,
+      "channel": "local_inbox",
+      "status": "logged_locally",
+      "created_at": "2026-11-19T06:31:59.187452+00:00"
+    },
     {
       "id": 6,
       "option_id": 10,
@@ -1049,6 +1159,7 @@
     "19": "images/products/puzzle_gravitrax.jpg",
     "puzzle_gravitrax": "images/products/puzzle_gravitrax.jpg",
     "20": "images/products/puzzle_gravity_maze.jpg",
-    "puzzle_gravity_maze": "images/products/puzzle_gravity_maze.jpg"
+    "puzzle_gravity_maze": "images/products/puzzle_gravity_maze.jpg",
+    "22": "images/products/opt_22.jpg"
   }
 }

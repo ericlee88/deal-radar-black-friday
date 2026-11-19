@@ -37,14 +37,26 @@ from app.seed import seed_initial_missions
 scheduler = AsyncIOScheduler()
 
 _SEED_ASIN_BACKFILL = {
-    "rice_basin_304": "B089G45BF7 / SUS304-BASIN-2IN1",
+    "spatula_mercer": "B001E17ZYS / M18320",
+    "spatula_oxo": "B082N73YPV",
+    "rice_basin_304": "B0H4QL9G8M / SUS304-BASIN-2IN1",
+    "wssa0004772": "B09FXD3ZCF / WSSA0004772",
     "path_a_adapter_split": "B016K1UD0E / DCA1820 + DCB205-2C",
-    "path_b_new_hammer_drill": "B09YY1WTHJ / DCD805D2",
-    "trap_dca2203c": "B016K1UEPS / DCA2203C (DISCONTINUED)",
-    "dyson_car_boat": "B0C2J7X5WR / DYSON-CAR-BOAT",
-    "dyson_v8_convertible": "B0B5HJJ7K7 / DYSON-V8-CYCLONE",
-    "dyson_v12_slim": "B0B1V2G7R2 / DYSON-V12-SLIM",
+    "path_b_new_hammer_drill": "B09YXSNV98 / DCD805D2",
+    "trap_dca2203c": "DCA2203C (DISCONTINUED)",
+    "dyson_car_boat": "B0DLXGDHBX / DYSON-CAR-BOAT",
+    "dyson_v8_convertible": "B09YS9N7H2 / DYSON-V8-CYCLONE",
+    "dyson_v12_slim": "B0B4X3H4MZ / DYSON-V12-SLIM",
+    "metamucil_rejuvenation": "METAMUCIL-COLLAGEN-52",
     "diy_metamucil_vital": "B00K6JUG4K / METAMUCIL-180 + VITAL-20OZ",
+    "bounty_paper_towels": "B079VP6DH5",
+    "charmin_ultra_soft": "B0D87QKHHP",
+    "cascade_platinum_plus": "B0CHD7GLN9",
+    "glad_forceflex_110": "B00ASBOT2Q",
+    "game_cascadia": "B093H8RGXX",
+    "game_ticket_to_ride": "B000809OAO",
+    "puzzle_gravitrax": "B0BSXKTRYZ",
+    "puzzle_gravity_maze": "B00IUAAK2A",
 }
 
 
@@ -54,8 +66,9 @@ async def lifespan(app: FastAPI):
     with Session(engine) as session:
         seed_initial_missions(session, force_reset=False)
         for node in session.exec(select(DealOptionNode)).all():
-            if node.branch_key in _SEED_ASIN_BACKFILL and not extract_amazon_asin(node.asin_or_sku):
-                node.asin_or_sku = _SEED_ASIN_BACKFILL[node.branch_key]
+            verified = _SEED_ASIN_BACKFILL.get(node.branch_key)
+            if verified and node.asin_or_sku != verified:
+                node.asin_or_sku = verified
                 session.add(node)
         session.commit()
 

@@ -133,6 +133,7 @@ class LocalDealStore {
           _missions = _mergeSnapshotPricesIntoSaved(baseMissions, savedMissions);
           _alerts = savedAlerts.isNotEmpty ? savedAlerts : baseAlerts;
           _recomputeAll();
+          _persistLocal();
           _initialized = true;
           return;
         }
@@ -151,27 +152,40 @@ class LocalDealStore {
     }
   }
 
-  /// Keeps user's custom missions & flags while adopting newer snapshot prices when snapshot is newer.
+  /// Keeps user's custom missions & flags while adopting latest verified ASIN/URL metadata from snapshot.
   List<Map<String, dynamic>> _mergeSnapshotPricesIntoSaved(
     List<Map<String, dynamic>> snapshotMissions,
     List<Map<String, dynamic>> savedMissions,
   ) {
     final snapByOptId = <int, Map<String, dynamic>>{};
+    final snapByBranchKey = <String, Map<String, dynamic>>{};
     for (final m in snapshotMissions) {
       for (final o in (m['options'] as List<dynamic>? ?? [])) {
         final om = o as Map<String, dynamic>;
         final id = (om['id'] as num?)?.toInt();
         if (id != null) snapByOptId[id] = om;
+        final bk = om['branch_key'] as String? ?? '';
+        if (bk.isNotEmpty) snapByBranchKey[bk] = om;
       }
     }
     for (final m in savedMissions) {
       for (final o in (m['options'] as List<dynamic>? ?? [])) {
         final om = o as Map<String, dynamic>;
         final id = (om['id'] as num?)?.toInt();
-        if (id != null && snapByOptId.containsKey(id)) {
-          // Ensure latest ASIN / URL metadata from snapshot is present if missing
-          if ((om['asin_or_sku'] as String? ?? '').isEmpty) {
-            om['asin_or_sku'] = snapByOptId[id]!['asin_or_sku'];
+        final bk = om['branch_key'] as String? ?? '';
+        final snapOpt = (bk.isNotEmpty ? snapByBranchKey[bk] : null) ??
+            (id != null ? snapByOptId[id] : null);
+        if (snapOpt != null) {
+          // Always adopt the latest verified ASIN & search query from the deployed snapshot
+          om['asin_or_sku'] = snapOpt['asin_or_sku'];
+          if ((snapOpt['amazon_query'] as String? ?? '').isNotEmpty) {
+            om['amazon_query'] = snapOpt['amazon_query'];
+          }
+          if ((snapOpt['amazon_url'] as String? ?? '').isNotEmpty) {
+            om['amazon_url'] = snapOpt['amazon_url'];
+          }
+          if ((snapOpt['camel_url'] as String? ?? '').isNotEmpty) {
+            om['camel_url'] = snapOpt['camel_url'];
           }
         }
       }
