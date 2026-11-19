@@ -68,7 +68,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from fastapi.responses import Response
+
 _client_logs: List[Dict[str, Any]] = []
+_CANVASKIT_CHUNK_SIZE = 1_600_000
 
 
 @app.post("/api/client-log")
@@ -81,6 +84,31 @@ def record_client_log(payload: Dict[str, Any]) -> Dict[str, str]:
 @app.get("/api/client-logs")
 def get_client_logs() -> List[Dict[str, Any]]:
     return _client_logs
+
+
+@app.delete("/api/client-logs")
+def clear_client_logs() -> Dict[str, str]:
+    _client_logs.clear()
+    return {"status": "cleared"}
+
+
+@app.get("/api/canvaskit/chunk/{chunk_id}")
+def get_canvaskit_wasm_chunk(chunk_id: int) -> Response:
+    """Serves canvaskit.wasm in 1.6MB slices so preview proxies with a 4MiB response ceiling never truncate WASM."""
+    wasm_path = Path(__file__).resolve().parents[2] / "frontend" / "build" / "web" / "canvaskit" / "canvaskit.wasm"
+    if not wasm_path.is_file():
+        raise HTTPException(status_code=404, detail="canvaskit.wasm not built")
+    data = wasm_path.read_bytes()
+    start = chunk_id * _CANVASKIT_CHUNK_SIZE
+    if start >= len(data) or chunk_id < 0:
+        return Response(content=b"", media_type="application/octet-stream")
+    end = min(len(data), start + _CANVASKIT_CHUNK_SIZE)
+    return Response(
+        content=data[start:end],
+        media_type="application/octet-stream",
+        headers={"Cache-Control": "public, max-age=3600"},
+    )
+
 
 
 
