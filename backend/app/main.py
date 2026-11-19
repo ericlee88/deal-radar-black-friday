@@ -9,9 +9,11 @@ from sqlmodel import Session, select
 from app.config import settings
 from app.database import engine, get_session, init_db
 from app.engine.deal_scorer import (
+    build_amazon_cart_plan,
     compute_effective_price,
     enrich_mission,
     enrich_option_node,
+    extract_amazon_asin,
     solve_combinatoric_stack,
 )
 from app.engine.scheduler import run_price_poll_cycle, scheduled_poll_job
@@ -19,10 +21,13 @@ from app.models import DealOptionNode, ShoppingMission, WebhookAlertLog
 from app.providers.llm_provider import llm_resolver
 from app.providers.notifier import webhook_notifier
 from app.schemas import (
+    AmazonCartBuilderPlan,
     CombinatoricStackSummary,
     DealOptionPatch,
     DealOptionRead,
     IntentTranslateRequest,
+    ProviderSettingsRead,
+    ProviderSettingsUpdate,
     ShoppingMissionRead,
     WebhookTestRequest,
 )
@@ -30,12 +35,27 @@ from app.seed import seed_initial_missions
 
 scheduler = AsyncIOScheduler()
 
+_SEED_ASIN_BACKFILL = {
+    "rice_basin_304": "B089G45BF7 / SUS304-BASIN-2IN1",
+    "path_a_adapter_split": "B016K1UD0E / DCA1820 + DCB205-2C",
+    "path_b_new_hammer_drill": "B09YY1WTHJ / DCD805D2",
+    "dyson_car_boat": "B0C2J7X5WR / DYSON-CAR-BOAT",
+    "dyson_v8_convertible": "B0B5HJJ7K7 / DYSON-V8-CYCLONE",
+    "dyson_v12_slim": "B0B1V2G7R2 / DYSON-V12-SLIM",
+    "diy_metamucil_vital": "B00K6JUG4K / METAMUCIL-180 + VITAL-20OZ",
+}
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
     with Session(engine) as session:
         seed_initial_missions(session, force_reset=False)
+        for node in session.exec(select(DealOptionNode)).all():
+            if node.branch_key in _SEED_ASIN_BACKFILL and not extract_amazon_asin(node.asin_or_sku):
+                node.asin_or_sku = _SEED_ASIN_BACKFILL[node.branch_key]
+                session.add(node)
+        session.commit()
 
     if settings.enable_scheduler:
         scheduler.add_job(
@@ -274,6 +294,87 @@ def get_combinatoric_stack_summary(
 ) -> CombinatoricStackSummary:
     all_opts = session.exec(select(DealOptionNode)).all()
     return solve_combinatoric_stack(list(all_opts))
+
+
+@app.get("/api/cart-plan", response_model=AmazonCartBuilderPlan)
+def get_amazon_cart_plan(
+    scope: str = "recommended",
+    session: Session = Depends(get_session),
+) -> AmazonCartBuilderPlan:
+    all_opts = session.exec(select(DealOptionNode).order_by(DealOptionNode.id)).all()
+    return build_amazon_cart_plan(list(all_opts), scope=scope)
+
+
+def _mask_secret(secret: Any) -> str:
+    if not secret:
+        return "Not configured"
+    s = str(secret).strip()
+    if len(s) <= 6:
+        return "***"
+    return f"{s[:4]}...{s[-3:]}"
+
+
+def _build_settings_read() -> ProviderSettingsRead:
+    return ProviderSettingsRead(
+        llm_provider=settings.llm_provider,
+        active_llm_mode=settings.active_llm_mode,
+        gemini_api_key_set=bool(settings.gemini_api_key),
+        gemini_api_key_preview=_mask_secret(settings.gemini_api_key),
+        gemini_model=settings.gemini_model,
+        openai_api_key_set=bool(settings.openai_api_key),
+        openai_api_key_preview=_mask_secret(settings.openai_api_key),
+        openai_model=settings.openai_model,
+        price_provider=settings.price_provider,
+        active_price_mode=settings.active_price_mode,
+        keepa_api_key_set=bool(settings.keepa_api_key),
+        keepa_api_key_preview=_mask_secret(settings.keepa_api_key),
+        webhook_provider=settings.webhook_provider,
+        webhook_url=settings.webhook_url,
+        telegram_bot_token_set=bool(settings.telegram_bot_token),
+        telegram_chat_id=settings.telegram_chat_id,
+        poll_interval_minutes=settings.poll_interval_minutes,
+    )
+
+
+@app.get("/api/settings", response_model=ProviderSettingsRead)
+def get_provider_settings() -> ProviderSettingsRead:
+    return _build_settings_read()
+
+
+@app.patch("/api/settings", response_model=ProviderSettingsRead)
+def update_provider_settings(patch: ProviderSettingsUpdate) -> ProviderSettingsRead:
+    if patch.llm_provider in ("auto", "mock", "gemini", "openai"):
+        settings.llm_provider = patch.llm_provider  # type: ignore[assignment]
+    if patch.gemini_api_key is not None:
+        val = patch.gemini_api_key.strip()
+        settings.gemini_api_key = val if val else None
+    if patch.gemini_model is not None and patch.gemini_model.strip():
+        settings.gemini_model = patch.gemini_model.strip()
+    if patch.openai_api_key is not None:
+        val = patch.openai_api_key.strip()
+        settings.openai_api_key = val if val else None
+    if patch.openai_model is not None and patch.openai_model.strip():
+        settings.openai_model = patch.openai_model.strip()
+    if patch.price_provider in ("auto", "mock", "keepa"):
+        settings.price_provider = patch.price_provider  # type: ignore[assignment]
+    if patch.keepa_api_key is not None:
+        val = patch.keepa_api_key.strip()
+        settings.keepa_api_key = val if val else None
+    if patch.webhook_provider in ("none", "discord", "slack", "telegram", "ntfy", "generic"):
+        settings.webhook_provider = patch.webhook_provider  # type: ignore[assignment]
+    if patch.webhook_url is not None:
+        val = patch.webhook_url.strip()
+        settings.webhook_url = val if val else None
+    if patch.telegram_bot_token is not None:
+        val = patch.telegram_bot_token.strip()
+        settings.telegram_bot_token = val if val else None
+    if patch.telegram_chat_id is not None:
+        val = patch.telegram_chat_id.strip()
+        settings.telegram_chat_id = val if val else None
+    if patch.poll_interval_minutes is not None and patch.poll_interval_minutes >= 1:
+        settings.poll_interval_minutes = patch.poll_interval_minutes
+    return _build_settings_read()
+
 
 
 @app.post("/api/poller/trigger")

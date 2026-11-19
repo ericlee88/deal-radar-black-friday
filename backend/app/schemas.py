@@ -131,3 +131,68 @@ class CombinatoricStackSummary(BaseModel):
 class WebhookTestRequest(BaseModel):
     option_id: Optional[int] = None
     custom_message: Optional[str] = None
+
+
+class ProviderSettingsRead(BaseModel):
+    llm_provider: str
+    active_llm_mode: str
+    gemini_api_key_set: bool
+    gemini_api_key_preview: str
+    gemini_model: str
+    openai_api_key_set: bool
+    openai_api_key_preview: str
+    openai_model: str
+    price_provider: str
+    active_price_mode: str
+    keepa_api_key_set: bool
+    keepa_api_key_preview: str
+    webhook_provider: str
+    webhook_url: Optional[str] = None
+    telegram_bot_token_set: bool
+    telegram_chat_id: Optional[str] = None
+    poll_interval_minutes: int
+
+
+class ProviderSettingsUpdate(BaseModel):
+    llm_provider: Optional[str] = None
+    gemini_api_key: Optional[str] = None
+    gemini_model: Optional[str] = None
+    openai_api_key: Optional[str] = None
+    openai_model: Optional[str] = None
+    price_provider: Optional[str] = None
+    keepa_api_key: Optional[str] = None
+    webhook_provider: Optional[str] = None
+    webhook_url: Optional[str] = None
+    telegram_bot_token: Optional[str] = None
+    telegram_chat_id: Optional[str] = None
+    poll_interval_minutes: Optional[int] = None
+
+
+class CartChecklistStep(BaseModel):
+    step_number: int
+    title: str
+    detail: str
+    badge: str
+    category: str = "general"
+
+
+class AmazonCartBuilderPlan(BaseModel):
+    scope: str
+    cart_add_url: Optional[str] = None
+    sns_cart_add_url: Optional[str] = None
+    b2g1_cart_add_url: Optional[str] = None
+    direct_asin_count: int
+    total_selected_count: int
+    direct_asin_items: List[DealOptionRead]
+    search_fallback_items: List[DealOptionRead]
+    total_msrp: float
+    total_sale_price: float
+    total_coupon_savings: float
+    total_sns_savings: float
+    pg_credit_savings: float
+    b2g1_free_savings: float
+    net_estimated_checkout: float
+    total_savings: float
+    effective_discount_pct: int
+    checklist_steps: List[CartChecklistStep]
+

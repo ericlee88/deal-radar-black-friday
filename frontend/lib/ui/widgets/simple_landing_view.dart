@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../models/deal_models.dart';
 import '../../providers/deal_providers.dart';
+import 'cart_builder_dialog.dart';
 import 'product_thumbnail.dart';
 
 class SimpleLandingView extends ConsumerStatefulWidget {
@@ -238,7 +239,7 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
                           Icon(Icons.auto_awesome_rounded, size: 13, color: Color(0xFF4ADE80)),
                           SizedBox(width: 5),
                           Text(
-                            'BLACK FRIDAY SHOPPING ASSISTANT • SIMPLE VIEW',
+                            'BLACK FRIDAY SHOPPING ASSISTANT | SIMPLE VIEW',
                             style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.w800,
@@ -288,6 +289,25 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
                     value: 'Save \$${bundleSaved.toStringAsFixed(0)}+',
                     label: 'Auto-bundled cart promos',
                   ),
+                  if (widget.data.cartPlan != null)
+                    FilledButton.icon(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => AmazonCartBuilderDialog(plan: widget.data.cartPlan!),
+                        );
+                      },
+                      icon: const Icon(Icons.shopping_cart_checkout_rounded, size: 18),
+                      label: Text(
+                        '1-Click Amazon Cart (${widget.data.cartPlan!.directAsinCount} Items | -${widget.data.cartPlan!.effectiveDiscountPct}%)',
+                      ),
+                      style: FilledButton.styleFrom(
+                        backgroundColor: const Color(0xFFF59E0B),
+                        foregroundColor: Colors.black,
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                        textStyle: const TextStyle(fontWeight: FontWeight.w800, fontSize: 13),
+                      ),
+                    ),
                 ],
               ),
             ],

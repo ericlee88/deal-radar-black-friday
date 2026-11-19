@@ -1,7 +1,31 @@
 import json
-from typing import List
+import re
+from typing import List, Optional, Tuple
 from app.models import DealOptionNode, ShoppingMission
-from app.schemas import CombinatoricStackSummary, DealOptionRead, ShoppingMissionRead
+from app.schemas import (
+    AmazonCartBuilderPlan,
+    CartChecklistStep,
+    CombinatoricStackSummary,
+    DealOptionRead,
+    ShoppingMissionRead,
+)
+
+_ASIN_REGEX = re.compile(r"\b(B0[A-Z0-9]{8})\b")
+
+
+def extract_amazon_asin(asin_or_sku: str) -> Optional[str]:
+    match = _ASIN_REGEX.search(asin_or_sku or "")
+    return match.group(1) if match else None
+
+
+def _build_multi_asin_url(asins: List[str]) -> Optional[str]:
+    if not asins:
+        return None
+    params = []
+    for idx, asin in enumerate(asins, start=1):
+        params.append(f"ASIN.{idx}={asin}&Quantity.{idx}=1")
+    return "https://www.amazon.com/gp/aws/cart/add.html?" + "&".join(params)
+
 
 
 def compute_effective_price(node: DealOptionNode, sns_tier_rate: float = 0.15) -> float:
@@ -160,3 +184,219 @@ def solve_combinatoric_stack(all_options: List[DealOptionNode]) -> CombinatoricS
         b2g1_harmony_score=harmony_score,
         b2g1_harmony_verdict=harmony_verdict,
     )
+
+
+def build_amazon_cart_plan(
+    all_options: List[DealOptionNode],
+    scope: str = "recommended",
+) -> AmazonCartBuilderPlan:
+    """Builds a 1-click multi-ASIN Amazon cart URL + step-by-step coupon/promo checkout checklist."""
+    sns_selected = [o for o in all_options if o.sns_eligible and o.selected_in_stack]
+    sns_rate = 0.15 if len(sns_selected) >= 5 else (0.05 if len(sns_selected) >= 1 else 0.0)
+
+    # Filter candidate nodes according to scope
+    selected_nodes: List[DealOptionNode] = []
+    seen_mission_xor = set()
+
+    for node in all_options:
+        if node.is_trap_warning or node.snagged:
+            continue
+        eff = compute_effective_price(node, sns_tier_rate=sns_rate)
+        is_strike = eff <= node.strike_price
+
+        if scope == "strike_only":
+            if not is_strike:
+                continue
+        elif scope == "stack_only":
+            if not node.selected_in_stack:
+                continue
+        else:
+            # Default "recommended": include stack items + recommended branches (1 per XOR mission so we don't buy two vacuums)
+            if node.selected_in_stack:
+                pass
+            elif node.is_recommended_branch:
+                # For XOR missions with multiple recommended branches (like Dyson), pick the highest-discount/lowest-price recommended branch
+                if node.mission_id in seen_mission_xor and not (node.sns_eligible or node.b2g1_eligible):
+                    # Allow multiple recommended items in kitchen funnel, but avoid duplicate vacuums
+                    if "dyson" in (node.branch_key or "").lower():
+                        continue
+                seen_mission_xor.add(node.mission_id)
+            else:
+                continue
+        selected_nodes.append(node)
+
+    direct_items: List[DealOptionRead] = []
+    fallback_items: List[DealOptionRead] = []
+    all_asins: List[str] = []
+    sns_asins: List[str] = []
+    b2g1_asins: List[str] = []
+
+    for node in selected_nodes:
+        dto = enrich_option_node(node, sns_tier_rate=sns_rate)
+        asin = extract_amazon_asin(node.asin_or_sku)
+        if asin:
+            # Prefer direct product page /dp/{asin} link when a real ASIN is known
+            dto.amazon_url = f"https://www.amazon.com/dp/{asin}?psc=1"
+            direct_items.append(dto)
+            if asin not in all_asins:
+                all_asins.append(asin)
+            if node.sns_eligible and asin not in sns_asins:
+                sns_asins.append(asin)
+            if node.b2g1_eligible and asin not in b2g1_asins:
+                b2g1_asins.append(asin)
+        else:
+            fallback_items.append(dto)
+
+    total_msrp = round(sum(o.msrp for o in selected_nodes), 2)
+    total_sale = round(sum(o.current_price for o in selected_nodes), 2)
+    total_coupons = round(sum(o.clip_coupon_amount or 0.0 for o in selected_nodes), 2)
+    total_sns_disc = round(
+        sum(o.current_price * sns_rate for o in selected_nodes if o.sns_eligible),
+        2,
+    )
+
+    pg_sub = round(
+        sum(o.current_price for o in selected_nodes if o.sns_eligible and o.pg_stockup_eligible),
+        2,
+    )
+    pg_credit = 25.0 if pg_sub >= 100.0 else 0.0
+
+    b2g1_in_plan = [o for o in selected_nodes if o.b2g1_eligible]
+    if len(b2g1_in_plan) >= 3:
+        sorted_b2g1 = sorted(o.current_price for o in b2g1_in_plan)
+        b2g1_free = round(sum(sorted_b2g1[: len(b2g1_in_plan) // 3]), 2)
+    else:
+        b2g1_free = 0.0
+
+    net_checkout = max(
+        0.0,
+        round(total_sale - total_coupons - total_sns_disc - pg_credit - b2g1_free, 2),
+    )
+    total_savings = max(0.0, round(total_msrp - net_checkout, 2))
+    eff_pct = int(round((total_savings / total_msrp) * 100)) if total_msrp > 0 else 0
+
+    # Generate actionable step-by-step checkout checklist
+    steps: List[CartChecklistStep] = []
+    step_no = 1
+
+    coupon_nodes = [o for o in selected_nodes if (o.clip_coupon_amount or 0) > 0]
+    if coupon_nodes:
+        names = ", ".join(
+            f"{o.title.split('(')[0].strip()} (-${o.clip_coupon_amount:.2f})"
+            for o in coupon_nodes
+        )
+        steps.append(
+            CartChecklistStep(
+                step_number=step_no,
+                title=f"Clip {len(coupon_nodes)} On-Page Green Coupons First (-${total_coupons:.2f})",
+                detail=f"Before final checkout, click the on-page coupon checkbox on each product page: {names}.",
+                badge=f"SAVE ${total_coupons:.2f}",
+                category="coupon",
+            )
+        )
+        step_no += 1
+
+    sns_in_plan = [o for o in selected_nodes if o.sns_eligible]
+    if sns_in_plan:
+        tier_pct = int(round(sns_rate * 100))
+        steps.append(
+            CartChecklistStep(
+                step_number=step_no,
+                title=f"Activate {tier_pct}% Subscribe & Save Tier ({len(sns_in_plan)} Consumables)",
+                detail=(
+                    f"Group all {len(sns_in_plan)} household & health consumables into your next monthly S&S delivery date "
+                    f"to unlock {tier_pct}% off (-${total_sns_disc:.2f}). You can cancel or skip future deliveries after shipment."
+                ),
+                badge=f"SAVE ${total_sns_disc:.2f}",
+                category="sns",
+            )
+        )
+        step_no += 1
+
+    if pg_sub > 0:
+        if pg_credit > 0:
+            steps.append(
+                CartChecklistStep(
+                    step_number=step_no,
+                    title="Verify $25 P&G Holiday Stock-Up Credit at Checkout",
+                    detail=(
+                        f"Your P&G qualifying subtotal is ${pg_sub:.2f} (exceeds $100 threshold across Metamucil, Bounty, Charmin, Cascade). "
+                        "Confirm the '$25 P&G Holiday Promotional Credit' banner appears on the checkout review screen."
+                    ),
+                    badge="+$25.00 CREDIT",
+                    category="pg",
+                )
+            )
+        else:
+            needed = round(100.0 - pg_sub, 2)
+            steps.append(
+                CartChecklistStep(
+                    step_number=step_no,
+                    title=f"Add ${needed:.2f} More in P&G Items to Unlock $25 Bonus Credit",
+                    detail=f"Current P&G subtotal is ${pg_sub:.2f}/$100.00. Adding ${needed:.2f} more unlocks a $25 Amazon bounceback credit.",
+                    badge=f"${needed:.2f} AWAY",
+                    category="pg",
+                )
+            )
+        step_no += 1
+
+    if b2g1_in_plan:
+        if b2g1_free > 0:
+            steps.append(
+                CartChecklistStep(
+                    step_number=step_no,
+                    title=f"Confirm 3-for-2 Board Game Promo Deducts -${b2g1_free:.2f}",
+                    detail=(
+                        f"Your {len(b2g1_in_plan)} price-clustered games/puzzles ($23.99-$26.49) automatically make the lowest-priced game "
+                        f"FREE (-${b2g1_free:.2f}) in standard Amazon Cart checkout."
+                    ),
+                    badge=f"1 FREE (-${b2g1_free:.2f})",
+                    category="b2g1",
+                )
+            )
+        else:
+            steps.append(
+                CartChecklistStep(
+                    step_number=step_no,
+                    title=f"Select {3 - len(b2g1_in_plan)} More Game(s) for 3-for-2 Free Game",
+                    detail="Amazon's Buy 2 Get 1 Free promo requires 3 qualifying board games or puzzles in the same cart order.",
+                    badge="BUNDLE TIP",
+                    category="b2g1",
+                )
+            )
+        step_no += 1
+
+    steps.append(
+        CartChecklistStep(
+            step_number=step_no,
+            title="Verify 'Ships from and Sold by Amazon.com' on Hardware & Tools",
+            detail=(
+                "For DeWalt, Work Sharp, and Dyson items, confirm the seller is Amazon.com (not a 3rd-party reseller) "
+                "to ensure full manufacturer warranty coverage and zero scalper markup."
+            ),
+            badge="WARRANTY CHECK",
+            category="safety",
+        )
+    )
+
+    return AmazonCartBuilderPlan(
+        scope=scope,
+        cart_add_url=_build_multi_asin_url(all_asins),
+        sns_cart_add_url=_build_multi_asin_url(sns_asins),
+        b2g1_cart_add_url=_build_multi_asin_url(b2g1_asins),
+        direct_asin_count=len(direct_items),
+        total_selected_count=len(selected_nodes),
+        direct_asin_items=direct_items,
+        search_fallback_items=fallback_items,
+        total_msrp=total_msrp,
+        total_sale_price=total_sale,
+        total_coupon_savings=total_coupons,
+        total_sns_savings=total_sns_disc,
+        pg_credit_savings=pg_credit,
+        b2g1_free_savings=b2g1_free,
+        net_estimated_checkout=net_checkout,
+        total_savings=total_savings,
+        effective_discount_pct=eff_pct,
+        checklist_steps=steps,
+    )
+

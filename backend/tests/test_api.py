@@ -70,3 +70,38 @@ def test_price_patch_and_webhook_alert_trigger():
         alerts = client.get("/api/alerts").json()
         assert len(alerts) >= 1
         assert alerts[0]["option_id"] == opt_id
+
+
+def test_amazon_cart_plan_and_provider_settings():
+    with TestClient(app) as client:
+        cart_resp = client.get("/api/cart-plan?scope=recommended")
+        assert cart_resp.status_code == 200
+        plan = cart_resp.json()
+        assert plan["direct_asin_count"] >= 10
+        assert "https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=" in plan["cart_add_url"]
+        assert plan["pg_credit_savings"] == 25.0
+        assert plan["b2g1_free_savings"] > 0
+        assert len(plan["checklist_steps"]) >= 4
+
+        settings_resp = client.get("/api/settings")
+        assert settings_resp.status_code == 200
+        s_data = settings_resp.json()
+        assert "active_llm_mode" in s_data
+
+        patch_resp = client.patch(
+            "/api/settings",
+            json={
+                "webhook_provider": "ntfy",
+                "webhook_url": "https://ntfy.sh/deal-radar-test",
+                "poll_interval_minutes": 15,
+            },
+        )
+        assert patch_resp.status_code == 200
+        updated_s = patch_resp.json()
+        assert updated_s["webhook_provider"] == "ntfy"
+        assert updated_s["webhook_url"] == "https://ntfy.sh/deal-radar-test"
+        assert updated_s["poll_interval_minutes"] == 15
+
+        # Restore webhook_provider
+        client.patch("/api/settings", json={"webhook_provider": "none"})
+

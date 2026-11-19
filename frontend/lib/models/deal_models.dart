@@ -278,3 +278,166 @@ class WebhookAlertLog {
     );
   }
 }
+
+class ProviderSettings {
+  final String llmProvider;
+  final String activeLlmMode;
+  final bool geminiApiKeySet;
+  final String geminiApiKeyPreview;
+  final String geminiModel;
+  final bool openaiApiKeySet;
+  final String openaiApiKeyPreview;
+  final String openaiModel;
+  final String priceProvider;
+  final String activePriceMode;
+  final bool keepaApiKeySet;
+  final String keepaApiKeyPreview;
+  final String webhookProvider;
+  final String? webhookUrl;
+  final bool telegramBotTokenSet;
+  final String? telegramChatId;
+  final int pollIntervalMinutes;
+
+  const ProviderSettings({
+    required this.llmProvider,
+    required this.activeLlmMode,
+    required this.geminiApiKeySet,
+    required this.geminiApiKeyPreview,
+    required this.geminiModel,
+    required this.openaiApiKeySet,
+    required this.openaiApiKeyPreview,
+    required this.openaiModel,
+    required this.priceProvider,
+    required this.activePriceMode,
+    required this.keepaApiKeySet,
+    required this.keepaApiKeyPreview,
+    required this.webhookProvider,
+    required this.webhookUrl,
+    required this.telegramBotTokenSet,
+    required this.telegramChatId,
+    required this.pollIntervalMinutes,
+  });
+
+  factory ProviderSettings.fromJson(Map<String, dynamic> json) {
+    return ProviderSettings(
+      llmProvider: json['llm_provider'] as String? ?? 'auto',
+      activeLlmMode: json['active_llm_mode'] as String? ?? 'mock',
+      geminiApiKeySet: json['gemini_api_key_set'] as bool? ?? false,
+      geminiApiKeyPreview: json['gemini_api_key_preview'] as String? ?? 'Not configured',
+      geminiModel: json['gemini_model'] as String? ?? 'gemini-2.5-flash',
+      openaiApiKeySet: json['openai_api_key_set'] as bool? ?? false,
+      openaiApiKeyPreview: json['openai_api_key_preview'] as String? ?? 'Not configured',
+      openaiModel: json['openai_model'] as String? ?? 'gpt-4o-mini',
+      priceProvider: json['price_provider'] as String? ?? 'auto',
+      activePriceMode: json['active_price_mode'] as String? ?? 'mock',
+      keepaApiKeySet: json['keepa_api_key_set'] as bool? ?? false,
+      keepaApiKeyPreview: json['keepa_api_key_preview'] as String? ?? 'Not configured',
+      webhookProvider: json['webhook_provider'] as String? ?? 'none',
+      webhookUrl: json['webhook_url'] as String?,
+      telegramBotTokenSet: json['telegram_bot_token_set'] as bool? ?? false,
+      telegramChatId: json['telegram_chat_id'] as String?,
+      pollIntervalMinutes: (json['poll_interval_minutes'] as num? ?? 30).toInt(),
+    );
+  }
+}
+
+class CartChecklistStep {
+  final int stepNumber;
+  final String title;
+  final String detail;
+  final String badge;
+  final String category;
+
+  const CartChecklistStep({
+    required this.stepNumber,
+    required this.title,
+    required this.detail,
+    required this.badge,
+    required this.category,
+  });
+
+  factory CartChecklistStep.fromJson(Map<String, dynamic> json) {
+    return CartChecklistStep(
+      stepNumber: (json['step_number'] as num).toInt(),
+      title: cleanCanvasKitText(json['title'] as String? ?? ''),
+      detail: cleanCanvasKitText(json['detail'] as String? ?? ''),
+      badge: cleanCanvasKitText(json['badge'] as String? ?? ''),
+      category: json['category'] as String? ?? 'general',
+    );
+  }
+}
+
+class AmazonCartBuilderPlan {
+  final String scope;
+  final String? cartAddUrl;
+  final String? snsCartAddUrl;
+  final String? b2g1CartAddUrl;
+  final int directAsinCount;
+  final int totalSelectedCount;
+  final List<DealOptionNode> directAsinItems;
+  final List<DealOptionNode> searchFallbackItems;
+  final double totalMsrp;
+  final double totalSalePrice;
+  final double totalCouponSavings;
+  final double totalSnsSavings;
+  final double pgCreditSavings;
+  final double b2g1FreeSavings;
+  final double netEstimatedCheckout;
+  final double totalSavings;
+  final int effectiveDiscountPct;
+  final List<CartChecklistStep> checklistSteps;
+
+  const AmazonCartBuilderPlan({
+    required this.scope,
+    required this.cartAddUrl,
+    required this.snsCartAddUrl,
+    required this.b2g1CartAddUrl,
+    required this.directAsinCount,
+    required this.totalSelectedCount,
+    required this.directAsinItems,
+    required this.searchFallbackItems,
+    required this.totalMsrp,
+    required this.totalSalePrice,
+    required this.totalCouponSavings,
+    required this.totalSnsSavings,
+    required this.pgCreditSavings,
+    required this.b2g1FreeSavings,
+    required this.netEstimatedCheckout,
+    required this.totalSavings,
+    required this.effectiveDiscountPct,
+    required this.checklistSteps,
+  });
+
+  factory AmazonCartBuilderPlan.fromJson(Map<String, dynamic> json) {
+    final directRaw = (json['direct_asin_items'] as List<dynamic>? ?? []);
+    final fallbackRaw = (json['search_fallback_items'] as List<dynamic>? ?? []);
+    final stepsRaw = (json['checklist_steps'] as List<dynamic>? ?? []);
+    return AmazonCartBuilderPlan(
+      scope: json['scope'] as String? ?? 'recommended',
+      cartAddUrl: json['cart_add_url'] as String?,
+      snsCartAddUrl: json['sns_cart_add_url'] as String?,
+      b2g1CartAddUrl: json['b2g1_cart_add_url'] as String?,
+      directAsinCount: (json['direct_asin_count'] as num? ?? 0).toInt(),
+      totalSelectedCount: (json['total_selected_count'] as num? ?? 0).toInt(),
+      directAsinItems: directRaw
+          .map((e) => DealOptionNode.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      searchFallbackItems: fallbackRaw
+          .map((e) => DealOptionNode.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      totalMsrp: (json['total_msrp'] as num? ?? 0).toDouble(),
+      totalSalePrice: (json['total_sale_price'] as num? ?? 0).toDouble(),
+      totalCouponSavings: (json['total_coupon_savings'] as num? ?? 0).toDouble(),
+      totalSnsSavings: (json['total_sns_savings'] as num? ?? 0).toDouble(),
+      pgCreditSavings: (json['pg_credit_savings'] as num? ?? 0).toDouble(),
+      b2g1FreeSavings: (json['b2g1_free_savings'] as num? ?? 0).toDouble(),
+      netEstimatedCheckout: (json['net_estimated_checkout'] as num? ?? 0).toDouble(),
+      totalSavings: (json['total_savings'] as num? ?? 0).toDouble(),
+      effectiveDiscountPct: (json['effective_discount_pct'] as num? ?? 0).toInt(),
+      checklistSteps: stepsRaw
+          .map((e) => CartChecklistStep.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+

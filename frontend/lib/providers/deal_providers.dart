@@ -15,6 +15,8 @@ class DealDashboardState {
   final CombinatoricStackSummary? stackSummary;
   final List<WebhookAlertLog> alerts;
   final Map<String, dynamic> health;
+  final AmazonCartBuilderPlan? cartPlan;
+  final ProviderSettings? providerSettings;
   final bool isBusy;
 
   const DealDashboardState({
@@ -22,6 +24,8 @@ class DealDashboardState {
     required this.stackSummary,
     required this.alerts,
     required this.health,
+    this.cartPlan,
+    this.providerSettings,
     this.isBusy = false,
   });
 
@@ -30,6 +34,8 @@ class DealDashboardState {
     CombinatoricStackSummary? stackSummary,
     List<WebhookAlertLog>? alerts,
     Map<String, dynamic>? health,
+    AmazonCartBuilderPlan? cartPlan,
+    ProviderSettings? providerSettings,
     bool? isBusy,
   }) {
     return DealDashboardState(
@@ -37,6 +43,8 @@ class DealDashboardState {
       stackSummary: stackSummary ?? this.stackSummary,
       alerts: alerts ?? this.alerts,
       health: health ?? this.health,
+      cartPlan: cartPlan ?? this.cartPlan,
+      providerSettings: providerSettings ?? this.providerSettings,
       isBusy: isBusy ?? this.isBusy,
     );
   }
@@ -55,12 +63,16 @@ class DealDashboardNotifier extends AsyncNotifier<DealDashboardState> {
       repo.fetchStackSummary(),
       repo.fetchAlerts(),
       repo.fetchHealth(),
+      repo.fetchCartPlan(scope: 'recommended'),
+      repo.fetchSettings(),
     ]);
     return DealDashboardState(
       missions: results[0] as List<ShoppingMission>,
       stackSummary: results[1] as CombinatoricStackSummary,
       alerts: results[2] as List<WebhookAlertLog>,
       health: results[3] as Map<String, dynamic>,
+      cartPlan: results[4] as AmazonCartBuilderPlan,
+      providerSettings: results[5] as ProviderSettings,
     );
   }
 
@@ -131,9 +143,16 @@ class DealDashboardNotifier extends AsyncNotifier<DealDashboardState> {
     await repo.resetDatabase();
     state = await AsyncValue.guard(() => _fetchAll());
   }
+
+  Future<void> updateProviderSettings(Map<String, dynamic> patch) async {
+    final repo = ref.read(dealRepositoryProvider);
+    await repo.updateSettings(patch);
+    state = await AsyncValue.guard(() => _fetchAll());
+  }
 }
 
 final dealDashboardProvider =
     AsyncNotifierProvider<DealDashboardNotifier, DealDashboardState>(
   DealDashboardNotifier.new,
 );
+

@@ -151,4 +151,39 @@ class DealRepository {
   Future<void> resetDatabase() async {
     await _client.post(_endpoint('api/reset'));
   }
+
+  Future<AmazonCartBuilderPlan> fetchCartPlan({String scope = 'recommended'}) async {
+    final resp = await _client.get(_endpoint('api/cart-plan?scope=$scope'));
+    if (resp.statusCode != 200) {
+      throw Exception('Failed to load Amazon cart plan (${resp.statusCode})');
+    }
+    return AmazonCartBuilderPlan.fromJson(
+      jsonDecode(resp.body) as Map<String, dynamic>,
+    );
+  }
+
+  Future<ProviderSettings> fetchSettings() async {
+    final resp = await _client.get(_endpoint('api/settings'));
+    if (resp.statusCode != 200) {
+      throw Exception('Failed to load provider settings (${resp.statusCode})');
+    }
+    return ProviderSettings.fromJson(
+      jsonDecode(resp.body) as Map<String, dynamic>,
+    );
+  }
+
+  Future<ProviderSettings> updateSettings(Map<String, dynamic> patch) async {
+    final resp = await _client.patch(
+      _endpoint('api/settings'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(patch),
+    );
+    if (resp.statusCode != 200) {
+      throw Exception('Failed to update provider settings (${resp.statusCode})');
+    }
+    return ProviderSettings.fromJson(
+      jsonDecode(resp.body) as Map<String, dynamic>,
+    );
+  }
 }
+

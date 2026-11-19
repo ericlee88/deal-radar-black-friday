@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/deal_models.dart';
 import '../providers/deal_providers.dart';
+import 'widgets/cart_builder_dialog.dart';
 import 'widgets/mission_card.dart';
+import 'widgets/provider_settings_dialog.dart';
 import 'widgets/simple_landing_view.dart';
 
 class DealDashboardScreen extends ConsumerStatefulWidget {
@@ -192,7 +194,7 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
                   Text(
                     _isPowerUserMode
                         ? 'Power User Mode: Polymorphic Shopping Mission DAG & Strike-Price Engine'
-                        : 'Personal Black Friday Deal Finder • Curated Picks, Coupons & Cart Bundles',
+                        : 'Personal Black Friday Deal Finder | Curated Picks, Coupons & Cart Bundles',
                     style: const TextStyle(fontSize: 12.5, color: Colors.white60),
                   ),
                 ],
@@ -230,6 +232,22 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
                   ],
                 ),
               ),
+              if (data.cartPlan != null)
+                FilledButton.icon(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) => AmazonCartBuilderDialog(plan: data.cartPlan!),
+                    );
+                  },
+                  icon: const Icon(Icons.shopping_cart_checkout_rounded, size: 16),
+                  label: Text('1-Click Cart (${data.cartPlan!.directAsinCount})'),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xFFF59E0B),
+                    foregroundColor: Colors.black,
+                    textStyle: const TextStyle(fontWeight: FontWeight.w800, fontSize: 12.5),
+                  ),
+                ),
               FilledButton.icon(
                 onPressed: data.isBusy
                     ? null
@@ -243,13 +261,16 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
                   foregroundColor: Colors.white,
                 ),
               ),
-              if (_isPowerUserMode)
+              if (data.providerSettings != null)
                 OutlinedButton.icon(
-                  onPressed: data.isBusy
-                      ? null
-                      : () => ref.read(dealDashboardProvider.notifier).sendTestAlert(),
-                  icon: const Icon(Icons.notifications_active_outlined, size: 15),
-                  label: const Text('Test Webhook'),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) => ProviderSettingsDialog(settings: data.providerSettings!),
+                    );
+                  },
+                  icon: const Icon(Icons.tune_rounded, size: 15),
+                  label: const Text('API & Alerts'),
                 ),
               OutlinedButton.icon(
                 onPressed: data.isBusy
