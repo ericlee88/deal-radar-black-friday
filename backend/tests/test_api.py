@@ -54,9 +54,10 @@ def test_llm_intent_translation_and_stack_solver():
 def test_price_patch_and_webhook_alert_trigger():
     with TestClient(app) as client:
         missions = client.get("/api/missions").json()
-        # Pick Work Sharp WSSA0004772 option (currently $58.99 vs $56.00 strike)
+        # Pick Work Sharp WSSA0004772 option (ensure price starts above $56.00 strike)
         ws_mission = next(m for m in missions if "work-sharp" in m["slug"])
         opt_id = ws_mission["options"][0]["id"]
+        client.patch(f"/api/options/{opt_id}", json={"current_price": 58.99})
 
         # Patch price below strike ($52.00 <= $56.00) -> should trigger a strike alert
         patch_resp = client.patch(
@@ -70,6 +71,8 @@ def test_price_patch_and_webhook_alert_trigger():
         alerts = client.get("/api/alerts").json()
         assert len(alerts) >= 1
         assert alerts[0]["option_id"] == opt_id
+        # Restore price
+        client.patch(f"/api/options/{opt_id}", json={"current_price": 58.99})
 
 
 def test_amazon_cart_plan_and_provider_settings():
@@ -104,4 +107,12 @@ def test_amazon_cart_plan_and_provider_settings():
 
         # Restore webhook_provider
         client.patch("/api/settings", json={"webhook_provider": "none"})
+
+        # Verify real Amazon product image endpoint returns JPEG bytes
+        first_opt_id = plan["direct_asin_items"][0]["id"]
+        img_resp = client.get(f"/api/product-image/{first_opt_id}")
+        assert img_resp.status_code == 200
+        assert img_resp.headers["content-type"] == "image/jpeg"
+        assert len(img_resp.content) > 5000
+
 

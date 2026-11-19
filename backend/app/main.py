@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 import json
+from pathlib import Path
 from typing import Dict, Any, List
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from fastapi import Depends, FastAPI, HTTPException
@@ -128,6 +129,100 @@ def get_canvaskit_wasm_chunk(chunk_id: int) -> Response:
         media_type="application/octet-stream",
         headers={"Cache-Control": "public, max-age=3600"},
     )
+
+
+import re as _re
+import urllib.request as _urlreq
+
+_PRODUCT_IMAGES_DIR = Path(__file__).resolve().parents[2] / "frontend" / "web" / "images" / "products"
+_PRODUCT_IMAGE_CACHE: Dict[int, bytes] = {}
+
+
+def _fetch_amazon_product_jpeg(node: DealOptionNode) -> bytes:
+    """Resolves a real Amazon product photo from bundled cache or live Amazon CDN by ASIN / search query."""
+    _PRODUCT_IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+    # 1. Check pre-downloaded branch_key file (e.g. spatula_mercer.jpg)
+    branch_file = _PRODUCT_IMAGES_DIR / f"{node.branch_key}.jpg"
+    if branch_file.is_file() and branch_file.stat().st_size > 1000:
+        return branch_file.read_bytes()
+
+    # 2. Check cached option_id file
+    opt_file = _PRODUCT_IMAGES_DIR / f"opt_{node.id}.jpg"
+    if opt_file.is_file() and opt_file.stat().st_size > 1000:
+        return opt_file.read_bytes()
+
+    # 3. Live scrape from Amazon product page or search page
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+        ),
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    img_url = None
+    asin = extract_amazon_asin(node.asin_or_sku)
+    if asin:
+        try:
+            req = _urlreq.Request(f"https://www.amazon.com/dp/{asin}", headers=headers)
+            html = _urlreq.urlopen(req, timeout=7).read().decode("utf-8", errors="ignore")
+            m = _re.search(r'id="landingImage"[^>]*src="(https://m\.media-amazon\.com/images/I/[^"]+)"', html)
+            if not m:
+                m = _re.search(r'"hiRes":"(https://m\.media-amazon\.com/images/I/[^"]+)"', html)
+            if m:
+                img_url = m.group(1)
+        except Exception:
+            pass
+
+    if not img_url and node.amazon_query:
+        try:
+            req = _urlreq.Request(f"https://www.amazon.com/s?k={node.amazon_query}", headers=headers)
+            html = _urlreq.urlopen(req, timeout=7).read().decode("utf-8", errors="ignore")
+            m = _re.search(r'class="s-image"[^>]*src="(https://m\.media-amazon\.com/images/I/[^"]+\.jpg)"', html)
+            if m:
+                img_url = m.group(1)
+        except Exception:
+            pass
+
+    if img_url:
+        base_m = _re.match(r"(https://m\.media-amazon\.com/images/I/[A-Za-z0-9%+_-]+?)\.", img_url)
+        if base_m:
+            img_url = base_m.group(1) + "._AC_SX679_.jpg"
+        try:
+            img_bytes = _urlreq.urlopen(
+                _urlreq.Request(img_url, headers={"User-Agent": "Mozilla/5.0"}),
+                timeout=7,
+            ).read()
+            if len(img_bytes) > 1000:
+                opt_file.write_bytes(img_bytes)
+                return img_bytes
+        except Exception:
+            pass
+
+    raise HTTPException(status_code=404, detail="Product image not available")
+
+
+@app.get("/api/product-image/{option_id}")
+def get_product_image(
+    option_id: int,
+    session: Session = Depends(get_session),
+) -> Response:
+    if option_id in _PRODUCT_IMAGE_CACHE:
+        return Response(
+            content=_PRODUCT_IMAGE_CACHE[option_id],
+            media_type="image/jpeg",
+            headers={"Cache-Control": "public, max-age=86400"},
+        )
+    node = session.get(DealOptionNode, option_id)
+    if not node:
+        raise HTTPException(status_code=404, detail="Option not found")
+    img_bytes = _fetch_amazon_product_jpeg(node)
+    _PRODUCT_IMAGE_CACHE[option_id] = img_bytes
+    return Response(
+        content=img_bytes,
+        media_type="image/jpeg",
+        headers={"Cache-Control": "public, max-age=86400"},
+    )
+
 
 
 

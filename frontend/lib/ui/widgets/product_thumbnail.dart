@@ -1,8 +1,10 @@
 import 'dart:math' as math;
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../../models/deal_models.dart';
+import '../../repositories/deal_repository.dart';
 
-class ProductThumbnail extends StatelessWidget {
+class ProductThumbnail extends StatefulWidget {
   final DealOptionNode option;
   final String categoryTag;
   final double height;
@@ -15,6 +17,45 @@ class ProductThumbnail extends StatelessWidget {
     this.height = 148,
     this.compact = false,
   });
+
+  @override
+  State<ProductThumbnail> createState() => _ProductThumbnailState();
+}
+
+class _ProductThumbnailState extends State<ProductThumbnail> {
+  static final DealRepository _repo = DealRepository();
+  Uint8List? _imageBytes;
+  bool _loaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPhoto();
+  }
+
+  @override
+  void didUpdateWidget(covariant ProductThumbnail oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.option.id != widget.option.id) {
+      _loaded = false;
+      _imageBytes = null;
+      _loadPhoto();
+    }
+  }
+
+  Future<void> _loadPhoto() async {
+    final bytes = await _repo.fetchProductImageBytes(widget.option.id);
+    if (!mounted) return;
+    setState(() {
+      _imageBytes = bytes;
+      _loaded = true;
+    });
+  }
+
+  DealOptionNode get option => widget.option;
+  String get categoryTag => widget.categoryTag;
+  double get height => widget.height;
+  bool get compact => widget.compact;
 
   _ProductVisualTheme _resolveTheme() {
     final t = '${option.title} ${option.branchKey} ${option.asinOrSku}'.toLowerCase();
@@ -128,14 +169,14 @@ class ProductThumbnail extends StatelessWidget {
       final isMarble = t.contains('gravitrax') || t.contains('gravity');
       return _ProductVisualTheme(
         brand: t.contains('cascadia')
-            ? 'AEG • CASCADIA'
+            ? 'AEG | CASCADIA'
             : (t.contains('ticket')
                 ? 'DAYS OF WONDER'
                 : (t.contains('gravitrax') ? 'RAVENSBURGER STEM' : 'THINKFUN LOGIC')),
         accent: isMarble ? const Color(0xFF34D399) : const Color(0xFFF472B6),
         secondary: isMarble ? const Color(0xFF059669) : const Color(0xFFDB2777),
         kind: isMarble ? _IllustrationKind.marblePuzzle : _IllustrationKind.boardGame,
-        specTag: '3-FOR-2 ELIGIBLE • 8+',
+        specTag: '3-FOR-2 ELIGIBLE | 8+',
       );
     }
 
@@ -151,6 +192,7 @@ class ProductThumbnail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = _resolveTheme();
+    final hasPhoto = _loaded && _imageBytes != null;
 
     return Container(
       height: height,
@@ -158,31 +200,48 @@ class ProductThumbnail extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(compact ? 10 : 12),
-        gradient: RadialGradient(
-          center: const Alignment(0.0, -0.1),
-          radius: 1.05,
-          colors: [
-            theme.accent.withValues(alpha: 0.24),
-            theme.secondary.withValues(alpha: 0.10),
-            const Color(0xFF0D1119),
-          ],
-        ),
+        color: hasPhoto ? Colors.white : const Color(0xFF0D1119),
+        gradient: hasPhoto
+            ? null
+            : RadialGradient(
+                center: const Alignment(0.0, -0.1),
+                radius: 1.05,
+                colors: [
+                  theme.accent.withValues(alpha: 0.24),
+                  theme.secondary.withValues(alpha: 0.10),
+                  const Color(0xFF0D1119),
+                ],
+              ),
         border: Border.all(
-          color: theme.accent.withValues(alpha: 0.28),
+          color: theme.accent.withValues(alpha: 0.35),
         ),
       ),
       child: Stack(
         children: [
-          // Subtle studio grid & product illustration canvas
-          Positioned.fill(
-            child: CustomPaint(
-              painter: _ProductIllustrationPainter(
-                kind: theme.kind,
-                accent: theme.accent,
-                secondary: theme.secondary,
+          if (hasPhoto)
+            Positioned.fill(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: compact ? 6 : 16,
+                  vertical: compact ? 6 : 12,
+                ),
+                child: Image.memory(
+                  _imageBytes!,
+                  fit: BoxFit.contain,
+                  filterQuality: FilterQuality.medium,
+                ),
+              ),
+            )
+          else
+            Positioned.fill(
+              child: CustomPaint(
+                painter: _ProductIllustrationPainter(
+                  kind: theme.kind,
+                  accent: theme.accent,
+                  secondary: theme.secondary,
+                ),
               ),
             ),
-          ),
 
           // Top-left Brand Pill
           if (!compact)
@@ -192,9 +251,9 @@ class ProductThumbnail extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF090C10).withValues(alpha: 0.82),
+                  color: const Color(0xFF090C10).withValues(alpha: 0.88),
                   borderRadius: BorderRadius.circular(6),
-                  border: Border.all(color: theme.accent.withValues(alpha: 0.45)),
+                  border: Border.all(color: theme.accent.withValues(alpha: 0.5)),
                 ),
                 child: Text(
                   theme.brand,
@@ -233,7 +292,7 @@ class ProductThumbnail extends StatelessWidget {
               ),
             ),
 
-          // Bottom-left Spec Tag & Unit Price Pill
+          // Bottom-left Spec Tag & Best Pick Pill
           if (!compact)
             Positioned(
               bottom: 10,
@@ -245,7 +304,7 @@ class ProductThumbnail extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF090C10).withValues(alpha: 0.82),
+                      color: const Color(0xFF090C10).withValues(alpha: 0.86),
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Text(
@@ -253,7 +312,7 @@ class ProductThumbnail extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
-                        color: Colors.white70,
+                        color: Colors.white,
                       ),
                     ),
                   ),

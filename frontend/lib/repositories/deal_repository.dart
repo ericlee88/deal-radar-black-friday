@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import '../models/deal_models.dart';
 
@@ -185,5 +186,25 @@ class DealRepository {
       jsonDecode(resp.body) as Map<String, dynamic>,
     );
   }
+
+  static final Map<int, Uint8List?> _imageMemoryCache = {};
+
+  Future<Uint8List?> fetchProductImageBytes(int optionId) async {
+    if (_imageMemoryCache.containsKey(optionId)) {
+      return _imageMemoryCache[optionId];
+    }
+    try {
+      final resp = await _client
+          .get(_endpoint('api/product-image/$optionId'))
+          .timeout(const Duration(seconds: 8));
+      if (resp.statusCode == 200 && resp.bodyBytes.length > 500) {
+        _imageMemoryCache[optionId] = resp.bodyBytes;
+        return resp.bodyBytes;
+      }
+    } catch (_) {}
+    _imageMemoryCache[optionId] = null;
+    return null;
+  }
 }
+
 
