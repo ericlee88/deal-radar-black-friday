@@ -1,0 +1,63 @@
+{
+  "manifest_version": 3,
+  "name": "Deal Radar Live Price Sync",
+  "version": "1.0.0",
+  "description": "Sync real Amazon prices, coupons, and CamelCamelCamel price history straight into your Deal Radar Black Friday watchlist.",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.amazon.com/*",
+    "https://camelcamelcamel.com/*",
+    "https://ericlee88.github.io/deal-radar-black-friday/*",
+    "http://localhost:8080/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Deal Radar Live Price Sync",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.amazon.com/*"
+      ],
+      "js": [
+        "content_amazon.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://camelcamelcamel.com/product/*"
+      ],
+      "js": [
+        "content_camel.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://ericlee88.github.io/deal-radar-black-friday/*",
+        "http://localhost:8080/*"
+      ],
+      "js": [
+        "content_radar_bridge.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
