@@ -55,7 +55,7 @@ jobs:
         working-directory: frontend
         run: |
           flutter pub get
-          flutter build web --release --no-web-resources-cdn --base-href "/deal-radar-black-friday/"
+          flutter build web --release --no-web-resources-cdn
           touch build/web/.nojekyll
 
       - name: Setup GitHub Pages
