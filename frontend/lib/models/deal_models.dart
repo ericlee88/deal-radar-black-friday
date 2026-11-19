@@ -27,6 +27,29 @@ enum MissionNodeType {
   }
 }
 
+class PriceHistoryEntry {
+  final String date;
+  final double price;
+  final String source;
+  final String note;
+
+  const PriceHistoryEntry({
+    required this.date,
+    required this.price,
+    required this.source,
+    this.note = '',
+  });
+
+  factory PriceHistoryEntry.fromJson(Map<String, dynamic> json) {
+    return PriceHistoryEntry(
+      date: json['date'] as String? ?? '',
+      price: (json['price'] as num? ?? 0).toDouble(),
+      source: json['source'] as String? ?? 'manual',
+      note: cleanCanvasKitText(json['note'] as String? ?? ''),
+    );
+  }
+}
+
 class DealOptionNode {
   final int id;
   final int missionId;
@@ -51,6 +74,8 @@ class DealOptionNode {
   final String unitName;
   final double unitQuantity;
   final List<double> priceHistory;
+  final List<PriceHistoryEntry> priceLog;
+  final String priceSource;
   final String scoutNotes;
   final double effectivePrice;
   final double unitEffectivePrice;
@@ -85,6 +110,8 @@ class DealOptionNode {
     required this.unitName,
     required this.unitQuantity,
     required this.priceHistory,
+    this.priceLog = const [],
+    this.priceSource = 'estimated',
     required this.scoutNotes,
     required this.effectivePrice,
     required this.unitEffectivePrice,
@@ -96,8 +123,27 @@ class DealOptionNode {
     required this.camelUrl,
   });
 
+  bool get isVerifiedPrice =>
+      priceSource == 'camelcamelcamel' ||
+      priceSource == 'manual' ||
+      priceSource == 'live' ||
+      priceSource == 'keepa';
+
+  String? get extractedAsin {
+    final m = RegExp(r'\b(B0[A-Z0-9]{8})\b').firstMatch(asinOrSku.toUpperCase());
+    return m?.group(1);
+  }
+
+  String? get camelChartUrl {
+    final asin = extractedAsin;
+    if (asin == null) return null;
+    return 'https://charts.camelcamelcamel.com/us/$asin/amazon.png'
+        '?force=1&zero=0&w=640&h=300&desired=false&legend=1&ilt=1&tp=1y&fo=0&lang=en';
+  }
+
   factory DealOptionNode.fromJson(Map<String, dynamic> json) {
     final histRaw = (json['price_history'] as List<dynamic>? ?? []);
+    final logRaw = (json['price_log'] as List<dynamic>? ?? []);
     return DealOptionNode(
       id: (json['id'] as num).toInt(),
       missionId: (json['mission_id'] as num).toInt(),
@@ -122,6 +168,11 @@ class DealOptionNode {
       unitName: cleanCanvasKitText(json['unit_name'] as String? ?? 'unit'),
       unitQuantity: (json['unit_quantity'] as num? ?? 1).toDouble(),
       priceHistory: histRaw.map((e) => (e as num).toDouble()).toList(),
+      priceLog: logRaw
+          .whereType<Map<String, dynamic>>()
+          .map(PriceHistoryEntry.fromJson)
+          .toList(),
+      priceSource: json['price_source'] as String? ?? 'estimated',
       scoutNotes: cleanCanvasKitText(json['scout_notes'] as String? ?? ''),
       effectivePrice: (json['effective_price'] as num).toDouble(),
       unitEffectivePrice: (json['unit_effective_price'] as num).toDouble(),

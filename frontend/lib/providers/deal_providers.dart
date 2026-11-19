@@ -103,21 +103,31 @@ class DealDashboardNotifier extends AsyncNotifier<DealDashboardState> {
   Future<void> patchOption({
     required int optionId,
     double? currentPrice,
+    double? avg90dPrice,
+    double? allTimeLow,
     double? clipCouponAmount,
     double? strikePrice,
     bool? snsEligible,
     bool? selectedInStack,
     bool? snagged,
+    String? priceSource,
+    bool appendHistoryPoint = false,
+    String? historyNote,
   }) async {
     final repo = ref.read(dealRepositoryProvider);
     await repo.patchOptionNode(
       optionId: optionId,
       currentPrice: currentPrice,
+      avg90dPrice: avg90dPrice,
+      allTimeLow: allTimeLow,
       clipCouponAmount: clipCouponAmount,
       strikePrice: strikePrice,
       snsEligible: snsEligible,
       selectedInStack: selectedInStack,
       snagged: snagged,
+      priceSource: priceSource,
+      appendHistoryPoint: appendHistoryPoint,
+      historyNote: historyNote,
     );
     state = await AsyncValue.guard(() => _fetchAll());
   }

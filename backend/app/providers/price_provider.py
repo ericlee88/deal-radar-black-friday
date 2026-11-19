@@ -45,7 +45,16 @@ class PriceDataProvider:
             except Exception:
                 pass
 
-        return self._simulate_price_tick(node, simulate_drop=simulate_drop)
+        if mode == "mock":
+            return self._simulate_price_tick(node, simulate_drop=simulate_drop)
+
+        # Keep existing price unchanged rather than inventing fake drift when Amazon blocks cloud IPs
+        return {
+            "current_price": node.current_price,
+            "avg_90d_price": node.avg_90d_price,
+            "clip_coupon_amount": node.clip_coupon_amount,
+            "provider": "estimated_cached",
+        }
 
     async def _fetch_amazon_direct(self, node: DealOptionNode) -> Optional[Dict[str, Any]]:
         asin = extract_amazon_asin(node.asin_or_sku)

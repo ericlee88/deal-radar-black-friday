@@ -135,25 +135,37 @@ class DealRepository {
   Future<DealOptionNode> patchOptionNode({
     required int optionId,
     double? currentPrice,
+    double? avg90dPrice,
+    double? allTimeLow,
     double? clipCouponAmount,
     double? strikePrice,
     bool? snsEligible,
     bool? selectedInStack,
     bool? snagged,
+    String? priceSource,
+    bool appendHistoryPoint = false,
+    String? historyNote,
   }) async {
     if (await _shouldUseStaticLocal()) {
       return localStore.patchOptionNode(
         optionId: optionId,
         currentPrice: currentPrice,
+        avg90dPrice: avg90dPrice,
+        allTimeLow: allTimeLow,
         clipCouponAmount: clipCouponAmount,
         strikePrice: strikePrice,
         snsEligible: snsEligible,
         selectedInStack: selectedInStack,
         snagged: snagged,
+        priceSource: priceSource,
+        appendHistoryPoint: appendHistoryPoint,
+        historyNote: historyNote,
       );
     }
     final body = <String, dynamic>{};
     if (currentPrice != null) body['current_price'] = currentPrice;
+    if (avg90dPrice != null) body['avg_90d_price'] = avg90dPrice;
+    if (allTimeLow != null) body['all_time_low'] = allTimeLow;
     if (clipCouponAmount != null) body['clip_coupon_amount'] = clipCouponAmount;
     if (strikePrice != null) body['strike_price'] = strikePrice;
     if (snsEligible != null) body['sns_eligible'] = snsEligible;

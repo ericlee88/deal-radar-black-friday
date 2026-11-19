@@ -56,6 +56,8 @@ class ShoppingMissionRead(BaseModel):
 
 class DealOptionPatch(BaseModel):
     current_price: Optional[float] = None
+    avg_90d_price: Optional[float] = None
+    all_time_low: Optional[float] = None
     clip_coupon_amount: Optional[float] = None
     strike_price: Optional[float] = None
     sns_eligible: Optional[bool] = None

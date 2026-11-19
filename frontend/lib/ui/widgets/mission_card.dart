@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../models/deal_models.dart';
 import '../../providers/deal_providers.dart';
+import 'price_history_dialog.dart';
 import 'product_thumbnail.dart';
 import 'sparkline_painter.dart';
 
@@ -444,21 +445,30 @@ class _OptionBranchTile extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        '90d Avg: \$${option.avg90dPrice.toStringAsFixed(2)}',
-                        style: const TextStyle(
+                        '${option.isVerifiedPrice ? "[VERIFIED]" : "[EST]"} 90d Avg: \$${option.avg90dPrice.toStringAsFixed(2)}',
+                        style: TextStyle(
                           fontSize: 10,
-                          color: Colors.white54,
+                          color: option.isVerifiedPrice
+                              ? const Color(0xFF4ADE80)
+                              : Colors.white54,
                           fontFamily: 'monospace',
                         ),
                       ),
                       const SizedBox(height: 2),
-                      SparklineWidget(
-                        history: option.priceHistory,
-                        strikePrice: option.strikePrice,
-                        msrp: option.msrp,
-                        allTimeLow: option.allTimeLow,
-                        isBelowStrike: option.isBelowStrike,
-                        isTrap: option.isTrapWarning,
+                      InkWell(
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (_) => PriceHistoryDialog(option: option),
+                        ),
+                        borderRadius: BorderRadius.circular(6),
+                        child: SparklineWidget(
+                          history: option.priceHistory,
+                          strikePrice: option.strikePrice,
+                          msrp: option.msrp,
+                          allTimeLow: option.allTimeLow,
+                          isBelowStrike: option.isBelowStrike,
+                          isTrap: option.isTrapWarning,
+                        ),
                       ),
                     ],
                   ),
@@ -493,13 +503,22 @@ class _OptionBranchTile extends ConsumerWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 ),
               ),
-              OutlinedButton(
-                onPressed: () => _launchExternal(option.camelUrl),
+              OutlinedButton.icon(
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (_) => PriceHistoryDialog(option: option),
+                ),
+                icon: const Icon(Icons.show_chart_rounded, size: 13),
+                label: Text(
+                  option.priceLog.isNotEmpty
+                      ? 'History/CCC (${option.priceLog.length})'
+                      : 'History/CCC',
+                  style: const TextStyle(fontSize: 11.5),
+                ),
                 style: OutlinedButton.styleFrom(
                   visualDensity: VisualDensity.compact,
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 ),
-                child: const Text('Keepa/CCC', style: TextStyle(fontSize: 11.5)),
               ),
               OutlinedButton.icon(
                 onPressed: () => _showEditPriceDialog(context, ref),

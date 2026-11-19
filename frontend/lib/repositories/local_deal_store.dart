@@ -390,11 +390,16 @@ class LocalDealStore {
   Future<DealOptionNode> patchOptionNode({
     required int optionId,
     double? currentPrice,
+    double? avg90dPrice,
+    double? allTimeLow,
     double? clipCouponAmount,
     double? strikePrice,
     bool? snsEligible,
     bool? selectedInStack,
     bool? snagged,
+    String? priceSource,
+    bool appendHistoryPoint = false,
+    String? historyNote,
   }) async {
     await ensureLoaded();
     Map<String, dynamic>? target;
@@ -413,11 +418,36 @@ class LocalDealStore {
     }
 
     if (currentPrice != null) target['current_price'] = currentPrice;
+    if (avg90dPrice != null) target['avg_90d_price'] = avg90dPrice;
+    if (allTimeLow != null) target['all_time_low'] = allTimeLow;
     if (clipCouponAmount != null) target['clip_coupon_amount'] = clipCouponAmount;
     if (strikePrice != null) target['strike_price'] = strikePrice;
     if (snsEligible != null) target['sns_eligible'] = snsEligible;
     if (selectedInStack != null) target['selected_in_stack'] = selectedInStack;
     if (snagged != null) target['snagged'] = snagged;
+    if (priceSource != null && priceSource.isNotEmpty) {
+      target['price_source'] = priceSource;
+    }
+
+    if (appendHistoryPoint && currentPrice != null) {
+      final hist = ((target['price_history'] as List<dynamic>?) ?? [])
+          .map((e) => (e as num).toDouble())
+          .toList();
+      hist.add(double.parse(currentPrice.toStringAsFixed(2)));
+      target['price_history'] = hist.length > 24 ? hist.sublist(hist.length - 24) : hist;
+
+      final logList = ((target['price_log'] as List<dynamic>?) ?? [])
+          .whereType<Map<String, dynamic>>()
+          .toList();
+      final nowIso = DateTime.now().toIso8601String().substring(0, 10);
+      logList.insert(0, {
+        'date': nowIso,
+        'price': double.parse(currentPrice.toStringAsFixed(2)),
+        'source': priceSource ?? 'manual',
+        'note': historyNote ?? '',
+      });
+      target['price_log'] = logList.length > 30 ? logList.sublist(0, 30) : logList;
+    }
 
     _recomputeAll();
     if (target['is_below_strike'] == true && target['is_trap_warning'] != true) {

@@ -363,6 +363,19 @@ async def update_option_node(
 
     if patch.current_price is not None:
         node.current_price = patch.current_price
+        try:
+            hist = json.loads(node.price_history_json or "[]")
+            if isinstance(hist, list):
+                hist.append(round(float(patch.current_price), 2))
+                if len(hist) > 24:
+                    hist = hist[-24:]
+                node.price_history_json = json.dumps(hist)
+        except Exception:
+            pass
+    if patch.avg_90d_price is not None:
+        node.avg_90d_price = patch.avg_90d_price
+    if patch.all_time_low is not None:
+        node.all_time_low = patch.all_time_low
     if patch.clip_coupon_amount is not None:
         node.clip_coupon_amount = patch.clip_coupon_amount
     if patch.strike_price is not None:

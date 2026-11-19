@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../models/deal_models.dart';
 import '../../providers/deal_providers.dart';
 import 'cart_builder_dialog.dart';
+import 'price_history_dialog.dart';
 import 'product_thumbnail.dart';
 
 class SimpleLandingView extends ConsumerStatefulWidget {
@@ -849,6 +850,36 @@ class _SimpleProductCard extends ConsumerWidget {
                   ),
                 ),
               ),
+              const SizedBox(width: 6),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: InkWell(
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (_) => PriceHistoryDialog(option: opt),
+                  ),
+                  borderRadius: BorderRadius.circular(5),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: opt.isVerifiedPrice
+                          ? const Color(0xFF22C55E).withValues(alpha: 0.16)
+                          : const Color(0xFFF59E0B).withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Text(
+                      opt.isVerifiedPrice ? 'VERIFIED' : 'EST',
+                      style: TextStyle(
+                        fontSize: 9.5,
+                        fontWeight: FontWeight.w800,
+                        color: opt.isVerifiedPrice
+                            ? const Color(0xFF4ADE80)
+                            : const Color(0xFFFBBF24),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               const Spacer(),
               if (!opt.isTrapWarning && savingsDollar > 0)
                 Container(
@@ -901,7 +932,25 @@ class _SimpleProductCard extends ConsumerWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 6),
+              IconButton.filledTonal(
+                tooltip: 'Price History & CamelCamelCamel Log',
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (_) => PriceHistoryDialog(option: opt),
+                ),
+                style: IconButton.styleFrom(
+                  backgroundColor: opt.isVerifiedPrice
+                      ? const Color(0xFF0EA5E9).withValues(alpha: 0.22)
+                      : Colors.white.withValues(alpha: 0.07),
+                ),
+                icon: Icon(
+                  Icons.show_chart_rounded,
+                  size: 19,
+                  color: opt.isVerifiedPrice ? const Color(0xFF38BDF8) : Colors.white70,
+                ),
+              ),
+              const SizedBox(width: 6),
               IconButton.filledTonal(
                 tooltip: opt.snagged ? 'Marked as Purchased' : 'Mark as Purchased',
                 onPressed: () {
