@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/deal_models.dart';
 import '../providers/deal_providers.dart';
 import 'widgets/mission_card.dart';
+import 'widgets/simple_landing_view.dart';
 
 class DealDashboardScreen extends ConsumerStatefulWidget {
   const DealDashboardScreen({super.key});
@@ -12,6 +13,7 @@ class DealDashboardScreen extends ConsumerStatefulWidget {
 }
 
 class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
+  bool _isPowerUserMode = false;
   int _activeTab = 0;
   final _intentCtrl = TextEditingController();
   final _budgetCtrl = TextEditingController();
@@ -87,34 +89,41 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
           sliver: SliverList(
             delegate: SliverChildListDelegate([
-              // 1. Top Command Header & Pluggable Provider Status
+              // 1. Top Navigation & Mode Switcher (Simple Shopper vs Power User Mode)
               _buildHeaderBar(data),
-              const SizedBox(height: 16),
-
-              // 2. LLM Fuzzy-Intent-to-DAG Composer Bar
-              _buildIntentComposer(data.isBusy),
-              const SizedBox(height: 16),
-
-              // 3. KPI Summary Strip
-              _buildKpiStrip(
-                missionCount: data.missions.length,
-                optionCount: allOptions.length,
-                readyCount: readyCount,
-                stackSummary: data.stackSummary,
-                snaggedCount: snaggedOpts.length,
-                snaggedSaved: snaggedSaved,
-                alertCount: data.alerts.length,
-              ),
               const SizedBox(height: 18),
 
-              // 4. Primary Navigation Tabs
-              _buildTabSelector(data.alerts.length),
-              const SizedBox(height: 16),
+              if (!_isPowerUserMode)
+                SimpleLandingView(
+                  data: data,
+                  onSwitchToPowerMode: () => setState(() => _isPowerUserMode = true),
+                )
+              else ...[
+                // 2. LLM Fuzzy-Intent-to-DAG Composer Bar
+                _buildIntentComposer(data.isBusy),
+                const SizedBox(height: 16),
 
-              // 5. Active Tab Body
-              if (_activeTab == 0) _buildMissionDagTab(data),
-              if (_activeTab == 1) _buildCombinatoricStackTab(data),
-              if (_activeTab == 2) _buildWebhookAlertsTab(data),
+                // 3. KPI Summary Strip
+                _buildKpiStrip(
+                  missionCount: data.missions.length,
+                  optionCount: allOptions.length,
+                  readyCount: readyCount,
+                  stackSummary: data.stackSummary,
+                  snaggedCount: snaggedOpts.length,
+                  snaggedSaved: snaggedSaved,
+                  alertCount: data.alerts.length,
+                ),
+                const SizedBox(height: 18),
+
+                // 4. Primary Navigation Tabs
+                _buildTabSelector(data.alerts.length),
+                const SizedBox(height: 16),
+
+                // 5. Active Tab Body
+                if (_activeTab == 0) _buildMissionDagTab(data),
+                if (_activeTab == 1) _buildCombinatoricStackTab(data),
+                if (_activeTab == 2) _buildWebhookAlertsTab(data),
+              ],
             ]),
           ),
         ),
@@ -128,7 +137,7 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
     final webhookMode = data.health['webhook_provider'] ?? 'local_inbox';
 
     return Container(
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
       decoration: BoxDecoration(
         color: const Color(0xFF141821),
         borderRadius: BorderRadius.circular(14),
@@ -140,40 +149,87 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
         alignment: WrapAlignment.spaceBetween,
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Wrap(
-                spacing: 8,
-                runSpacing: 6,
-                children: [
-                  _providerPill('BLACK FRIDAY RADAR', const Color(0xFF0EA5E9)),
-                  _providerPill('LLM: ${llmMode.toString().toUpperCase()}', const Color(0xFF10B981)),
-                  _providerPill('PRICE: ${priceMode.toString().toUpperCase()}', const Color(0xFFF59E0B)),
-                  _providerPill('WEBHOOK: ${webhookMode.toString().toUpperCase()}', const Color(0xFFEC4899)),
-                ],
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Polymorphic Shopping Mission DAG & Strike-Price Engine',
-                style: TextStyle(
-                  fontSize: 21,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
-                  letterSpacing: -0.3,
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF0EA5E9).withValues(alpha: 0.16),
+                  borderRadius: BorderRadius.circular(11),
                 ),
+                child: const Icon(Icons.radar_rounded, color: Color(0xFF38BDF8), size: 24),
               ),
-              const SizedBox(height: 4),
-              const Text(
-                'Flutter + Riverpod Frontend | FastAPI + SQLModel + Keepa/LLM Pluggable Pipeline',
-                style: TextStyle(fontSize: 12.5, color: Colors.white60),
+              const SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'Deal Radar',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                          letterSpacing: -0.3,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      _providerPill('BLACK FRIDAY', const Color(0xFF0EA5E9)),
+                      if (_isPowerUserMode) ...[
+                        const SizedBox(width: 6),
+                        _providerPill('LLM: ${llmMode.toString().toUpperCase()}', const Color(0xFF10B981)),
+                        const SizedBox(width: 6),
+                        _providerPill('PRICE: ${priceMode.toString().toUpperCase()}', const Color(0xFFF59E0B)),
+                        const SizedBox(width: 6),
+                        _providerPill('WEBHOOK: ${webhookMode.toString().toUpperCase()}', const Color(0xFFEC4899)),
+                      ],
+                    ],
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    _isPowerUserMode
+                        ? 'Power User Mode: Polymorphic Shopping Mission DAG & Strike-Price Engine'
+                        : 'Personal Black Friday Deal Finder • Curated Picks, Coupons & Cart Bundles',
+                    style: const TextStyle(fontSize: 12.5, color: Colors.white60),
+                  ),
+                ],
               ),
             ],
           ),
           Wrap(
-            spacing: 8,
+            spacing: 10,
             runSpacing: 8,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
+              // Mode Switcher Segmented Control
+              Container(
+                padding: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF0B0E14),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.white12),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _modeButton(
+                      selected: !_isPowerUserMode,
+                      icon: Icons.grid_view_rounded,
+                      label: 'Simple Shopper',
+                      onTap: () => setState(() => _isPowerUserMode = false),
+                    ),
+                    _modeButton(
+                      selected: _isPowerUserMode,
+                      icon: Icons.account_tree_outlined,
+                      label: 'Power User (DAG)',
+                      onTap: () => setState(() => _isPowerUserMode = true),
+                    ),
+                  ],
+                ),
+              ),
               FilledButton.icon(
                 onPressed: data.isBusy
                     ? null
@@ -181,29 +237,68 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
                         .read(dealDashboardProvider.notifier)
                         .runPoller(simulateDrop: true),
                 icon: const Icon(Icons.bolt, size: 16),
-                label: const Text('Simulate BF Price Drop + Alert'),
+                label: const Text('Simulate Price Drop'),
                 style: FilledButton.styleFrom(
                   backgroundColor: const Color(0xFF0EA5E9),
                   foregroundColor: Colors.white,
                 ),
               ),
-              OutlinedButton.icon(
-                onPressed: data.isBusy
-                    ? null
-                    : () => ref.read(dealDashboardProvider.notifier).sendTestAlert(),
-                icon: const Icon(Icons.notifications_active_outlined, size: 15),
-                label: const Text('Test Webhook'),
-              ),
+              if (_isPowerUserMode)
+                OutlinedButton.icon(
+                  onPressed: data.isBusy
+                      ? null
+                      : () => ref.read(dealDashboardProvider.notifier).sendTestAlert(),
+                  icon: const Icon(Icons.notifications_active_outlined, size: 15),
+                  label: const Text('Test Webhook'),
+                ),
               OutlinedButton.icon(
                 onPressed: data.isBusy
                     ? null
                     : () => ref.read(dealDashboardProvider.notifier).resetSeed(),
                 icon: const Icon(Icons.restart_alt, size: 15),
-                label: const Text('Reset Seed'),
+                label: const Text('Reset'),
               ),
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _modeButton({
+    required bool selected,
+    required IconData icon,
+    required String label,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+        decoration: BoxDecoration(
+          color: selected ? const Color(0xFF0284C7) : Colors.transparent,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 15,
+              color: selected ? Colors.white : Colors.white60,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 12.5,
+                fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                color: selected ? Colors.white : Colors.white60,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

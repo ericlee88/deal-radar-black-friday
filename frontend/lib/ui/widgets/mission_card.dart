@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../models/deal_models.dart';
 import '../../providers/deal_providers.dart';
+import 'product_thumbnail.dart';
 import 'sparkline_painter.dart';
 
 class MissionDagCard extends ConsumerWidget {
@@ -338,24 +339,46 @@ class _OptionBranchTile extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
 
-          // Title & SKU
-          Text(
-            option.title,
-            style: const TextStyle(
-              fontSize: 13.5,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-              height: 1.3,
-            ),
-          ),
-          const SizedBox(height: 3),
-          Text(
-            'SKU/ASIN: ${option.asinOrSku} | \$${option.unitEffectivePrice.toStringAsFixed(2)} / ${option.unitName}',
-            style: const TextStyle(
-              fontSize: 11,
-              color: Colors.white54,
-              fontFamily: 'monospace',
-            ),
+          // Thumbnail + Title & SKU
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 78,
+                child: ProductThumbnail(
+                  option: option,
+                  categoryTag: '',
+                  height: 60,
+                  compact: true,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      option.title,
+                      style: const TextStyle(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                        height: 1.3,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      'SKU/ASIN: ${option.asinOrSku} | \$${option.unitEffectivePrice.toStringAsFixed(2)} / ${option.unitName}',
+                      style: const TextStyle(
+                        fontSize: 11,
+                        color: Colors.white54,
+                        fontFamily: 'monospace',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 10),
 
