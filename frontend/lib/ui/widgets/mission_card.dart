@@ -484,7 +484,10 @@ class _OptionBranchTile extends ConsumerWidget {
               FilledButton.tonalIcon(
                 onPressed: () => _launchExternal(option.amazonUrl),
                 icon: const Icon(Icons.open_in_new, size: 14),
-                label: const Text('Amazon.com', style: TextStyle(fontSize: 11.5)),
+                label: Text(
+                  'Product Page (${option.asinOrSku.split(" ").first})',
+                  style: const TextStyle(fontSize: 11.5),
+                ),
                 style: FilledButton.styleFrom(
                   visualDensity: VisualDensity.compact,
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),

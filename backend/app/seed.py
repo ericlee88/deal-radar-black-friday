@@ -171,7 +171,7 @@ def seed_initial_missions(session: Session, force_reset: bool = False) -> None:
                     "is_recommended_branch": False,
                     "is_trap_warning": True,
                     "title": "Discontinued DeWalt DCA2203C 18V-to-20V Adapter Starter Kit (3rd-Party Reseller Markup)",
-                    "asin_or_sku": "DCA2203C (DISCONTINUED)",
+                    "asin_or_sku": "B016K1UEPS / DCA2203C (DISCONTINUED)",
                     "amazon_query": "DeWalt+DCA2203C",
                     "msrp": 149.00,
                     "avg_90d_price": 299.00,

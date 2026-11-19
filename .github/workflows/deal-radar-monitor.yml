@@ -1,0 +1,45 @@
+name: Black Friday Deal Radar Monitor
+
+on:
+  schedule:
+    # Runs every 2 hours throughout Black Friday Week
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+jobs:
+  poll-amazon-deals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Poll Live Amazon Prices & Dispatch Strike Alerts
+        working-directory: backend
+        env:
+          PRICE_PROVIDER: ${{ secrets.KEEPA_API_KEY != '' && 'keepa' || 'amazon_direct' }}
+          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
+          WEBHOOK_PROVIDER: ${{ secrets.WEBHOOK_PROVIDER || 'none' }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          uv sync
+          uv run python -c "
+          import asyncio
+          from sqlmodel import Session
+          from app.database import engine, init_db
+          from app.seed import seed_initial_missions
+          from app.engine.scheduler import run_price_poll_cycle
+
+          async def main():
+              init_db()
+              with Session(engine) as session:
+                  seed_initial_missions(session, force_reset=False)
+                  alerts = await run_price_poll_cycle(session, simulate_drop=False)
+                  print(f'Completed Black Friday poll cycle. Dispatched {len(alerts)} strike alerts.')
+
+          asyncio.run(main())
+          "

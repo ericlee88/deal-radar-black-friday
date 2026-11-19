@@ -258,7 +258,7 @@ class _ProviderSettingsDialogState extends ConsumerState<ProviderSettingsDialog>
                           child: _dropdownField(
                             label: 'Price Feed Mode',
                             value: _priceProvider,
-                            items: const ['auto', 'keepa', 'mock'],
+                            items: const ['auto', 'amazon_direct', 'keepa', 'mock'],
                             onChanged: (v) => setState(() => _priceProvider = v ?? 'auto'),
                           ),
                         ),

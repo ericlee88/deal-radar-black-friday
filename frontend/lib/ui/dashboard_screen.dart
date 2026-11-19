@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/deal_models.dart';
@@ -19,9 +20,21 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
   int _activeTab = 0;
   final _intentCtrl = TextEditingController();
   final _budgetCtrl = TextEditingController();
+  Timer? _autoRefreshTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _autoRefreshTimer = Timer.periodic(const Duration(seconds: 60), (_) {
+      if (mounted) {
+        ref.read(dealDashboardProvider.notifier).refreshAll();
+      }
+    });
+  }
 
   @override
   void dispose() {
+    _autoRefreshTimer?.cancel();
     _intentCtrl.dispose();
     _budgetCtrl.dispose();
     super.dispose();
@@ -248,6 +261,19 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
                     textStyle: const TextStyle(fontWeight: FontWeight.w800, fontSize: 12.5),
                   ),
                 ),
+              FilledButton.tonalIcon(
+                onPressed: data.isBusy
+                    ? null
+                    : () => ref
+                        .read(dealDashboardProvider.notifier)
+                        .runPoller(simulateDrop: false),
+                icon: const Icon(Icons.sync_rounded, size: 16),
+                label: const Text('Check Live Prices'),
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFF10B981).withValues(alpha: 0.2),
+                  foregroundColor: const Color(0xFF4ADE80),
+                ),
+              ),
               FilledButton.icon(
                 onPressed: data.isBusy
                     ? null
@@ -255,7 +281,7 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
                         .read(dealDashboardProvider.notifier)
                         .runPoller(simulateDrop: true),
                 icon: const Icon(Icons.bolt, size: 16),
-                label: const Text('Simulate Price Drop'),
+                label: const Text('Simulate Drop'),
                 style: FilledButton.styleFrom(
                   backgroundColor: const Color(0xFF0EA5E9),
                   foregroundColor: Colors.white,

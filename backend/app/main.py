@@ -40,6 +40,7 @@ _SEED_ASIN_BACKFILL = {
     "rice_basin_304": "B089G45BF7 / SUS304-BASIN-2IN1",
     "path_a_adapter_split": "B016K1UD0E / DCA1820 + DCB205-2C",
     "path_b_new_hammer_drill": "B09YY1WTHJ / DCD805D2",
+    "trap_dca2203c": "B016K1UEPS / DCA2203C (DISCONTINUED)",
     "dyson_car_boat": "B0C2J7X5WR / DYSON-CAR-BOAT",
     "dyson_v8_convertible": "B0B5HJJ7K7 / DYSON-V8-CYCLONE",
     "dyson_v12_slim": "B0B1V2G7R2 / DYSON-V12-SLIM",
@@ -450,7 +451,7 @@ def update_provider_settings(patch: ProviderSettingsUpdate) -> ProviderSettingsR
         settings.openai_api_key = val if val else None
     if patch.openai_model is not None and patch.openai_model.strip():
         settings.openai_model = patch.openai_model.strip()
-    if patch.price_provider in ("auto", "mock", "keepa"):
+    if patch.price_provider in ("auto", "amazon_direct", "mock", "keepa"):
         settings.price_provider = patch.price_provider  # type: ignore[assignment]
     if patch.keepa_api_key is not None:
         val = patch.keepa_api_key.strip()

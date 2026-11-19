@@ -26,8 +26,8 @@ class Settings(BaseSettings):
     openai_api_key: Optional[str] = None
     openai_model: str = "gpt-4o-mini"
 
-    # Price History & ASIN Discovery Configuration (Pluggable: mock | keepa)
-    price_provider: Literal["auto", "mock", "keepa"] = "auto"
+    # Price History & ASIN Discovery Configuration (Pluggable: auto | amazon_direct | keepa | mock)
+    price_provider: Literal["auto", "amazon_direct", "mock", "keepa"] = "auto"
     keepa_api_key: Optional[str] = None
 
     # Webhook & Push Alerting Configuration (Telegram, Discord, Slack, ntfy.sh)
@@ -56,7 +56,8 @@ class Settings(BaseSettings):
             return self.price_provider
         if self.keepa_api_key:
             return "keepa"
-        return "mock"
+        return "amazon_direct"
 
 
 settings = Settings()
+

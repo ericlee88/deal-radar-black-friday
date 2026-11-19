@@ -99,8 +99,16 @@ def enrich_option_node(node: DealOptionNode, sns_tier_rate: float = 0.15) -> Dea
         deal_grade_code=grade_code,
         deal_grade_label=grade_label,
         is_below_strike=(eff <= node.strike_price and not node.is_trap_warning),
-        amazon_url=f"https://www.amazon.com/s?k={node.amazon_query}&rh=p_6%3AATVPDKIKX0DER",
-        camel_url=f"https://camelcamelcamel.com/search?sq={node.amazon_query}",
+        amazon_url=(
+            f"https://www.amazon.com/dp/{asin}?psc=1"
+            if (asin := extract_amazon_asin(node.asin_or_sku))
+            else f"https://www.amazon.com/s?k={node.amazon_query}&rh=p_6%3AATVPDKIKX0DER"
+        ),
+        camel_url=(
+            f"https://camelcamelcamel.com/product/{asin}"
+            if (asin := extract_amazon_asin(node.asin_or_sku))
+            else f"https://camelcamelcamel.com/search?sq={node.amazon_query}"
+        ),
     )
 
 

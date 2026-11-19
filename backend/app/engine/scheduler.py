@@ -25,6 +25,8 @@ async def run_price_poll_cycle(
         tick = await price_provider.refresh_node_price(node, simulate_drop=simulate_drop)
         node.current_price = tick["current_price"]
         node.avg_90d_price = tick["avg_90d_price"]
+        if "clip_coupon_amount" in tick and tick["clip_coupon_amount"] is not None:
+            node.clip_coupon_amount = tick["clip_coupon_amount"]
         session.add(node)
 
         new_eff = compute_effective_price(node, sns_tier_rate=sns_rate)

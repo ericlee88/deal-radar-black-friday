@@ -734,11 +734,15 @@ class _SimpleProductCard extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 1. Visual Product Thumbnail
-          ProductThumbnail(
-            option: opt,
-            categoryTag: mission.categoryTag,
-            height: insideModal ? 128 : 152,
+          // 1. Visual Product Thumbnail (clickable to open direct Amazon product page)
+          InkWell(
+            onTap: opt.isTrapWarning ? null : onLaunchAmazon,
+            borderRadius: BorderRadius.circular(12),
+            child: ProductThumbnail(
+              option: opt,
+              categoryTag: mission.categoryTag,
+              height: insideModal ? 128 : 152,
+            ),
           ),
           const SizedBox(height: 12),
 
@@ -782,16 +786,19 @@ class _SimpleProductCard extends ConsumerWidget {
           ),
           const SizedBox(height: 6),
 
-          // 3. Product Title
-          Text(
-            opt.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-              height: 1.28,
+          // 3. Product Title (clickable to open direct Amazon product page)
+          InkWell(
+            onTap: opt.isTrapWarning ? null : onLaunchAmazon,
+            child: Text(
+              opt.title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+                height: 1.28,
+              ),
             ),
           ),
           const SizedBox(height: 10),
@@ -879,8 +886,10 @@ class _SimpleProductCard extends ConsumerWidget {
                     size: 16,
                   ),
                   label: Text(
-                    opt.isTrapWarning ? 'Avoid Overpriced SKU' : 'Shop on Amazon',
-                    style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
+                    opt.isTrapWarning
+                        ? 'Avoid Overpriced SKU'
+                        : 'Open Product Page (${opt.asinOrSku.split(" ").first})',
+                    style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5),
                   ),
                   style: FilledButton.styleFrom(
                     backgroundColor: opt.isTrapWarning
@@ -934,7 +943,7 @@ class _SimpleProductCard extends ConsumerWidget {
       parts.add('Buy 2 Get 1 Free eligible');
     }
     if (parts.isEmpty) {
-      return '90-day avg: \$${opt.avg90dPrice.toStringAsFixed(2)} • Target: \$${opt.strikePrice.toStringAsFixed(2)}';
+      return '90-day avg: \$${opt.avg90dPrice.toStringAsFixed(2)} | Target: \$${opt.strikePrice.toStringAsFixed(2)}';
     }
     return 'Includes ${parts.join(" + ")}';
   }
