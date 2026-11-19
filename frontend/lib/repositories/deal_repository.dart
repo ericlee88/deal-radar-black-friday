@@ -23,10 +23,7 @@ class DealRepository {
       return base.resolve(path);
     }
     if (base.scheme == 'blob') {
-      final inner = Uri.tryParse(base.path);
-      if (inner != null && (inner.scheme == 'http' || inner.scheme == 'https')) {
-        return inner.resolve(path);
-      }
+      return Uri.parse(path);
     }
     return Uri.parse('http://localhost:8080/$path');
   }

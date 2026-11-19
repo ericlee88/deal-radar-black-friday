@@ -84,50 +84,84 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
-  <script type="module">
-    const statusEl = document.getElementById("boot-status");
+  <script>
     function logStep(msg) {
+      const statusEl = document.getElementById("boot-status");
       if (statusEl) statusEl.textContent = msg;
       fetch("api/client-log", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ step: msg, href: window.location.href })
-      }).catch(() => {});
+      }).catch(function() {});
     }
 
-    window.addEventListener("error", (e) => {
+    window.addEventListener("error", function(e) {
       const dartEx = e.error && e.error.dartException ? String(e.error.dartException) : "";
       logStep("JS Error: " + e.message + " | dartEx=" + dartEx + " | stack=" + (e.error && e.error.stack ? e.error.stack : ""));
     });
-    window.addEventListener("unhandledrejection", (e) => {
+    window.addEventListener("unhandledrejection", function(e) {
       logStep("Unhandled Rejection: " + (e.reason && e.reason.message ? e.reason.message : String(e.reason)));
     });
 
-    const baseHref = new URL("./", document.baseURI).href;
     window.flutterConfiguration = {
-      assetBase: baseHref,
-      canvasKitBaseUrl: new URL("canvaskit/", baseHref).href
+      assetBase: ""
     };
 
-    window.flutterCanvasKitLoaded = (async () => {
-      logStep("Loading local CanvasKit WebAssembly...");
-      const ckUrl = new URL("canvaskit/canvaskit.js", document.baseURI).href;
-      const { default: MainCanvasKit } = await import(ckUrl);
-      const ck = await MainCanvasKit({
-        locateFile: (file) => new URL("canvaskit/" + file, document.baseURI).href
-      });
-      window.flutterCanvasKit = ck;
-      logStep("CanvasKit ready — starting Flutter engine...");
-      return ck;
+    // Synchronously assign window.flutterCanvasKitLoaded before main.dart.js executes.
+    // Uses relative window.fetch() + in-memory WebAssembly.instantiate() so it works inside
+    // blob: preview iframes where new URL(..., document.baseURI) and native ES import() fail.
+    window.flutterCanvasKitLoaded = (async function() {
+      try {
+        logStep("Loading local CanvasKit WebAssembly via fetch...");
+        const results = await Promise.all([
+          fetch("canvaskit/canvaskit.js"),
+          fetch("canvaskit/canvaskit.wasm")
+        ]);
+        const jsResp = results[0];
+        const wasmResp = results[1];
+        if (!jsResp.ok) throw new Error("canvaskit.js HTTP " + jsResp.status);
+        if (!wasmResp.ok) throw new Error("canvaskit.wasm HTTP " + wasmResp.status);
+
+        const payloads = await Promise.all([
+          jsResp.text(),
+          wasmResp.arrayBuffer()
+        ]);
+        const jsText = payloads[0];
+        const wasmBytes = payloads[1];
+
+        const cleanJs = jsText
+          .replace(/import\.meta\.url/g, '""')
+          .replace(/export\s+default\s+CanvasKitInit\s*;?/g, "") + "\nreturn CanvasKitInit;";
+        const CanvasKitInit = (new Function(cleanJs))();
+
+        const ck = await CanvasKitInit({
+          locateFile: function(file) { return "canvaskit/" + file; },
+          instantiateWasm: function(imports, successCallback) {
+            WebAssembly.instantiate(wasmBytes, imports).then(function(output) {
+              successCallback(output.instance, output.module);
+            }).catch(function(err) {
+              logStep("WASM instantiate error: " + String(err));
+            });
+            return {};
+          }
+        });
+
+        window.flutterCanvasKit = ck;
+        logStep("CanvasKit ready — starting Flutter engine...");
+        return ck;
+      } catch (err) {
+        logStep("CanvasKit bootstrap error: " + (err && err.stack ? err.stack : String(err)));
+        throw err;
+      }
     })();
 
     // Hide boot-loader as soon as <flutter-view> mounts into the DOM
-    const observer = new MutationObserver(() => {
+    const observer = new MutationObserver(function() {
       if (document.querySelector("flutter-view")) {
         const loader = document.getElementById("boot-loader");
         if (loader) {
           loader.style.opacity = "0";
-          setTimeout(() => loader.remove(), 200);
+          setTimeout(function() { loader.remove(); }, 200);
         }
         observer.disconnect();
       }
