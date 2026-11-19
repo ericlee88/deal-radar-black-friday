@@ -232,14 +232,21 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
                           color: const Color(0xFF22C55E).withValues(alpha: 0.45),
                         ),
                       ),
-                      child: const Text(
-                        '✨ BLACK FRIDAY SHOPPING ASSISTANT • SIMPLE VIEW',
-                        style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xFF4ADE80),
-                          letterSpacing: 0.4,
-                        ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.auto_awesome_rounded, size: 13, color: Color(0xFF4ADE80)),
+                          SizedBox(width: 5),
+                          Text(
+                            'BLACK FRIDAY SHOPPING ASSISTANT • SIMPLE VIEW',
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w800,
+                              color: Color(0xFF4ADE80),
+                              letterSpacing: 0.4,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -402,7 +409,7 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
 
   Widget _buildCategoryPills() {
     final categories = [
-      ('top_picks', '★ Top Recommended Picks', Icons.auto_awesome_rounded),
+      ('top_picks', 'Top Recommended Picks', Icons.auto_awesome_rounded),
       ('all', 'All Deals (19)', Icons.grid_view_rounded),
       ('kitchen', 'Kitchen & 304 Basins', Icons.restaurant_menu_rounded),
       ('tools', 'Tools & DeWalt', Icons.handyman_rounded),
@@ -852,7 +859,7 @@ class _SimpleProductCard extends ConsumerWidget {
                     size: 16,
                   ),
                   label: Text(
-                    opt.isTrapWarning ? 'Avoid Overpriced SKU' : 'Shop on Amazon ↗',
+                    opt.isTrapWarning ? 'Avoid Overpriced SKU' : 'Shop on Amazon',
                     style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
                   ),
                   style: FilledButton.styleFrom(
@@ -894,7 +901,7 @@ class _SimpleProductCard extends ConsumerWidget {
 
   String _buildFriendlyDiscountNote(DealOptionNode opt) {
     if (opt.isTrapWarning) {
-      return '⚠️ Discontinued bundle inflated by 3rd-party resellers';
+      return '[TRAP] Discontinued bundle inflated by 3rd-party resellers';
     }
     final parts = <String>[];
     if (opt.clipCouponAmount > 0) {
