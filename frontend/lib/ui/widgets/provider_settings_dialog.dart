@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/deal_models.dart';
 import '../../providers/deal_providers.dart';
+import '../../repositories/local_deal_store.dart';
 
 class ProviderSettingsDialog extends ConsumerStatefulWidget {
   final ProviderSettings settings;
@@ -28,6 +30,9 @@ class _ProviderSettingsDialogState extends ConsumerState<ProviderSettingsDialog>
   late TextEditingController _telegramTokenCtrl;
   late TextEditingController _telegramChatCtrl;
   late TextEditingController _pollIntervalCtrl;
+  late TextEditingController _ghRepoCtrl;
+  late TextEditingController _ghBranchCtrl;
+  late TextEditingController _ghTokenCtrl;
   bool _saving = false;
   String? _statusBanner;
 
@@ -47,6 +52,11 @@ class _ProviderSettingsDialogState extends ConsumerState<ProviderSettingsDialog>
     _telegramTokenCtrl = TextEditingController();
     _telegramChatCtrl = TextEditingController(text: s.telegramChatId ?? '');
     _pollIntervalCtrl = TextEditingController(text: s.pollIntervalMinutes.toString());
+
+    final syncCfg = ref.read(dealRepositoryProvider).localStore.syncConfig;
+    _ghRepoCtrl = TextEditingController(text: syncCfg.repo);
+    _ghBranchCtrl = TextEditingController(text: syncCfg.branch);
+    _ghTokenCtrl = TextEditingController(text: syncCfg.token);
   }
 
   @override
@@ -60,6 +70,9 @@ class _ProviderSettingsDialogState extends ConsumerState<ProviderSettingsDialog>
     _telegramTokenCtrl.dispose();
     _telegramChatCtrl.dispose();
     _pollIntervalCtrl.dispose();
+    _ghRepoCtrl.dispose();
+    _ghBranchCtrl.dispose();
+    _ghTokenCtrl.dispose();
     super.dispose();
   }
 
@@ -98,7 +111,9 @@ class _ProviderSettingsDialogState extends ConsumerState<ProviderSettingsDialog>
       if (!mounted) return;
       setState(() {
         _saving = false;
-        _statusBanner = 'Settings saved and active across Deal Radar backend!';
+        _statusBanner = ref.read(dealRepositoryProvider).isStaticLocalMode
+            ? 'Device settings saved locally!'
+            : 'Settings saved and active across Deal Radar backend!';
       });
     } catch (e) {
       if (!mounted) return;
@@ -109,10 +124,72 @@ class _ProviderSettingsDialogState extends ConsumerState<ProviderSettingsDialog>
     }
   }
 
+  Future<void> _saveGitHubSync() async {
+    setState(() {
+      _saving = true;
+      _statusBanner = null;
+    });
+    final store = ref.read(dealRepositoryProvider).localStore;
+    await store.saveSyncConfig(
+      GitHubSyncConfig(
+        repo: _ghRepoCtrl.text.trim(),
+        branch: _ghBranchCtrl.text.trim(),
+        token: _ghTokenCtrl.text.trim(),
+      ),
+    );
+    await ref.read(dealDashboardProvider.notifier).refreshAll();
+    if (!mounted) return;
+    setState(() {
+      _saving = false;
+      _statusBanner = store.lastSyncStatus ?? 'GitHub Sync configuration saved to device storage.';
+    });
+  }
+
+  Future<void> _pullGitHubSync() async {
+    setState(() {
+      _saving = true;
+      _statusBanner = null;
+    });
+    final store = ref.read(dealRepositoryProvider).localStore;
+    final msg = await store.pullFromGitHub();
+    await ref.read(dealDashboardProvider.notifier).refreshAll();
+    if (!mounted) return;
+    setState(() {
+      _saving = false;
+      _statusBanner = msg;
+    });
+  }
+
+  Future<void> _triggerGitHubPoll() async {
+    setState(() {
+      _saving = true;
+      _statusBanner = null;
+    });
+    final store = ref.read(dealRepositoryProvider).localStore;
+    final msg = await store.triggerGitHubPollWorkflow();
+    if (!mounted) return;
+    setState(() {
+      _saving = false;
+      _statusBanner = msg;
+    });
+  }
+
+  Future<void> _copyBackupJson() async {
+    final store = ref.read(dealRepositoryProvider).localStore;
+    final jsonStr = store.exportStateJson();
+    await Clipboard.setData(ClipboardData(text: jsonStr));
+    if (!mounted) return;
+    setState(() {
+      _statusBanner = 'Copied full Deal Radar JSON backup to clipboard!';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentSettings =
         ref.watch(dealDashboardProvider).valueOrNull?.providerSettings ?? widget.settings;
+    final repo = ref.read(dealRepositoryProvider);
+    final isStaticMode = repo.isStaticLocalMode;
 
     return Dialog(
       backgroundColor: const Color(0xFF111621),
@@ -146,7 +223,7 @@ class _ProviderSettingsDialogState extends ConsumerState<ProviderSettingsDialog>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            'Live Price Poller, LLM & Webhook Provider Settings',
+                            'Live Price Poller, Storage & Cloud Sync Settings',
                             style: TextStyle(
                               fontSize: 17.5,
                               fontWeight: FontWeight.w800,
@@ -154,9 +231,11 @@ class _ProviderSettingsDialogState extends ConsumerState<ProviderSettingsDialog>
                             ),
                           ),
                           Text(
-                            'Active LLM: ${currentSettings.activeLlmMode.toUpperCase()} | '
-                            'Active Price Feed: ${currentSettings.activePriceMode.toUpperCase()} | '
-                            'Webhook: ${currentSettings.webhookProvider.toUpperCase()}',
+                            isStaticMode
+                                ? 'Mode: STATIC WEB + DEVICE STORAGE (${repo.localStore.syncConfig.isEnabled ? "GITHUB SYNC ON" : "LOCAL ONLY"})'
+                                : 'Active LLM: ${currentSettings.activeLlmMode.toUpperCase()} | '
+                                    'Active Price Feed: ${currentSettings.activePriceMode.toUpperCase()} | '
+                                    'Webhook: ${currentSettings.webhookProvider.toUpperCase()}',
                             style: const TextStyle(
                               fontSize: 11.5,
                               color: Color(0xFF4ADE80),
@@ -194,6 +273,89 @@ class _ProviderSettingsDialogState extends ConsumerState<ProviderSettingsDialog>
               Expanded(
                 child: ListView(
                   children: [
+                    // 0. Device Storage & GitHub Cloud Sync (GitHub Pages Write Mode)
+                    _sectionHeader(
+                      Icons.cloud_sync_rounded,
+                      'Device Storage (localStorage) & Optional GitHub Repo Sync',
+                      const Color(0xFF38BDF8),
+                    ),
+                    const SizedBox(height: 8),
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF0EA5E9).withValues(alpha: 0.08),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: const Color(0xFF38BDF8).withValues(alpha: 0.25)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            isStaticMode
+                                ? 'All edits, added deals, and snagged checkboxes save automatically to your browser device storage. Add a GitHub Fine-Grained Token (Contents: Read/Write) below to sync across phone & laptop and auto-track new items in GitHub Actions.'
+                                : 'Connected to Live FastAPI Backend. When hosted on GitHub Pages, Deal Radar automatically switches to browser device storage + optional GitHub Repo Sync configured below.',
+                            style: const TextStyle(fontSize: 11.5, color: Colors.white70, height: 1.35),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: _textField(
+                                  controller: _ghRepoCtrl,
+                                  label: 'GitHub Repository (owner/repo)',
+                                  hint: 'ericlee88/deal-radar-black-friday',
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: _textField(
+                                  controller: _ghBranchCtrl,
+                                  label: 'Branch',
+                                  hint: 'main',
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          _textField(
+                            controller: _ghTokenCtrl,
+                            label: 'GitHub Personal Access Token (stored only on this device)',
+                            hint: 'github_pat_... (Contents + Actions read/write)',
+                            obscure: true,
+                          ),
+                          const SizedBox(height: 10),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: [
+                              FilledButton.icon(
+                                onPressed: _saving ? null : _saveGitHubSync,
+                                icon: const Icon(Icons.cloud_upload_outlined, size: 16),
+                                label: const Text('Save & Push to GitHub', style: TextStyle(fontSize: 12)),
+                              ),
+                              OutlinedButton.icon(
+                                onPressed: _saving ? null : _pullGitHubSync,
+                                icon: const Icon(Icons.cloud_download_outlined, size: 16),
+                                label: const Text('Pull from GitHub', style: TextStyle(fontSize: 12)),
+                              ),
+                              OutlinedButton.icon(
+                                onPressed: _saving ? null : _triggerGitHubPoll,
+                                icon: const Icon(Icons.bolt_rounded, size: 16),
+                                label: const Text('Trigger Live Amazon Poll', style: TextStyle(fontSize: 12)),
+                              ),
+                              TextButton.icon(
+                                onPressed: _copyBackupJson,
+                                icon: const Icon(Icons.copy_rounded, size: 15),
+                                label: const Text('Copy JSON Backup', style: TextStyle(fontSize: 12)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+
                     // 1. LLM Intent Translation Provider
                     _sectionHeader(
                       Icons.auto_awesome_rounded,

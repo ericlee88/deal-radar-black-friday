@@ -1,0 +1,71 @@
+name: Deploy Deal Radar to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - feat/github-pages-static-sync
+  schedule:
+    # Automatically refresh live Amazon prices & redeploy GitHub Pages every 2 hours
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup uv (Python)
+        uses: astral-sh/setup-uv@v4
+
+      - name: Poll Live Amazon Prices & Export Static Snapshot
+        working-directory: backend
+        env:
+          PRICE_PROVIDER: ${{ secrets.KEEPA_API_KEY != '' && 'keepa' || 'amazon_direct' }}
+          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
+          WEBHOOK_PROVIDER: ${{ secrets.WEBHOOK_PROVIDER || 'none' }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          uv sync
+          uv run python scripts/export_snapshot.py --poll
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Build Flutter Web for GitHub Pages
+        working-directory: frontend
+        run: |
+          flutter pub get
+          flutter build web --release --no-web-resources-cdn --base-href "/deal-radar-black-friday/"
+          touch build/web/.nojekyll
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/build/web
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

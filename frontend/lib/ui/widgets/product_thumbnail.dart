@@ -44,7 +44,10 @@ class _ProductThumbnailState extends State<ProductThumbnail> {
   }
 
   Future<void> _loadPhoto() async {
-    final bytes = await _repo.fetchProductImageBytes(widget.option.id);
+    final bytes = await _repo.fetchProductImageBytes(
+      widget.option.id,
+      branchKey: widget.option.branchKey,
+    );
     if (!mounted) return;
     setState(() {
       _imageBytes = bytes;
