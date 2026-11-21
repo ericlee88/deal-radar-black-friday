@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-19T07:25:09.904149+00:00",
+  "generated_at": "2026-11-21T03:35:49.231209+00:00",
   "missions": [
     {
       "id": 1,
@@ -44,7 +44,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $18)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B001E17ZYS?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B001E17ZYS"
+          "camel_url": "https://camelcamelcamel.com/product/B001E17ZYS",
+          "price_source": "untracked",
+          "price_log": []
         },
         {
           "id": 2,
@@ -78,7 +80,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $15)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B082N73YPV?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B082N73YPV"
+          "camel_url": "https://camelcamelcamel.com/product/B082N73YPV",
+          "price_source": "untracked",
+          "price_log": []
         },
         {
           "id": 3,
@@ -112,7 +116,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $18)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0H4QL9G8M?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0H4QL9G8M"
+          "camel_url": "https://camelcamelcamel.com/product/B0H4QL9G8M",
+          "price_source": "untracked",
+          "price_log": []
         }
       ]
     },
@@ -136,9 +142,9 @@
           "title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
           "asin_or_sku": "B09FXD3ZCF / WSSA0004772",
           "amazon_query": "Work+Sharp+Precision+Adjust+Upgrade+Kit+WSSA0004772",
-          "msrp": 0.0,
+          "msrp": 99.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 99.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 56.0,
           "all_time_low": 0.0,
@@ -149,16 +155,27 @@
           "snagged": false,
           "unit_name": "grit rod",
           "unit_quantity": 7.0,
-          "price_history": [],
+          "price_history": [
+            99.99
+          ],
           "scout_notes": "Upgrades your 3-grit base system with Coarse (220/320/400 diamond), Fine (600/800 diamond + ceramic), and Leather Strop + ceramic rod for serrations.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
+          "effective_price": 99.99,
+          "unit_effective_price": 14.28,
           "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $56)",
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09FXD3ZCF?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B09FXD3ZCF"
+          "camel_url": "https://camelcamelcamel.com/product/B09FXD3ZCF",
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 99.99,
+              "source": "antigravity_automation",
+              "note": "US retail price verified (Tractor Supply Co.)"
+            }
+          ]
         }
       ]
     },
@@ -204,7 +221,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $149)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B016K1UD0E?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E"
+          "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E",
+          "price_source": "untracked",
+          "price_log": []
         },
         {
           "id": 6,
@@ -238,7 +257,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $149)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09YXSNV98?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98"
+          "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98",
+          "price_source": "untracked",
+          "price_log": []
         },
         {
           "id": 7,
@@ -272,7 +293,9 @@
           "deal_grade_label": "\u26a0\ufe0f SCALPER / TRAP \u2014 DO NOT BUY",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/s?k=DeWalt+DCA2203C&rh=p_6%3AATVPDKIKX0DER",
-          "camel_url": "https://camelcamelcamel.com/search?sq=DeWalt+DCA2203C"
+          "camel_url": "https://camelcamelcamel.com/search?sq=DeWalt+DCA2203C",
+          "price_source": "untracked",
+          "price_log": []
         }
       ]
     },
@@ -296,9 +319,9 @@
           "title": "Dyson Car+Boat Handheld Vacuum (50-Min Run Time + Mini Motorized Hair Screw Tool)",
           "asin_or_sku": "B0DLXGDHBX / DYSON-CAR-BOAT",
           "amazon_query": "Dyson+Car+Boat+Handheld+Vacuum",
-          "msrp": 0.0,
+          "msrp": 299.95,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 229.95,
           "clip_coupon_amount": 0.0,
           "strike_price": 229.99,
           "all_time_low": 0.0,
@@ -309,16 +332,27 @@
           "snagged": false,
           "unit_name": "min runtime",
           "unit_quantity": 50.0,
-          "price_history": [],
+          "price_history": [
+            229.95
+          ],
           "scout_notes": "Live early Black Friday drop at $229.99 (-23%). Includes anti-tangle conical brush bar, crevice tool, and combination tool.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $230)",
-          "is_below_strike": false,
+          "effective_price": 229.95,
+          "unit_effective_price": 4.6,
+          "discount_pct_off_msrp": 23,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-23%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B0DLXGDHBX?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX"
+          "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX",
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 229.95,
+              "source": "antigravity_automation",
+              "note": "Black Friday 23% off verified (Williams-Sonoma / Dyson US)"
+            }
+          ]
         },
         {
           "id": 9,
@@ -352,7 +386,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $299)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09YS9N7H2?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B09YS9N7H2"
+          "camel_url": "https://camelcamelcamel.com/product/B09YS9N7H2",
+          "price_source": "untracked",
+          "price_log": []
         },
         {
           "id": 10,
@@ -364,9 +400,9 @@
           "title": "Dyson V12 Detect Slim / Humdinger (Single-Button Power, No Trigger Hold, 2.2 lb Handheld)",
           "asin_or_sku": "B0B4X3H4MZ / DYSON-V12-SLIM",
           "amazon_query": "Dyson+V12+Detect+Slim+Cordless+Vacuum",
-          "msrp": 0.0,
+          "msrp": 729.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 399.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 399.99,
           "all_time_low": 0.0,
@@ -377,16 +413,27 @@
           "snagged": false,
           "unit_name": "min runtime",
           "unit_quantity": 60.0,
-          "price_history": [],
+          "price_history": [
+            399.99
+          ],
           "scout_notes": "30% lighter in handheld mode (2.2 lbs vs 3.3 lbs) and uses a push-button ON/OFF switch so you don't hold a trigger while detailing car seats.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $400)",
-          "is_below_strike": false,
+          "effective_price": 399.99,
+          "unit_effective_price": 6.67,
+          "discount_pct_off_msrp": 45,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-45%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B0B4X3H4MZ?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0B4X3H4MZ"
+          "camel_url": "https://camelcamelcamel.com/product/B0B4X3H4MZ",
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 399.99,
+              "source": "antigravity_automation",
+              "note": "Black Friday $330 off verified (Walmart US)"
+            }
+          ]
         }
       ]
     },
@@ -432,7 +479,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $20)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/s?k=Metamucil+Fiber+Collagen+Rejuvenation+Blend&rh=p_6%3AATVPDKIKX0DER",
-          "camel_url": "https://camelcamelcamel.com/search?sq=Metamucil+Fiber+Collagen+Rejuvenation+Blend"
+          "camel_url": "https://camelcamelcamel.com/search?sq=Metamucil+Fiber+Collagen+Rejuvenation+Blend",
+          "price_source": "untracked",
+          "price_log": []
         },
         {
           "id": 12,
@@ -466,7 +515,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $36)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00K6JUG4K?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K"
+          "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K",
+          "price_source": "untracked",
+          "price_log": []
         }
       ]
     },
@@ -512,7 +563,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $28)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B079VP6DH5?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B079VP6DH5"
+          "camel_url": "https://camelcamelcamel.com/product/B079VP6DH5",
+          "price_source": "untracked",
+          "price_log": []
         },
         {
           "id": 14,
@@ -546,7 +599,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $24)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0D87QKHHP?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0D87QKHHP"
+          "camel_url": "https://camelcamelcamel.com/product/B0D87QKHHP",
+          "price_source": "untracked",
+          "price_log": []
         },
         {
           "id": 15,
@@ -558,9 +613,9 @@
           "title": "Cascade Platinum Plus ActionPacs Dishwasher Detergent Pods (81 Count Tub)",
           "asin_or_sku": "B0CHD7GLN9",
           "amazon_query": "Cascade+Platinum+Plus+ActionPacs+81+Count",
-          "msrp": 0.0,
+          "msrp": 34.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 34.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 18.0,
           "all_time_low": 0.0,
@@ -571,16 +626,27 @@
           "snagged": false,
           "unit_name": "pod",
           "unit_quantity": 81.0,
-          "price_history": [],
+          "price_history": [
+            29.74
+          ],
           "scout_notes": "Pushes your P&G subtotal over $100 when paired with Metamucil, Bounty, and Charmin!",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $18)",
+          "effective_price": 29.74,
+          "unit_effective_price": 0.37,
+          "discount_pct_off_msrp": 15,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0CHD7GLN9?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0CHD7GLN9"
+          "camel_url": "https://camelcamelcamel.com/product/B0CHD7GLN9",
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 34.99,
+              "source": "antigravity_automation",
+              "note": "81-count US retail price verified (Walmart)"
+            }
+          ]
         },
         {
           "id": 16,
@@ -592,9 +658,9 @@
           "title": "Glad ForceFlexPlus 13-Gallon Tall Kitchen Drawstring Trash Bags (110 Count)",
           "asin_or_sku": "B00ASBOT2Q",
           "amazon_query": "Glad+ForceFlexPlus+13+Gallon+110+Count",
-          "msrp": 0.0,
+          "msrp": 29.98,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 29.98,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.5,
           "all_time_low": 0.0,
@@ -605,16 +671,27 @@
           "snagged": false,
           "unit_name": "bag",
           "unit_quantity": 110.0,
-          "price_history": [],
+          "price_history": [
+            25.48
+          ],
           "scout_notes": "5th item in the box\u2014locks in the full 15% Subscribe & Save discount across all items.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $14)",
+          "effective_price": 25.48,
+          "unit_effective_price": 0.23,
+          "discount_pct_off_msrp": 15,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00ASBOT2Q?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B00ASBOT2Q"
+          "camel_url": "https://camelcamelcamel.com/product/B00ASBOT2Q",
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 29.98,
+              "source": "antigravity_automation",
+              "note": "110-count 13-gal US retail price verified (Walmart)"
+            }
+          ]
         }
       ]
     },
@@ -638,9 +715,9 @@
           "title": "Cascadia Board Game (Spiel des Jahres Winner \u2022 1\u20134 Players, Ages 8+)",
           "asin_or_sku": "B093H8RGXX",
           "amazon_query": "Cascadia+Board+Game+AEG",
-          "msrp": 0.0,
+          "msrp": 45.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 29.64,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.0,
           "all_time_low": 0.0,
@@ -651,16 +728,27 @@
           "snagged": false,
           "unit_name": "game",
           "unit_quantity": 1.0,
-          "price_history": [],
+          "price_history": [
+            29.64
+          ],
           "scout_notes": "BGG 8.0/10. Zero mean blocking; kids draft wildlife tokens and spatial habitat tiles.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $24)",
+          "effective_price": 29.64,
+          "unit_effective_price": 29.64,
+          "discount_pct_off_msrp": 36,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B093H8RGXX?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B093H8RGXX"
+          "camel_url": "https://camelcamelcamel.com/product/B093H8RGXX",
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 29.64,
+              "source": "antigravity_automation",
+              "note": "Amazon Black Friday Lightning Deal verified (IGN, Nov 20, 2026)"
+            }
+          ]
         },
         {
           "id": 18,
@@ -694,7 +782,9 @@
           "deal_grade_label": "LOG PRICE TO TRACK (Target $27)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B000809OAO?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B000809OAO"
+          "camel_url": "https://camelcamelcamel.com/product/B000809OAO",
+          "price_source": "untracked",
+          "price_log": []
         },
         {
           "id": 19,
@@ -706,9 +796,9 @@
           "title": "Ravensburger GraviTrax Starter Set (122-Piece Interactive Marble Run STEM Puzzle, Ages 8+)",
           "asin_or_sku": "B0BSXKTRYZ",
           "amazon_query": "Ravensburger+GraviTrax+Starter+Set",
-          "msrp": 0.0,
+          "msrp": 69.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 67.64,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -719,16 +809,27 @@
           "snagged": false,
           "unit_name": "piece",
           "unit_quantity": 122.0,
-          "price_history": [],
+          "price_history": [
+            67.64
+          ],
           "scout_notes": "Includes magnetic Gauss cannon & switches; 63% off MSRP and harmonizes at ~$25.99 for 3-for-2.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $27)",
+          "effective_price": 67.64,
+          "unit_effective_price": 0.55,
+          "discount_pct_off_msrp": 3,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0BSXKTRYZ?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B0BSXKTRYZ"
+          "camel_url": "https://camelcamelcamel.com/product/B0BSXKTRYZ",
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 67.64,
+              "source": "antigravity_automation",
+              "note": "Starter Set US retail price verified (Walmart)"
+            }
+          ]
         },
         {
           "id": 20,
@@ -740,9 +841,9 @@
           "title": "ThinkFun Gravity Maze Falling Marble Logic Maze Game (60 Challenges, Ages 8+)",
           "asin_or_sku": "B00IUAAK2A",
           "amazon_query": "ThinkFun+Gravity+Maze+Marble+Run",
-          "msrp": 0.0,
+          "msrp": 25.0,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 17.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 19.5,
           "all_time_low": 0.0,
@@ -753,16 +854,27 @@
           "snagged": false,
           "unit_name": "challenge",
           "unit_quantity": 60.0,
-          "price_history": [],
+          "price_history": [
+            17.99
+          ],
           "scout_notes": "Brilliant solo/co-op spatial logic tower puzzle for 8+ year olds.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $20)",
-          "is_below_strike": false,
+          "effective_price": 17.99,
+          "unit_effective_price": 0.3,
+          "discount_pct_off_msrp": 28,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-28%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B00IUAAK2A?psc=1",
-          "camel_url": "https://camelcamelcamel.com/product/B00IUAAK2A"
+          "camel_url": "https://camelcamelcamel.com/product/B00IUAAK2A",
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 17.99,
+              "source": "antigravity_automation",
+              "note": "Amazon Black Friday 30% off deal verified (Nov 20, 2026)"
+            }
+          ]
         }
       ]
     }

@@ -129,7 +129,8 @@ class DealOptionNode {
       priceSource == 'camelcamelcamel' ||
       priceSource == 'manual' ||
       priceSource == 'live' ||
-      priceSource == 'keepa';
+      priceSource == 'keepa' ||
+      priceSource == 'antigravity_automation';
 
   String? get extractedAsin {
     final m = RegExp(r'\b(B0[A-Z0-9]{8})\b').firstMatch(asinOrSku.toUpperCase());

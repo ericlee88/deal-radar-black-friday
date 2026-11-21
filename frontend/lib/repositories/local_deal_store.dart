@@ -187,14 +187,42 @@ class LocalDealStore {
           if ((snapOpt['camel_url'] as String? ?? '').isNotEmpty) {
             om['camel_url'] = snapOpt['camel_url'];
           }
-          // Clear legacy unverified fake seed prices while preserving user-verified prices
+          // Sync verified automation/live prices from deployed snapshot into localStorage,
+          // or clear legacy unverified fake seed prices when snapshot is unpriced.
           final src = (om['price_source'] as String? ?? '').toLowerCase();
-          final isUserVerified = src == 'camelcamelcamel' ||
-              src == 'manual' ||
-              src == 'live' ||
-              src == 'keepa';
+          final snapSrc = (snapOpt['price_source'] as String? ?? '').toLowerCase();
+          final isLocalManual = src == 'camelcamelcamel' || src == 'manual';
           final snapPrice = (snapOpt['current_price'] as num? ?? 0).toDouble();
-          if (!isUserVerified && snapPrice <= 0.0) {
+          final snapIsVerified = snapPrice > 0 &&
+              (snapSrc == 'live' ||
+                  snapSrc == 'keepa' ||
+                  snapSrc == 'antigravity_automation' ||
+                  snapSrc == 'camelcamelcamel');
+
+          if (snapIsVerified && !isLocalManual) {
+            om['current_price'] = snapPrice;
+            if ((snapOpt['msrp'] as num? ?? 0).toDouble() > 0) {
+              om['msrp'] = snapOpt['msrp'];
+            }
+            if ((snapOpt['avg_90d_price'] as num? ?? 0).toDouble() > 0) {
+              om['avg_90d_price'] = snapOpt['avg_90d_price'];
+            }
+            if ((snapOpt['all_time_low'] as num? ?? 0).toDouble() > 0) {
+              om['all_time_low'] = snapOpt['all_time_low'];
+            }
+            if ((snapOpt['clip_coupon_amount'] as num? ?? 0).toDouble() >= 0) {
+              om['clip_coupon_amount'] = snapOpt['clip_coupon_amount'];
+            }
+            final snapHist = snapOpt['price_history'] as List<dynamic>?;
+            if (snapHist != null && snapHist.isNotEmpty) {
+              om['price_history'] = snapHist;
+            }
+            final snapLog = snapOpt['price_log'] as List<dynamic>?;
+            if (snapLog != null && snapLog.isNotEmpty) {
+              om['price_log'] = snapLog;
+            }
+            om['price_source'] = snapSrc;
+          } else if (!isLocalManual && src != 'live' && src != 'keepa' && src != 'antigravity_automation' && snapPrice <= 0.0) {
             om['current_price'] = 0.0;
             om['msrp'] = 0.0;
             om['avg_90d_price'] = 0.0;

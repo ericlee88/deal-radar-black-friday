@@ -106,7 +106,54 @@ def _merge_user_state_if_present(session: Session) -> None:
     session.commit()
 
 
-def _build_snapshot(session: Session) -> Dict[str, Any]:
+VERIFIED_PRICES_FILE = REPO_ROOT / "data" / "verified_prices.json"
+
+
+def _load_verified_prices() -> Dict[str, Dict[str, Any]]:
+    if not VERIFIED_PRICES_FILE.is_file():
+        return {}
+    try:
+        raw = json.loads(VERIFIED_PRICES_FILE.read_text(encoding="utf-8"))
+        items = raw.get("items", raw) if isinstance(raw, dict) else {}
+        return items if isinstance(items, dict) else {}
+    except Exception:
+        return {}
+
+
+def _apply_verified_prices_to_db(session: Session, verified_map: Dict[str, Dict[str, Any]]) -> int:
+    if not verified_map:
+        return 0
+    applied = 0
+    for node in session.exec(select(DealOptionNode)).all():
+        entry = verified_map.get(node.branch_key)
+        if not entry:
+            continue
+        cur = entry.get("current_price")
+        if isinstance(cur, (int, float)) and cur > 0:
+            node.current_price = round(float(cur), 2)
+            applied += 1
+        msrp = entry.get("msrp")
+        if isinstance(msrp, (int, float)) and msrp > 0:
+            node.msrp = round(float(msrp), 2)
+        avg90 = entry.get("avg_90d_price")
+        if isinstance(avg90, (int, float)) and avg90 > 0:
+            node.avg_90d_price = round(float(avg90), 2)
+        atl = entry.get("all_time_low")
+        if isinstance(atl, (int, float)) and atl > 0:
+            node.all_time_low = round(float(atl), 2)
+        coupon = entry.get("clip_coupon_amount")
+        if isinstance(coupon, (int, float)) and coupon >= 0:
+            node.clip_coupon_amount = round(float(coupon), 2)
+        hist = entry.get("price_history")
+        if isinstance(hist, list) and hist:
+            node.price_history_json = json.dumps([round(float(x), 2) for x in hist if float(x) > 0])
+        session.add(node)
+    session.commit()
+    return applied
+
+
+def _build_snapshot(session: Session, verified_map: Dict[str, Dict[str, Any]] | None = None) -> Dict[str, Any]:
+    verified_map = verified_map or {}
     all_opts = session.exec(select(DealOptionNode)).all()
     sns_count = sum(1 for o in all_opts if o.sns_eligible and o.selected_in_stack)
     sns_rate = 0.15 if sns_count >= 5 else (0.05 if sns_count >= 1 else 0.0)
@@ -124,7 +171,18 @@ def _build_snapshot(session: Session) -> Dict[str, Any]:
         enriched_opts = []
         for o in opts:
             enriched = enrich_option_node(o, sns_tier_rate=sns_rate)
-            enriched_opts.append(enriched.model_dump())
+            opt_dict = enriched.model_dump()
+            v_entry = verified_map.get(o.branch_key)
+            if v_entry and (o.current_price or 0.0) > 0:
+                opt_dict["price_source"] = v_entry.get("price_source", "live")
+                opt_dict["price_log"] = v_entry.get("price_log", [])
+            elif (o.current_price or 0.0) > 0:
+                opt_dict["price_source"] = "live"
+                opt_dict["price_log"] = []
+            else:
+                opt_dict["price_source"] = "untracked"
+                opt_dict["price_log"] = []
+            enriched_opts.append(opt_dict)
             branch_img = PRODUCT_IMAGES_DIR / f"{o.branch_key}.jpg"
             opt_img = PRODUCT_IMAGES_DIR / f"opt_{o.id}.jpg"
             if branch_img.is_file():
@@ -177,6 +235,7 @@ async def run_export(poll_live: bool) -> None:
     from app.main import _SEED_ASIN_BACKFILL
 
     init_db()
+    verified_map = _load_verified_prices()
     with Session(engine) as session:
         seed_initial_missions(session, force_reset=True)
         for node in session.exec(select(DealOptionNode)).all():
@@ -185,11 +244,14 @@ async def run_export(poll_live: bool) -> None:
                 node.asin_or_sku = verified
                 session.add(node)
         session.commit()
+        applied = _apply_verified_prices_to_db(session, verified_map)
+        if applied:
+            print(f"Loaded {applied} verified prices from {VERIFIED_PRICES_FILE}.")
         _merge_user_state_if_present(session)
         if poll_live:
             alerts = await run_price_poll_cycle(session, simulate_drop=False)
             print(f"Live Amazon poll complete. Dispatched {len(alerts)} strike alerts.")
-        snapshot = _build_snapshot(session)
+        snapshot = _build_snapshot(session, verified_map=verified_map)
 
     SNAPSHOT_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     SNAPSHOT_OUTPUT.write_text(json.dumps(snapshot, indent=2), encoding="utf-8")

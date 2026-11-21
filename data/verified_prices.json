@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-21T03:35:49.037199+00:00",
+  "items": {
+    "dyson_car_boat": {
+      "current_price": 229.95,
+      "msrp": 299.95,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T03:35:49.037131+00:00",
+      "price_history": [
+        229.95
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 229.95,
+          "source": "antigravity_automation",
+          "note": "Black Friday 23% off verified (Williams-Sonoma / Dyson US)"
+        }
+      ]
+    },
+    "dyson_v12_slim": {
+      "current_price": 399.99,
+      "msrp": 729.99,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T03:35:49.037165+00:00",
+      "price_history": [
+        399.99
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 399.99,
+          "source": "antigravity_automation",
+          "note": "Black Friday $330 off verified (Walmart US)"
+        }
+      ]
+    },
+    "puzzle_gravity_maze": {
+      "current_price": 17.99,
+      "msrp": 25.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T03:35:49.037174+00:00",
+      "price_history": [
+        17.99
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 17.99,
+          "source": "antigravity_automation",
+          "note": "Amazon Black Friday 30% off deal verified (Nov 20, 2026)"
+        }
+      ]
+    },
+    "game_cascadia": {
+      "current_price": 29.64,
+      "msrp": 45.99,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T03:35:49.037180+00:00",
+      "price_history": [
+        29.64
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 29.64,
+          "source": "antigravity_automation",
+          "note": "Amazon Black Friday Lightning Deal verified (IGN, Nov 20, 2026)"
+        }
+      ]
+    },
+    "wssa0004772": {
+      "current_price": 99.99,
+      "msrp": 99.99,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T03:35:49.037184+00:00",
+      "price_history": [
+        99.99
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 99.99,
+          "source": "antigravity_automation",
+          "note": "US retail price verified (Tractor Supply Co.)"
+        }
+      ]
+    },
+    "cascade_platinum_plus": {
+      "current_price": 34.99,
+      "msrp": 34.99,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T03:35:49.037189+00:00",
+      "price_history": [
+        34.99
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 34.99,
+          "source": "antigravity_automation",
+          "note": "81-count US retail price verified (Walmart)"
+        }
+      ]
+    },
+    "glad_forceflex_110": {
+      "current_price": 29.98,
+      "msrp": 29.98,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T03:35:49.037193+00:00",
+      "price_history": [
+        29.98
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 29.98,
+          "source": "antigravity_automation",
+          "note": "110-count 13-gal US retail price verified (Walmart)"
+        }
+      ]
+    },
+    "puzzle_gravitrax": {
+      "current_price": 67.64,
+      "msrp": 69.99,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T03:35:49.037196+00:00",
+      "price_history": [
+        67.64
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 67.64,
+          "source": "antigravity_automation",
+          "note": "Starter Set US retail price verified (Walmart)"
+        }
+      ]
+    }
+  }
+}
