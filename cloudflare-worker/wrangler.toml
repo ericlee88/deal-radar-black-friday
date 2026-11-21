@@ -1,0 +1,9 @@
+name = "deal-radar-proxy"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+GITHUB_REPO = "ericlee88/deal-radar-black-friday"
+GITHUB_BRANCH = "main"
+GITHUB_WORKFLOW = "deploy-pages.yml"
+GEMINI_MODEL = "gemini-3.8-flash"

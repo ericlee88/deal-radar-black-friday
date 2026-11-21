@@ -70,7 +70,7 @@ jobs:
         working-directory: frontend
         run: |
           flutter pub get
-          flutter build web --release --no-web-resources-cdn
+          flutter build web --release --no-web-resources-cdn --dart-define=PUBLIC_WORKER_URL=${{ vars.PUBLIC_WORKER_URL }}
           touch build/web/.nojekyll
 
       - name: Setup GitHub Pages

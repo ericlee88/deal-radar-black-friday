@@ -6,6 +6,7 @@ import 'browser_storage.dart';
 
 const _kStateStorageKey = 'deal_radar_state_v1';
 const _kGitHubSyncKey = 'deal_radar_github_sync_v1';
+const _kPublicWorkerUrl = String.fromEnvironment('PUBLIC_WORKER_URL', defaultValue: '');
 
 class GitHubSyncConfig {
   final String repo;
@@ -597,6 +598,25 @@ class LocalDealStore {
       ],
     };
 
+    // Try zero-setup Cloudflare Worker Gemini Fuzzy Mode for non-URL prompts
+    if (asin.isEmpty && !trimmed.startsWith('http') && _kPublicWorkerUrl.trim().isNotEmpty) {
+      final workerMission = await _tryPublicWorkerFuzzy(
+        rawIntent: trimmed,
+        nextMissionId: nextMissionId,
+        startOptionId: nextOptionId,
+        budgetHint: budgetHint ?? inlinePrice,
+      );
+      if (workerMission != null) {
+        _missions.insert(0, workerMission);
+        _recomputeAll();
+        _persistLocal();
+        if (_syncConfig.isEnabled) {
+          pushToGitHub();
+        }
+        return ShoppingMission.fromJson(workerMission);
+      }
+    }
+
     _missions.insert(0, newMission);
     _recomputeAll();
     _persistLocal();
@@ -604,6 +624,99 @@ class LocalDealStore {
       pushToGitHub();
     }
     return ShoppingMission.fromJson(newMission);
+  }
+
+  Future<Map<String, dynamic>?> _tryPublicWorkerFuzzy({
+    required String rawIntent,
+    required int nextMissionId,
+    required int startOptionId,
+    double? budgetHint,
+  }) async {
+    final base = _kPublicWorkerUrl.trim().replaceAll(RegExp(r'/+$'), '');
+    if (base.isEmpty) return null;
+    try {
+      final resp = await _client
+          .post(
+            Uri.parse('$base/api/translate-intent'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({'raw_intent': rawIntent}),
+          )
+          .timeout(const Duration(seconds: 20));
+      if (resp.statusCode != 200) return null;
+      final decoded = jsonDecode(resp.body) as Map<String, dynamic>;
+      final spec = decoded['spec'] as Map<String, dynamic>?;
+      final optsRaw = (spec?['options'] as List<dynamic>?) ?? [];
+      if (spec == null || optsRaw.isEmpty) return null;
+
+      int optId = startOptionId;
+      final builtOpts = <Map<String, dynamic>>[];
+      for (final item in optsRaw.whereType<Map<String, dynamic>>()) {
+        final t = (item['title'] as String? ?? rawIntent).trim();
+        final asinStr = _extractAmazonAsin(item['asin_or_sku'] as String? ?? '') ?? '';
+        final strike = budgetHint ?? (item['strike_price'] as num? ?? 0).toDouble();
+        builtOpts.add({
+          'id': optId,
+          'mission_id': nextMissionId,
+          'branch_key': 'fuzzy_$optId',
+          'branch_label': item['branch_label'] as String? ?? 'Gemini Pick',
+          'is_recommended_branch': item['is_recommended_branch'] == true || builtOpts.isEmpty,
+          'is_trap_warning': false,
+          'title': t,
+          'asin_or_sku': asinStr,
+          'amazon_query': Uri.encodeQueryComponent(t),
+          'msrp': 0.0,
+          'avg_90d_price': 0.0,
+          'current_price': 0.0,
+          'clip_coupon_amount': 0.0,
+          'strike_price': strike,
+          'all_time_low': 0.0,
+          'sns_eligible': false,
+          'pg_stockup_eligible': false,
+          'b2g1_eligible': false,
+          'selected_in_stack': builtOpts.isEmpty,
+          'snagged': false,
+          'unit_name': 'item',
+          'unit_quantity': 1.0,
+          'price_history': <double>[],
+          'price_source': 'untracked',
+          'scout_notes': item['scout_notes'] as String? ?? 'Suggested by Gemini Fuzzy Mode.',
+        });
+        optId++;
+      }
+
+      return {
+        'id': nextMissionId,
+        'slug': 'fuzzy-$nextMissionId-${DateTime.now().millisecondsSinceEpoch}',
+        'title': spec['title'] as String? ?? rawIntent,
+        'raw_intent': rawIntent,
+        'node_type': builtOpts.length > 1 ? 'XOR_FORK' : 'CATEGORY_FUNNEL',
+        'category_tag': 'custom',
+        'icon': '',
+        'decision_framing': spec['decision_framing'] as String? ??
+            'Researched by Gemini Fuzzy Mode. Tap Log Live Price to check CamelCamelCamel.',
+        'options': builtOpts,
+      };
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<String> _triggerPublicWorkerRefresh() async {
+    final base = _kPublicWorkerUrl.trim().replaceAll(RegExp(r'/+$'), '');
+    if (base.isEmpty) {
+      return 'Reloaded latest verified snapshot! Add a GitHub token in Settings to trigger an on-demand Gemini poll.';
+    }
+    try {
+      final resp = await _client
+          .post(Uri.parse('$base/api/trigger-refresh'))
+          .timeout(const Duration(seconds: 12));
+      final body = jsonDecode(resp.body) as Map<String, dynamic>;
+      _lastSyncStatus = body['message'] as String? ?? 'Refresh request sent (HTTP ${resp.statusCode}).';
+      return _lastSyncStatus!;
+    } catch (e) {
+      _lastSyncStatus = 'Reloaded latest snapshot (proxy unreachable: $e).';
+      return _lastSyncStatus!;
+    }
   }
 
   Future<void> deleteMission(int missionId) async {
@@ -641,9 +754,11 @@ class LocalDealStore {
     } else {
       if (_syncConfig.isEnabled) {
         await triggerGitHubPollWorkflow();
+      } else if (_kPublicWorkerUrl.trim().isNotEmpty) {
+        await _triggerPublicWorkerRefresh();
       } else {
         _lastSyncStatus =
-            'Reloaded latest verified snapshot! Add a GitHub token in Settings to trigger an on-demand Gemini poll.';
+            'Reloaded latest verified snapshot! Deploy cloudflare-worker/ or add a GitHub token in Settings for on-demand polls.';
       }
       await ensureLoaded(forceReloadSnapshot: true, preserveLocal: true);
     }
