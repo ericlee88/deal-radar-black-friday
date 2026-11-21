@@ -264,29 +264,65 @@ class _DealDashboardScreenState extends ConsumerState<DealDashboardScreen> {
               FilledButton.tonalIcon(
                 onPressed: data.isBusy
                     ? null
-                    : () => ref
-                        .read(dealDashboardProvider.notifier)
-                        .runPoller(simulateDrop: false),
-                icon: const Icon(Icons.sync_rounded, size: 16),
-                label: const Text('Check Live Prices'),
+                    : () async {
+                        await ref
+                            .read(dealDashboardProvider.notifier)
+                            .runPoller(simulateDrop: false);
+                        if (!mounted) return;
+                        final repo = ref.read(dealRepositoryProvider);
+                        final msg = repo.isStaticLocalMode
+                            ? (repo.localStore.lastSyncStatus ??
+                                'Reloaded latest verified snapshot! Add a GitHub token in Settings to trigger an on-demand Gemini poll.')
+                            : 'Live price check complete!';
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(msg),
+                            duration: const Duration(seconds: 5),
+                            action: (repo.isStaticLocalMode &&
+                                    !repo.localStore.syncConfig.isEnabled &&
+                                    data.providerSettings != null)
+                                ? SnackBarAction(
+                                    label: 'Settings',
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (_) => ProviderSettingsDialog(
+                                          settings: data.providerSettings!,
+                                        ),
+                                      );
+                                    },
+                                  )
+                                : null,
+                          ),
+                        );
+                      },
+                icon: data.isBusy
+                    ? const SizedBox(
+                        width: 14,
+                        height: 14,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.sync_rounded, size: 16),
+                label: Text(data.isBusy ? 'Refreshing...' : 'Refresh Prices'),
                 style: FilledButton.styleFrom(
                   backgroundColor: const Color(0xFF10B981).withValues(alpha: 0.2),
                   foregroundColor: const Color(0xFF4ADE80),
                 ),
               ),
-              FilledButton.icon(
-                onPressed: data.isBusy
-                    ? null
-                    : () => ref
-                        .read(dealDashboardProvider.notifier)
-                        .runPoller(simulateDrop: true),
-                icon: const Icon(Icons.bolt, size: 16),
-                label: const Text('Simulate Drop'),
-                style: FilledButton.styleFrom(
-                  backgroundColor: const Color(0xFF0EA5E9),
-                  foregroundColor: Colors.white,
+              if (_isPowerUserMode)
+                FilledButton.icon(
+                  onPressed: data.isBusy
+                      ? null
+                      : () => ref
+                          .read(dealDashboardProvider.notifier)
+                          .runPoller(simulateDrop: true),
+                  icon: const Icon(Icons.bolt, size: 16),
+                  label: const Text('Simulate Drop'),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xFF0EA5E9),
+                    foregroundColor: Colors.white,
+                  ),
                 ),
-              ),
               if (data.providerSettings != null)
                 OutlinedButton.icon(
                   onPressed: () {

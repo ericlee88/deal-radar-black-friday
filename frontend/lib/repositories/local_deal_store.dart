@@ -14,7 +14,7 @@ class GitHubSyncConfig {
 
   const GitHubSyncConfig({
     this.repo = 'ericlee88/deal-radar-black-friday',
-    this.branch = 'feat/github-pages-static-sync',
+    this.branch = 'main',
     this.token = '',
   });
 
@@ -29,7 +29,7 @@ class GitHubSyncConfig {
   factory GitHubSyncConfig.fromJson(Map<String, dynamic> json) {
     return GitHubSyncConfig(
       repo: json['repo'] as String? ?? 'ericlee88/deal-radar-black-friday',
-      branch: json['branch'] as String? ?? 'feat/github-pages-static-sync',
+      branch: json['branch'] as String? ?? 'main',
       token: json['token'] as String? ?? '',
     );
   }
@@ -93,14 +93,17 @@ class LocalDealStore {
     return null;
   }
 
-  Future<void> ensureLoaded({bool forceReloadSnapshot = false}) async {
+  Future<void> ensureLoaded({bool forceReloadSnapshot = false, bool preserveLocal = true}) async {
     if (_initialized && !forceReloadSnapshot) return;
 
-    // 1. Load static snapshot from GitHub Pages bundle
+    // 1. Load static snapshot from GitHub Pages bundle (cache-busted on force reload)
     Map<String, dynamic> snapshot = {};
     try {
+      final path = forceReloadSnapshot
+          ? 'data/deals_snapshot.json?t=${DateTime.now().millisecondsSinceEpoch}'
+          : 'data/deals_snapshot.json';
       final resp = await _client
-          .get(_resolveUri('data/deals_snapshot.json'))
+          .get(_resolveUri(path))
           .timeout(const Duration(seconds: 8));
       if (resp.statusCode == 200) {
         snapshot = jsonDecode(resp.body) as Map<String, dynamic>;
@@ -119,7 +122,7 @@ class LocalDealStore {
         .toList();
 
     // 2. Check localStorage saved user state
-    final savedRaw = forceReloadSnapshot ? null : readLocalStorage(_kStateStorageKey);
+    final savedRaw = (!preserveLocal && forceReloadSnapshot) ? null : readLocalStorage(_kStateStorageKey);
     if (savedRaw != null && savedRaw.isNotEmpty) {
       try {
         final saved = jsonDecode(savedRaw) as Map<String, dynamic>;
@@ -638,15 +641,18 @@ class LocalDealStore {
     } else {
       if (_syncConfig.isEnabled) {
         await triggerGitHubPollWorkflow();
+      } else {
+        _lastSyncStatus =
+            'Reloaded latest verified snapshot! Add a GitHub token in Settings to trigger an on-demand Gemini poll.';
       }
-      await ensureLoaded(forceReloadSnapshot: true);
+      await ensureLoaded(forceReloadSnapshot: true, preserveLocal: true);
     }
   }
 
   Future<void> resetDatabase() async {
     removeLocalStorage(_kStateStorageKey);
     _initialized = false;
-    await ensureLoaded(forceReloadSnapshot: true);
+    await ensureLoaded(forceReloadSnapshot: true, preserveLocal: false);
   }
 
   Future<ProviderSettings> fetchSettings() async {
