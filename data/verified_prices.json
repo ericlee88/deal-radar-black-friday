@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-21T03:35:49.037199+00:00",
+  "updated_at": "2026-11-21T04:36:33.047214+00:00",
   "items": {
     "dyson_car_boat": {
       "current_price": 229.95,
       "msrp": 299.95,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T03:35:49.037131+00:00",
+      "last_checked_at": "2026-11-21T04:36:33.047160+00:00",
       "price_history": [
         229.95
       ],
@@ -17,13 +17,14 @@
           "source": "antigravity_automation",
           "note": "Black Friday 23% off verified (Williams-Sonoma / Dyson US)"
         }
-      ]
+      ],
+      "clip_coupon_amount": 0.0
     },
     "dyson_v12_slim": {
       "current_price": 399.99,
       "msrp": 729.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T03:35:49.037165+00:00",
+      "last_checked_at": "2026-11-21T04:36:33.047170+00:00",
       "price_history": [
         399.99
       ],
@@ -34,13 +35,14 @@
           "source": "antigravity_automation",
           "note": "Black Friday $330 off verified (Walmart US)"
         }
-      ]
+      ],
+      "clip_coupon_amount": 0.0
     },
     "puzzle_gravity_maze": {
       "current_price": 17.99,
       "msrp": 25.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T03:35:49.037174+00:00",
+      "last_checked_at": "2026-11-21T04:36:33.047211+00:00",
       "price_history": [
         17.99
       ],
@@ -51,13 +53,14 @@
           "source": "antigravity_automation",
           "note": "Amazon Black Friday 30% off deal verified (Nov 20, 2026)"
         }
-      ]
+      ],
+      "clip_coupon_amount": 0.0
     },
     "game_cascadia": {
       "current_price": 29.64,
       "msrp": 45.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T03:35:49.037180+00:00",
+      "last_checked_at": "2026-11-21T04:36:33.047200+00:00",
       "price_history": [
         29.64
       ],
@@ -68,73 +71,305 @@
           "source": "antigravity_automation",
           "note": "Amazon Black Friday Lightning Deal verified (IGN, Nov 20, 2026)"
         }
-      ]
+      ],
+      "clip_coupon_amount": 0.0
     },
     "wssa0004772": {
-      "current_price": 99.99,
-      "msrp": 99.99,
+      "current_price": 79.95,
+      "msrp": 89.95,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T03:35:49.037184+00:00",
+      "last_checked_at": "2026-11-21T04:36:33.047143+00:00",
       "price_history": [
-        99.99
+        99.99,
+        79.95
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 79.95,
+          "source": "antigravity_automation",
+          "note": "Exact SKU WSSA0004772 US retail price verified (KnivesShipFree / KnifeCenter, MSRP $89.95)"
+        },
         {
           "date": "2026-11-21",
           "price": 99.99,
           "source": "antigravity_automation",
           "note": "US retail price verified (Tractor Supply Co.)"
         }
-      ]
+      ],
+      "clip_coupon_amount": 0.0
     },
     "cascade_platinum_plus": {
-      "current_price": 34.99,
+      "current_price": 34.5,
       "msrp": 34.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T03:35:49.037189+00:00",
+      "last_checked_at": "2026-11-21T04:36:33.047192+00:00",
       "price_history": [
-        34.99
+        34.99,
+        34.5
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 34.5,
+          "source": "antigravity_automation",
+          "note": "81-count Fresh Scent US retail price verified (Walmart, reg $34.99)"
+        },
         {
           "date": "2026-11-21",
           "price": 34.99,
           "source": "antigravity_automation",
           "note": "81-count US retail price verified (Walmart)"
         }
-      ]
+      ],
+      "clip_coupon_amount": 0.0
     },
     "glad_forceflex_110": {
-      "current_price": 29.98,
+      "current_price": 19.27,
       "msrp": 29.98,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T03:35:49.037193+00:00",
+      "last_checked_at": "2026-11-21T04:36:33.047196+00:00",
       "price_history": [
-        29.98
+        29.98,
+        19.27
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 19.27,
+          "source": "antigravity_automation",
+          "note": "110-count 13-gal Febreze Fresh Clean (B00ASBOT2Q) US price verified (Walmart)"
+        },
         {
           "date": "2026-11-21",
           "price": 29.98,
           "source": "antigravity_automation",
           "note": "110-count 13-gal US retail price verified (Walmart)"
         }
-      ]
+      ],
+      "clip_coupon_amount": 0.0
     },
     "puzzle_gravitrax": {
-      "current_price": 67.64,
+      "current_price": 59.99,
       "msrp": 69.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T03:35:49.037196+00:00",
+      "last_checked_at": "2026-11-21T04:36:33.047208+00:00",
       "price_history": [
-        67.64
+        67.64,
+        59.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 59.99,
+          "source": "antigravity_automation",
+          "note": "Ravensburger GraviTrax Starter Set US retail price verified (Target, MSRP $69.99)"
+        },
         {
           "date": "2026-11-21",
           "price": 67.64,
           "source": "antigravity_automation",
           "note": "Starter Set US retail price verified (Walmart)"
+        }
+      ],
+      "clip_coupon_amount": 0.0
+    },
+    "spatula_mercer": {
+      "current_price": 17.99,
+      "msrp": 17.99,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047090+00:00",
+      "price_history": [
+        17.99
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 17.99,
+          "source": "antigravity_automation",
+          "note": "Mercer Culinary M18320 US retail price verified (WebstaurantStore)"
+        }
+      ]
+    },
+    "spatula_oxo": {
+      "current_price": 17.0,
+      "msrp": 17.99,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047125+00:00",
+      "price_history": [
+        17.0
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 17.0,
+          "source": "antigravity_automation",
+          "note": "OXO Good Grips Restaurant Turner US retail price verified (Walmart; OXO MSRP $17.99)"
+        }
+      ]
+    },
+    "rice_basin_304": {
+      "current_price": 21.98,
+      "msrp": 21.98,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047135+00:00",
+      "price_history": [
+        21.98
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 21.98,
+          "source": "antigravity_automation",
+          "note": "2-piece stainless steel rice washing bowl & colander set verified (Walmart US)"
+        }
+      ]
+    },
+    "path_a_adapter_split": {
+      "current_price": 167.88,
+      "msrp": 338.88,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047151+00:00",
+      "price_history": [
+        167.88
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 167.88,
+          "source": "antigravity_automation",
+          "note": "Combined US split verified: DCA1820 $39.88 (Home Depot) + DCB205-2C $128.00 (Walmart)"
+        }
+      ]
+    },
+    "path_b_new_hammer_drill": {
+      "current_price": 179.91,
+      "msrp": 189.99,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047156+00:00",
+      "price_history": [
+        179.91
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 179.91,
+          "source": "antigravity_automation",
+          "note": "DeWalt DCD798D1 20V MAX Brushless 1/2\" Hammer Drill Kit verified (Acme Tools; DCD805D2 $239.99)"
+        }
+      ]
+    },
+    "dyson_v8_convertible": {
+      "current_price": 299.0,
+      "msrp": 399.0,
+      "all_time_low": 299.0,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047166+00:00",
+      "price_history": [
+        299.0
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 299.0,
+          "source": "antigravity_automation",
+          "note": "Amazon Black Friday $100 off deal verified (PCWorld / Business Insider / CNN, Nov 2026)"
+        }
+      ]
+    },
+    "metamucil_rejuvenation": {
+      "current_price": 30.48,
+      "msrp": 30.48,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047174+00:00",
+      "price_history": [
+        30.48
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 30.48,
+          "source": "antigravity_automation",
+          "note": "Metamucil Fiber + Collagen Rejuvenation Blend (19.9 oz) US retail price verified (Walmart)"
+        }
+      ]
+    },
+    "diy_metamucil_vital": {
+      "current_price": 66.94,
+      "msrp": 74.96,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047178+00:00",
+      "price_history": [
+        66.94
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 66.94,
+          "source": "antigravity_automation",
+          "note": "Combined 2-tub stack verified: Metamucil 180-srv $34.97 + Vital Proteins 20oz $31.97 (Walmart)"
+        }
+      ]
+    },
+    "bounty_paper_towels": {
+      "current_price": 35.99,
+      "msrp": 40.99,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047181+00:00",
+      "price_history": [
+        35.99
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 35.99,
+          "source": "antigravity_automation",
+          "note": "16 Family Rolls (=40 Regular) US price verified (Walmart, Was $40.99)"
+        }
+      ]
+    },
+    "charmin_ultra_soft": {
+      "current_price": 39.72,
+      "msrp": 39.99,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047188+00:00",
+      "price_history": [
+        39.72
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 39.72,
+          "source": "antigravity_automation",
+          "note": "24 Mega XL Rolls US retail price verified (Walmart $39.72 / Target $39.99)"
+        }
+      ]
+    },
+    "game_ticket_to_ride": {
+      "current_price": 29.99,
+      "msrp": 49.99,
+      "clip_coupon_amount": 0.0,
+      "price_source": "antigravity_automation",
+      "last_checked_at": "2026-11-21T04:36:33.047204+00:00",
+      "price_history": [
+        29.99
+      ],
+      "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 29.99,
+          "source": "antigravity_automation",
+          "note": "Ticket to Ride Europe Amazon Black Friday 40% off deal verified (IGN, Nov 20, 2026)"
         }
       ]
     }

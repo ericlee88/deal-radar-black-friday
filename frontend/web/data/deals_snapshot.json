@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-21T03:35:49.231209+00:00",
+  "generated_at": "2026-11-21T04:36:33.547490+00:00",
   "missions": [
     {
       "id": 1,
@@ -22,9 +22,9 @@
           "title": "Mercer Culinary Hell's Handle Heavy-Duty Stainless Steel Fish/Slotted Turner (M18320)",
           "asin_or_sku": "B001E17ZYS / M18320",
           "amazon_query": "Mercer+Culinary+Hells+Handle+Stainless+Steel+Turner+Spatula",
-          "msrp": 0.0,
+          "msrp": 17.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 17.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 17.5,
           "all_time_low": 0.0,
@@ -35,18 +35,27 @@
           "snagged": false,
           "unit_name": "spatula",
           "unit_quantity": 1.0,
-          "price_history": [],
+          "price_history": [
+            17.99
+          ],
           "scout_notes": "Precision-ground Japanese stainless steel blade flexes cleanly under fish, eggs, or smash burgers; dual-textured handle resists 450\u00b0F.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
+          "effective_price": 17.99,
+          "unit_effective_price": 17.99,
           "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $18)",
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B001E17ZYS?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B001E17ZYS",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 17.99,
+              "source": "antigravity_automation",
+              "note": "Mercer Culinary M18320 US retail price verified (WebstaurantStore)"
+            }
+          ]
         },
         {
           "id": 2,
@@ -58,9 +67,9 @@
           "title": "OXO Good Grips Restaurant Stainless Steel Turner & Brushed Steel Spatula Set",
           "asin_or_sku": "B082N73YPV",
           "amazon_query": "OXO+Good+Grips+Restaurant+Stainless+Steel+Turner",
-          "msrp": 0.0,
+          "msrp": 17.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 17.0,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.99,
           "all_time_low": 0.0,
@@ -71,18 +80,27 @@
           "snagged": false,
           "unit_name": "spatula",
           "unit_quantity": 1.0,
-          "price_history": [],
+          "price_history": [
+            17.0
+          ],
           "scout_notes": "Stiff beveled edge ideal for deglazing stainless/cast-iron pans and flipping heavy cuts.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $15)",
+          "effective_price": 17.0,
+          "unit_effective_price": 17.0,
+          "discount_pct_off_msrp": 6,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B082N73YPV?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B082N73YPV",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 17.0,
+              "source": "antigravity_automation",
+              "note": "OXO Good Grips Restaurant Turner US retail price verified (Walmart; OXO MSRP $17.99)"
+            }
+          ]
         },
         {
           "id": 3,
@@ -94,9 +112,9 @@
           "title": "SUS304 Stainless Steel 2-in-1 Microporous Rice Washing Bowl & Side-Sieve Vegetable Basin Set",
           "asin_or_sku": "B0H4QL9G8M / SUS304-BASIN-2IN1",
           "amazon_query": "304+stainless+steel+rice+washing+bowl+strainer+colander+basin+set",
-          "msrp": 0.0,
+          "msrp": 21.98,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 21.98,
           "clip_coupon_amount": 0.0,
           "strike_price": 18.0,
           "all_time_low": 0.0,
@@ -107,18 +125,27 @@
           "snagged": false,
           "unit_name": "piece",
           "unit_quantity": 2.0,
-          "price_history": [],
+          "price_history": [
+            21.98
+          ],
           "scout_notes": "Laser-drilled 1.5mm side-drain perforations retain short/medium grain rice while draining starchy water rapidly; dishwasher safe without rusting.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
+          "effective_price": 21.98,
+          "unit_effective_price": 10.99,
           "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $18)",
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0H4QL9G8M?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B0H4QL9G8M",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 21.98,
+              "source": "antigravity_automation",
+              "note": "2-piece stainless steel rice washing bowl & colander set verified (Walmart US)"
+            }
+          ]
         }
       ]
     },
@@ -142,9 +169,9 @@
           "title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
           "asin_or_sku": "B09FXD3ZCF / WSSA0004772",
           "amazon_query": "Work+Sharp+Precision+Adjust+Upgrade+Kit+WSSA0004772",
-          "msrp": 99.99,
+          "msrp": 89.95,
           "avg_90d_price": 0.0,
-          "current_price": 99.99,
+          "current_price": 79.95,
           "clip_coupon_amount": 0.0,
           "strike_price": 56.0,
           "all_time_low": 0.0,
@@ -156,12 +183,13 @@
           "unit_name": "grit rod",
           "unit_quantity": 7.0,
           "price_history": [
-            99.99
+            99.99,
+            79.95
           ],
           "scout_notes": "Upgrades your 3-grit base system with Coarse (220/320/400 diamond), Fine (600/800 diamond + ceramic), and Leather Strop + ceramic rod for serrations.",
-          "effective_price": 99.99,
-          "unit_effective_price": 14.28,
-          "discount_pct_off_msrp": 0,
+          "effective_price": 79.95,
+          "unit_effective_price": 11.42,
+          "discount_pct_off_msrp": 11,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -169,6 +197,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09FXD3ZCF",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 79.95,
+              "source": "antigravity_automation",
+              "note": "Exact SKU WSSA0004772 US retail price verified (KnivesShipFree / KnifeCenter, MSRP $89.95)"
+            },
             {
               "date": "2026-11-21",
               "price": 99.99,
@@ -199,9 +233,9 @@
           "title": "DeWalt DCA1820 18V-to-20V MAX Adapter + DCB205-2C (2x 5.0Ah XR Battery & Charger Kit)",
           "asin_or_sku": "B016K1UD0E / DCA1820 + DCB205-2C",
           "amazon_query": "DeWalt+DCA1820+adapter+DCB205-2C+battery+kit",
-          "msrp": 0.0,
+          "msrp": 338.88,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 167.88,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -212,18 +246,27 @@
           "snagged": false,
           "unit_name": "Ah total",
           "unit_quantity": 10.0,
-          "price_history": [],
+          "price_history": [
+            167.88
+          ],
           "scout_notes": "Best if you own 4+ legacy 18V tools. Always remove adapter from battery when stored to prevent parasitic Vampire drain!",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $149)",
+          "effective_price": 167.88,
+          "unit_effective_price": 16.79,
+          "discount_pct_off_msrp": 50,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B016K1UD0E?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 167.88,
+              "source": "antigravity_automation",
+              "note": "Combined US split verified: DCA1820 $39.88 (Home Depot) + DCB205-2C $128.00 (Walmart)"
+            }
+          ]
         },
         {
           "id": 6,
@@ -235,9 +278,9 @@
           "title": "DeWalt 20V MAX XR Brushless 1/2\" Cordless Hammer Drill Kit (DCD805D2 / DCD798D1)",
           "asin_or_sku": "B09YXSNV98 / DCD805D2",
           "amazon_query": "DeWalt+DCD805D2+OR+DCD798D1+20V+MAX+Brushless+Hammer+Drill+Kit",
-          "msrp": 0.0,
+          "msrp": 189.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 179.91,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -248,18 +291,27 @@
           "snagged": false,
           "unit_name": "complete kit",
           "unit_quantity": 1.0,
-          "price_history": [],
+          "price_history": [
+            179.91
+          ],
           "scout_notes": "During Black Friday Week, getting a brand-new brushless XR 1/2\" hammer drill + 2 batteries + charger costs the same as batteries alone! Add a $16 adapter for old 18V tools.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $149)",
+          "effective_price": 179.91,
+          "unit_effective_price": 179.91,
+          "discount_pct_off_msrp": 5,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09YXSNV98?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 179.91,
+              "source": "antigravity_automation",
+              "note": "DeWalt DCD798D1 20V MAX Brushless 1/2\" Hammer Drill Kit verified (Acme Tools; DCD805D2 $239.99)"
+            }
+          ]
         },
         {
           "id": 7,
@@ -364,12 +416,12 @@
           "title": "Dyson V8 Cyclone Cordless Vacuum (1-Click Detachable Handheld + Full Floor Wand)",
           "asin_or_sku": "B09YS9N7H2 / DYSON-V8-CYCLONE",
           "amazon_query": "Dyson+V8+Cordless+Vacuum",
-          "msrp": 0.0,
+          "msrp": 399.0,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 299.0,
           "clip_coupon_amount": 0.0,
           "strike_price": 299.0,
-          "all_time_low": 0.0,
+          "all_time_low": 299.0,
           "sns_eligible": false,
           "pg_stockup_eligible": false,
           "b2g1_eligible": false,
@@ -377,18 +429,27 @@
           "snagged": false,
           "unit_name": "min runtime",
           "unit_quantity": 40.0,
-          "price_history": [],
+          "price_history": [
+            299.0
+          ],
           "scout_notes": "The V8 powerhead IS the Car+Boat handheld unit\u2014detaching the wand takes 1 click, and you get the full floor Motorbar head & wall dock for $69 more.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $299)",
-          "is_below_strike": false,
+          "effective_price": 299.0,
+          "unit_effective_price": 7.47,
+          "discount_pct_off_msrp": 25,
+          "deal_grade_code": "ATL",
+          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-25%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B09YS9N7H2?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B09YS9N7H2",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 299.0,
+              "source": "antigravity_automation",
+              "note": "Amazon Black Friday $100 off deal verified (PCWorld / Business Insider / CNN, Nov 2026)"
+            }
+          ]
         },
         {
           "id": 10,
@@ -457,9 +518,9 @@
           "title": "Metamucil Fiber + Collagen Peptides Rejuvenation Blend (Orange Smooth, 52 Servings)",
           "asin_or_sku": "METAMUCIL-COLLAGEN-52",
           "amazon_query": "Metamucil+Fiber+Collagen+Rejuvenation+Blend",
-          "msrp": 0.0,
+          "msrp": 30.48,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 30.48,
           "clip_coupon_amount": 0.0,
           "strike_price": 19.5,
           "all_time_low": 0.0,
@@ -470,18 +531,27 @@
           "snagged": false,
           "unit_name": "serving",
           "unit_quantity": 52.0,
-          "price_history": [],
+          "price_history": [
+            25.91
+          ],
           "scout_notes": "Clip the $5 first-delivery coupon + 15% S&S to drop net cost to $17.94 ($0.34/serving). Qualifies for P&G Spend $100 Get $25 credit.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $20)",
+          "effective_price": 25.91,
+          "unit_effective_price": 0.5,
+          "discount_pct_off_msrp": 15,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/s?k=Metamucil+Fiber+Collagen+Rejuvenation+Blend&rh=p_6%3AATVPDKIKX0DER",
           "camel_url": "https://camelcamelcamel.com/search?sq=Metamucil+Fiber+Collagen+Rejuvenation+Blend",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 30.48,
+              "source": "antigravity_automation",
+              "note": "Metamucil Fiber + Collagen Rejuvenation Blend (19.9 oz) US retail price verified (Walmart)"
+            }
+          ]
         },
         {
           "id": 12,
@@ -493,9 +563,9 @@
           "title": "DIY Stack: Metamucil 4-in-1 Sugar-Free (180 Servings) + Vital Proteins Collagen Peptides (20 oz)",
           "asin_or_sku": "B00K6JUG4K / METAMUCIL-180 + VITAL-20OZ",
           "amazon_query": "Vital+Proteins+Collagen+Peptides+20oz+Metamucil+180",
-          "msrp": 0.0,
+          "msrp": 74.96,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 66.94,
           "clip_coupon_amount": 0.0,
           "strike_price": 36.0,
           "all_time_low": 0.0,
@@ -506,18 +576,27 @@
           "snagged": false,
           "unit_name": "serving",
           "unit_quantity": 150.0,
-          "price_history": [],
+          "price_history": [
+            56.9
+          ],
           "scout_notes": "Vital Proteins drops 35% on Black Friday; mixing 1 scoop with standard Metamucil cuts cost per gram of collagen + psyllium by 48%.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $36)",
+          "effective_price": 56.9,
+          "unit_effective_price": 0.38,
+          "discount_pct_off_msrp": 24,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00K6JUG4K?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 66.94,
+              "source": "antigravity_automation",
+              "note": "Combined 2-tub stack verified: Metamucil 180-srv $34.97 + Vital Proteins 20oz $31.97 (Walmart)"
+            }
+          ]
         }
       ]
     },
@@ -541,9 +620,9 @@
           "title": "Bounty Quick-Size Paper Towels (16 Family Rolls = 40 Regular Rolls)",
           "asin_or_sku": "B079VP6DH5",
           "amazon_query": "Bounty+Quick+Size+Paper+Towels+16+Family+Rolls",
-          "msrp": 0.0,
+          "msrp": 40.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 35.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 28.0,
           "all_time_low": 0.0,
@@ -554,18 +633,27 @@
           "snagged": false,
           "unit_name": "family roll",
           "unit_quantity": 16.0,
-          "price_history": [],
+          "price_history": [
+            30.59
+          ],
           "scout_notes": "Counts $36.49 toward the $100 P&G threshold before coupon/S&S deductions.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $28)",
+          "effective_price": 30.59,
+          "unit_effective_price": 1.91,
+          "discount_pct_off_msrp": 25,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B079VP6DH5?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B079VP6DH5",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 35.99,
+              "source": "antigravity_automation",
+              "note": "16 Family Rolls (=40 Regular) US price verified (Walmart, Was $40.99)"
+            }
+          ]
         },
         {
           "id": 14,
@@ -577,9 +665,9 @@
           "title": "Charmin Ultra Soft Cushiony Touch Toilet Paper (24 Mega XL Rolls = 144 Regular)",
           "asin_or_sku": "B0D87QKHHP",
           "amazon_query": "Charmin+Ultra+Soft+24+Mega+XL+Rolls",
-          "msrp": 0.0,
+          "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 39.72,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.5,
           "all_time_low": 0.0,
@@ -590,18 +678,27 @@
           "snagged": false,
           "unit_name": "mega XL roll",
           "unit_quantity": 24.0,
-          "price_history": [],
+          "price_history": [
+            33.76
+          ],
           "scout_notes": "P&G stock-up eligible; target <$0.20 per 100 sheets after 15% S&S.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $24)",
+          "effective_price": 33.76,
+          "unit_effective_price": 1.41,
+          "discount_pct_off_msrp": 16,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0D87QKHHP?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B0D87QKHHP",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 39.72,
+              "source": "antigravity_automation",
+              "note": "24 Mega XL Rolls US retail price verified (Walmart $39.72 / Target $39.99)"
+            }
+          ]
         },
         {
           "id": 15,
@@ -615,7 +712,7 @@
           "amazon_query": "Cascade+Platinum+Plus+ActionPacs+81+Count",
           "msrp": 34.99,
           "avg_90d_price": 0.0,
-          "current_price": 34.99,
+          "current_price": 34.5,
           "clip_coupon_amount": 0.0,
           "strike_price": 18.0,
           "all_time_low": 0.0,
@@ -627,12 +724,13 @@
           "unit_name": "pod",
           "unit_quantity": 81.0,
           "price_history": [
-            29.74
+            34.99,
+            29.32
           ],
           "scout_notes": "Pushes your P&G subtotal over $100 when paired with Metamucil, Bounty, and Charmin!",
-          "effective_price": 29.74,
-          "unit_effective_price": 0.37,
-          "discount_pct_off_msrp": 15,
+          "effective_price": 29.32,
+          "unit_effective_price": 0.36,
+          "discount_pct_off_msrp": 16,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -640,6 +738,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0CHD7GLN9",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 34.5,
+              "source": "antigravity_automation",
+              "note": "81-count Fresh Scent US retail price verified (Walmart, reg $34.99)"
+            },
             {
               "date": "2026-11-21",
               "price": 34.99,
@@ -660,7 +764,7 @@
           "amazon_query": "Glad+ForceFlexPlus+13+Gallon+110+Count",
           "msrp": 29.98,
           "avg_90d_price": 0.0,
-          "current_price": 29.98,
+          "current_price": 19.27,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.5,
           "all_time_low": 0.0,
@@ -672,12 +776,13 @@
           "unit_name": "bag",
           "unit_quantity": 110.0,
           "price_history": [
-            25.48
+            29.98,
+            16.38
           ],
           "scout_notes": "5th item in the box\u2014locks in the full 15% Subscribe & Save discount across all items.",
-          "effective_price": 25.48,
-          "unit_effective_price": 0.23,
-          "discount_pct_off_msrp": 15,
+          "effective_price": 16.38,
+          "unit_effective_price": 0.15,
+          "discount_pct_off_msrp": 45,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -685,6 +790,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B00ASBOT2Q",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 19.27,
+              "source": "antigravity_automation",
+              "note": "110-count 13-gal Febreze Fresh Clean (B00ASBOT2Q) US price verified (Walmart)"
+            },
             {
               "date": "2026-11-21",
               "price": 29.98,
@@ -760,9 +871,9 @@
           "title": "Ticket to Ride (or Ticket to Ride Europe) Strategy Board Game (Ages 8+)",
           "asin_or_sku": "B000809OAO",
           "amazon_query": "Ticket+to+Ride+Board+Game",
-          "msrp": 0.0,
+          "msrp": 49.99,
           "avg_90d_price": 0.0,
-          "current_price": 0.0,
+          "current_price": 29.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -773,18 +884,27 @@
           "snagged": false,
           "unit_name": "game",
           "unit_quantity": 1.0,
-          "price_history": [],
+          "price_history": [
+            29.99
+          ],
           "scout_notes": "Gold-standard family game for 8yo+. Pairs with Cascadia & GraviTrax in the $24\u2013$26 3-for-2 sweet spot.",
-          "effective_price": 0.0,
-          "unit_effective_price": 0.0,
-          "discount_pct_off_msrp": 0,
-          "deal_grade_code": "UNPRICED",
-          "deal_grade_label": "LOG PRICE TO TRACK (Target $27)",
+          "effective_price": 29.99,
+          "unit_effective_price": 29.99,
+          "discount_pct_off_msrp": 40,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B000809OAO?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B000809OAO",
-          "price_source": "untracked",
-          "price_log": []
+          "price_source": "antigravity_automation",
+          "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 29.99,
+              "source": "antigravity_automation",
+              "note": "Ticket to Ride Europe Amazon Black Friday 40% off deal verified (IGN, Nov 20, 2026)"
+            }
+          ]
         },
         {
           "id": 19,
@@ -798,7 +918,7 @@
           "amazon_query": "Ravensburger+GraviTrax+Starter+Set",
           "msrp": 69.99,
           "avg_90d_price": 0.0,
-          "current_price": 67.64,
+          "current_price": 59.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -810,12 +930,13 @@
           "unit_name": "piece",
           "unit_quantity": 122.0,
           "price_history": [
-            67.64
+            67.64,
+            59.99
           ],
           "scout_notes": "Includes magnetic Gauss cannon & switches; 63% off MSRP and harmonizes at ~$25.99 for 3-for-2.",
-          "effective_price": 67.64,
-          "unit_effective_price": 0.55,
-          "discount_pct_off_msrp": 3,
+          "effective_price": 59.99,
+          "unit_effective_price": 0.49,
+          "discount_pct_off_msrp": 14,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -823,6 +944,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0BSXKTRYZ",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 59.99,
+              "source": "antigravity_automation",
+              "note": "Ravensburger GraviTrax Starter Set US retail price verified (Target, MSRP $69.99)"
+            },
             {
               "date": "2026-11-21",
               "price": 67.64,
@@ -879,88 +1006,7 @@
       ]
     }
   ],
-  "alerts": [
-    {
-      "id": 8,
-      "option_id": 15,
-      "option_title": "Cascade Platinum Plus ActionPacs Dishwasher Detergent Pods (81 Count Tub)",
-      "effective_price": 17.39,
-      "strike_price": 18.0,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-19T06:49:20.430214+00:00"
-    },
-    {
-      "id": 7,
-      "option_id": 4,
-      "option_title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
-      "effective_price": 52.0,
-      "strike_price": 56.0,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-19T06:31:59.187452+00:00"
-    },
-    {
-      "id": 6,
-      "option_id": 10,
-      "option_title": "Dyson V12 Detect Slim / Humdinger (Single-Button Power, No Trigger Hold, 2.2 lb Handheld)",
-      "effective_price": 398.99,
-      "strike_price": 399.99,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-19T06:19:20.586874+00:00"
-    },
-    {
-      "id": 5,
-      "option_id": 9,
-      "option_title": "Dyson V8 Cyclone Cordless Vacuum (1-Click Detachable Handheld + Full Floor Wand)",
-      "effective_price": 299.0,
-      "strike_price": 299.0,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-19T06:19:20.572119+00:00"
-    },
-    {
-      "id": 4,
-      "option_id": 4,
-      "option_title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
-      "effective_price": 52.0,
-      "strike_price": 56.0,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-19T05:48:16.300264+00:00"
-    },
-    {
-      "id": 3,
-      "option_id": 4,
-      "option_title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
-      "effective_price": 52.0,
-      "strike_price": 56.0,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-19T05:38:06.917495+00:00"
-    },
-    {
-      "id": 2,
-      "option_id": 6,
-      "option_title": "DeWalt 20V MAX XR Brushless 1/2\" Cordless Hammer Drill Kit (DCD805D2 / DCD798D1)",
-      "effective_price": 148.0,
-      "strike_price": 149.0,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-19T05:00:13.366333+00:00"
-    },
-    {
-      "id": 1,
-      "option_id": 4,
-      "option_title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
-      "effective_price": 52.0,
-      "strike_price": 56.0,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-19T01:55:54.852287+00:00"
-    }
-  ],
+  "alerts": [],
   "image_map": {
     "1": "images/products/spatula_mercer.jpg",
     "spatula_mercer": "images/products/spatula_mercer.jpg",
