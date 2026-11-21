@@ -28,11 +28,12 @@ DEFAULT_MODEL_CANDIDATES = [
 BATCH_SIZE = 5
 
 
-async def _resolve_gemini_model(client: httpx.AsyncClient, api_key: str) -> str:
-    """Queries /v1beta/models to pick a live Gemini Flash model that supports generateContent."""
+async def _resolve_gemini_models(client: httpx.AsyncClient, api_key: str) -> List[str]:
+    """Queries /v1beta/models to return an ordered list of live Gemini Flash models."""
     override = (os.getenv("GEMINI_PRICE_MODEL") or "").strip()
     if override:
-        return override
+        return [override]
+    ordered: List[str] = []
     try:
         resp = await client.get(
             f"https://generativelanguage.googleapis.com/v1beta/models?key={api_key}",
@@ -45,25 +46,31 @@ async def _resolve_gemini_model(client: httpx.AsyncClient, api_key: str) -> str:
                 name = (m.get("name") or "").replace("models/", "")
                 methods = m.get("supportedGenerationMethods") or []
                 if "generateContent" in methods and "flash" in name.lower():
-                    if not any(skip in name.lower() for skip in ("lite", "image", "tts", "audio", "live", "thinking")):
+                    if not any(skip in name.lower() for skip in ("lite", "image", "tts", "audio", "live", "thinking", "exp")):
                         available.append(name)
-            if available:
-                # Prefer newest gemini-3 / gemini-2.5 / flash-latest
-                for preferred in (
-                    "gemini-2.5-flash",
-                    "gemini-3-flash",
-                    "gemini-3-flash-preview",
-                    "gemini-flash-latest",
-                    "gemini-2.5-flash-preview",
-                    "gemini-2.0-flash",
-                ):
-                    for name in available:
-                        if name == preferred or name.startswith(preferred):
-                            return name
-                return available[-1]
+            print(f"Discovered Gemini Flash models: {available[:10]}")
+            for preferred in (
+                "gemini-3-flash",
+                "gemini-3-flash-preview",
+                "gemini-flash-latest",
+                "gemini-2.5-flash-preview",
+                "gemini-2.5-flash",
+                "gemini-2.0-flash",
+            ):
+                for name in available:
+                    if (name == preferred or name.startswith(preferred)) and name not in ordered:
+                        ordered.append(name)
+            for name in available:
+                if name not in ordered:
+                    ordered.append(name)
+        else:
+            print(f"Model list HTTP {resp.status_code}: {resp.text[:200]}")
     except Exception as exc:
-        print(f"Warning: could not list Gemini models ({exc}); falling back to default.")
-    return DEFAULT_MODEL_CANDIDATES[1]
+        print(f"Warning: could not list Gemini models ({exc}).")
+    for fallback in DEFAULT_MODEL_CANDIDATES:
+        if fallback not in ordered:
+            ordered.append(fallback)
+    return ordered
 
 
 def _extract_json_object(text: str) -> Dict[str, Any]:
@@ -115,7 +122,12 @@ async def _query_gemini_batch(
     }
 
     resp = await client.post(url, json=payload, timeout=45.0)
-    resp.raise_for_status()
+    if resp.status_code >= 400:
+        raise httpx.HTTPStatusError(
+            f"HTTP {resp.status_code} ({model_name}): {resp.text[:250]}",
+            request=resp.request,
+            response=resp,
+        )
     data = resp.json()
 
     candidates = data.get("candidates") or []
@@ -163,16 +175,27 @@ async def run_gemini_price_check() -> None:
     all_updates: Dict[str, Dict[str, Any]] = {}
 
     async with httpx.AsyncClient() as client:
-        model_name = await _resolve_gemini_model(client, api_key)
-        print(f"Checking live prices for {len(tracked)} items via {model_name} + Google Search...")
+        models = await _resolve_gemini_models(client, api_key)
+        model_idx = 0
+        print(f"Checking live prices for {len(tracked)} items via {models[model_idx]} + Google Search...")
         for i in range(0, len(tracked), BATCH_SIZE):
             batch = tracked[i : i + BATCH_SIZE]
-            try:
-                batch_res = await _query_gemini_batch(client, api_key, model_name, batch)
-                print(f"  Batch {i // BATCH_SIZE + 1}: verified {len(batch_res)}/{len(batch)} items")
-                all_updates.update(batch_res)
-            except Exception as exc:
-                print(f"  Batch {i // BATCH_SIZE + 1} failed: {exc}")
+            while model_idx < len(models):
+                try:
+                    batch_res = await _query_gemini_batch(client, api_key, models[model_idx], batch)
+                    print(f"  Batch {i // BATCH_SIZE + 1} ({models[model_idx]}): verified {len(batch_res)}/{len(batch)} items")
+                    all_updates.update(batch_res)
+                    break
+                except httpx.HTTPStatusError as exc:
+                    print(f"  Batch {i // BATCH_SIZE + 1} failed: {exc}")
+                    if exc.response.status_code == 404 and model_idx + 1 < len(models):
+                        model_idx += 1
+                        print(f"  Retrying with fallback model: {models[model_idx]}...")
+                        continue
+                    break
+                except Exception as exc:
+                    print(f"  Batch {i // BATCH_SIZE + 1} failed: {exc}")
+                    break
             await asyncio.sleep(1.5)
 
     if all_updates:
