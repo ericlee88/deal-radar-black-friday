@@ -6,12 +6,12 @@ on:
       - main
       - feat/github-pages-static-sync
   schedule:
-    # Automatically refresh live Amazon prices & redeploy GitHub Pages every 2 hours
-    - cron: "0 */2 * * *"
+    # Automatically refresh live prices via Gemini Search Grounding / Keepa every 6 hours (runs on default branch)
+    - cron: "0 */6 * * *"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -32,9 +32,10 @@ jobs:
       - name: Setup uv (Python)
         uses: astral-sh/setup-uv@v4
 
-      - name: Poll Live Amazon Prices & Export Static Snapshot
+      - name: Poll Live Prices & Export Static Snapshot
         working-directory: backend
         env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PRICE_PROVIDER: ${{ secrets.KEEPA_API_KEY != '' && 'keepa' || 'amazon_direct' }}
           KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
           WEBHOOK_PROVIDER: ${{ secrets.WEBHOOK_PROVIDER || 'none' }}
@@ -43,7 +44,21 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           uv sync
+          if [ -n "$GEMINI_API_KEY" ]; then
+            uv run python scripts/gemini_search_prices.py || true
+          fi
           uv run python scripts/export_snapshot.py --poll
+
+      - name: Commit Updated Verified Price History (Scheduled / Manual Runs)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "deal-radar-bot"
+          git config user.email "deal-radar-bot@users.noreply.github.com"
+          git add data/verified_prices.json frontend/web/data/deals_snapshot.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update verified Black Friday prices [skip ci]"
+            git push
+          fi
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
