@@ -50,12 +50,13 @@ async def _resolve_gemini_models(client: httpx.AsyncClient, api_key: str) -> Lis
                         available.append(name)
             print(f"Discovered Gemini Flash models: {available[:10]}")
             for preferred in (
+                "gemini-3.8-flash",
+                "gemini-3.6-flash",
+                "gemini-3.5-flash",
                 "gemini-3-flash",
                 "gemini-3-flash-preview",
                 "gemini-flash-latest",
-                "gemini-2.5-flash-preview",
                 "gemini-2.5-flash",
-                "gemini-2.0-flash",
             ):
                 for name in available:
                     if (name == preferred or name.startswith(preferred)) and name not in ordered:
