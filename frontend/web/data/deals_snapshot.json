@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-21T05:32:38.890280+00:00",
+  "generated_at": "2026-11-21T06:43:29.358387+00:00",
   "missions": [
     {
       "id": 1,
@@ -278,7 +278,7 @@
           "title": "DeWalt 20V MAX XR Brushless 1/2\" Cordless Hammer Drill Kit (DCD805D2 / DCD798D1)",
           "asin_or_sku": "B09YXSNV98 / DCD805D2",
           "amazon_query": "DeWalt+DCD805D2+OR+DCD798D1+20V+MAX+Brushless+Hammer+Drill+Kit",
-          "msrp": 229.0,
+          "msrp": 289.0,
           "avg_90d_price": 0.0,
           "current_price": 289.0,
           "clip_coupon_amount": 0.0,
@@ -293,19 +293,26 @@
           "unit_quantity": 1.0,
           "price_history": [
             179.91,
+            199.0,
             289.0
           ],
           "scout_notes": "During Black Friday Week, getting a brand-new brushless XR 1/2\" hammer drill + 2 batteries + charger costs the same as batteries alone! Add a $16 adapter for old 18V tools.",
           "effective_price": 289.0,
           "unit_effective_price": 289.0,
-          "discount_pct_off_msrp": -26,
-          "deal_grade_code": "TRAP",
-          "deal_grade_label": "\u26a0\ufe0f SCALPER / TRAP \u2014 DO NOT BUY",
+          "discount_pct_off_msrp": 0,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09YXSNV98?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 289.0,
+              "source": "antigravity_automation",
+              "note": "Ace Hardware"
+            },
             {
               "date": "2026-11-21",
               "price": 199.0,
@@ -378,9 +385,9 @@
           "title": "Dyson Car+Boat Handheld Vacuum (50-Min Run Time + Mini Motorized Hair Screw Tool)",
           "asin_or_sku": "B0DLXGDHBX / DYSON-CAR-BOAT",
           "amazon_query": "Dyson+Car+Boat+Handheld+Vacuum",
-          "msrp": 330.0,
+          "msrp": 299.99,
           "avg_90d_price": 0.0,
-          "current_price": 200.0,
+          "current_price": 269.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 229.99,
           "all_time_low": 0.0,
@@ -393,19 +400,26 @@
           "unit_quantity": 50.0,
           "price_history": [
             229.95,
-            200.0
+            200.0,
+            269.99
           ],
           "scout_notes": "Live early Black Friday drop at $229.99 (-23%). Includes anti-tangle conical brush bar, crevice tool, and combination tool.",
-          "effective_price": 200.0,
-          "unit_effective_price": 4.0,
-          "discount_pct_off_msrp": 39,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-39%)",
-          "is_below_strike": true,
+          "effective_price": 269.99,
+          "unit_effective_price": 5.4,
+          "discount_pct_off_msrp": 10,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0DLXGDHBX?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 269.99,
+              "source": "antigravity_automation",
+              "note": "Amazon"
+            },
             {
               "date": "2026-11-21",
               "price": 200.0,
@@ -430,7 +444,7 @@
           "title": "Dyson V8 Cyclone Cordless Vacuum (1-Click Detachable Handheld + Full Floor Wand)",
           "asin_or_sku": "B09YS9N7H2 / DYSON-V8-CYCLONE",
           "amazon_query": "Dyson+V8+Cordless+Vacuum",
-          "msrp": 449.95,
+          "msrp": 469.99,
           "avg_90d_price": 0.0,
           "current_price": 388.0,
           "clip_coupon_amount": 0.0,
@@ -445,12 +459,13 @@
           "unit_quantity": 40.0,
           "price_history": [
             299.0,
+            299.99,
             388.0
           ],
           "scout_notes": "The V8 powerhead IS the Car+Boat handheld unit\u2014detaching the wand takes 1 click, and you get the full floor Motorbar head & wall dock for $69 more.",
           "effective_price": 388.0,
           "unit_effective_price": 9.7,
-          "discount_pct_off_msrp": 14,
+          "discount_pct_off_msrp": 17,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -458,6 +473,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09YS9N7H2",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 349.0,
+              "source": "antigravity_automation",
+              "note": "Amazon"
+            },
             {
               "date": "2026-11-21",
               "price": 299.99,
@@ -539,9 +560,9 @@
           "title": "Metamucil Fiber + Collagen Peptides Rejuvenation Blend (Orange Smooth, 52 Servings)",
           "asin_or_sku": "METAMUCIL-COLLAGEN-52",
           "amazon_query": "Metamucil+Fiber+Collagen+Rejuvenation+Blend",
-          "msrp": 30.48,
+          "msrp": 34.99,
           "avg_90d_price": 0.0,
-          "current_price": 30.48,
+          "current_price": 32.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 19.5,
           "all_time_low": 0.0,
@@ -553,12 +574,13 @@
           "unit_name": "serving",
           "unit_quantity": 52.0,
           "price_history": [
-            25.91
+            30.48,
+            28.04
           ],
           "scout_notes": "Clip the $5 first-delivery coupon + 15% S&S to drop net cost to $17.94 ($0.34/serving). Qualifies for P&G Spend $100 Get $25 credit.",
-          "effective_price": 25.91,
-          "unit_effective_price": 0.5,
-          "discount_pct_off_msrp": 15,
+          "effective_price": 28.04,
+          "unit_effective_price": 0.54,
+          "discount_pct_off_msrp": 20,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -566,6 +588,12 @@
           "camel_url": "https://camelcamelcamel.com/search?sq=Metamucil+Fiber+Collagen+Rejuvenation+Blend",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 32.99,
+              "source": "antigravity_automation",
+              "note": "Albertsons / retail deal"
+            },
             {
               "date": "2026-11-21",
               "price": 30.48,
@@ -641,9 +669,9 @@
           "title": "Bounty Quick-Size Paper Towels (16 Family Rolls = 40 Regular Rolls)",
           "asin_or_sku": "B079VP6DH5",
           "amazon_query": "Bounty+Quick+Size+Paper+Towels+16+Family+Rolls",
-          "msrp": 40.99,
+          "msrp": 43.49,
           "avg_90d_price": 0.0,
-          "current_price": 35.99,
+          "current_price": 43.49,
           "clip_coupon_amount": 0.0,
           "strike_price": 28.0,
           "all_time_low": 0.0,
@@ -655,12 +683,13 @@
           "unit_name": "family roll",
           "unit_quantity": 16.0,
           "price_history": [
-            30.59
+            35.99,
+            36.97
           ],
           "scout_notes": "Counts $36.49 toward the $100 P&G threshold before coupon/S&S deductions.",
-          "effective_price": 30.59,
-          "unit_effective_price": 1.91,
-          "discount_pct_off_msrp": 25,
+          "effective_price": 36.97,
+          "unit_effective_price": 2.31,
+          "discount_pct_off_msrp": 15,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -668,6 +697,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B079VP6DH5",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 43.49,
+              "source": "antigravity_automation",
+              "note": "Amazon price"
+            },
             {
               "date": "2026-11-21",
               "price": 35.99,
@@ -731,9 +766,9 @@
           "title": "Cascade Platinum Plus ActionPacs Dishwasher Detergent Pods (81 Count Tub)",
           "asin_or_sku": "B0CHD7GLN9",
           "amazon_query": "Cascade+Platinum+Plus+ActionPacs+81+Count",
-          "msrp": 34.99,
+          "msrp": 33.29,
           "avg_90d_price": 0.0,
-          "current_price": 34.5,
+          "current_price": 33.29,
           "clip_coupon_amount": 0.0,
           "strike_price": 18.0,
           "all_time_low": 0.0,
@@ -746,12 +781,13 @@
           "unit_quantity": 81.0,
           "price_history": [
             34.99,
-            29.32
+            34.5,
+            28.3
           ],
           "scout_notes": "Pushes your P&G subtotal over $100 when paired with Metamucil, Bounty, and Charmin!",
-          "effective_price": 29.32,
-          "unit_effective_price": 0.36,
-          "discount_pct_off_msrp": 16,
+          "effective_price": 28.3,
+          "unit_effective_price": 0.35,
+          "discount_pct_off_msrp": 15,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -759,6 +795,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0CHD7GLN9",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 33.29,
+              "source": "antigravity_automation",
+              "note": "Walmart retail price"
+            },
             {
               "date": "2026-11-21",
               "price": 34.5,
@@ -785,7 +827,7 @@
           "amazon_query": "Glad+ForceFlexPlus+13+Gallon+110+Count",
           "msrp": 29.98,
           "avg_90d_price": 0.0,
-          "current_price": 18.31,
+          "current_price": 19.27,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.5,
           "all_time_low": 0.0,
@@ -798,12 +840,12 @@
           "unit_quantity": 110.0,
           "price_history": [
             29.98,
-            15.56
+            16.38
           ],
           "scout_notes": "5th item in the box\u2014locks in the full 15% Subscribe & Save discount across all items.",
-          "effective_price": 15.56,
-          "unit_effective_price": 0.14,
-          "discount_pct_off_msrp": 48,
+          "effective_price": 16.38,
+          "unit_effective_price": 0.15,
+          "discount_pct_off_msrp": 45,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -847,9 +889,9 @@
           "title": "Cascadia Board Game (Spiel des Jahres Winner \u2022 1\u20134 Players, Ages 8+)",
           "asin_or_sku": "B093H8RGXX",
           "amazon_query": "Cascadia+Board+Game+AEG",
-          "msrp": 45.99,
+          "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 29.64,
+          "current_price": 37.05,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.0,
           "all_time_low": 0.0,
@@ -861,12 +903,13 @@
           "unit_name": "game",
           "unit_quantity": 1.0,
           "price_history": [
-            29.64
+            29.64,
+            37.05
           ],
           "scout_notes": "BGG 8.0/10. Zero mean blocking; kids draft wildlife tokens and spatial habitat tiles.",
-          "effective_price": 29.64,
-          "unit_effective_price": 29.64,
-          "discount_pct_off_msrp": 36,
+          "effective_price": 37.05,
+          "unit_effective_price": 37.05,
+          "discount_pct_off_msrp": 7,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -874,6 +917,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B093H8RGXX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 37.05,
+              "source": "antigravity_automation",
+              "note": "Amazon / Walmart price"
+            },
             {
               "date": "2026-11-21",
               "price": 29.64,
@@ -894,7 +943,7 @@
           "amazon_query": "Ticket+to+Ride+Board+Game",
           "msrp": 49.99,
           "avg_90d_price": 0.0,
-          "current_price": 29.99,
+          "current_price": 39.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -906,12 +955,13 @@
           "unit_name": "game",
           "unit_quantity": 1.0,
           "price_history": [
-            29.99
+            29.99,
+            39.99
           ],
           "scout_notes": "Gold-standard family game for 8yo+. Pairs with Cascadia & GraviTrax in the $24\u2013$26 3-for-2 sweet spot.",
-          "effective_price": 29.99,
-          "unit_effective_price": 29.99,
-          "discount_pct_off_msrp": 40,
+          "effective_price": 39.99,
+          "unit_effective_price": 39.99,
+          "discount_pct_off_msrp": 20,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -919,6 +969,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B000809OAO",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 39.99,
+              "source": "antigravity_automation",
+              "note": "Walmart / Target price"
+            },
             {
               "date": "2026-11-21",
               "price": 29.99,
@@ -989,9 +1045,9 @@
           "title": "ThinkFun Gravity Maze Falling Marble Logic Maze Game (60 Challenges, Ages 8+)",
           "asin_or_sku": "B00IUAAK2A",
           "amazon_query": "ThinkFun+Gravity+Maze+Marble+Run",
-          "msrp": 25.0,
+          "msrp": 29.99,
           "avg_90d_price": 0.0,
-          "current_price": 17.99,
+          "current_price": 19.97,
           "clip_coupon_amount": 0.0,
           "strike_price": 19.5,
           "all_time_low": 0.0,
@@ -1003,19 +1059,26 @@
           "unit_name": "challenge",
           "unit_quantity": 60.0,
           "price_history": [
-            17.99
+            17.99,
+            19.97
           ],
           "scout_notes": "Brilliant solo/co-op spatial logic tower puzzle for 8+ year olds.",
-          "effective_price": 17.99,
-          "unit_effective_price": 0.3,
-          "discount_pct_off_msrp": 28,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-28%)",
-          "is_below_strike": true,
+          "effective_price": 19.97,
+          "unit_effective_price": 0.33,
+          "discount_pct_off_msrp": 33,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00IUAAK2A?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B00IUAAK2A",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 19.97,
+              "source": "antigravity_automation",
+              "note": "Walmart / Amazon retail price"
+            },
             {
               "date": "2026-11-21",
               "price": 17.99,

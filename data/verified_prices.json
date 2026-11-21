@@ -1,17 +1,24 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-21T05:32:32.749545+00:00",
+  "updated_at": "2026-11-21T06:43:26.498217+00:00",
   "items": {
     "dyson_car_boat": {
-      "current_price": 200.0,
-      "msrp": 330.0,
+      "current_price": 269.99,
+      "msrp": 299.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T05:32:32.749531+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498176+00:00",
       "price_history": [
         229.95,
-        200.0
+        200.0,
+        269.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 269.99,
+          "source": "antigravity_automation",
+          "note": "Amazon"
+        },
         {
           "date": "2026-11-21",
           "price": 200.0,
@@ -46,14 +53,21 @@
       "clip_coupon_amount": 0.0
     },
     "puzzle_gravity_maze": {
-      "current_price": 17.99,
-      "msrp": 25.0,
+      "current_price": 19.97,
+      "msrp": 29.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047211+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498214+00:00",
       "price_history": [
-        17.99
+        17.99,
+        19.97
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 19.97,
+          "source": "antigravity_automation",
+          "note": "Walmart / Amazon retail price"
+        },
         {
           "date": "2026-11-21",
           "price": 17.99,
@@ -64,14 +78,21 @@
       "clip_coupon_amount": 0.0
     },
     "game_cascadia": {
-      "current_price": 29.64,
-      "msrp": 45.99,
+      "current_price": 37.05,
+      "msrp": 39.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047200+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498203+00:00",
       "price_history": [
-        29.64
+        29.64,
+        37.05
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 37.05,
+          "source": "antigravity_automation",
+          "note": "Amazon / Walmart price"
+        },
         {
           "date": "2026-11-21",
           "price": 29.64,
@@ -85,7 +106,7 @@
       "current_price": 79.95,
       "msrp": 89.95,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047143+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498146+00:00",
       "price_history": [
         99.99,
         79.95
@@ -107,15 +128,22 @@
       "clip_coupon_amount": 0.0
     },
     "cascade_platinum_plus": {
-      "current_price": 34.5,
-      "msrp": 34.99,
+      "current_price": 33.29,
+      "msrp": 33.29,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047192+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498198+00:00",
       "price_history": [
         34.99,
-        34.5
+        34.5,
+        33.29
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 33.29,
+          "source": "antigravity_automation",
+          "note": "Walmart retail price"
+        },
         {
           "date": "2026-11-21",
           "price": 34.5,
@@ -160,7 +188,7 @@
       "current_price": 59.99,
       "msrp": 69.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047208+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498211+00:00",
       "price_history": [
         67.64,
         59.99
@@ -254,16 +282,23 @@
       ]
     },
     "path_b_new_hammer_drill": {
-      "current_price": 199.0,
-      "msrp": 229.0,
+      "current_price": 289.0,
+      "msrp": 289.0,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T05:32:32.749512+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498165+00:00",
       "price_history": [
         179.91,
-        199.0
+        199.0,
+        289.0
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 289.0,
+          "source": "antigravity_automation",
+          "note": "Ace Hardware"
+        },
         {
           "date": "2026-11-21",
           "price": 199.0,
@@ -279,17 +314,24 @@
       ]
     },
     "dyson_v8_convertible": {
-      "current_price": 299.99,
-      "msrp": 449.95,
+      "current_price": 349.0,
+      "msrp": 469.99,
       "all_time_low": 299.0,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T05:32:32.749541+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498183+00:00",
       "price_history": [
         299.0,
-        299.99
+        299.99,
+        349.0
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 349.0,
+          "source": "antigravity_automation",
+          "note": "Amazon"
+        },
         {
           "date": "2026-11-21",
           "price": 299.99,
@@ -305,15 +347,22 @@
       ]
     },
     "metamucil_rejuvenation": {
-      "current_price": 30.48,
-      "msrp": 30.48,
+      "current_price": 32.99,
+      "msrp": 34.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047174+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498189+00:00",
       "price_history": [
-        30.48
+        30.48,
+        32.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 32.99,
+          "source": "antigravity_automation",
+          "note": "Albertsons / retail deal"
+        },
         {
           "date": "2026-11-21",
           "price": 30.48,
@@ -341,15 +390,22 @@
       ]
     },
     "bounty_paper_towels": {
-      "current_price": 35.99,
-      "msrp": 40.99,
+      "current_price": 43.49,
+      "msrp": 43.49,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047181+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498194+00:00",
       "price_history": [
-        35.99
+        35.99,
+        43.49
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 43.49,
+          "source": "antigravity_automation",
+          "note": "Amazon price"
+        },
         {
           "date": "2026-11-21",
           "price": 35.99,
@@ -377,15 +433,22 @@
       ]
     },
     "game_ticket_to_ride": {
-      "current_price": 29.99,
+      "current_price": 39.99,
       "msrp": 49.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047204+00:00",
+      "last_checked_at": "2026-11-21T06:43:26.498207+00:00",
       "price_history": [
-        29.99
+        29.99,
+        39.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-21",
+          "price": 39.99,
+          "source": "antigravity_automation",
+          "note": "Walmart / Target price"
+        },
         {
           "date": "2026-11-21",
           "price": 29.99,
