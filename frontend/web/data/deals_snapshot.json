@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-21T05:13:24.448439+00:00",
+  "generated_at": "2026-11-21T05:32:38.890280+00:00",
   "missions": [
     {
       "id": 1,
@@ -278,9 +278,9 @@
           "title": "DeWalt 20V MAX XR Brushless 1/2\" Cordless Hammer Drill Kit (DCD805D2 / DCD798D1)",
           "asin_or_sku": "B09YXSNV98 / DCD805D2",
           "amazon_query": "DeWalt+DCD805D2+OR+DCD798D1+20V+MAX+Brushless+Hammer+Drill+Kit",
-          "msrp": 189.99,
+          "msrp": 229.0,
           "avg_90d_price": 0.0,
-          "current_price": 179.91,
+          "current_price": 289.0,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -292,19 +292,26 @@
           "unit_name": "complete kit",
           "unit_quantity": 1.0,
           "price_history": [
-            179.91
+            179.91,
+            289.0
           ],
           "scout_notes": "During Black Friday Week, getting a brand-new brushless XR 1/2\" hammer drill + 2 batteries + charger costs the same as batteries alone! Add a $16 adapter for old 18V tools.",
-          "effective_price": 179.91,
-          "unit_effective_price": 179.91,
-          "discount_pct_off_msrp": 5,
-          "deal_grade_code": "WAIT",
-          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "effective_price": 289.0,
+          "unit_effective_price": 289.0,
+          "discount_pct_off_msrp": -26,
+          "deal_grade_code": "TRAP",
+          "deal_grade_label": "\u26a0\ufe0f SCALPER / TRAP \u2014 DO NOT BUY",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09YXSNV98?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 199.0,
+              "source": "antigravity_automation",
+              "note": "Amazon price for DeWalt DCD805D2 kit"
+            },
             {
               "date": "2026-11-21",
               "price": 179.91,
@@ -371,9 +378,9 @@
           "title": "Dyson Car+Boat Handheld Vacuum (50-Min Run Time + Mini Motorized Hair Screw Tool)",
           "asin_or_sku": "B0DLXGDHBX / DYSON-CAR-BOAT",
           "amazon_query": "Dyson+Car+Boat+Handheld+Vacuum",
-          "msrp": 299.95,
+          "msrp": 330.0,
           "avg_90d_price": 0.0,
-          "current_price": 229.95,
+          "current_price": 200.0,
           "clip_coupon_amount": 0.0,
           "strike_price": 229.99,
           "all_time_low": 0.0,
@@ -385,19 +392,26 @@
           "unit_name": "min runtime",
           "unit_quantity": 50.0,
           "price_history": [
-            229.95
+            229.95,
+            200.0
           ],
           "scout_notes": "Live early Black Friday drop at $229.99 (-23%). Includes anti-tangle conical brush bar, crevice tool, and combination tool.",
-          "effective_price": 229.95,
-          "unit_effective_price": 4.6,
-          "discount_pct_off_msrp": 23,
+          "effective_price": 200.0,
+          "unit_effective_price": 4.0,
+          "discount_pct_off_msrp": 39,
           "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-23%)",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-39%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B0DLXGDHBX?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 200.0,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-21",
               "price": 229.95,
@@ -416,9 +430,9 @@
           "title": "Dyson V8 Cyclone Cordless Vacuum (1-Click Detachable Handheld + Full Floor Wand)",
           "asin_or_sku": "B09YS9N7H2 / DYSON-V8-CYCLONE",
           "amazon_query": "Dyson+V8+Cordless+Vacuum",
-          "msrp": 399.0,
+          "msrp": 449.95,
           "avg_90d_price": 0.0,
-          "current_price": 299.0,
+          "current_price": 388.0,
           "clip_coupon_amount": 0.0,
           "strike_price": 299.0,
           "all_time_low": 299.0,
@@ -430,19 +444,26 @@
           "unit_name": "min runtime",
           "unit_quantity": 40.0,
           "price_history": [
-            299.0
+            299.0,
+            388.0
           ],
           "scout_notes": "The V8 powerhead IS the Car+Boat handheld unit\u2014detaching the wand takes 1 click, and you get the full floor Motorbar head & wall dock for $69 more.",
-          "effective_price": 299.0,
-          "unit_effective_price": 7.47,
-          "discount_pct_off_msrp": 25,
-          "deal_grade_code": "ATL",
-          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-25%)",
-          "is_below_strike": true,
+          "effective_price": 388.0,
+          "unit_effective_price": 9.7,
+          "discount_pct_off_msrp": 14,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09YS9N7H2?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B09YS9N7H2",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-21",
+              "price": 299.99,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-21",
               "price": 299.0,
@@ -667,7 +688,7 @@
           "amazon_query": "Charmin+Ultra+Soft+24+Mega+XL+Rolls",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 35.58,
+          "current_price": 39.72,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.5,
           "all_time_low": 0.0,
@@ -679,12 +700,12 @@
           "unit_name": "mega XL roll",
           "unit_quantity": 24.0,
           "price_history": [
-            30.24
+            33.76
           ],
           "scout_notes": "P&G stock-up eligible; target <$0.20 per 100 sheets after 15% S&S.",
-          "effective_price": 30.24,
-          "unit_effective_price": 1.26,
-          "discount_pct_off_msrp": 24,
+          "effective_price": 33.76,
+          "unit_effective_price": 1.41,
+          "discount_pct_off_msrp": 16,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -764,7 +785,7 @@
           "amazon_query": "Glad+ForceFlexPlus+13+Gallon+110+Count",
           "msrp": 29.98,
           "avg_90d_price": 0.0,
-          "current_price": 19.27,
+          "current_price": 18.31,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.5,
           "all_time_low": 0.0,
@@ -777,12 +798,12 @@
           "unit_quantity": 110.0,
           "price_history": [
             29.98,
-            16.38
+            15.56
           ],
           "scout_notes": "5th item in the box\u2014locks in the full 15% Subscribe & Save discount across all items.",
-          "effective_price": 16.38,
-          "unit_effective_price": 0.15,
-          "discount_pct_off_msrp": 45,
+          "effective_price": 15.56,
+          "unit_effective_price": 0.14,
+          "discount_pct_off_msrp": 48,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
