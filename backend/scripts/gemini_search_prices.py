@@ -19,8 +19,51 @@ import httpx
 from scripts.apply_price_updates import _apply_updates
 from scripts.export_snapshot import SNAPSHOT_OUTPUT, run_export
 
-GEMINI_MODEL = os.getenv("GEMINI_PRICE_MODEL", "gemini-2.5-flash")
+DEFAULT_MODEL_CANDIDATES = [
+    "gemini-2.5-flash",
+    "gemini-flash-latest",
+    "gemini-3-flash-preview",
+    "gemini-2.0-flash",
+]
 BATCH_SIZE = 5
+
+
+async def _resolve_gemini_model(client: httpx.AsyncClient, api_key: str) -> str:
+    """Queries /v1beta/models to pick a live Gemini Flash model that supports generateContent."""
+    override = (os.getenv("GEMINI_PRICE_MODEL") or "").strip()
+    if override:
+        return override
+    try:
+        resp = await client.get(
+            f"https://generativelanguage.googleapis.com/v1beta/models?key={api_key}",
+            timeout=15.0,
+        )
+        if resp.status_code == 200:
+            models = resp.json().get("models") or []
+            available = []
+            for m in models:
+                name = (m.get("name") or "").replace("models/", "")
+                methods = m.get("supportedGenerationMethods") or []
+                if "generateContent" in methods and "flash" in name.lower():
+                    if not any(skip in name.lower() for skip in ("lite", "image", "tts", "audio", "live", "thinking")):
+                        available.append(name)
+            if available:
+                # Prefer newest gemini-3 / gemini-2.5 / flash-latest
+                for preferred in (
+                    "gemini-2.5-flash",
+                    "gemini-3-flash",
+                    "gemini-3-flash-preview",
+                    "gemini-flash-latest",
+                    "gemini-2.5-flash-preview",
+                    "gemini-2.0-flash",
+                ):
+                    for name in available:
+                        if name == preferred or name.startswith(preferred):
+                            return name
+                return available[-1]
+    except Exception as exc:
+        print(f"Warning: could not list Gemini models ({exc}); falling back to default.")
+    return DEFAULT_MODEL_CANDIDATES[1]
 
 
 def _extract_json_object(text: str) -> Dict[str, Any]:
@@ -41,6 +84,7 @@ def _extract_json_object(text: str) -> Dict[str, Any]:
 async def _query_gemini_batch(
     client: httpx.AsyncClient,
     api_key: str,
+    model_name: str,
     batch: List[Dict[str, Any]],
 ) -> Dict[str, Dict[str, Any]]:
     lines = []
@@ -62,7 +106,7 @@ async def _query_gemini_batch(
 
     url = (
         f"https://generativelanguage.googleapis.com/v1beta/models/"
-        f"{GEMINI_MODEL}:generateContent?key={api_key}"
+        f"{model_name}:generateContent?key={api_key}"
     )
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
@@ -116,14 +160,15 @@ async def run_gemini_price_check() -> None:
             if not o.get("is_trap_warning"):
                 tracked.append(o)
 
-    print(f"Checking live prices for {len(tracked)} items via {GEMINI_MODEL} + Google Search...")
     all_updates: Dict[str, Dict[str, Any]] = {}
 
     async with httpx.AsyncClient() as client:
+        model_name = await _resolve_gemini_model(client, api_key)
+        print(f"Checking live prices for {len(tracked)} items via {model_name} + Google Search...")
         for i in range(0, len(tracked), BATCH_SIZE):
             batch = tracked[i : i + BATCH_SIZE]
             try:
-                batch_res = await _query_gemini_batch(client, api_key, batch)
+                batch_res = await _query_gemini_batch(client, api_key, model_name, batch)
                 print(f"  Batch {i // BATCH_SIZE + 1}: verified {len(batch_res)}/{len(batch)} items")
                 all_updates.update(batch_res)
             except Exception as exc:
