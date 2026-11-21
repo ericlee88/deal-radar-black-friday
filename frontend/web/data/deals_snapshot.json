@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-21T05:09:34.779768+00:00",
+  "generated_at": "2026-11-21T05:13:24.448439+00:00",
   "missions": [
     {
       "id": 1,
@@ -667,7 +667,7 @@
           "amazon_query": "Charmin+Ultra+Soft+24+Mega+XL+Rolls",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 39.72,
+          "current_price": 35.58,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.5,
           "all_time_low": 0.0,
@@ -679,12 +679,12 @@
           "unit_name": "mega XL roll",
           "unit_quantity": 24.0,
           "price_history": [
-            33.76
+            30.24
           ],
           "scout_notes": "P&G stock-up eligible; target <$0.20 per 100 sheets after 15% S&S.",
-          "effective_price": 33.76,
-          "unit_effective_price": 1.41,
-          "discount_pct_off_msrp": 16,
+          "effective_price": 30.24,
+          "unit_effective_price": 1.26,
+          "discount_pct_off_msrp": 24,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
