@@ -122,7 +122,7 @@ async def _query_gemini_batch(
         "generationConfig": {"temperature": 0.1},
     }
 
-    resp = await client.post(url, json=payload, timeout=45.0)
+    resp = await client.post(url, json=payload, timeout=120.0)
     if resp.status_code >= 400:
         raise httpx.HTTPStatusError(
             f"HTTP {resp.status_code} ({model_name}): {resp.text[:250]}",
@@ -195,12 +195,12 @@ async def run_gemini_price_check() -> None:
                         continue
                     break
                 except Exception as exc:
-                    print(f"  Batch {i // BATCH_SIZE + 1} failed: {exc}")
+                    print(f"  Batch {i // BATCH_SIZE + 1} failed: {type(exc).__name__}: {exc}")
                     break
             await asyncio.sleep(1.5)
 
     if all_updates:
-        _apply_updates(all_updates)
+        _apply_updates(all_updates, rebuild_snapshot=False)
     else:
         print("No new verified prices returned from Gemini Search Grounding.")
 

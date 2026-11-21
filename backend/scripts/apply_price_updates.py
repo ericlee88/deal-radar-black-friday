@@ -54,7 +54,7 @@ def _list_tracked_items() -> None:
             print(f"{bk:26s} {asin:12s} {cur_s:>9s} ${strike:>8.2f}  {title}")
 
 
-def _apply_updates(updates: Dict[str, Dict[str, Any]]) -> None:
+def _apply_updates(updates: Dict[str, Dict[str, Any]], rebuild_snapshot: bool = True) -> None:
     existing_doc: Dict[str, Any] = {"schema_version": 1, "updated_at": "", "items": {}}
     if VERIFIED_PRICES_FILE.is_file():
         try:
@@ -119,6 +119,9 @@ def _apply_updates(updates: Dict[str, Dict[str, Any]]) -> None:
     VERIFIED_PRICES_FILE.parent.mkdir(parents=True, exist_ok=True)
     VERIFIED_PRICES_FILE.write_text(json.dumps(existing_doc, indent=2), encoding="utf-8")
     print(f"Saved {updated_count} verified price updates to {VERIFIED_PRICES_FILE}.")
+
+    if not rebuild_snapshot:
+        return
 
     # Rebuild static snapshot immediately
     asyncio.run(run_export(poll_live=False))
