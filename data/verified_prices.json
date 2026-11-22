@@ -1,21 +1,28 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-22T14:06:12.185728+00:00",
+  "updated_at": "2026-11-22T23:16:40.137934+00:00",
   "items": {
     "dyson_car_boat": {
-      "current_price": 229.95,
-      "msrp": 299.95,
+      "current_price": 229.99,
+      "msrp": 299.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185684+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137882+00:00",
       "price_history": [
         229.95,
         200.0,
         269.99,
         279.95,
         269.99,
-        229.95
+        229.95,
+        229.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-22",
+          "price": 229.99,
+          "source": "antigravity_automation",
+          "note": "Amazon deal"
+        },
         {
           "date": "2026-11-22",
           "price": 229.95,
@@ -88,18 +95,25 @@
       "clip_coupon_amount": 0.0
     },
     "puzzle_gravity_maze": {
-      "current_price": 17.49,
+      "current_price": 19.97,
       "msrp": 24.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185724+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137927+00:00",
       "price_history": [
         17.99,
         19.97,
         17.49,
         19.97,
-        17.49
+        17.49,
+        19.97
       ],
       "price_log": [
+        {
+          "date": "2026-11-22",
+          "price": 19.97,
+          "source": "antigravity_automation",
+          "note": "Amazon / retailer price"
+        },
         {
           "date": "2026-11-22",
           "price": 17.49,
@@ -134,19 +148,26 @@
       "clip_coupon_amount": 0.0
     },
     "game_cascadia": {
-      "current_price": 29.64,
+      "current_price": 37.05,
       "msrp": 39.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185708+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137900+00:00",
       "price_history": [
         29.64,
         37.05,
         34.98,
         37.47,
         37.05,
-        29.64
+        29.64,
+        37.05
       ],
       "price_log": [
+        {
+          "date": "2026-11-22",
+          "price": 37.05,
+          "source": "antigravity_automation",
+          "note": "Amazon retail price"
+        },
         {
           "date": "2026-11-22",
           "price": 29.64,
@@ -190,7 +211,7 @@
       "current_price": 79.95,
       "msrp": 89.95,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185676+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137854+00:00",
       "price_history": [
         99.99,
         79.95
@@ -299,7 +320,7 @@
       "current_price": 48.99,
       "msrp": 69.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185720+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137919+00:00",
       "price_history": [
         67.64,
         59.99,
@@ -334,17 +355,24 @@
       "clip_coupon_amount": 0.0
     },
     "spatula_mercer": {
-      "current_price": 17.99,
+      "current_price": 24.93,
       "msrp": 38.48,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185642+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137812+00:00",
       "price_history": [
         17.99,
         24.93,
-        17.99
+        17.99,
+        24.93
       ],
       "price_log": [
+        {
+          "date": "2026-11-22",
+          "price": 24.93,
+          "source": "antigravity_automation",
+          "note": "Wasserstrom commercial food service retail price (Model M18320)"
+        },
         {
           "date": "2026-11-22",
           "price": 17.99,
@@ -366,16 +394,23 @@
       ]
     },
     "spatula_oxo": {
-      "current_price": 13.99,
-      "msrp": 16.99,
+      "current_price": 11.99,
+      "msrp": 14.28,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185664+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137839+00:00",
       "price_history": [
         17.0,
-        13.99
+        13.99,
+        11.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-22",
+          "price": 11.99,
+          "source": "antigravity_automation",
+          "note": "Amazon retail price (Model 11283300)"
+        },
         {
           "date": "2026-11-22",
           "price": 13.99,
@@ -415,15 +450,22 @@
       ]
     },
     "path_a_adapter_split": {
-      "current_price": 167.88,
-      "msrp": 338.88,
+      "current_price": 39.88,
+      "msrp": 49.0,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047151+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137863+00:00",
       "price_history": [
-        167.88
+        167.88,
+        39.88
       ],
       "price_log": [
+        {
+          "date": "2026-11-22",
+          "price": 39.88,
+          "source": "antigravity_automation",
+          "note": "The Home Depot retail price for DeWalt DCA1820"
+        },
         {
           "date": "2026-11-21",
           "price": 167.88,
@@ -437,7 +479,7 @@
       "msrp": 299.0,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185691+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137872+00:00",
       "price_history": [
         179.91,
         199.0,
@@ -558,7 +600,7 @@
       "msrp": 43.49,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185703+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137892+00:00",
       "price_history": [
         35.99,
         43.49
@@ -607,7 +649,7 @@
       "msrp": 49.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185714+00:00",
+      "last_checked_at": "2026-11-22T23:16:40.137910+00:00",
       "price_history": [
         29.99,
         39.99,

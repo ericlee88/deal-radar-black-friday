@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-22T14:06:16.705331+00:00",
+  "generated_at": "2026-11-22T23:16:46.752349+00:00",
   "missions": [
     {
       "id": 1,
@@ -24,7 +24,7 @@
           "amazon_query": "Mercer+Culinary+Hells+Handle+Stainless+Steel+Turner+Spatula",
           "msrp": 38.48,
           "avg_90d_price": 0.0,
-          "current_price": 17.99,
+          "current_price": 18.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 17.5,
           "all_time_low": 0.0,
@@ -38,12 +38,13 @@
           "price_history": [
             17.99,
             24.93,
-            17.99
+            17.99,
+            18.99
           ],
           "scout_notes": "Precision-ground Japanese stainless steel blade flexes cleanly under fish, eggs, or smash burgers; dual-textured handle resists 450\u00b0F.",
-          "effective_price": 17.99,
-          "unit_effective_price": 17.99,
-          "discount_pct_off_msrp": 53,
+          "effective_price": 18.99,
+          "unit_effective_price": 18.99,
+          "discount_pct_off_msrp": 51,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -51,6 +52,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B001E17ZYS",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 24.93,
+              "source": "antigravity_automation",
+              "note": "Wasserstrom commercial food service retail price (Model M18320)"
+            },
             {
               "date": "2026-11-22",
               "price": 17.99,
@@ -81,9 +88,9 @@
           "title": "OXO Good Grips Restaurant Stainless Steel Turner & Brushed Steel Spatula Set",
           "asin_or_sku": "B082N73YPV",
           "amazon_query": "OXO+Good+Grips+Restaurant+Stainless+Steel+Turner",
-          "msrp": 16.99,
+          "msrp": 14.28,
           "avg_90d_price": 0.0,
-          "current_price": 13.99,
+          "current_price": 11.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.99,
           "all_time_low": 0.0,
@@ -96,19 +103,26 @@
           "unit_quantity": 1.0,
           "price_history": [
             17.0,
-            13.99
+            13.99,
+            11.99
           ],
           "scout_notes": "Stiff beveled edge ideal for deglazing stainless/cast-iron pans and flipping heavy cuts.",
-          "effective_price": 13.99,
-          "unit_effective_price": 13.99,
-          "discount_pct_off_msrp": 18,
+          "effective_price": 11.99,
+          "unit_effective_price": 11.99,
+          "discount_pct_off_msrp": 16,
           "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-18%)",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-16%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B082N73YPV?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B082N73YPV",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 11.99,
+              "source": "antigravity_automation",
+              "note": "Amazon retail price (Model 11283300)"
+            },
             {
               "date": "2026-11-22",
               "price": 13.99,
@@ -266,9 +280,9 @@
           "title": "DeWalt DCA1820 18V-to-20V MAX Adapter + DCB205-2C (2x 5.0Ah XR Battery & Charger Kit)",
           "asin_or_sku": "B016K1UD0E / DCA1820 + DCB205-2C",
           "amazon_query": "DeWalt+DCA1820+adapter+DCB205-2C+battery+kit",
-          "msrp": 338.88,
+          "msrp": 49.0,
           "avg_90d_price": 0.0,
-          "current_price": 167.88,
+          "current_price": 39.88,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -280,19 +294,26 @@
           "unit_name": "Ah total",
           "unit_quantity": 10.0,
           "price_history": [
-            167.88
+            167.88,
+            39.88
           ],
           "scout_notes": "Best if you own 4+ legacy 18V tools. Always remove adapter from battery when stored to prevent parasitic Vampire drain!",
-          "effective_price": 167.88,
-          "unit_effective_price": 16.79,
-          "discount_pct_off_msrp": 50,
-          "deal_grade_code": "WAIT",
-          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
-          "is_below_strike": false,
+          "effective_price": 39.88,
+          "unit_effective_price": 3.99,
+          "discount_pct_off_msrp": 19,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-19%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B016K1UD0E?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 39.88,
+              "source": "antigravity_automation",
+              "note": "The Home Depot retail price for DeWalt DCA1820"
+            },
             {
               "date": "2026-11-21",
               "price": 167.88,
@@ -431,7 +452,7 @@
           "title": "Dyson Car+Boat Handheld Vacuum (50-Min Run Time + Mini Motorized Hair Screw Tool)",
           "asin_or_sku": "B0DLXGDHBX / DYSON-CAR-BOAT",
           "amazon_query": "Dyson+Car+Boat+Handheld+Vacuum",
-          "msrp": 299.95,
+          "msrp": 299.99,
           "avg_90d_price": 0.0,
           "current_price": 229.95,
           "clip_coupon_amount": 0.0,
@@ -450,6 +471,7 @@
             269.99,
             279.95,
             269.99,
+            229.95,
             229.95
           ],
           "scout_notes": "Live early Black Friday drop at $229.99 (-23%). Includes anti-tangle conical brush bar, crevice tool, and combination tool.",
@@ -463,6 +485,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 229.99,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-22",
               "price": 229.95,
@@ -999,7 +1027,7 @@
           "amazon_query": "Cascadia+Board+Game+AEG",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 29.64,
+          "current_price": 37.05,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.0,
           "all_time_low": 0.0,
@@ -1016,12 +1044,13 @@
             34.98,
             37.47,
             37.05,
-            29.64
+            29.64,
+            37.05
           ],
           "scout_notes": "BGG 8.0/10. Zero mean blocking; kids draft wildlife tokens and spatial habitat tiles.",
-          "effective_price": 29.64,
-          "unit_effective_price": 29.64,
-          "discount_pct_off_msrp": 26,
+          "effective_price": 37.05,
+          "unit_effective_price": 37.05,
+          "discount_pct_off_msrp": 7,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1029,6 +1058,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B093H8RGXX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 37.05,
+              "source": "antigravity_automation",
+              "note": "Amazon retail price"
+            },
             {
               "date": "2026-11-22",
               "price": 29.64,
@@ -1217,7 +1252,7 @@
           "amazon_query": "ThinkFun+Gravity+Maze+Marble+Run",
           "msrp": 24.99,
           "avg_90d_price": 0.0,
-          "current_price": 17.49,
+          "current_price": 19.97,
           "clip_coupon_amount": 0.0,
           "strike_price": 19.5,
           "all_time_low": 0.0,
@@ -1233,19 +1268,26 @@
             19.97,
             17.49,
             19.97,
-            17.49
+            17.49,
+            19.97
           ],
           "scout_notes": "Brilliant solo/co-op spatial logic tower puzzle for 8+ year olds.",
-          "effective_price": 17.49,
-          "unit_effective_price": 0.29,
-          "discount_pct_off_msrp": 30,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-30%)",
-          "is_below_strike": true,
+          "effective_price": 19.97,
+          "unit_effective_price": 0.33,
+          "discount_pct_off_msrp": 20,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00IUAAK2A?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B00IUAAK2A",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 19.97,
+              "source": "antigravity_automation",
+              "note": "Amazon / retailer price"
+            },
             {
               "date": "2026-11-22",
               "price": 17.49,
