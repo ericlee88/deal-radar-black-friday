@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-22T05:06:34.985840+00:00",
+  "generated_at": "2026-11-22T14:06:16.705331+00:00",
   "missions": [
     {
       "id": 1,
@@ -24,7 +24,7 @@
           "amazon_query": "Mercer+Culinary+Hells+Handle+Stainless+Steel+Turner+Spatula",
           "msrp": 38.48,
           "avg_90d_price": 0.0,
-          "current_price": 24.93,
+          "current_price": 17.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 17.5,
           "all_time_low": 0.0,
@@ -37,12 +37,13 @@
           "unit_quantity": 1.0,
           "price_history": [
             17.99,
-            24.93
+            24.93,
+            17.99
           ],
           "scout_notes": "Precision-ground Japanese stainless steel blade flexes cleanly under fish, eggs, or smash burgers; dual-textured handle resists 450\u00b0F.",
-          "effective_price": 24.93,
-          "unit_effective_price": 24.93,
-          "discount_pct_off_msrp": 35,
+          "effective_price": 17.99,
+          "unit_effective_price": 17.99,
+          "discount_pct_off_msrp": 53,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -50,6 +51,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B001E17ZYS",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 17.99,
+              "source": "antigravity_automation",
+              "note": "WebstaurantStore price (Wasserstrom retail $24.93 / MSRP $38.48)"
+            },
             {
               "date": "2026-11-21",
               "price": 24.93,
@@ -74,7 +81,7 @@
           "title": "OXO Good Grips Restaurant Stainless Steel Turner & Brushed Steel Spatula Set",
           "asin_or_sku": "B082N73YPV",
           "amazon_query": "OXO+Good+Grips+Restaurant+Stainless+Steel+Turner",
-          "msrp": 13.99,
+          "msrp": 16.99,
           "avg_90d_price": 0.0,
           "current_price": 13.99,
           "clip_coupon_amount": 0.0,
@@ -94,14 +101,20 @@
           "scout_notes": "Stiff beveled edge ideal for deglazing stainless/cast-iron pans and flipping heavy cuts.",
           "effective_price": 13.99,
           "unit_effective_price": 13.99,
-          "discount_pct_off_msrp": 0,
+          "discount_pct_off_msrp": 18,
           "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-0%)",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-18%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B082N73YPV?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B082N73YPV",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 13.99,
+              "source": "antigravity_automation",
+              "note": "OXO direct price"
+            },
             {
               "date": "2026-11-21",
               "price": 13.99,
@@ -211,6 +224,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09FXD3ZCF",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 79.95,
+              "source": "antigravity_automation",
+              "note": "KnifeCenter / Blade HQ / MidwayUSA retailer price"
+            },
             {
               "date": "2026-11-21",
               "price": 79.95,
@@ -412,7 +431,7 @@
           "title": "Dyson Car+Boat Handheld Vacuum (50-Min Run Time + Mini Motorized Hair Screw Tool)",
           "asin_or_sku": "B0DLXGDHBX / DYSON-CAR-BOAT",
           "amazon_query": "Dyson+Car+Boat+Handheld+Vacuum",
-          "msrp": 299.99,
+          "msrp": 299.95,
           "avg_90d_price": 0.0,
           "current_price": 229.95,
           "clip_coupon_amount": 0.0,
@@ -553,7 +572,7 @@
           "amazon_query": "Dyson+V12+Detect+Slim+Cordless+Vacuum",
           "msrp": 729.99,
           "avg_90d_price": 0.0,
-          "current_price": 429.99,
+          "current_price": 399.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 399.99,
           "all_time_low": 0.0,
@@ -566,19 +585,26 @@
           "unit_quantity": 60.0,
           "price_history": [
             399.99,
-            429.99
+            429.99,
+            399.99
           ],
           "scout_notes": "30% lighter in handheld mode (2.2 lbs vs 3.3 lbs) and uses a push-button ON/OFF switch so you don't hold a trigger while detailing car seats.",
-          "effective_price": 429.99,
-          "unit_effective_price": 7.17,
-          "discount_pct_off_msrp": 41,
-          "deal_grade_code": "WAIT",
-          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
-          "is_below_strike": false,
+          "effective_price": 399.99,
+          "unit_effective_price": 6.67,
+          "discount_pct_off_msrp": 45,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-45%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B0B4X3H4MZ?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B0B4X3H4MZ",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 399.99,
+              "source": "antigravity_automation",
+              "note": "Walmart deal"
+            },
             {
               "date": "2026-11-21",
               "price": 429.99,
@@ -973,7 +999,7 @@
           "amazon_query": "Cascadia+Board+Game+AEG",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 37.05,
+          "current_price": 29.64,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.0,
           "all_time_low": 0.0,
@@ -989,12 +1015,13 @@
             37.05,
             34.98,
             37.47,
-            37.05
+            37.05,
+            29.64
           ],
           "scout_notes": "BGG 8.0/10. Zero mean blocking; kids draft wildlife tokens and spatial habitat tiles.",
-          "effective_price": 37.05,
-          "unit_effective_price": 37.05,
-          "discount_pct_off_msrp": 7,
+          "effective_price": 29.64,
+          "unit_effective_price": 29.64,
+          "discount_pct_off_msrp": 26,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1002,6 +1029,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B093H8RGXX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 29.64,
+              "source": "antigravity_automation",
+              "note": "Amazon Black Friday deal"
+            },
             {
               "date": "2026-11-22",
               "price": 37.05,
@@ -1044,9 +1077,9 @@
           "title": "Ticket to Ride (or Ticket to Ride Europe) Strategy Board Game (Ages 8+)",
           "asin_or_sku": "B000809OAO",
           "amazon_query": "Ticket+to+Ride+Board+Game",
-          "msrp": 59.99,
+          "msrp": 49.99,
           "avg_90d_price": 0.0,
-          "current_price": 39.99,
+          "current_price": 29.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -1061,12 +1094,13 @@
             29.99,
             39.99,
             49.99,
-            39.99
+            39.99,
+            29.99
           ],
           "scout_notes": "Gold-standard family game for 8yo+. Pairs with Cascadia & GraviTrax in the $24\u2013$26 3-for-2 sweet spot.",
-          "effective_price": 39.99,
-          "unit_effective_price": 39.99,
-          "discount_pct_off_msrp": 33,
+          "effective_price": 29.99,
+          "unit_effective_price": 29.99,
+          "discount_pct_off_msrp": 40,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1074,6 +1108,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B000809OAO",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 29.99,
+              "source": "antigravity_automation",
+              "note": "Amazon Black Friday deal"
+            },
             {
               "date": "2026-11-22",
               "price": 39.99,
@@ -1112,7 +1152,7 @@
           "amazon_query": "Ravensburger+GraviTrax+Starter+Set",
           "msrp": 69.99,
           "avg_90d_price": 0.0,
-          "current_price": 59.99,
+          "current_price": 48.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -1125,12 +1165,13 @@
           "unit_quantity": 122.0,
           "price_history": [
             67.64,
-            59.99
+            59.99,
+            48.99
           ],
           "scout_notes": "Includes magnetic Gauss cannon & switches; 63% off MSRP and harmonizes at ~$25.99 for 3-for-2.",
-          "effective_price": 59.99,
-          "unit_effective_price": 0.49,
-          "discount_pct_off_msrp": 14,
+          "effective_price": 48.99,
+          "unit_effective_price": 0.4,
+          "discount_pct_off_msrp": 30,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1138,6 +1179,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0BSXKTRYZ",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 48.99,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-22",
               "price": 59.99,
@@ -1170,7 +1217,7 @@
           "amazon_query": "ThinkFun+Gravity+Maze+Marble+Run",
           "msrp": 24.99,
           "avg_90d_price": 0.0,
-          "current_price": 19.97,
+          "current_price": 17.49,
           "clip_coupon_amount": 0.0,
           "strike_price": 19.5,
           "all_time_low": 0.0,
@@ -1185,19 +1232,26 @@
             17.99,
             19.97,
             17.49,
-            19.97
+            19.97,
+            17.49
           ],
           "scout_notes": "Brilliant solo/co-op spatial logic tower puzzle for 8+ year olds.",
-          "effective_price": 19.97,
-          "unit_effective_price": 0.33,
-          "discount_pct_off_msrp": 20,
-          "deal_grade_code": "WAIT",
-          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
-          "is_below_strike": false,
+          "effective_price": 17.49,
+          "unit_effective_price": 0.29,
+          "discount_pct_off_msrp": 30,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-30%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B00IUAAK2A?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B00IUAAK2A",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 17.49,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-22",
               "price": 19.97,
