@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-21T22:49:07.005006+00:00",
+  "generated_at": "2026-11-22T05:06:34.985840+00:00",
   "missions": [
     {
       "id": 1,
@@ -128,7 +128,7 @@
           "amazon_query": "304+stainless+steel+rice+washing+bowl+strainer+colander+basin+set",
           "msrp": 21.98,
           "avg_90d_price": 0.0,
-          "current_price": 25.59,
+          "current_price": 21.98,
           "clip_coupon_amount": 0.0,
           "strike_price": 18.0,
           "all_time_low": 0.0,
@@ -140,14 +140,14 @@
           "unit_name": "piece",
           "unit_quantity": 2.0,
           "price_history": [
-            25.59
+            21.98
           ],
           "scout_notes": "Laser-drilled 1.5mm side-drain perforations retain short/medium grain rice while draining starchy water rapidly; dishwasher safe without rusting.",
-          "effective_price": 25.59,
-          "unit_effective_price": 12.79,
-          "discount_pct_off_msrp": -16,
-          "deal_grade_code": "TRAP",
-          "deal_grade_label": "\u26a0\ufe0f SCALPER / TRAP \u2014 DO NOT BUY",
+          "effective_price": 21.98,
+          "unit_effective_price": 10.99,
+          "discount_pct_off_msrp": 0,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0H4QL9G8M?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B0H4QL9G8M",
@@ -292,7 +292,7 @@
           "title": "DeWalt 20V MAX XR Brushless 1/2\" Cordless Hammer Drill Kit (DCD805D2 / DCD798D1)",
           "asin_or_sku": "B09YXSNV98 / DCD805D2",
           "amazon_query": "DeWalt+DCD805D2+OR+DCD798D1+20V+MAX+Brushless+Hammer+Drill+Kit",
-          "msrp": 269.99,
+          "msrp": 299.0,
           "avg_90d_price": 0.0,
           "current_price": 199.0,
           "clip_coupon_amount": 0.0,
@@ -314,7 +314,7 @@
           "scout_notes": "During Black Friday Week, getting a brand-new brushless XR 1/2\" hammer drill + 2 batteries + charger costs the same as batteries alone! Add a $16 adapter for old 18V tools.",
           "effective_price": 199.0,
           "unit_effective_price": 199.0,
-          "discount_pct_off_msrp": 26,
+          "discount_pct_off_msrp": 33,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -322,6 +322,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 199.0,
+              "source": "antigravity_automation",
+              "note": "Amazon deal for DeWalt DCD805D2 kit"
+            },
             {
               "date": "2026-11-21",
               "price": 199.0,
@@ -408,7 +414,7 @@
           "amazon_query": "Dyson+Car+Boat+Handheld+Vacuum",
           "msrp": 299.99,
           "avg_90d_price": 0.0,
-          "current_price": 269.99,
+          "current_price": 229.95,
           "clip_coupon_amount": 0.0,
           "strike_price": 229.99,
           "all_time_low": 0.0,
@@ -424,19 +430,26 @@
             200.0,
             269.99,
             279.95,
-            269.99
+            269.99,
+            229.95
           ],
           "scout_notes": "Live early Black Friday drop at $229.99 (-23%). Includes anti-tangle conical brush bar, crevice tool, and combination tool.",
-          "effective_price": 269.99,
-          "unit_effective_price": 5.4,
-          "discount_pct_off_msrp": 10,
-          "deal_grade_code": "WAIT",
-          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
-          "is_below_strike": false,
+          "effective_price": 229.95,
+          "unit_effective_price": 4.6,
+          "discount_pct_off_msrp": 23,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-23%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B0DLXGDHBX?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 229.95,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-21",
               "price": 269.99,
@@ -740,6 +753,12 @@
           "price_source": "antigravity_automation",
           "price_log": [
             {
+              "date": "2026-11-22",
+              "price": 43.49,
+              "source": "antigravity_automation",
+              "note": "Amazon"
+            },
+            {
               "date": "2026-11-21",
               "price": 43.49,
               "source": "antigravity_automation",
@@ -810,7 +829,7 @@
           "amazon_query": "Cascade+Platinum+Plus+ActionPacs+81+Count",
           "msrp": 34.99,
           "avg_90d_price": 0.0,
-          "current_price": 34.99,
+          "current_price": 33.29,
           "clip_coupon_amount": 0.0,
           "strike_price": 18.0,
           "all_time_low": 0.0,
@@ -826,12 +845,13 @@
             34.5,
             33.29,
             29.42,
-            29.74
+            34.99,
+            28.3
           ],
           "scout_notes": "Pushes your P&G subtotal over $100 when paired with Metamucil, Bounty, and Charmin!",
-          "effective_price": 29.74,
-          "unit_effective_price": 0.37,
-          "discount_pct_off_msrp": 15,
+          "effective_price": 28.3,
+          "unit_effective_price": 0.35,
+          "discount_pct_off_msrp": 19,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -839,6 +859,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0CHD7GLN9",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 33.29,
+              "source": "antigravity_automation",
+              "note": "Walmart retail price"
+            },
             {
               "date": "2026-11-21",
               "price": 34.99,
@@ -947,7 +973,7 @@
           "amazon_query": "Cascadia+Board+Game+AEG",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 29.64,
+          "current_price": 37.05,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.0,
           "all_time_low": 0.0,
@@ -962,12 +988,13 @@
             29.64,
             37.05,
             34.98,
-            29.64
+            37.47,
+            37.05
           ],
           "scout_notes": "BGG 8.0/10. Zero mean blocking; kids draft wildlife tokens and spatial habitat tiles.",
-          "effective_price": 29.64,
-          "unit_effective_price": 29.64,
-          "discount_pct_off_msrp": 26,
+          "effective_price": 37.05,
+          "unit_effective_price": 37.05,
+          "discount_pct_off_msrp": 7,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -975,6 +1002,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B093H8RGXX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 37.05,
+              "source": "antigravity_automation",
+              "note": "Walmart / Barnes & Noble retail price"
+            },
             {
               "date": "2026-11-21",
               "price": 37.47,
@@ -1011,9 +1044,9 @@
           "title": "Ticket to Ride (or Ticket to Ride Europe) Strategy Board Game (Ages 8+)",
           "asin_or_sku": "B000809OAO",
           "amazon_query": "Ticket+to+Ride+Board+Game",
-          "msrp": 49.99,
+          "msrp": 59.99,
           "avg_90d_price": 0.0,
-          "current_price": 49.99,
+          "current_price": 39.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -1027,12 +1060,13 @@
           "price_history": [
             29.99,
             39.99,
-            49.99
+            49.99,
+            39.99
           ],
           "scout_notes": "Gold-standard family game for 8yo+. Pairs with Cascadia & GraviTrax in the $24\u2013$26 3-for-2 sweet spot.",
-          "effective_price": 49.99,
-          "unit_effective_price": 49.99,
-          "discount_pct_off_msrp": 0,
+          "effective_price": 39.99,
+          "unit_effective_price": 39.99,
+          "discount_pct_off_msrp": 33,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1040,6 +1074,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B000809OAO",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 39.99,
+              "source": "antigravity_automation",
+              "note": "Target / Walmart retail price"
+            },
             {
               "date": "2026-11-21",
               "price": 49.99,
@@ -1070,7 +1110,7 @@
           "title": "Ravensburger GraviTrax Starter Set (122-Piece Interactive Marble Run STEM Puzzle, Ages 8+)",
           "asin_or_sku": "B0BSXKTRYZ",
           "amazon_query": "Ravensburger+GraviTrax+Starter+Set",
-          "msrp": 59.99,
+          "msrp": 69.99,
           "avg_90d_price": 0.0,
           "current_price": 59.99,
           "clip_coupon_amount": 0.0,
@@ -1090,7 +1130,7 @@
           "scout_notes": "Includes magnetic Gauss cannon & switches; 63% off MSRP and harmonizes at ~$25.99 for 3-for-2.",
           "effective_price": 59.99,
           "unit_effective_price": 0.49,
-          "discount_pct_off_msrp": 0,
+          "discount_pct_off_msrp": 14,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1098,6 +1138,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0BSXKTRYZ",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 59.99,
+              "source": "antigravity_automation",
+              "note": "Target retail price"
+            },
             {
               "date": "2026-11-21",
               "price": 59.99,
@@ -1124,7 +1170,7 @@
           "amazon_query": "ThinkFun+Gravity+Maze+Marble+Run",
           "msrp": 24.99,
           "avg_90d_price": 0.0,
-          "current_price": 17.49,
+          "current_price": 19.97,
           "clip_coupon_amount": 0.0,
           "strike_price": 19.5,
           "all_time_low": 0.0,
@@ -1138,19 +1184,26 @@
           "price_history": [
             17.99,
             19.97,
-            17.49
+            17.49,
+            19.97
           ],
           "scout_notes": "Brilliant solo/co-op spatial logic tower puzzle for 8+ year olds.",
-          "effective_price": 17.49,
-          "unit_effective_price": 0.29,
-          "discount_pct_off_msrp": 30,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-30%)",
-          "is_below_strike": true,
+          "effective_price": 19.97,
+          "unit_effective_price": 0.33,
+          "discount_pct_off_msrp": 20,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00IUAAK2A?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B00IUAAK2A",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-22",
+              "price": 19.97,
+              "source": "antigravity_automation",
+              "note": "Walmart retail price"
+            },
             {
               "date": "2026-11-21",
               "price": 17.49,
