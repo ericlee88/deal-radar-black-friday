@@ -46,7 +46,11 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
     _strikeCtrl = TextEditingController(
       text: o.strikePrice > 0 ? o.strikePrice.toStringAsFixed(2) : '',
     );
-    _asinCtrl = TextEditingController(text: o.extractedAsin ?? o.asinOrSku);
+    _asinCtrl = TextEditingController(
+      text: o.isAmazon
+          ? (o.extractedAsin ?? (o.productUrl.isNotEmpty ? o.productUrl : o.asinOrSku))
+          : o.openUrl,
+    );
   }
 
   @override
@@ -151,7 +155,9 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
       final atl = double.tryParse(_atlCtrl.text.trim());
       final coupon = double.tryParse(_couponCtrl.text.trim());
       final strike = double.tryParse(_strikeCtrl.text.trim());
-      final asinRaw = _asinCtrl.text.trim();
+      final linkOrAsin = _asinCtrl.text.trim();
+      final isFullUrl = linkOrAsin.toLowerCase().startsWith('http://') ||
+          linkOrAsin.toLowerCase().startsWith('https://');
 
       await ref.read(dealDashboardProvider.notifier).patchOption(
             optionId: widget.option.id,
@@ -160,7 +166,8 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
             allTimeLow: atl,
             clipCouponAmount: coupon,
             strikePrice: strike,
-            asinOrSku: asinRaw.isNotEmpty ? asinRaw : null,
+            asinOrSku: (!isFullUrl && linkOrAsin.isNotEmpty) ? linkOrAsin : null,
+            productUrl: isFullUrl ? linkOrAsin : null,
             priceSource: _sourceTag,
             appendHistoryPoint: true,
             historyNote: _sourceTag == 'camelcamelcamel'
@@ -270,18 +277,20 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
                 runSpacing: 8,
                 children: [
                   FilledButton.icon(
-                    onPressed: () => _launchExternal(opt.camelUrl),
-                    icon: const Icon(Icons.show_chart_rounded, size: 16),
-                    label: const Text('Open CamelCamelCamel'),
+                    onPressed: () => _launchExternal(opt.openUrl),
+                    icon: const Icon(Icons.open_in_new, size: 15),
+                    label: Text('Open on ${opt.siteName}'),
                     style: FilledButton.styleFrom(
-                      backgroundColor: const Color(0xFF0EA5E9),
-                      foregroundColor: Colors.white,
+                      backgroundColor: const Color(0xFF22C55E),
+                      foregroundColor: const Color(0xFF052E16),
                     ),
                   ),
                   OutlinedButton.icon(
-                    onPressed: () => _launchExternal(opt.amazonUrl),
-                    icon: const Icon(Icons.open_in_new, size: 15),
-                    label: const Text('Open Amazon Product Page'),
+                    onPressed: () => _launchExternal(opt.camelUrl),
+                    icon: const Icon(Icons.show_chart_rounded, size: 16),
+                    label: Text(
+                      opt.isAmazon ? 'Open CamelCamelCamel' : 'Compare on CamelCamelCamel',
+                    ),
                   ),
                 ],
               ),
@@ -470,7 +479,7 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
 
                       // Editable Price Fields
                       const Text(
-                        'Log Verified Price, Amazon ASIN/URL & Historical Benchmarks (localStorage)',
+                        'Log Verified Price, Product Link (Any Site) & Historical Benchmarks (localStorage)',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
@@ -482,8 +491,8 @@ class _PriceHistoryDialogState extends ConsumerState<PriceHistoryDialog> {
                         controller: _asinCtrl,
                         style: const TextStyle(fontSize: 12.5, fontFamily: 'monospace'),
                         decoration: const InputDecoration(
-                          labelText: 'Amazon ASIN or Product URL (optional -- unlocks direct /dp/ link & chart)',
-                          hintText: 'e.g. B09FXD3ZCF or https://www.amazon.com/dp/B09FXD3ZCF',
+                          labelText: 'Product URL (Any Site) or Amazon ASIN',
+                          hintText: 'https://www.walmart.com/ip/... or https://www.bestbuy.com/... or B09FXD3ZCF',
                           isDense: true,
                           border: OutlineInputBorder(),
                         ),

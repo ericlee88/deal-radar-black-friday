@@ -183,12 +183,32 @@ class _ProductThumbnailState extends State<ProductThumbnail> {
       );
     }
 
-    return const _ProductVisualTheme(
-      brand: 'AMAZON BLACK FRIDAY',
-      accent: Color(0xFF38BDF8),
-      secondary: Color(0xFF0284C7),
+    final siteLower = option.siteName.toLowerCase();
+    Color siteAccent = const Color(0xFF38BDF8);
+    Color siteSecondary = const Color(0xFF0284C7);
+    if (siteLower.contains('target') || siteLower.contains('costco')) {
+      siteAccent = const Color(0xFFF87171);
+      siteSecondary = const Color(0xFFDC2626);
+    } else if (siteLower.contains('best buy')) {
+      siteAccent = const Color(0xFFFACC15);
+      siteSecondary = const Color(0xFF1D4ED8);
+    } else if (siteLower.contains('home depot')) {
+      siteAccent = const Color(0xFFFB923C);
+      siteSecondary = const Color(0xFFEA580C);
+    } else if (siteLower.contains('walmart') || siteLower.contains('lowe')) {
+      siteAccent = const Color(0xFF60A5FA);
+      siteSecondary = const Color(0xFF2563EB);
+    } else if (siteLower.contains('rei') || siteLower.contains('iherb')) {
+      siteAccent = const Color(0xFF4ADE80);
+      siteSecondary = const Color(0xFF15803D);
+    }
+
+    return _ProductVisualTheme(
+      brand: option.isAmazon ? 'AMAZON BLACK FRIDAY' : option.siteName.toUpperCase(),
+      accent: siteAccent,
+      secondary: siteSecondary,
       kind: _IllustrationKind.genericProduct,
-      specTag: 'VERIFIED SKU',
+      specTag: option.isAmazon ? 'VERIFIED SKU' : 'DIRECT LINK',
     );
   }
 

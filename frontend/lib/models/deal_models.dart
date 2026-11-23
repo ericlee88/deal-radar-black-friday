@@ -8,6 +8,72 @@ String cleanCanvasKitText(String input) {
       .trim();
 }
 
+const Map<String, String> _kKnownRetailSites = {
+  'amazon.com': 'Amazon',
+  'amzn.to': 'Amazon',
+  'a.co': 'Amazon',
+  'walmart.com': 'Walmart',
+  'target.com': 'Target',
+  'bestbuy.com': 'Best Buy',
+  'homedepot.com': 'Home Depot',
+  'lowes.com': "Lowe's",
+  'costco.com': 'Costco',
+  'newegg.com': 'Newegg',
+  'bhphotovideo.com': 'B&H',
+  'rei.com': 'REI',
+  'dyson.com': 'Dyson',
+  'apple.com': 'Apple',
+  'iherb.com': 'iHerb',
+  'ebay.com': 'eBay',
+  'microcenter.com': 'Micro Center',
+  'samsclub.com': "Sam's Club",
+  'williams-sonoma.com': 'Williams-Sonoma',
+  'chewy.com': 'Chewy',
+  'wayfair.com': 'Wayfair',
+  'sephora.com': 'Sephora',
+  'ulta.com': 'Ulta',
+  'nike.com': 'Nike',
+  'adidas.com': 'Adidas',
+  'acmetools.com': 'Acme Tools',
+  'knifecenter.com': 'KnifeCenter',
+  'knivesshipfree.com': 'KnivesShipFree',
+};
+
+String detectSiteName(String url) {
+  final trimmed = url.trim();
+  if (trimmed.isEmpty) return 'Amazon';
+  final uri = Uri.tryParse(trimmed);
+  if (uri == null || uri.host.isEmpty) return 'Amazon';
+  var host = uri.host.toLowerCase();
+  if (host.startsWith('www.')) host = host.substring(4);
+  if (host.startsWith('m.')) host = host.substring(2);
+  for (final entry in _kKnownRetailSites.entries) {
+    if (host == entry.key || host.endsWith('.${entry.key}')) {
+      return entry.value;
+    }
+  }
+  final parts = host.split('.');
+  final core = parts.length >= 2 ? parts[parts.length - 2] : parts.first;
+  if (core.isEmpty) return 'Web Store';
+  return core
+      .split('-')
+      .where((p) => p.isNotEmpty)
+      .map((p) => p[0].toUpperCase() + p.substring(1))
+      .join(' ');
+}
+
+bool isAmazonUrl(String url) {
+  final uri = Uri.tryParse(url.trim());
+  if (uri == null || uri.host.isEmpty) return false;
+  var host = uri.host.toLowerCase();
+  if (host.startsWith('www.')) host = host.substring(4);
+  if (host.startsWith('m.')) host = host.substring(2);
+  return host == 'amazon.com' ||
+      host.endsWith('.amazon.com') ||
+      host == 'a.co' ||
+      host == 'amzn.to';
+}
+
 enum MissionNodeType {
   exactSku('EXACT_SKU', 'Exact SKU', 'Pinned ASIN / Model'),
   xorFork('XOR_FORK', 'XOR Decision Fork', 'Mutually Exclusive Path A vs Path B'),
@@ -84,6 +150,8 @@ class DealOptionNode {
   final String dealGradeLabel;
   final bool isBelowStrike;
   final String amazonUrl;
+  final String productUrl;
+  final String siteName;
   final String camelUrl;
 
   const DealOptionNode({
@@ -120,10 +188,24 @@ class DealOptionNode {
     required this.dealGradeLabel,
     required this.isBelowStrike,
     required this.amazonUrl,
+    this.productUrl = '',
+    this.siteName = 'Amazon',
     required this.camelUrl,
   });
 
   bool get hasPrice => currentPrice > 0.0;
+
+  String get openUrl => productUrl.isNotEmpty ? productUrl : amazonUrl;
+
+  bool get isAmazon => isAmazonUrl(openUrl) || siteName.toLowerCase() == 'amazon';
+
+  String get openButtonLabel {
+    if (isAmazon) {
+      final skuShort = asinOrSku.split(' ').first.trim();
+      return skuShort.isNotEmpty ? 'Open on Amazon ($skuShort)' : 'Open on Amazon';
+    }
+    return 'Open on $siteName';
+  }
 
   bool get isVerifiedPrice =>
       priceSource == 'camelcamelcamel' ||
@@ -147,6 +229,12 @@ class DealOptionNode {
   factory DealOptionNode.fromJson(Map<String, dynamic> json) {
     final histRaw = (json['price_history'] as List<dynamic>? ?? []);
     final logRaw = (json['price_log'] as List<dynamic>? ?? []);
+    final rawAmazonUrl = json['amazon_url'] as String? ?? '';
+    final rawProductUrl = json['product_url'] as String? ?? '';
+    final resolvedUrl = rawProductUrl.isNotEmpty ? rawProductUrl : rawAmazonUrl;
+    final rawSite = json['site_name'] as String? ?? '';
+    final resolvedSite = rawSite.isNotEmpty ? rawSite : detectSiteName(resolvedUrl);
+
     return DealOptionNode(
       id: (json['id'] as num).toInt(),
       missionId: (json['mission_id'] as num).toInt(),
@@ -183,7 +271,9 @@ class DealOptionNode {
       dealGradeCode: json['deal_grade_code'] as String? ?? 'WAIT',
       dealGradeLabel: cleanCanvasKitText(json['deal_grade_label'] as String? ?? ''),
       isBelowStrike: json['is_below_strike'] as bool? ?? false,
-      amazonUrl: json['amazon_url'] as String? ?? '',
+      amazonUrl: resolvedUrl,
+      productUrl: resolvedUrl,
+      siteName: cleanCanvasKitText(resolvedSite),
       camelUrl: json['camel_url'] as String? ?? '',
     );
   }

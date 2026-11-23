@@ -498,10 +498,10 @@ class _OptionBranchTile extends ConsumerWidget {
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               FilledButton.tonalIcon(
-                onPressed: () => _launchExternal(option.amazonUrl),
+                onPressed: () => _launchExternal(option.openUrl),
                 icon: const Icon(Icons.open_in_new, size: 14),
                 label: Text(
-                  'Product Page (${option.asinOrSku.split(" ").first})',
+                  option.openButtonLabel,
                   style: const TextStyle(fontSize: 11.5),
                 ),
                 style: FilledButton.styleFrom(

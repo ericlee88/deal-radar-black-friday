@@ -147,12 +147,19 @@ async def _query_gemini_batch(
         bk = item["branch_key"]
         item_by_key[bk] = item
         asin = (item.get("asin_or_sku") or "").split(" ")[0]
+        site_name = (item.get("site_name") or "").strip()
+        product_url = (item.get("product_url") or "").strip()
+        extra = ""
+        if site_name and site_name.lower() != "amazon":
+            extra += f" | Retailer: {site_name}"
+        if product_url and "amazon.com/s?k=" not in product_url:
+            extra += f" | URL: {product_url}"
         lines.append(
-            f"- branch_key: {bk} | ASIN: {asin} | Product: {item['title']}"
+            f"- branch_key: {bk} | SKU/ASIN: {asin} | Product: {item['title']}{extra}"
         )
 
     prompt = (
-        "Use Google Search to check the CURRENT US dollar retail or Amazon price today for each product below.\n"
+        "Use Google Search to check the CURRENT US dollar retail price today for each product below (at the specified Retailer/URL if provided, or Amazon/major US retailers).\n"
         "STRICT RULES:\n"
         "1. ONLY include an item if you find a real, verified current USD price in the search results.\n"
         "2. Do NOT guess, estimate, or invent prices. Omit any item without a confirmed current USD price.\n"

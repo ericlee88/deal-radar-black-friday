@@ -95,6 +95,31 @@ class DealDashboardNotifier extends AsyncNotifier<DealDashboardState> {
     return created;
   }
 
+  Future<ShoppingMission> addCustomProductLink({
+    required String productUrl,
+    String? title,
+    double? strikePrice,
+    double? currentPrice,
+    String categoryTag = 'custom',
+    String? scoutNotes,
+  }) async {
+    final current = state.valueOrNull;
+    if (current != null) {
+      state = AsyncData(current.copyWith(isBusy: true));
+    }
+    final repo = ref.read(dealRepositoryProvider);
+    final created = await repo.createMissionFromLink(
+      productUrl: productUrl,
+      title: title,
+      strikePrice: strikePrice,
+      currentPrice: currentPrice,
+      categoryTag: categoryTag,
+      scoutNotes: scoutNotes,
+    );
+    state = await AsyncValue.guard(() => _fetchAll());
+    return created;
+  }
+
   Future<void> deleteMission(int missionId) async {
     final repo = ref.read(dealRepositoryProvider);
     await repo.deleteMission(missionId);
@@ -112,6 +137,8 @@ class DealDashboardNotifier extends AsyncNotifier<DealDashboardState> {
     bool? selectedInStack,
     bool? snagged,
     String? asinOrSku,
+    String? productUrl,
+    String? title,
     String? priceSource,
     bool appendHistoryPoint = false,
     String? historyNote,
@@ -128,6 +155,8 @@ class DealDashboardNotifier extends AsyncNotifier<DealDashboardState> {
       selectedInStack: selectedInStack,
       snagged: snagged,
       asinOrSku: asinOrSku,
+      productUrl: productUrl,
+      title: title,
       priceSource: priceSource,
       appendHistoryPoint: appendHistoryPoint,
       historyNote: historyNote,

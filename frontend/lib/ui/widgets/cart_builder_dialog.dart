@@ -370,7 +370,7 @@ class _AmazonCartBuilderDialogState extends State<AmazonCartBuilderDialog> {
                             ),
                             const SizedBox(width: 8),
                             OutlinedButton.icon(
-                              onPressed: () => _launchUrl(item.amazonUrl),
+                              onPressed: () => _launchUrl(item.openUrl),
                               icon: const Icon(Icons.open_in_new_rounded, size: 14),
                               label: const Text('Page', style: TextStyle(fontSize: 11.5)),
                               style: OutlinedButton.styleFrom(
@@ -381,6 +381,73 @@ class _AmazonCartBuilderDialogState extends State<AmazonCartBuilderDialog> {
                         ),
                       ),
                     ),
+                    if (plan.searchFallbackItems.isNotEmpty) ...[
+                      const SizedBox(height: 14),
+                      Text(
+                        'OTHER RETAILERS & DIRECT PRODUCT LINKS (${plan.searchFallbackItems.length})',
+                        style: const TextStyle(
+                          fontSize: 11.5,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xFF38BDF8),
+                          letterSpacing: 0.6,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      ...plan.searchFallbackItems.map(
+                        (item) => Container(
+                          margin: const EdgeInsets.only(bottom: 8),
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF161C28),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.white10),
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      item.title,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      'Store: ${item.siteName}'
+                                      '${item.hasPrice ? " | Price: \$${item.effectivePrice.toStringAsFixed(2)}" : " | Price not logged yet"}',
+                                      style: const TextStyle(
+                                        fontSize: 11.5,
+                                        color: Colors.white60,
+                                        fontFamily: 'monospace',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              FilledButton.tonalIcon(
+                                onPressed: () => _launchUrl(item.openUrl),
+                                icon: const Icon(Icons.open_in_new_rounded, size: 14),
+                                label: Text(
+                                  'Open ${item.siteName}',
+                                  style: const TextStyle(fontSize: 11.5),
+                                ),
+                                style: FilledButton.styleFrom(
+                                  visualDensity: VisualDensity.compact,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),

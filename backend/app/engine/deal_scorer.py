@@ -9,6 +9,7 @@ from app.schemas import (
     DealOptionRead,
     ShoppingMissionRead,
 )
+from app.url_parser import extract_site_name, is_amazon_url
 
 _ASIN_REGEX = re.compile(r"\b(B0[A-Z0-9]{8})\b")
 
@@ -75,6 +76,16 @@ def enrich_option_node(node: DealOptionNode, sns_tier_rate: float = 0.15) -> Dea
     except Exception:
         history = [eff] if has_price else []
 
+    asin = extract_amazon_asin(node.asin_or_sku)
+    custom_url = (getattr(node, "product_url", "") or "").strip()
+    if custom_url:
+        resolved_url = custom_url
+    elif asin:
+        resolved_url = f"https://www.amazon.com/dp/{asin}?psc=1"
+    else:
+        resolved_url = f"https://www.amazon.com/s?k={node.amazon_query}&rh=p_6%3AATVPDKIKX0DER"
+    site_name = extract_site_name(resolved_url)
+
     return DealOptionRead(
         id=node.id or 0,
         mission_id=node.mission_id,
@@ -106,14 +117,12 @@ def enrich_option_node(node: DealOptionNode, sns_tier_rate: float = 0.15) -> Dea
         deal_grade_code=grade_code,
         deal_grade_label=grade_label,
         is_below_strike=(has_price and node.strike_price > 0 and eff <= node.strike_price and not node.is_trap_warning),
-        amazon_url=(
-            f"https://www.amazon.com/dp/{asin}?psc=1"
-            if (asin := extract_amazon_asin(node.asin_or_sku))
-            else f"https://www.amazon.com/s?k={node.amazon_query}&rh=p_6%3AATVPDKIKX0DER"
-        ),
+        amazon_url=resolved_url,
+        product_url=resolved_url,
+        site_name=site_name,
         camel_url=(
             f"https://camelcamelcamel.com/product/{asin}"
-            if (asin := extract_amazon_asin(node.asin_or_sku))
+            if asin
             else f"https://camelcamelcamel.com/search?sq={node.amazon_query}"
         ),
     )
@@ -249,7 +258,7 @@ def build_amazon_cart_plan(
     for node in selected_nodes:
         dto = enrich_option_node(node, sns_tier_rate=sns_rate)
         asin = extract_amazon_asin(node.asin_or_sku)
-        if asin:
+        if asin and is_amazon_url(dto.product_url):
             # Prefer direct product page /dp/{asin} link when a real ASIN is known
             dto.amazon_url = f"https://www.amazon.com/dp/{asin}?psc=1"
             direct_items.append(dto)

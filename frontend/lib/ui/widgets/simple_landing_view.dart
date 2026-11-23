@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../models/deal_models.dart';
 import '../../providers/deal_providers.dart';
+import '../../repositories/local_deal_store.dart';
 import 'cart_builder_dialog.dart';
 import 'price_history_dialog.dart';
 import 'product_thumbnail.dart';
@@ -37,12 +38,305 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
     _quickAddCtrl.clear();
     final created =
         await ref.read(dealDashboardProvider.notifier).translateAndAddIntent(text);
-    if (mounted && created.options.isNotEmpty) {
-      showDialog(
-        context: context,
-        builder: (_) => PriceHistoryDialog(option: created.options.first),
-      );
+    if (!mounted) return;
+    if (_selectedCategory != 'top_picks' &&
+        _selectedCategory != 'all' &&
+        _selectedCategory != created.categoryTag) {
+      setState(() => _selectedCategory = created.categoryTag);
     }
+    if (created.options.isNotEmpty) {
+      final opt = created.options.first;
+      if (!opt.hasPrice) {
+        showDialog(
+          context: context,
+          builder: (_) => PriceHistoryDialog(option: opt),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Added "${opt.title}" (${opt.siteName}) to your watchlist!'),
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _showAddProductLinkDialog() async {
+    final urlCtrl = TextEditingController();
+    final titleCtrl = TextEditingController();
+    final currentCtrl = TextEditingController();
+    final strikeCtrl = TextEditingController();
+    final notesCtrl = TextEditingController();
+    String selectedCategory = 'custom';
+    String detectedSite = '';
+    String? errorText;
+    bool submitting = false;
+    bool titleEditedManually = false;
+
+    await showDialog<void>(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setModalState) {
+          void onUrlChanged(String raw) {
+            final parsed = LocalDealStore.parseProductLink(raw);
+            setModalState(() {
+              errorText = null;
+              if (parsed != null) {
+                detectedSite = parsed.siteName;
+                if (!titleEditedManually && parsed.title.isNotEmpty) {
+                  titleCtrl.text = parsed.title;
+                }
+                if (parsed.inlinePrice != null && currentCtrl.text.trim().isEmpty) {
+                  currentCtrl.text = parsed.inlinePrice!.toStringAsFixed(2);
+                }
+              } else {
+                detectedSite = '';
+              }
+            });
+          }
+
+          Future<void> submit() async {
+            final rawUrl = urlCtrl.text.trim();
+            if (!rawUrl.toLowerCase().startsWith('http://') &&
+                !rawUrl.toLowerCase().startsWith('https://')) {
+              setModalState(() {
+                errorText = 'Please paste a full link starting with https:// or http://';
+              });
+              return;
+            }
+            setModalState(() {
+              submitting = true;
+              errorText = null;
+            });
+            try {
+              final cur = double.tryParse(currentCtrl.text.trim());
+              final strike = double.tryParse(strikeCtrl.text.trim());
+              final created = await ref
+                  .read(dealDashboardProvider.notifier)
+                  .addCustomProductLink(
+                    productUrl: rawUrl,
+                    title: titleCtrl.text.trim().isNotEmpty ? titleCtrl.text.trim() : null,
+                    currentPrice: cur,
+                    strikePrice: strike,
+                    categoryTag: selectedCategory,
+                    scoutNotes: notesCtrl.text.trim().isNotEmpty ? notesCtrl.text.trim() : null,
+                  );
+              if (ctx.mounted) Navigator.of(ctx).pop();
+              if (mounted) {
+                if (_selectedCategory != 'top_picks' &&
+                    _selectedCategory != 'all' &&
+                    _selectedCategory != created.categoryTag) {
+                  setState(() => _selectedCategory = created.categoryTag);
+                }
+                final site = created.options.isNotEmpty
+                    ? created.options.first.siteName
+                    : 'Web Store';
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Added $site link: ${created.title}'),
+                  ),
+                );
+              }
+            } catch (e) {
+              setModalState(() {
+                submitting = false;
+                errorText = '$e';
+              });
+            }
+          }
+
+          return Dialog(
+            backgroundColor: const Color(0xFF131822),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+              side: const BorderSide(color: Colors.white12),
+            ),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 560),
+              child: Padding(
+                padding: const EdgeInsets.all(22),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.add_link_rounded, color: Color(0xFF38BDF8), size: 22),
+                          const SizedBox(width: 8),
+                          const Expanded(
+                            child: Text(
+                              'Add Custom Product Link (Any Site)',
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w800,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          if (detectedSite.isNotEmpty)
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF22C55E).withValues(alpha: 0.16),
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                  color: const Color(0xFF22C55E).withValues(alpha: 0.45),
+                                ),
+                              ),
+                              child: Text(
+                                detectedSite.toUpperCase(),
+                                style: const TextStyle(
+                                  fontSize: 10.5,
+                                  fontWeight: FontWeight.w800,
+                                  color: Color(0xFF4ADE80),
+                                ),
+                              ),
+                            ),
+                          IconButton(
+                            onPressed: () => Navigator.of(ctx).pop(),
+                            icon: const Icon(Icons.close, color: Colors.white60),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      const Text(
+                        'Supports Amazon, Walmart, Target, Best Buy, Home Depot, Costco, Lowe\'s, Dyson, REI, or any retail URL.',
+                        style: TextStyle(fontSize: 12.5, color: Colors.white60),
+                      ),
+                      const SizedBox(height: 16),
+                      TextField(
+                        controller: urlCtrl,
+                        onChanged: onUrlChanged,
+                        autofocus: true,
+                        style: const TextStyle(fontSize: 13, fontFamily: 'monospace'),
+                        decoration: const InputDecoration(
+                          labelText: 'Product URL *',
+                          hintText: 'https://www.walmart.com/ip/... or https://www.bestbuy.com/site/...',
+                          border: OutlineInputBorder(),
+                          isDense: true,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      TextField(
+                        controller: titleCtrl,
+                        onChanged: (_) => titleEditedManually = true,
+                        style: const TextStyle(fontSize: 13.5),
+                        decoration: const InputDecoration(
+                          labelText: 'Product Name (auto-filled from link)',
+                          hintText: 'e.g. Sony WH-1000XM5 Wireless Headphones',
+                          border: OutlineInputBorder(),
+                          isDense: true,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: currentCtrl,
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                              style: const TextStyle(fontSize: 13, fontFamily: 'monospace'),
+                              decoration: const InputDecoration(
+                                labelText: 'Current Price (\$)',
+                                hintText: 'Optional',
+                                border: OutlineInputBorder(),
+                                isDense: true,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: TextField(
+                              controller: strikeCtrl,
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                              style: const TextStyle(fontSize: 13, fontFamily: 'monospace'),
+                              decoration: const InputDecoration(
+                                labelText: 'Target Strike Price (\$)',
+                                hintText: 'Optional',
+                                border: OutlineInputBorder(),
+                                isDense: true,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      DropdownButtonFormField<String>(
+                        value: selectedCategory,
+                        dropdownColor: const Color(0xFF1A1F2C),
+                        decoration: const InputDecoration(
+                          labelText: 'Category',
+                          border: OutlineInputBorder(),
+                          isDense: true,
+                        ),
+                        items: const [
+                          DropdownMenuItem(value: 'custom', child: Text('My Links')),
+                          DropdownMenuItem(value: 'kitchen', child: Text('Kitchen & 304 Basins')),
+                          DropdownMenuItem(value: 'tools', child: Text('Tools & Hardware')),
+                          DropdownMenuItem(value: 'vacuums', child: Text('Vacuums & Home')),
+                          DropdownMenuItem(value: 'consumables', child: Text('Home Essentials')),
+                          DropdownMenuItem(value: 'health', child: Text('Health & Supplements')),
+                          DropdownMenuItem(value: 'games', child: Text('Games & Puzzles')),
+                        ],
+                        onChanged: (v) {
+                          if (v != null) setModalState(() => selectedCategory = v);
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      TextField(
+                        controller: notesCtrl,
+                        maxLines: 2,
+                        style: const TextStyle(fontSize: 12.5),
+                        decoration: const InputDecoration(
+                          labelText: 'Notes (optional)',
+                          hintText: 'e.g. Watch for Black Friday promo code or store pickup deal',
+                          border: OutlineInputBorder(),
+                          isDense: true,
+                        ),
+                      ),
+                      if (errorText != null) ...[
+                        const SizedBox(height: 10),
+                        Text(
+                          errorText!,
+                          style: const TextStyle(fontSize: 12, color: Color(0xFFF87171)),
+                        ),
+                      ],
+                      const SizedBox(height: 18),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: submitting ? null : () => Navigator.of(ctx).pop(),
+                            child: const Text('Cancel'),
+                          ),
+                          const SizedBox(width: 8),
+                          FilledButton.icon(
+                            onPressed: submitting ? null : submit,
+                            icon: const Icon(Icons.add_rounded, size: 17),
+                            label: Text(submitting ? 'Adding...' : 'Add to Radar'),
+                            style: FilledButton.styleFrom(
+                              backgroundColor: const Color(0xFF22C55E),
+                              foregroundColor: const Color(0xFF052E16),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+
+    urlCtrl.dispose();
+    titleCtrl.dispose();
+    currentCtrl.dispose();
+    strikeCtrl.dispose();
+    notesCtrl.dispose();
   }
 
   Future<void> _launchAmazon(String url) async {
@@ -131,7 +425,7 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
                             entry: _ProductCardEntry(mission: mission, option: opt),
                             insideModal: true,
                             onCompare: () {},
-                            onLaunchAmazon: () => _launchAmazon(opt.amazonUrl),
+                            onLaunchAmazon: () => _launchAmazon(opt.openUrl),
                           ),
                         );
                       }).toList(),
@@ -188,7 +482,7 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
                   child: _SimpleProductCard(
                     entry: entry,
                     onCompare: () => _showComparisonModal(context, entry.mission),
-                    onLaunchAmazon: () => _launchAmazon(entry.option.amazonUrl),
+                    onLaunchAmazon: () => _launchAmazon(entry.option.openUrl),
                   ),
                 );
               }).toList(),
@@ -332,7 +626,7 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
             ),
             child: Row(
               children: [
-                const Icon(Icons.search_rounded, color: Color(0xFF38BDF8), size: 22),
+                const Icon(Icons.link_rounded, color: Color(0xFF38BDF8), size: 22),
                 const SizedBox(width: 10),
                 Expanded(
                   child: TextField(
@@ -341,14 +635,25 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
                     style: const TextStyle(fontSize: 14, color: Colors.white),
                     decoration: const InputDecoration(
                       hintText:
-                          'Paste an Amazon URL/ASIN or type an item + target price (e.g., "AirPods Pro 2 \$189")...',
+                          'Paste any product URL (Amazon, Walmart, Target, Best Buy, Home Depot...) or item + \$price...',
                       hintStyle: TextStyle(color: Colors.white38, fontSize: 13.5),
                       border: InputBorder.none,
                       isDense: true,
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 8),
+                OutlinedButton.icon(
+                  onPressed: widget.data.isBusy ? null : _showAddProductLinkDialog,
+                  icon: const Icon(Icons.add_link_rounded, size: 17),
+                  label: const Text('Add Link'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: const Color(0xFF38BDF8),
+                    side: BorderSide(color: const Color(0xFF38BDF8).withValues(alpha: 0.45)),
+                    padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 12),
+                  ),
+                ),
+                const SizedBox(width: 8),
                 FilledButton.icon(
                   onPressed: widget.data.isBusy ? null : () => _submitQuickAdd(),
                   icon: const Icon(Icons.add_rounded, size: 18),
@@ -436,9 +741,20 @@ class _SimpleLandingViewState extends ConsumerState<SimpleLandingView> {
   }
 
   Widget _buildCategoryPills() {
+    final totalDeals = widget.data.missions
+        .expand((m) => m.options)
+        .where((o) => !o.isTrapWarning)
+        .length;
+    final customCount = widget.data.missions
+        .where((m) => m.categoryTag == 'custom')
+        .expand((m) => m.options)
+        .where((o) => !o.isTrapWarning)
+        .length;
+
     final categories = [
       ('top_picks', 'Top Recommended Picks', Icons.auto_awesome_rounded),
-      ('all', 'All Deals (19)', Icons.grid_view_rounded),
+      ('all', 'All Deals ($totalDeals)', Icons.grid_view_rounded),
+      ('custom', customCount > 0 ? 'My Links ($customCount)' : 'My Links', Icons.link_rounded),
       ('kitchen', 'Kitchen & 304 Basins', Icons.restaurant_menu_rounded),
       ('tools', 'Tools & DeWalt', Icons.handyman_rounded),
       ('vacuums', 'Dyson Vacuums', Icons.cleaning_services_rounded),
@@ -754,20 +1070,47 @@ class _SimpleProductCard extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
 
-          // 2. Shopping List Goal + Compare Options button
+          // 2. Shopping List Goal + Store Badge + Compare Options button
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: Text(
-                  opt.branchLabel,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 11.5,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF38BDF8),
-                  ),
+                child: Row(
+                  children: [
+                    if (!opt.isAmazon) ...[
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        margin: const EdgeInsets.only(right: 6),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF0EA5E9).withValues(alpha: 0.18),
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                            color: const Color(0xFF38BDF8).withValues(alpha: 0.45),
+                          ),
+                        ),
+                        child: Text(
+                          opt.siteName.toUpperCase(),
+                          style: const TextStyle(
+                            fontSize: 9.5,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF7DD3FC),
+                          ),
+                        ),
+                      ),
+                    ],
+                    Expanded(
+                      child: Text(
+                        opt.branchLabel,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 11.5,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF38BDF8),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               if (hasAlternatives)
@@ -794,7 +1137,7 @@ class _SimpleProductCard extends ConsumerWidget {
           ),
           const SizedBox(height: 6),
 
-          // 3. Product Title (clickable to open direct Amazon product page)
+          // 3. Product Title (clickable to open direct retailer product page)
           InkWell(
             onTap: opt.isTrapWarning ? null : onLaunchAmazon,
             child: Text(
@@ -912,7 +1255,7 @@ class _SimpleProductCard extends ConsumerWidget {
                         Icon(Icons.add_chart_rounded, size: 14, color: Color(0xFF38BDF8)),
                         SizedBox(width: 5),
                         Text(
-                          'Log Live Price / CCC',
+                          'Log Live Price',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w800,
@@ -971,9 +1314,9 @@ class _SimpleProductCard extends ConsumerWidget {
                     size: 16,
                   ),
                   label: Text(
-                    opt.isTrapWarning
-                        ? 'Avoid Overpriced SKU'
-                        : 'Open Product Page (${opt.asinOrSku.split(" ").first})',
+                    opt.isTrapWarning ? 'Avoid Overpriced SKU' : opt.openButtonLabel,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5),
                   ),
                   style: FilledButton.styleFrom(

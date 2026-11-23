@@ -229,6 +229,106 @@ Return ONLY a raw JSON object (no markdown) with 2 concrete candidate products t
   }
 }
 
+function isPrivateOrBlockedHost(hostname) {
+  const h = (hostname || '').toLowerCase();
+  if (!h || h === 'localhost' || h.endsWith('.local') || h.endsWith('.internal')) return true;
+  if (/^(127\.|10\.|192\.168\.|169\.254\.|0\.|\[?::1\]?|\[?fe80:|\[?fc|\[?fd)/.test(h)) return true;
+  if (/^172\.(1[6-9]|2\d|3[0-1])\./.test(h)) return true;
+  return false;
+}
+
+function extractPriceFromJsonLd(obj) {
+  if (Array.isArray(obj)) {
+    for (const item of obj) {
+      const p = extractPriceFromJsonLd(item);
+      if (p !== null) return p;
+    }
+    return null;
+  }
+  if (!obj || typeof obj !== 'object') return null;
+  if (obj['@graph']) {
+    const p = extractPriceFromJsonLd(obj['@graph']);
+    if (p !== null) return p;
+  }
+  const t = Array.isArray(obj['@type']) ? obj['@type'].join(',').toLowerCase() : String(obj['@type'] || '').toLowerCase();
+  if (t.includes('product') && obj.offers) {
+    const p = extractPriceFromJsonLd(obj.offers);
+    if (p !== null) return p;
+  }
+  if (t.includes('offer') || obj.price !== undefined || obj.lowPrice !== undefined) {
+    for (const key of ['price', 'lowPrice']) {
+      const raw = obj[key];
+      const num = typeof raw === 'number' ? raw : parseFloat(String(raw || '').replace(/[$,\s]/g, ''));
+      if (Number.isFinite(num) && num > 0) return Math.round(num * 100) / 100;
+    }
+    if (obj.offers) return extractPriceFromJsonLd(obj.offers);
+  }
+  return null;
+}
+
+async function handleFetchLinkMeta(request, env, origin) {
+  const body = await request.json().catch(() => ({}));
+  const rawUrl = String(body.url || '').trim();
+  let parsed;
+  try {
+    parsed = new URL(rawUrl);
+  } catch (_) {
+    return jsonResp({ ok: false, message: 'Invalid URL.' }, 400, origin);
+  }
+  if (parsed.protocol !== 'https:' || isPrivateOrBlockedHost(parsed.hostname)) {
+    return jsonResp({ ok: false, message: 'Only public HTTPS product URLs are supported.' }, 400, origin);
+  }
+
+  try {
+    const resp = await fetch(parsed.toString(), {
+      redirect: 'follow',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml',
+        'Accept-Language': 'en-US,en;q=0.9',
+      },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!resp.ok) {
+      return jsonResp({ ok: false, message: `Retailer returned HTTP ${resp.status}` }, 200, origin);
+    }
+    const html = (await resp.text()).slice(0, 300000);
+
+    let title = '';
+    const ogTitle = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i)
+      || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:title["']/i)
+      || html.match(/<title[^>]*>([^<]+)<\/title>/i);
+    if (ogTitle && ogTitle[1]) {
+      title = ogTitle[1].replace(/\s+/g, ' ').replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').trim();
+    }
+
+    let price = null;
+    const ldRegex = /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+    let m;
+    while ((m = ldRegex.exec(html)) !== null) {
+      try {
+        const p = extractPriceFromJsonLd(JSON.parse(m[1]));
+        if (p !== null) {
+          price = p;
+          break;
+        }
+      } catch (_) {}
+    }
+    if (price === null) {
+      const metaPrice = html.match(/property=["'](?:og|product):price:amount["'][^>]+content=["']([0-9,]+(?:\.[0-9]{1,2})?)["']/i)
+        || html.match(/itemprop=["']price["'][^>]+content=["']([0-9,]+(?:\.[0-9]{1,2})?)["']/i);
+      if (metaPrice && metaPrice[1]) {
+        const v = parseFloat(metaPrice[1].replace(/,/g, ''));
+        if (Number.isFinite(v) && v > 0) price = Math.round(v * 100) / 100;
+      }
+    }
+
+    return jsonResp({ ok: true, title, price }, 200, origin);
+  } catch (err) {
+    return jsonResp({ ok: false, message: `Metadata fetch unavailable: ${String(err).slice(0, 100)}` }, 200, origin);
+  }
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
@@ -243,6 +343,7 @@ export default {
           ok: true,
           refresh_enabled: Boolean(env.GITHUB_PAT),
           fuzzy_gemini_enabled: Boolean(env.GEMINI_API_KEY),
+          link_meta_enabled: true,
         },
         200,
         origin
@@ -253,6 +354,9 @@ export default {
     }
     if (url.pathname === '/api/translate-intent' && request.method === 'POST') {
       return handleTranslateIntent(request, env, origin);
+    }
+    if (url.pathname === '/api/fetch-link-meta' && request.method === 'POST') {
+      return handleFetchLinkMeta(request, env, origin);
     }
 
     return jsonResp({ ok: false, message: 'Not found' }, 404, origin);

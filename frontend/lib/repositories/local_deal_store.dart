@@ -446,6 +446,8 @@ class LocalDealStore {
     bool? selectedInStack,
     bool? snagged,
     String? asinOrSku,
+    String? productUrl,
+    String? title,
     String? priceSource,
     bool appendHistoryPoint = false,
     String? historyNote,
@@ -474,9 +476,37 @@ class LocalDealStore {
     if (snsEligible != null) target['sns_eligible'] = snsEligible;
     if (selectedInStack != null) target['selected_in_stack'] = selectedInStack;
     if (snagged != null) target['snagged'] = snagged;
+    if (title != null && title.trim().isNotEmpty) {
+      target['title'] = title.trim();
+    }
+    if (productUrl != null) {
+      final cleanUrl = productUrl.trim();
+      if (cleanUrl.toLowerCase().startsWith('http://') ||
+          cleanUrl.toLowerCase().startsWith('https://')) {
+        target['product_url'] = cleanUrl;
+        target['site_name'] = detectSiteName(cleanUrl);
+        final parsed = parseProductLink(cleanUrl);
+        if (parsed != null && parsed.sku.isNotEmpty && (asinOrSku == null || asinOrSku.trim().isEmpty)) {
+          target['asin_or_sku'] = parsed.sku;
+        }
+      } else if (cleanUrl.isEmpty) {
+        target['product_url'] = '';
+      }
+    }
     if (asinOrSku != null && asinOrSku.trim().isNotEmpty) {
-      final extracted = _extractAmazonAsin(asinOrSku);
-      target['asin_or_sku'] = extracted ?? asinOrSku.trim();
+      final rawSku = asinOrSku.trim();
+      if (rawSku.toLowerCase().startsWith('http://') ||
+          rawSku.toLowerCase().startsWith('https://')) {
+        target['product_url'] = rawSku;
+        target['site_name'] = detectSiteName(rawSku);
+        final parsed = parseProductLink(rawSku);
+        target['asin_or_sku'] = (parsed != null && parsed.sku.isNotEmpty)
+            ? parsed.sku
+            : detectSiteName(rawSku).toUpperCase();
+      } else {
+        final extracted = _extractAmazonAsin(rawSku);
+        target['asin_or_sku'] = extracted ?? rawSku;
+      }
     }
     if (priceSource != null && priceSource.isNotEmpty) {
       target['price_source'] = priceSource;
@@ -514,12 +544,142 @@ class LocalDealStore {
     return DealOptionNode.fromJson(target);
   }
 
+  Future<ShoppingMission> createMissionFromLink({
+    required String productUrl,
+    String? title,
+    double? strikePrice,
+    double? currentPrice,
+    String categoryTag = 'custom',
+    String? scoutNotes,
+  }) async {
+    await ensureLoaded();
+    final rawUrl = productUrl.trim();
+    final parsed = parseProductLink(rawUrl);
+    if (parsed == null) {
+      throw Exception('Please enter a valid http:// or https:// product URL.');
+    }
+
+    int nextMissionId = 1;
+    int nextOptionId = 1;
+    for (final m in _missions) {
+      nextMissionId = math.max(nextMissionId, (m['id'] as num).toInt() + 1);
+      for (final o in (m['options'] as List<dynamic>? ?? [])) {
+        nextOptionId = math.max(nextOptionId, ((o as Map<String, dynamic>)['id'] as num).toInt() + 1);
+      }
+    }
+
+    String resolvedTitle = (title ?? '').trim();
+    double resolvedCurrent = (currentPrice != null && currentPrice > 0) ? currentPrice : 0.0;
+
+    // Optionally enrich title/price from public Cloudflare Worker if user left them blank
+    if ((resolvedTitle.isEmpty || resolvedCurrent <= 0) && _kPublicWorkerUrl.trim().isNotEmpty) {
+      final meta = await _tryFetchWorkerLinkMeta(parsed.url);
+      if (meta != null) {
+        if (resolvedTitle.isEmpty && (meta['title'] as String? ?? '').trim().isNotEmpty) {
+          resolvedTitle = (meta['title'] as String).trim();
+        }
+        if (resolvedCurrent <= 0 && meta['price'] is num && (meta['price'] as num).toDouble() > 0) {
+          resolvedCurrent = (meta['price'] as num).toDouble();
+        }
+      }
+    }
+
+    if (resolvedTitle.isEmpty) {
+      resolvedTitle = parsed.title;
+    }
+    final cleanTitle = resolvedTitle.length > 72
+        ? '${resolvedTitle.substring(0, 72)}...'
+        : resolvedTitle;
+
+    final resolvedStrike =
+        (strikePrice != null && strikePrice > 0) ? strikePrice : resolvedCurrent;
+    final slug = 'link-$nextMissionId-${DateTime.now().millisecondsSinceEpoch}';
+    final site = parsed.siteName;
+    final notes = (scoutNotes ?? '').trim().isNotEmpty
+        ? scoutNotes!.trim()
+        : 'Custom product link tracked on $site. Tap the chart icon to update prices or strike targets.';
+
+    final newMission = <String, dynamic>{
+      'id': nextMissionId,
+      'slug': slug,
+      'title': cleanTitle,
+      'raw_intent': parsed.url,
+      'node_type': 'EXACT_SKU',
+      'category_tag': categoryTag.trim().isEmpty ? 'custom' : categoryTag.trim(),
+      'icon': '',
+      'decision_framing': 'Custom $site product link saved on your device.',
+      'options': [
+        {
+          'id': nextOptionId,
+          'mission_id': nextMissionId,
+          'branch_key': 'link_$nextOptionId',
+          'branch_label': '$site Link',
+          'is_recommended_branch': true,
+          'is_trap_warning': false,
+          'title': cleanTitle,
+          'asin_or_sku': parsed.sku.isNotEmpty ? parsed.sku : site.toUpperCase(),
+          'amazon_query': Uri.encodeQueryComponent(cleanTitle),
+          'product_url': parsed.url,
+          'site_name': site,
+          'msrp': 0.0,
+          'avg_90d_price': 0.0,
+          'current_price': resolvedCurrent,
+          'clip_coupon_amount': 0.0,
+          'strike_price': resolvedStrike,
+          'all_time_low': 0.0,
+          'sns_eligible': false,
+          'pg_stockup_eligible': false,
+          'b2g1_eligible': false,
+          'selected_in_stack': true,
+          'snagged': false,
+          'unit_name': 'item',
+          'unit_quantity': 1.0,
+          'price_history': resolvedCurrent > 0 ? [resolvedCurrent] : <double>[],
+          'price_log': resolvedCurrent > 0
+              ? [
+                  {
+                    'date': DateTime.now().toIso8601String().substring(0, 10),
+                    'price': double.parse(resolvedCurrent.toStringAsFixed(2)),
+                    'source': (currentPrice != null && currentPrice > 0) ? 'manual' : 'live',
+                    'note': 'Added $site link',
+                  }
+                ]
+              : <Map<String, dynamic>>[],
+          'price_source': resolvedCurrent > 0
+              ? ((currentPrice != null && currentPrice > 0) ? 'manual' : 'live')
+              : 'untracked',
+          'scout_notes': notes,
+        }
+      ],
+    };
+
+    _missions.insert(0, newMission);
+    _recomputeAll();
+    _persistLocal();
+    if (_syncConfig.isEnabled) {
+      pushToGitHub();
+    }
+    return ShoppingMission.fromJson(newMission);
+  }
+
   Future<ShoppingMission> createMissionFromIntent({
     required String rawIntent,
     double? budgetHint,
   }) async {
     await ensureLoaded();
     final trimmed = rawIntent.trim();
+
+    // Multi-site URL fast path: supports Amazon, Walmart, Target, Best Buy, Home Depot, Costco, etc.
+    final parsedLink = parseProductLink(trimmed);
+    if (parsedLink != null) {
+      return createMissionFromLink(
+        productUrl: parsedLink.url,
+        title: parsedLink.hasCustomLabel ? parsedLink.title : null,
+        strikePrice: budgetHint ?? parsedLink.inlinePrice,
+        currentPrice: parsedLink.inlinePrice,
+      );
+    }
+
     int nextMissionId = 1;
     int nextOptionId = 1;
     for (final m in _missions) {
@@ -538,18 +698,7 @@ class LocalDealStore {
       inlinePrice = double.tryParse(priceMatch.group(1)!);
     }
 
-    // Extract readable title from Amazon URL slug if user pasted a full URL
-    String displayTitle = trimmed;
-    final urlSlugMatch = RegExp(r'amazon\.com/([^/]+)/dp/B0[A-Z0-9]{8}', caseSensitive: false)
-        .firstMatch(trimmed);
-    if (urlSlugMatch != null) {
-      displayTitle = urlSlugMatch.group(1)!.replaceAll('-', ' ').trim();
-    } else if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
-      displayTitle = asin.isNotEmpty ? 'Amazon Item ($asin)' : 'Custom Amazon Item';
-    } else {
-      displayTitle = trimmed.replaceAll(RegExp(r'\s*\$[0-9]+(?:\.[0-9]{1,2})?'), '').trim();
-    }
-
+    final displayTitle = trimmed.replaceAll(RegExp(r'\s*\$[0-9]+(?:\.[0-9]{1,2})?'), '').trim();
     final cleanTitle = displayTitle.length > 56
         ? '${displayTitle.substring(0, 56)}...'
         : displayTitle;
@@ -566,7 +715,7 @@ class LocalDealStore {
       'node_type': asin.isNotEmpty ? 'EXACT_SKU' : 'CATEGORY_FUNNEL',
       'category_tag': 'custom',
       'icon': '',
-      'decision_framing': 'Saved on your device. Tap the chart icon to view CamelCamelCamel history or log prices.',
+      'decision_framing': 'Saved on your device. Tap the chart icon to view price history or log prices.',
       'options': [
         {
           'id': nextOptionId,
@@ -575,9 +724,11 @@ class LocalDealStore {
           'branch_label': asin.isNotEmpty ? 'Pinned ASIN' : 'Watchlist Item',
           'is_recommended_branch': true,
           'is_trap_warning': false,
-          'title': cleanTitle.isEmpty ? 'Custom Amazon Deal' : cleanTitle,
+          'title': cleanTitle.isEmpty ? 'Custom Deal Watch' : cleanTitle,
           'asin_or_sku': asin,
           'amazon_query': Uri.encodeQueryComponent(cleanTitle.isEmpty ? trimmed : cleanTitle),
+          'product_url': '',
+          'site_name': 'Amazon',
           'msrp': msrp,
           'avg_90d_price': 0.0,
           'current_price': current,
@@ -593,13 +744,13 @@ class LocalDealStore {
           'unit_quantity': 1.0,
           'price_history': current > 0 ? [current] : <double>[],
           'price_source': inlinePrice != null ? 'manual' : 'untracked',
-          'scout_notes': 'Saved to device storage. Tap the chart icon to check CamelCamelCamel or log the real price.',
+          'scout_notes': 'Saved to device storage. Tap the chart icon to log a live price or attach any store URL.',
         }
       ],
     };
 
     // Try zero-setup Cloudflare Worker Gemini Fuzzy Mode for non-URL prompts
-    if (asin.isEmpty && !trimmed.startsWith('http') && _kPublicWorkerUrl.trim().isNotEmpty) {
+    if (asin.isEmpty && _kPublicWorkerUrl.trim().isNotEmpty) {
       final workerMission = await _tryPublicWorkerFuzzy(
         rawIntent: trimmed,
         nextMissionId: nextMissionId,
@@ -624,6 +775,28 @@ class LocalDealStore {
       pushToGitHub();
     }
     return ShoppingMission.fromJson(newMission);
+  }
+
+  Future<Map<String, dynamic>?> _tryFetchWorkerLinkMeta(String productUrl) async {
+    final base = _kPublicWorkerUrl.trim().replaceAll(RegExp(r'/+$'), '');
+    if (base.isEmpty) return null;
+    try {
+      final resp = await _client
+          .post(
+            Uri.parse('$base/api/fetch-link-meta'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({'url': productUrl}),
+          )
+          .timeout(const Duration(seconds: 8));
+      if (resp.statusCode != 200) return null;
+      final decoded = jsonDecode(resp.body) as Map<String, dynamic>;
+      if (decoded['ok'] == true) {
+        return decoded;
+      }
+      return null;
+    } catch (_) {
+      return null;
+    }
   }
 
   Future<Map<String, dynamic>?> _tryPublicWorkerFuzzy({
@@ -863,9 +1036,13 @@ class LocalDealStore {
 
       final asin = _extractAmazonAsin(o['asin_or_sku'] as String? ?? '');
       final query = o['amazon_query'] as String? ?? Uri.encodeQueryComponent(o['title'] as String? ?? '');
-      final amazonUrl = asin != null
-          ? 'https://www.amazon.com/dp/$asin?psc=1'
-          : 'https://www.amazon.com/s?k=$query';
+      final customUrl = (o['product_url'] as String? ?? '').trim();
+      final resolvedUrl = customUrl.isNotEmpty
+          ? customUrl
+          : (asin != null
+              ? 'https://www.amazon.com/dp/$asin?psc=1'
+              : 'https://www.amazon.com/s?k=$query');
+      final siteName = detectSiteName(resolvedUrl);
       final camelUrl = asin != null
           ? 'https://camelcamelcamel.com/product/$asin'
           : 'https://camelcamelcamel.com/search?sq=$query';
@@ -889,7 +1066,9 @@ class LocalDealStore {
       o['deal_grade_code'] = gradeCode;
       o['deal_grade_label'] = gradeLabel;
       o['is_below_strike'] = hasPrice && strike > 0 && !isTrap && eff <= strike;
-      o['amazon_url'] = amazonUrl;
+      o['amazon_url'] = resolvedUrl;
+      o['product_url'] = resolvedUrl;
+      o['site_name'] = siteName;
       o['camel_url'] = camelUrl;
       o['price_history'] = hist;
     }
@@ -1003,7 +1182,7 @@ class LocalDealStore {
 
     for (final item in selected) {
       final asin = _extractAmazonAsin(item.asinOrSku);
-      if (asin != null) {
+      if (asin != null && item.isAmazon) {
         directItems.add(item);
         directAsins.add(asin);
         if (item.snsEligible) snsAsins.add(asin);
@@ -1077,6 +1256,141 @@ class LocalDealStore {
     );
   }
 
+  static ParsedProductLink? parseProductLink(String rawText) {
+    final cleaned = rawText.trim();
+    final urlMatch = RegExp(r'(https?://[^\s<>"]+)').firstMatch(cleaned);
+    if (urlMatch == null) return null;
+
+    var url = urlMatch.group(1)!;
+    url = url.replaceAll(RegExp(r'[.,);\]]+$'), '');
+    final uri = Uri.tryParse(url);
+    if (uri == null || uri.host.isEmpty) return null;
+
+    final siteName = detectSiteName(url);
+    final sku = _extractSkuFromUrl(url, siteName);
+
+    final nonUrlText = (cleaned.substring(0, urlMatch.start) +
+            ' ' +
+            cleaned.substring(urlMatch.end))
+        .trim();
+    double? inlinePrice;
+    final priceMatch = RegExp(r'\$([0-9]+(?:\.[0-9]{1,2})?)').firstMatch(nonUrlText);
+    if (priceMatch != null) {
+      final v = double.tryParse(priceMatch.group(1)!);
+      if (v != null && v > 0) inlinePrice = v;
+    }
+
+    final customLabel = nonUrlText
+        .replaceAll(RegExp(r'\$([0-9]+(?:\.[0-9]{1,2})?)'), '')
+        .replaceAll(RegExp(r'^[\s\-|:]+|[\s\-|:]+$'), '')
+        .trim();
+
+    final slugTitle = _extractTitleFromUrl(uri);
+    final title = customLabel.isNotEmpty
+        ? customLabel
+        : (slugTitle.isNotEmpty
+            ? slugTitle
+            : (sku.isNotEmpty ? '$siteName Item ($sku)' : 'Custom $siteName Item'));
+
+    return ParsedProductLink(
+      url: url,
+      siteName: siteName,
+      isAmazon: isAmazonUrl(url),
+      sku: sku,
+      title: title,
+      hasCustomLabel: customLabel.isNotEmpty,
+      inlinePrice: inlinePrice,
+    );
+  }
+
+  static String _extractSkuFromUrl(String url, String siteName) {
+    final asin = _extractAmazonAsin(url);
+    if (asin != null) return asin;
+    final uri = Uri.tryParse(url);
+    if (uri == null) return '';
+
+    final skuId = uri.queryParameters['skuId'];
+    if (skuId != null && skuId.isNotEmpty) return 'BB-$skuId';
+
+    final path = uri.path;
+    final bbMatch = RegExp(r'/(\d{6,8})\.p\b').firstMatch(path);
+    if (bbMatch != null) return 'BB-${bbMatch.group(1)}';
+
+    final tgtMatch = RegExp(r'/(A-\d{6,10})\b', caseSensitive: false).firstMatch(path);
+    if (tgtMatch != null) return tgtMatch.group(1)!.toUpperCase();
+
+    final costcoMatch = RegExp(r'\.product\.(\d{6,12})\.html', caseSensitive: false).firstMatch(path);
+    if (costcoMatch != null) return 'COSTCO-${costcoMatch.group(1)}';
+
+    final numMatch = RegExp(r'/(?:ip|p|pd)/(?:[^/]+/)?(\d{6,12})(?:/|$)').firstMatch(path);
+    if (numMatch != null) {
+      final prefix = siteName.toUpperCase().replaceAll(' ', '');
+      final shortPrefix = prefix.length > 8 ? prefix.substring(0, 8) : prefix;
+      return '$shortPrefix-${numMatch.group(1)}';
+    }
+    return '';
+  }
+
+  static String _extractTitleFromUrl(Uri uri) {
+    const noise = {
+      'ip',
+      'dp',
+      'gp',
+      'product',
+      'products',
+      'p',
+      'pd',
+      'site',
+      'shop',
+      'c',
+      'item',
+      'itm',
+      'store',
+      'en-us',
+      'us',
+      'en',
+      'pr',
+      's',
+      '-',
+    };
+    final path = uri.path;
+    final amzMatch = RegExp(r'/([^/]+)/dp/B0[A-Z0-9]{8}', caseSensitive: false).firstMatch(path);
+    if (amzMatch != null) {
+      return _humanizeSlug(amzMatch.group(1)!);
+    }
+
+    String best = '';
+    for (final seg in uri.pathSegments) {
+      final low = seg.toLowerCase();
+      if (low.isEmpty || noise.contains(low)) continue;
+      if (RegExp(r'^\d+(?:\.p)?$').hasMatch(low)) continue;
+      if (RegExp(r'^a-\d+$').hasMatch(low)) continue;
+      if (RegExp(r'^b0[a-z0-9]{8}$').hasMatch(low)) continue;
+      final candidate = _humanizeSlug(seg);
+      if (RegExp(r'[a-zA-Z]').hasMatch(candidate) && candidate.length > best.length) {
+        best = candidate;
+      }
+    }
+    return best;
+  }
+
+  static String _humanizeSlug(String raw) {
+    var slug = Uri.decodeComponent(raw);
+    slug = slug.replaceAll(RegExp(r'\.(?:html?|php|aspx?|p)$', caseSensitive: false), '');
+    slug = slug.replaceAll(RegExp(r'\.product\.\d+$', caseSensitive: false), '');
+    slug = slug.replaceAll(RegExp(r'[-_+]+'), ' ');
+    slug = slug.replaceAll(RegExp(r'\s+'), ' ').trim();
+    if (slug.isEmpty) return '';
+    if (slug == slug.toLowerCase()) {
+      return slug
+          .split(' ')
+          .where((w) => w.isNotEmpty)
+          .map((w) => w[0].toUpperCase() + w.substring(1))
+          .join(' ');
+    }
+    return slug;
+  }
+
   static String? _extractAmazonAsin(String raw) {
     final match = RegExp(r'\b(B0[A-Z0-9]{8})\b').firstMatch(raw.toUpperCase());
     return match?.group(1);
@@ -1095,4 +1409,24 @@ class LocalDealStore {
   static Map<String, dynamic> _deepCopyMap(Map<String, dynamic> src) {
     return jsonDecode(jsonEncode(src)) as Map<String, dynamic>;
   }
+}
+
+class ParsedProductLink {
+  final String url;
+  final String siteName;
+  final bool isAmazon;
+  final String sku;
+  final String title;
+  final bool hasCustomLabel;
+  final double? inlinePrice;
+
+  const ParsedProductLink({
+    required this.url,
+    required this.siteName,
+    required this.isAmazon,
+    required this.sku,
+    required this.title,
+    required this.hasCustomLabel,
+    this.inlinePrice,
+  });
 }

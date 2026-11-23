@@ -18,12 +18,14 @@ from app.engine.deal_scorer import (
     solve_combinatoric_stack,
 )
 from app.engine.scheduler import run_price_poll_cycle, scheduled_poll_job
-from app.models import DealOptionNode, ShoppingMission, WebhookAlertLog
+from app.models import DealOptionNode, MissionNodeType, ShoppingMission, WebhookAlertLog
 from app.providers.llm_provider import llm_resolver
 from app.providers.notifier import webhook_notifier
+from app.providers.price_provider import price_provider
 from app.schemas import (
     AmazonCartBuilderPlan,
     CombinatoricStackSummary,
+    CustomProductLinkRequest,
     DealOptionPatch,
     DealOptionRead,
     IntentTranslateRequest,
@@ -33,6 +35,7 @@ from app.schemas import (
     WebhookTestRequest,
 )
 from app.seed import seed_initial_missions
+from app.url_parser import extract_site_name, parse_product_link
 
 scheduler = AsyncIOScheduler()
 
@@ -301,10 +304,16 @@ async def create_mission_from_intent(
 
     for opt_spec in spec.options:
         history = [
-            opt_spec.msrp,
-            round((opt_spec.msrp + opt_spec.avg_90d_price) / 2, 2),
-            opt_spec.avg_90d_price,
-            opt_spec.current_price,
+            p
+            for p in [
+                opt_spec.msrp,
+                round((opt_spec.msrp + opt_spec.avg_90d_price) / 2, 2)
+                if (opt_spec.msrp > 0 and opt_spec.avg_90d_price > 0)
+                else 0.0,
+                opt_spec.avg_90d_price,
+                opt_spec.current_price,
+            ]
+            if p and p > 0
         ]
         opt = DealOptionNode(
             mission_id=mission.id,
@@ -315,6 +324,7 @@ async def create_mission_from_intent(
             title=opt_spec.title,
             asin_or_sku=opt_spec.asin_or_sku,
             amazon_query=opt_spec.amazon_query,
+            product_url=opt_spec.product_url,
             msrp=opt_spec.msrp,
             avg_90d_price=opt_spec.avg_90d_price,
             current_price=opt_spec.current_price,
@@ -332,6 +342,74 @@ async def create_mission_from_intent(
         )
         session.add(opt)
 
+    session.commit()
+    session.refresh(mission)
+    sns_rate = _current_sns_rate(session)
+    return enrich_mission(mission, sns_tier_rate=sns_rate)
+
+
+@app.post("/api/missions/from-link", response_model=ShoppingMissionRead)
+async def create_mission_from_link(
+    req: CustomProductLinkRequest,
+    session: Session = Depends(get_session),
+) -> ShoppingMissionRead:
+    """Adds a user-supplied product URL from any retailer (Amazon, Walmart, Target, Best Buy, Home Depot, etc.)."""
+    raw_url = (req.product_url or "").strip()
+    if not raw_url.lower().startswith(("http://", "https://")):
+        raise HTTPException(status_code=400, detail="product_url must start with http:// or https://")
+
+    parsed = parse_product_link(raw_url)
+    if parsed is None:
+        raise HTTPException(status_code=400, detail="Could not parse product_url")
+
+    site_name = parsed["site_name"]
+    title = (req.title or "").strip() or parsed["title"]
+    sku = parsed["sku"] or site_name.upper()
+    category_tag = (req.category_tag or "custom").strip() or "custom"
+    notes = (req.scout_notes or "").strip() or f"Tracked via direct {site_name} product URL."
+
+    base_slug = _re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:36] or "custom-link"
+    slug = f"link-{base_slug}"
+    counter = 1
+    while session.exec(select(ShoppingMission).where(ShoppingMission.slug == slug)).first():
+        counter += 1
+        slug = f"link-{base_slug}-{counter}"
+
+    mission = ShoppingMission(
+        slug=slug,
+        title=title[:60],
+        raw_intent=raw_url,
+        node_type=MissionNodeType.EXACT_SKU,
+        category_tag=category_tag,
+        icon="🔗",
+        decision_framing=f"Custom product link tracked on {site_name}.",
+    )
+    session.add(mission)
+    session.flush()
+
+    curr_price = round(float(req.current_price), 2) if (req.current_price and req.current_price > 0) else 0.0
+    strike = round(float(req.strike_price), 2) if (req.strike_price and req.strike_price > 0) else curr_price
+
+    opt = DealOptionNode(
+        mission_id=mission.id,
+        branch_key=f"link_{mission.id}",
+        branch_label=f"{site_name} Link",
+        is_recommended_branch=True,
+        is_trap_warning=False,
+        title=title,
+        asin_or_sku=sku,
+        amazon_query=_re.sub(r"\s+", "+", title),
+        product_url=parsed["url"],
+        msrp=0.0,
+        avg_90d_price=0.0,
+        current_price=curr_price,
+        clip_coupon_amount=0.0,
+        strike_price=strike,
+        all_time_low=0.0,
+        price_history_json=json.dumps([curr_price] if curr_price > 0 else []),
+        scout_notes=notes,
+    )
+    session.add(opt)
     session.commit()
     session.refresh(mission)
     sns_rate = _current_sns_rate(session)
@@ -386,6 +464,25 @@ async def update_option_node(
         node.selected_in_stack = patch.selected_in_stack
     if patch.snagged is not None:
         node.snagged = patch.snagged
+    if patch.title is not None and patch.title.strip():
+        node.title = patch.title.strip()
+    if patch.product_url is not None:
+        clean_url = patch.product_url.strip()
+        if clean_url.lower().startswith(("http://", "https://")):
+            node.product_url = clean_url
+            parsed = parse_product_link(clean_url)
+            if parsed and parsed["sku"] and not patch.asin_or_sku:
+                node.asin_or_sku = parsed["sku"]
+        elif clean_url == "":
+            node.product_url = ""
+    if patch.asin_or_sku is not None and patch.asin_or_sku.strip():
+        raw_sku = patch.asin_or_sku.strip()
+        if raw_sku.lower().startswith(("http://", "https://")):
+            node.product_url = raw_sku
+            parsed = parse_product_link(raw_sku)
+            node.asin_or_sku = (parsed["sku"] if parsed and parsed["sku"] else extract_site_name(raw_sku).upper())
+        else:
+            node.asin_or_sku = raw_sku
 
     session.add(node)
     session.commit()
@@ -397,8 +494,10 @@ async def update_option_node(
     # Fire webhook alert if manual price update crossed below strike threshold
     if (
         not node.is_trap_warning
+        and node.current_price > 0
+        and node.strike_price > 0
         and new_eff <= node.strike_price
-        and prev_eff > node.strike_price
+        and (prev_eff == 0 or prev_eff > node.strike_price)
     ):
         await webhook_notifier.send_strike_alert(
             session=session,

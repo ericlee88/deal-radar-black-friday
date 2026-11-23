@@ -38,6 +38,8 @@ class DealOptionRead(BaseModel):
     deal_grade_label: str
     is_below_strike: bool
     amazon_url: str
+    product_url: str = ""
+    site_name: str = "Amazon"
     camel_url: str
 
 
@@ -63,14 +65,26 @@ class DealOptionPatch(BaseModel):
     sns_eligible: Optional[bool] = None
     selected_in_stack: Optional[bool] = None
     snagged: Optional[bool] = None
+    asin_or_sku: Optional[str] = None
+    product_url: Optional[str] = None
+    title: Optional[str] = None
 
 
 class IntentTranslateRequest(BaseModel):
     raw_intent: str = Field(
         ...,
-        description="Fuzzy or specific user shopping intent (e.g. 'Anker 140W GaN charger or Ugreen equivalent')",
+        description="Fuzzy or specific user shopping intent, or any retailer product URL",
     )
     budget_hint: Optional[float] = None
+
+
+class CustomProductLinkRequest(BaseModel):
+    product_url: str = Field(..., description="Full http(s) product URL from any retail site")
+    title: Optional[str] = None
+    strike_price: Optional[float] = None
+    current_price: Optional[float] = None
+    category_tag: str = Field(default="custom")
+    scout_notes: Optional[str] = None
 
 
 class GeneratedOptionSpec(BaseModel):
@@ -81,6 +95,7 @@ class GeneratedOptionSpec(BaseModel):
     title: str
     asin_or_sku: str
     amazon_query: str
+    product_url: str = ""
     msrp: float
     avg_90d_price: float
     current_price: float

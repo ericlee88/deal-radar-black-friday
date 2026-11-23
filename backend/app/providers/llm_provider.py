@@ -5,6 +5,7 @@ import httpx
 from app.config import settings
 from app.models import MissionNodeType
 from app.schemas import GeneratedMissionSpec, GeneratedOptionSpec
+from app.url_parser import parse_product_link
 
 
 SYSTEM_PROMPT = """You are an elite Amazon Black Friday & Deal Strategy Engine.
@@ -50,6 +51,10 @@ class LLMIntentResolver:
     async def translate_intent(
         self, raw_intent: str, budget_hint: Optional[float] = None
     ) -> GeneratedMissionSpec:
+        link_info = parse_product_link(raw_intent)
+        if link_info is not None:
+            return self._resolve_product_link(link_info, budget_hint)
+
         mode = settings.active_llm_mode
         if mode == "gemini" and settings.gemini_api_key:
             try:
@@ -63,6 +68,45 @@ class LLMIntentResolver:
                 pass
 
         return self._heuristic_resolve(raw_intent, budget_hint)
+
+    def _resolve_product_link(
+        self, link_info: dict, budget_hint: Optional[float]
+    ) -> GeneratedMissionSpec:
+        title = link_info["title"]
+        site = link_info["site_name"]
+        url = link_info["url"]
+        sku = link_info["sku"]
+        inline_price = link_info["inline_price"]
+        slug_base = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:36] or "custom-link"
+        query_encoded = re.sub(r"\s+", "+", title)
+        curr = float(inline_price) if inline_price else 0.0
+        strike = float(budget_hint) if budget_hint else (float(inline_price) if inline_price else 0.0)
+
+        return GeneratedMissionSpec(
+            slug=f"link-{slug_base}",
+            title=title[:60],
+            node_type=MissionNodeType.EXACT_SKU,
+            category_tag="custom",
+            icon="🔗",
+            decision_framing=f"Custom product link tracked on {site}. Open the chart icon to update price or strike target.",
+            options=[
+                GeneratedOptionSpec(
+                    branch_key=f"link_{slug_base[:18]}",
+                    branch_label=f"{site} Link",
+                    is_recommended_branch=True,
+                    title=title,
+                    asin_or_sku=sku or site.upper(),
+                    amazon_query=query_encoded,
+                    product_url=url,
+                    msrp=0.0,
+                    avg_90d_price=0.0,
+                    current_price=curr,
+                    strike_price=strike,
+                    all_time_low=0.0,
+                    scout_notes=f"Tracked via direct {site} product URL.",
+                )
+            ],
+        )
 
     async def _call_gemini(
         self, raw_intent: str, budget_hint: Optional[float]

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-23T05:48:15.201948+00:00",
+  "generated_at": "2026-11-23T05:54:42.705026+00:00",
   "missions": [
     {
       "id": 1,
@@ -50,6 +50,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B001E17ZYS?psc=1",
+          "product_url": "https://www.amazon.com/dp/B001E17ZYS?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B001E17ZYS",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -122,6 +124,8 @@
           "deal_grade_label": "\u2705 AT STRIKE TARGET (-18%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B082N73YPV?psc=1",
+          "product_url": "https://www.amazon.com/dp/B082N73YPV?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B082N73YPV",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -191,6 +195,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0H4QL9G8M?psc=1",
+          "product_url": "https://www.amazon.com/dp/B0H4QL9G8M?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B0H4QL9G8M",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -249,6 +255,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09FXD3ZCF?psc=1",
+          "product_url": "https://www.amazon.com/dp/B09FXD3ZCF?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B09FXD3ZCF",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -326,6 +334,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B016K1UD0E?psc=1",
+          "product_url": "https://www.amazon.com/dp/B016K1UD0E?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -386,6 +396,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09YXSNV98?psc=1",
+          "product_url": "https://www.amazon.com/dp/B09YXSNV98?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -459,6 +471,8 @@
           "deal_grade_label": "\u26a0\ufe0f SCALPER / TRAP \u2014 DO NOT BUY",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/s?k=DeWalt+DCA2203C&rh=p_6%3AATVPDKIKX0DER",
+          "product_url": "https://www.amazon.com/s?k=DeWalt+DCA2203C&rh=p_6%3AATVPDKIKX0DER",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/search?sq=DeWalt+DCA2203C",
           "price_source": "untracked",
           "price_log": []
@@ -516,6 +530,8 @@
           "deal_grade_label": "\u2705 AT STRIKE TARGET (-23%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B0DLXGDHBX?psc=1",
+          "product_url": "https://www.amazon.com/dp/B0DLXGDHBX?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -607,6 +623,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09YS9N7H2?psc=1",
+          "product_url": "https://www.amazon.com/dp/B09YS9N7H2?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B09YS9N7H2",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -679,6 +697,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0B4X3H4MZ?psc=1",
+          "product_url": "https://www.amazon.com/dp/B0B4X3H4MZ?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B0B4X3H4MZ",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -755,6 +775,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/s?k=Metamucil+Fiber+Collagen+Rejuvenation+Blend&rh=p_6%3AATVPDKIKX0DER",
+          "product_url": "https://www.amazon.com/s?k=Metamucil+Fiber+Collagen+Rejuvenation+Blend&rh=p_6%3AATVPDKIKX0DER",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/search?sq=Metamucil+Fiber+Collagen+Rejuvenation+Blend",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -808,6 +830,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00K6JUG4K?psc=1",
+          "product_url": "https://www.amazon.com/dp/B00K6JUG4K?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -878,6 +902,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B079VP6DH5?psc=1",
+          "product_url": "https://www.amazon.com/dp/B079VP6DH5?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B079VP6DH5",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -941,6 +967,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0D87QKHHP?psc=1",
+          "product_url": "https://www.amazon.com/dp/B0D87QKHHP?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B0D87QKHHP",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -999,6 +1027,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0CHD7GLN9?psc=1",
+          "product_url": "https://www.amazon.com/dp/B0CHD7GLN9?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B0CHD7GLN9",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -1088,6 +1118,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00ASBOT2Q?psc=1",
+          "product_url": "https://www.amazon.com/dp/B00ASBOT2Q?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B00ASBOT2Q",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -1163,6 +1195,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B093H8RGXX?psc=1",
+          "product_url": "https://www.amazon.com/dp/B093H8RGXX?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B093H8RGXX",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -1255,6 +1289,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B000809OAO?psc=1",
+          "product_url": "https://www.amazon.com/dp/B000809OAO?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B000809OAO",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -1334,6 +1370,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0BSXKTRYZ?psc=1",
+          "product_url": "https://www.amazon.com/dp/B0BSXKTRYZ?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B0BSXKTRYZ",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -1414,6 +1452,8 @@
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00IUAAK2A?psc=1",
+          "product_url": "https://www.amazon.com/dp/B00IUAAK2A?psc=1",
+          "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B00IUAAK2A",
           "price_source": "antigravity_automation",
           "price_log": [
@@ -1464,7 +1504,48 @@
       ]
     }
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "id": 4,
+      "option_id": 21,
+      "option_title": "Ninja CREAMi Ice Cream Maker",
+      "effective_price": 139.99,
+      "strike_price": 149.99,
+      "channel": "local_inbox",
+      "status": "logged_locally",
+      "created_at": "2026-11-23T05:54:19.120983+00:00"
+    },
+    {
+      "id": 3,
+      "option_id": 21,
+      "option_title": "Ninja CREAMi Ice Cream Maker",
+      "effective_price": 139.99,
+      "strike_price": 149.99,
+      "channel": "local_inbox",
+      "status": "logged_locally",
+      "created_at": "2026-11-23T05:47:03.945683+00:00"
+    },
+    {
+      "id": 2,
+      "option_id": 21,
+      "option_title": "Ninja CREAMi Ice Cream Maker",
+      "effective_price": 139.99,
+      "strike_price": 149.99,
+      "channel": "local_inbox",
+      "status": "logged_locally",
+      "created_at": "2026-11-23T05:46:29.508274+00:00"
+    },
+    {
+      "id": 1,
+      "option_id": 4,
+      "option_title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
+      "effective_price": 52.0,
+      "strike_price": 56.0,
+      "channel": "local_inbox",
+      "status": "logged_locally",
+      "created_at": "2026-11-23T05:10:36.744489+00:00"
+    }
+  ],
   "image_map": {
     "1": "images/products/spatula_mercer.jpg",
     "spatula_mercer": "images/products/spatula_mercer.jpg",

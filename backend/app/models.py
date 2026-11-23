@@ -50,6 +50,7 @@ class DealOptionNode(SQLModel, table=True):
     title: str
     asin_or_sku: str = Field(default="ASIN-PENDING")
     amazon_query: str
+    product_url: str = Field(default="")
 
     msrp: float
     avg_90d_price: float

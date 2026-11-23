@@ -75,6 +75,8 @@ def _merge_user_state_if_present(session: Session) -> None:
                     node.selected_in_stack = bool(opt_data["selected_in_stack"])
                 if "snagged" in opt_data:
                     node.snagged = bool(opt_data["snagged"])
+                if opt_data.get("product_url"):
+                    node.product_url = str(opt_data["product_url"]).strip()
                 session.add(node)
             else:
                 new_node = DealOptionNode(
@@ -83,15 +85,16 @@ def _merge_user_state_if_present(session: Session) -> None:
                     branch_label=opt_data.get("branch_label", "User Added"),
                     is_recommended_branch=bool(opt_data.get("is_recommended_branch", True)),
                     is_trap_warning=bool(opt_data.get("is_trap_warning", False)),
-                    title=opt_data.get("title", "Custom Amazon Item"),
+                    title=opt_data.get("title", "Custom Product Item"),
                     asin_or_sku=opt_data.get("asin_or_sku", ""),
                     amazon_query=opt_data.get("amazon_query", ""),
-                    msrp=float(opt_data.get("msrp", opt_data.get("current_price", 50.0))),
-                    avg_90d_price=float(opt_data.get("avg_90d_price", opt_data.get("current_price", 45.0))),
-                    current_price=float(opt_data.get("current_price", 45.0)),
+                    product_url=str(opt_data.get("product_url") or opt_data.get("amazon_url") or "").strip(),
+                    msrp=float(opt_data.get("msrp", opt_data.get("current_price", 0.0))),
+                    avg_90d_price=float(opt_data.get("avg_90d_price", 0.0)),
+                    current_price=float(opt_data.get("current_price", 0.0)),
                     clip_coupon_amount=float(opt_data.get("clip_coupon_amount", 0.0)),
-                    strike_price=float(opt_data.get("strike_price", 35.0)),
-                    all_time_low=float(opt_data.get("all_time_low", 30.0)),
+                    strike_price=float(opt_data.get("strike_price", 0.0)),
+                    all_time_low=float(opt_data.get("all_time_low", 0.0)),
                     sns_eligible=bool(opt_data.get("sns_eligible", False)),
                     pg_stockup_eligible=bool(opt_data.get("pg_stockup_eligible", False)),
                     b2g1_eligible=bool(opt_data.get("b2g1_eligible", False)),
@@ -99,7 +102,7 @@ def _merge_user_state_if_present(session: Session) -> None:
                     snagged=bool(opt_data.get("snagged", False)),
                     unit_name=opt_data.get("unit_name", "item"),
                     unit_quantity=float(opt_data.get("unit_quantity", 1.0)),
-                    price_history_json=json.dumps(opt_data.get("price_history", [45.0])),
+                    price_history_json=json.dumps(opt_data.get("price_history", [])),
                     scout_notes=opt_data.get("scout_notes", "Added via GitHub Pages sync."),
                 )
                 session.add(new_node)

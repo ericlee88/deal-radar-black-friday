@@ -7,6 +7,7 @@ from app.composite_bundles import is_composite_bundle, validate_price_update
 from app.config import settings
 from app.engine.deal_scorer import extract_amazon_asin
 from app.models import DealOptionNode
+from app.url_parser import extract_price_from_html, extract_site_name, is_amazon_url
 
 _AMAZON_HEADERS = {
     "User-Agent": (
@@ -23,7 +24,7 @@ class PriceDataProvider:
 
     Supports:
     - `keepa`: Uses live Keepa API (`https://api.keepa.com/product`) when `KEEPA_API_KEY` is configured.
-    - `amazon_direct`: Keyless live Amazon product/search page price & coupon scraper.
+    - `amazon_direct`: Keyless live Amazon product/search page price & coupon scraper, plus generic JSON-LD/OpenGraph extraction for non-Amazon product URLs.
     - `mock`: Deterministic Black Friday wave simulation.
     """
 
@@ -39,6 +40,21 @@ class PriceDataProvider:
                 "avg_90d_price": node.avg_90d_price,
                 "clip_coupon_amount": node.clip_coupon_amount,
                 "provider": "composite_bundle_preserved",
+            }
+
+        custom_url = (getattr(node, "product_url", "") or "").strip()
+        if custom_url and not is_amazon_url(custom_url):
+            try:
+                live_tick = await self._fetch_generic_product_url(node, custom_url)
+                if live_tick is not None:
+                    return live_tick
+            except Exception:
+                pass
+            return {
+                "current_price": node.current_price,
+                "avg_90d_price": node.avg_90d_price,
+                "clip_coupon_amount": node.clip_coupon_amount,
+                "provider": f"cached_{extract_site_name(custom_url).lower().replace(' ', '_')}",
             }
 
         mode = settings.active_price_mode
@@ -65,6 +81,46 @@ class PriceDataProvider:
             "avg_90d_price": node.avg_90d_price,
             "clip_coupon_amount": node.clip_coupon_amount,
             "provider": "estimated_cached",
+        }
+
+    async def _fetch_generic_product_url(
+        self, node: DealOptionNode, product_url: str
+    ) -> Optional[Dict[str, Any]]:
+        """Extracts live USD price from non-Amazon retail pages via JSON-LD, OpenGraph, or microdata."""
+        async with httpx.AsyncClient(timeout=8.0, follow_redirects=True, headers=_AMAZON_HEADERS) as client:
+            resp = await client.get(product_url)
+            if resp.status_code != 200:
+                return None
+            html = resp.text
+
+        candidate = extract_price_from_html(html)
+        if candidate is None:
+            return None
+
+        ok, _ = validate_price_update(
+            node.branch_key,
+            candidate,
+            prev_price=node.current_price or 0.0,
+            msrp=node.msrp or 0.0,
+            strike_price=node.strike_price or 0.0,
+        )
+        if not ok:
+            return None
+
+        try:
+            history = json.loads(node.price_history_json or "[]")
+            if isinstance(history, list) and len(history) >= 2:
+                history[-1] = candidate
+                node.price_history_json = json.dumps(history)
+        except Exception:
+            pass
+
+        site_slug = extract_site_name(product_url).lower().replace(" ", "_")
+        return {
+            "current_price": candidate,
+            "avg_90d_price": node.avg_90d_price,
+            "clip_coupon_amount": node.clip_coupon_amount,
+            "provider": f"direct_{site_slug}",
         }
 
     async def _fetch_amazon_direct(self, node: DealOptionNode) -> Optional[Dict[str, Any]]:

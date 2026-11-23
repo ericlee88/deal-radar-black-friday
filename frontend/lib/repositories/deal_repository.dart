@@ -119,6 +119,44 @@ class DealRepository {
     );
   }
 
+  Future<ShoppingMission> createMissionFromLink({
+    required String productUrl,
+    String? title,
+    double? strikePrice,
+    double? currentPrice,
+    String categoryTag = 'custom',
+    String? scoutNotes,
+  }) async {
+    if (await _shouldUseStaticLocal()) {
+      return localStore.createMissionFromLink(
+        productUrl: productUrl,
+        title: title,
+        strikePrice: strikePrice,
+        currentPrice: currentPrice,
+        categoryTag: categoryTag,
+        scoutNotes: scoutNotes,
+      );
+    }
+    final resp = await _client.post(
+      _endpoint('api/missions/from-link'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'product_url': productUrl,
+        if (title != null && title.trim().isNotEmpty) 'title': title.trim(),
+        if (strikePrice != null) 'strike_price': strikePrice,
+        if (currentPrice != null) 'current_price': currentPrice,
+        'category_tag': categoryTag,
+        if (scoutNotes != null && scoutNotes.trim().isNotEmpty) 'scout_notes': scoutNotes.trim(),
+      }),
+    );
+    if (resp.statusCode != 200) {
+      throw Exception('Failed to add product link (${resp.statusCode})');
+    }
+    return ShoppingMission.fromJson(
+      jsonDecode(resp.body) as Map<String, dynamic>,
+    );
+  }
+
   Future<void> deleteMission(int missionId) async {
     if (await _shouldUseStaticLocal()) {
       await localStore.deleteMission(missionId);
@@ -143,6 +181,8 @@ class DealRepository {
     bool? selectedInStack,
     bool? snagged,
     String? asinOrSku,
+    String? productUrl,
+    String? title,
     String? priceSource,
     bool appendHistoryPoint = false,
     String? historyNote,
@@ -159,6 +199,8 @@ class DealRepository {
         selectedInStack: selectedInStack,
         snagged: snagged,
         asinOrSku: asinOrSku,
+        productUrl: productUrl,
+        title: title,
         priceSource: priceSource,
         appendHistoryPoint: appendHistoryPoint,
         historyNote: historyNote,
@@ -173,6 +215,9 @@ class DealRepository {
     if (snsEligible != null) body['sns_eligible'] = snsEligible;
     if (selectedInStack != null) body['selected_in_stack'] = selectedInStack;
     if (snagged != null) body['snagged'] = snagged;
+    if (asinOrSku != null) body['asin_or_sku'] = asinOrSku;
+    if (productUrl != null) body['product_url'] = productUrl;
+    if (title != null) body['title'] = title;
 
     final resp = await _client.patch(
       _endpoint('api/options/$optionId'),
