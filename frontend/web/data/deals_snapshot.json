@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-22T23:16:46.752349+00:00",
+  "generated_at": "2026-11-23T04:57:18.332292+00:00",
   "missions": [
     {
       "id": 1,
@@ -39,6 +39,7 @@
             17.99,
             24.93,
             17.99,
+            24.93,
             18.99
           ],
           "scout_notes": "Precision-ground Japanese stainless steel blade flexes cleanly under fish, eggs, or smash burgers; dual-textured handle resists 450\u00b0F.",
@@ -52,6 +53,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B001E17ZYS",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 18.99,
+              "source": "antigravity_automation",
+              "note": "Mercer Culinary Hell's Handle Turner (B001E17ZYS)"
+            },
             {
               "date": "2026-11-22",
               "price": 24.93,
@@ -88,9 +95,9 @@
           "title": "OXO Good Grips Restaurant Stainless Steel Turner & Brushed Steel Spatula Set",
           "asin_or_sku": "B082N73YPV",
           "amazon_query": "OXO+Good+Grips+Restaurant+Stainless+Steel+Turner",
-          "msrp": 14.28,
+          "msrp": 16.99,
           "avg_90d_price": 0.0,
-          "current_price": 11.99,
+          "current_price": 13.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.99,
           "all_time_low": 0.0,
@@ -104,19 +111,26 @@
           "price_history": [
             17.0,
             13.99,
-            11.99
+            11.99,
+            13.99
           ],
           "scout_notes": "Stiff beveled edge ideal for deglazing stainless/cast-iron pans and flipping heavy cuts.",
-          "effective_price": 11.99,
-          "unit_effective_price": 11.99,
-          "discount_pct_off_msrp": 16,
+          "effective_price": 13.99,
+          "unit_effective_price": 13.99,
+          "discount_pct_off_msrp": 18,
           "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-16%)",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-18%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B082N73YPV?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B082N73YPV",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 13.99,
+              "source": "antigravity_automation",
+              "note": "OXO Good Grips Stainless Steel Turner (11283300 / B082N73YPV)"
+            },
             {
               "date": "2026-11-22",
               "price": 11.99,
@@ -210,7 +224,7 @@
           "title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
           "asin_or_sku": "B09FXD3ZCF / WSSA0004772",
           "amazon_query": "Work+Sharp+Precision+Adjust+Upgrade+Kit+WSSA0004772",
-          "msrp": 89.95,
+          "msrp": 98.95,
           "avg_90d_price": 0.0,
           "current_price": 79.95,
           "clip_coupon_amount": 0.0,
@@ -230,7 +244,7 @@
           "scout_notes": "Upgrades your 3-grit base system with Coarse (220/320/400 diamond), Fine (600/800 diamond + ceramic), and Leather Strop + ceramic rod for serrations.",
           "effective_price": 79.95,
           "unit_effective_price": 11.42,
-          "discount_pct_off_msrp": 11,
+          "discount_pct_off_msrp": 19,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -238,6 +252,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09FXD3ZCF",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 79.95,
+              "source": "antigravity_automation",
+              "note": "Work Sharp Precision Adjust Upgrade Kit (WSSA0004772 / B09FXD3ZCF)"
+            },
             {
               "date": "2026-11-22",
               "price": 79.95,
@@ -332,7 +352,7 @@
           "title": "DeWalt 20V MAX XR Brushless 1/2\" Cordless Hammer Drill Kit (DCD805D2 / DCD798D1)",
           "asin_or_sku": "B09YXSNV98 / DCD805D2",
           "amazon_query": "DeWalt+DCD805D2+OR+DCD798D1+20V+MAX+Brushless+Hammer+Drill+Kit",
-          "msrp": 299.0,
+          "msrp": 289.0,
           "avg_90d_price": 0.0,
           "current_price": 199.0,
           "clip_coupon_amount": 0.0,
@@ -354,7 +374,7 @@
           "scout_notes": "During Black Friday Week, getting a brand-new brushless XR 1/2\" hammer drill + 2 batteries + charger costs the same as batteries alone! Add a $16 adapter for old 18V tools.",
           "effective_price": 199.0,
           "unit_effective_price": 199.0,
-          "discount_pct_off_msrp": 33,
+          "discount_pct_off_msrp": 31,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -362,6 +382,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 199.0,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-22",
               "price": 199.0,
@@ -472,6 +498,7 @@
             279.95,
             269.99,
             229.95,
+            229.99,
             229.95
           ],
           "scout_notes": "Live early Black Friday drop at $229.99 (-23%). Includes anti-tangle conical brush bar, crevice tool, and combination tool.",
@@ -485,6 +512,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 229.95,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-22",
               "price": 229.99,
@@ -539,9 +572,9 @@
           "title": "Dyson V8 Cyclone Cordless Vacuum (1-Click Detachable Handheld + Full Floor Wand)",
           "asin_or_sku": "B09YS9N7H2 / DYSON-V8-CYCLONE",
           "amazon_query": "Dyson+V8+Cordless+Vacuum",
-          "msrp": 469.99,
+          "msrp": 399.99,
           "avg_90d_price": 0.0,
-          "current_price": 349.0,
+          "current_price": 299.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 299.0,
           "all_time_low": 299.0,
@@ -555,12 +588,13 @@
           "price_history": [
             299.0,
             299.99,
-            349.0
+            349.0,
+            299.99
           ],
           "scout_notes": "The V8 powerhead IS the Car+Boat handheld unit\u2014detaching the wand takes 1 click, and you get the full floor Motorbar head & wall dock for $69 more.",
-          "effective_price": 349.0,
-          "unit_effective_price": 8.72,
-          "discount_pct_off_msrp": 26,
+          "effective_price": 299.99,
+          "unit_effective_price": 7.5,
+          "discount_pct_off_msrp": 25,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -568,6 +602,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09YS9N7H2",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 299.99,
+              "source": "antigravity_automation",
+              "note": "Dyson / Best Buy deal"
+            },
             {
               "date": "2026-11-21",
               "price": 349.0,
@@ -598,9 +638,9 @@
           "title": "Dyson V12 Detect Slim / Humdinger (Single-Button Power, No Trigger Hold, 2.2 lb Handheld)",
           "asin_or_sku": "B0B4X3H4MZ / DYSON-V12-SLIM",
           "amazon_query": "Dyson+V12+Detect+Slim+Cordless+Vacuum",
-          "msrp": 729.99,
+          "msrp": 649.99,
           "avg_90d_price": 0.0,
-          "current_price": 399.99,
+          "current_price": 449.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 399.99,
           "all_time_low": 0.0,
@@ -614,19 +654,26 @@
           "price_history": [
             399.99,
             429.99,
-            399.99
+            399.99,
+            449.99
           ],
           "scout_notes": "30% lighter in handheld mode (2.2 lbs vs 3.3 lbs) and uses a push-button ON/OFF switch so you don't hold a trigger while detailing car seats.",
-          "effective_price": 399.99,
-          "unit_effective_price": 6.67,
-          "discount_pct_off_msrp": 45,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-45%)",
-          "is_below_strike": true,
+          "effective_price": 449.99,
+          "unit_effective_price": 7.5,
+          "discount_pct_off_msrp": 31,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0B4X3H4MZ?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B0B4X3H4MZ",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 449.99,
+              "source": "antigravity_automation",
+              "note": "Retailer sale deal"
+            },
             {
               "date": "2026-11-22",
               "price": 399.99,
@@ -723,7 +770,7 @@
           "amazon_query": "Vital+Proteins+Collagen+Peptides+20oz+Metamucil+180",
           "msrp": 74.96,
           "avg_90d_price": 0.0,
-          "current_price": 66.94,
+          "current_price": 38.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 36.0,
           "all_time_low": 0.0,
@@ -735,15 +782,15 @@
           "unit_name": "serving",
           "unit_quantity": 150.0,
           "price_history": [
-            56.9
+            33.14
           ],
           "scout_notes": "Vital Proteins drops 35% on Black Friday; mixing 1 scoop with standard Metamucil cuts cost per gram of collagen + psyllium by 48%.",
-          "effective_price": 56.9,
-          "unit_effective_price": 0.38,
-          "discount_pct_off_msrp": 24,
-          "deal_grade_code": "WAIT",
-          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
-          "is_below_strike": false,
+          "effective_price": 33.14,
+          "unit_effective_price": 0.22,
+          "discount_pct_off_msrp": 56,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-56%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B00K6JUG4K?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K",
           "price_source": "antigravity_automation",
@@ -807,6 +854,12 @@
           "price_source": "antigravity_automation",
           "price_log": [
             {
+              "date": "2026-11-23",
+              "price": 43.49,
+              "source": "antigravity_automation",
+              "note": "Amazon retail price"
+            },
+            {
               "date": "2026-11-22",
               "price": 43.49,
               "source": "antigravity_automation",
@@ -838,7 +891,7 @@
           "amazon_query": "Charmin+Ultra+Soft+24+Mega+XL+Rolls",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 39.72,
+          "current_price": 35.58,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.5,
           "all_time_low": 0.0,
@@ -850,12 +903,12 @@
           "unit_name": "mega XL roll",
           "unit_quantity": 24.0,
           "price_history": [
-            33.76
+            30.24
           ],
           "scout_notes": "P&G stock-up eligible; target <$0.20 per 100 sheets after 15% S&S.",
-          "effective_price": 33.76,
-          "unit_effective_price": 1.41,
-          "discount_pct_off_msrp": 16,
+          "effective_price": 30.24,
+          "unit_effective_price": 1.26,
+          "discount_pct_off_msrp": 24,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -881,9 +934,9 @@
           "title": "Cascade Platinum Plus ActionPacs Dishwasher Detergent Pods (81 Count Tub)",
           "asin_or_sku": "B0CHD7GLN9",
           "amazon_query": "Cascade+Platinum+Plus+ActionPacs+81+Count",
-          "msrp": 34.99,
+          "msrp": 32.69,
           "avg_90d_price": 0.0,
-          "current_price": 33.29,
+          "current_price": 29.42,
           "clip_coupon_amount": 0.0,
           "strike_price": 18.0,
           "all_time_low": 0.0,
@@ -900,12 +953,13 @@
             33.29,
             29.42,
             34.99,
-            28.3
+            33.29,
+            25.01
           ],
           "scout_notes": "Pushes your P&G subtotal over $100 when paired with Metamucil, Bounty, and Charmin!",
-          "effective_price": 28.3,
-          "unit_effective_price": 0.35,
-          "discount_pct_off_msrp": 19,
+          "effective_price": 25.01,
+          "unit_effective_price": 0.31,
+          "discount_pct_off_msrp": 23,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -913,6 +967,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0CHD7GLN9",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 29.42,
+              "source": "antigravity_automation",
+              "note": "Walmart retail deal"
+            },
             {
               "date": "2026-11-22",
               "price": 33.29,
@@ -1059,6 +1119,12 @@
           "price_source": "antigravity_automation",
           "price_log": [
             {
+              "date": "2026-11-23",
+              "price": 37.05,
+              "source": "antigravity_automation",
+              "note": "Walmart / retailer price"
+            },
+            {
               "date": "2026-11-22",
               "price": 37.05,
               "source": "antigravity_automation",
@@ -1114,7 +1180,7 @@
           "amazon_query": "Ticket+to+Ride+Board+Game",
           "msrp": 49.99,
           "avg_90d_price": 0.0,
-          "current_price": 29.99,
+          "current_price": 39.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -1130,12 +1196,13 @@
             39.99,
             49.99,
             39.99,
-            29.99
+            29.99,
+            39.99
           ],
           "scout_notes": "Gold-standard family game for 8yo+. Pairs with Cascadia & GraviTrax in the $24\u2013$26 3-for-2 sweet spot.",
-          "effective_price": 29.99,
-          "unit_effective_price": 29.99,
-          "discount_pct_off_msrp": 40,
+          "effective_price": 39.99,
+          "unit_effective_price": 39.99,
+          "discount_pct_off_msrp": 20,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1143,6 +1210,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B000809OAO",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 39.99,
+              "source": "antigravity_automation",
+              "note": "Walmart / Target retail deal"
+            },
             {
               "date": "2026-11-22",
               "price": 29.99,
@@ -1185,9 +1258,9 @@
           "title": "Ravensburger GraviTrax Starter Set (122-Piece Interactive Marble Run STEM Puzzle, Ages 8+)",
           "asin_or_sku": "B0BSXKTRYZ",
           "amazon_query": "Ravensburger+GraviTrax+Starter+Set",
-          "msrp": 69.99,
+          "msrp": 49.99,
           "avg_90d_price": 0.0,
-          "current_price": 48.99,
+          "current_price": 34.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -1201,11 +1274,12 @@
           "price_history": [
             67.64,
             59.99,
-            48.99
+            48.99,
+            34.99
           ],
           "scout_notes": "Includes magnetic Gauss cannon & switches; 63% off MSRP and harmonizes at ~$25.99 for 3-for-2.",
-          "effective_price": 48.99,
-          "unit_effective_price": 0.4,
+          "effective_price": 34.99,
+          "unit_effective_price": 0.29,
           "discount_pct_off_msrp": 30,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
@@ -1214,6 +1288,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0BSXKTRYZ",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 34.99,
+              "source": "antigravity_automation",
+              "note": "Target / Staples retail deal"
+            },
             {
               "date": "2026-11-22",
               "price": 48.99,
@@ -1250,7 +1330,7 @@
           "title": "ThinkFun Gravity Maze Falling Marble Logic Maze Game (60 Challenges, Ages 8+)",
           "asin_or_sku": "B00IUAAK2A",
           "amazon_query": "ThinkFun+Gravity+Maze+Marble+Run",
-          "msrp": 24.99,
+          "msrp": 29.99,
           "avg_90d_price": 0.0,
           "current_price": 19.97,
           "clip_coupon_amount": 0.0,
@@ -1274,7 +1354,7 @@
           "scout_notes": "Brilliant solo/co-op spatial logic tower puzzle for 8+ year olds.",
           "effective_price": 19.97,
           "unit_effective_price": 0.33,
-          "discount_pct_off_msrp": 20,
+          "discount_pct_off_msrp": 33,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1282,6 +1362,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B00IUAAK2A",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 19.97,
+              "source": "antigravity_automation",
+              "note": "Walmart / Amazon retail price"
+            },
             {
               "date": "2026-11-22",
               "price": 19.97,
@@ -1323,7 +1409,18 @@
       ]
     }
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "id": 1,
+      "option_id": 12,
+      "option_title": "DIY Stack: Metamucil 4-in-1 Sugar-Free (180 Servings) + Vital Proteins Collagen Peptides (20 oz)",
+      "effective_price": 33.14,
+      "strike_price": 36.0,
+      "channel": "local_inbox",
+      "status": "logged_locally",
+      "created_at": "2026-11-23T04:57:16.013726+00:00"
+    }
+  ],
   "image_map": {
     "1": "images/products/spatula_mercer.jpg",
     "spatula_mercer": "images/products/spatula_mercer.jpg",

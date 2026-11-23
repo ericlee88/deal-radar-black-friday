@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-22T23:16:40.137934+00:00",
+  "updated_at": "2026-11-23T04:57:10.291803+00:00",
   "items": {
     "dyson_car_boat": {
-      "current_price": 229.99,
+      "current_price": 229.95,
       "msrp": 299.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137882+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291768+00:00",
       "price_history": [
         229.95,
         200.0,
@@ -14,9 +14,16 @@
         279.95,
         269.99,
         229.95,
-        229.99
+        229.99,
+        229.95
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 229.95,
+          "source": "antigravity_automation",
+          "note": "Amazon deal"
+        },
         {
           "date": "2026-11-22",
           "price": 229.99,
@@ -63,16 +70,23 @@
       "clip_coupon_amount": 0.0
     },
     "dyson_v12_slim": {
-      "current_price": 399.99,
-      "msrp": 729.99,
+      "current_price": 449.99,
+      "msrp": 649.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T14:06:12.185697+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291777+00:00",
       "price_history": [
         399.99,
         429.99,
-        399.99
+        399.99,
+        449.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 449.99,
+          "source": "antigravity_automation",
+          "note": "Retailer sale deal"
+        },
         {
           "date": "2026-11-22",
           "price": 399.99,
@@ -96,9 +110,9 @@
     },
     "puzzle_gravity_maze": {
       "current_price": 19.97,
-      "msrp": 24.99,
+      "msrp": 29.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137927+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291800+00:00",
       "price_history": [
         17.99,
         19.97,
@@ -108,6 +122,12 @@
         19.97
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 19.97,
+          "source": "antigravity_automation",
+          "note": "Walmart / Amazon retail price"
+        },
         {
           "date": "2026-11-22",
           "price": 19.97,
@@ -151,7 +171,7 @@
       "current_price": 37.05,
       "msrp": 39.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137900+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291789+00:00",
       "price_history": [
         29.64,
         37.05,
@@ -162,6 +182,12 @@
         37.05
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 37.05,
+          "source": "antigravity_automation",
+          "note": "Walmart / retailer price"
+        },
         {
           "date": "2026-11-22",
           "price": 37.05,
@@ -209,14 +235,20 @@
     },
     "wssa0004772": {
       "current_price": 79.95,
-      "msrp": 89.95,
+      "msrp": 98.95,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137854+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291758+00:00",
       "price_history": [
         99.99,
         79.95
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 79.95,
+          "source": "antigravity_automation",
+          "note": "Work Sharp Precision Adjust Upgrade Kit (WSSA0004772 / B09FXD3ZCF)"
+        },
         {
           "date": "2026-11-22",
           "price": 79.95,
@@ -239,19 +271,26 @@
       "clip_coupon_amount": 0.0
     },
     "cascade_platinum_plus": {
-      "current_price": 33.29,
-      "msrp": 34.99,
+      "current_price": 29.42,
+      "msrp": 32.69,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T05:06:31.960496+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291784+00:00",
       "price_history": [
         34.99,
         34.5,
         33.29,
         29.42,
         34.99,
-        33.29
+        33.29,
+        29.42
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 29.42,
+          "source": "antigravity_automation",
+          "note": "Walmart retail deal"
+        },
         {
           "date": "2026-11-22",
           "price": 33.29,
@@ -317,16 +356,23 @@
       "clip_coupon_amount": 0.0
     },
     "puzzle_gravitrax": {
-      "current_price": 48.99,
-      "msrp": 69.99,
+      "current_price": 34.99,
+      "msrp": 49.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137919+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291797+00:00",
       "price_history": [
         67.64,
         59.99,
-        48.99
+        48.99,
+        34.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 34.99,
+          "source": "antigravity_automation",
+          "note": "Target / Staples retail deal"
+        },
         {
           "date": "2026-11-22",
           "price": 48.99,
@@ -355,18 +401,25 @@
       "clip_coupon_amount": 0.0
     },
     "spatula_mercer": {
-      "current_price": 24.93,
+      "current_price": 18.99,
       "msrp": 38.48,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137812+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291732+00:00",
       "price_history": [
         17.99,
         24.93,
         17.99,
-        24.93
+        24.93,
+        18.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 18.99,
+          "source": "antigravity_automation",
+          "note": "Mercer Culinary Hell's Handle Turner (B001E17ZYS)"
+        },
         {
           "date": "2026-11-22",
           "price": 24.93,
@@ -394,17 +447,24 @@
       ]
     },
     "spatula_oxo": {
-      "current_price": 11.99,
-      "msrp": 14.28,
+      "current_price": 13.99,
+      "msrp": 16.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137839+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291750+00:00",
       "price_history": [
         17.0,
         13.99,
-        11.99
+        11.99,
+        13.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 13.99,
+          "source": "antigravity_automation",
+          "note": "OXO Good Grips Stainless Steel Turner (11283300 / B082N73YPV)"
+        },
         {
           "date": "2026-11-22",
           "price": 11.99,
@@ -476,10 +536,10 @@
     },
     "path_b_new_hammer_drill": {
       "current_price": 199.0,
-      "msrp": 299.0,
+      "msrp": 289.0,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137872+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291763+00:00",
       "price_history": [
         179.91,
         199.0,
@@ -487,6 +547,12 @@
         199.0
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 199.0,
+          "source": "antigravity_automation",
+          "note": "Amazon deal"
+        },
         {
           "date": "2026-11-22",
           "price": 199.0,
@@ -520,18 +586,25 @@
       ]
     },
     "dyson_v8_convertible": {
-      "current_price": 349.0,
-      "msrp": 469.99,
+      "current_price": 299.99,
+      "msrp": 399.99,
       "all_time_low": 299.0,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T22:49:03.110987+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291773+00:00",
       "price_history": [
         299.0,
         299.99,
-        349.0
+        349.0,
+        299.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 299.99,
+          "source": "antigravity_automation",
+          "note": "Dyson / Best Buy deal"
+        },
         {
           "date": "2026-11-21",
           "price": 349.0,
@@ -600,12 +673,18 @@
       "msrp": 43.49,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137892+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291781+00:00",
       "price_history": [
         35.99,
         43.49
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 43.49,
+          "source": "antigravity_automation",
+          "note": "Amazon retail price"
+        },
         {
           "date": "2026-11-22",
           "price": 43.49,
@@ -645,19 +724,26 @@
       ]
     },
     "game_ticket_to_ride": {
-      "current_price": 29.99,
+      "current_price": 39.99,
       "msrp": 49.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137910+00:00",
+      "last_checked_at": "2026-11-23T04:57:10.291793+00:00",
       "price_history": [
         29.99,
         39.99,
         49.99,
         39.99,
-        29.99
+        29.99,
+        39.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 39.99,
+          "source": "antigravity_automation",
+          "note": "Walmart / Target retail deal"
+        },
         {
           "date": "2026-11-22",
           "price": 29.99,
