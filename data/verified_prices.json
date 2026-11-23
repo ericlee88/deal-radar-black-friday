@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-23T05:15:23.755001+00:00",
+  "updated_at": "2026-11-23T05:48:12.515936+00:00",
   "items": {
     "dyson_car_boat": {
       "current_price": 229.95,
-      "msrp": 299.99,
+      "msrp": 299.95,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T04:57:10.291768+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515794+00:00",
       "price_history": [
         229.95,
         200.0,
@@ -112,7 +112,7 @@
       "current_price": 19.97,
       "msrp": 29.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T04:57:10.291800+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515869+00:00",
       "price_history": [
         17.99,
         19.97,
@@ -171,7 +171,7 @@
       "current_price": 37.05,
       "msrp": 39.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T04:57:10.291789+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515846+00:00",
       "price_history": [
         29.64,
         37.05,
@@ -235,9 +235,9 @@
     },
     "wssa0004772": {
       "current_price": 79.95,
-      "msrp": 98.95,
+      "msrp": 89.95,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T04:57:10.291758+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515761+00:00",
       "price_history": [
         99.99,
         79.95
@@ -271,10 +271,10 @@
       "clip_coupon_amount": 0.0
     },
     "cascade_platinum_plus": {
-      "current_price": 29.42,
-      "msrp": 32.69,
+      "current_price": 27.78,
+      "msrp": 33.09,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T04:57:10.291784+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515830+00:00",
       "price_history": [
         34.99,
         34.5,
@@ -282,9 +282,16 @@
         29.42,
         34.99,
         33.29,
-        29.42
+        29.42,
+        27.78
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 27.78,
+          "source": "antigravity_automation",
+          "note": "Walmart rollback deal (81-count tub)"
+        },
         {
           "date": "2026-11-23",
           "price": 29.42,
@@ -331,15 +338,22 @@
       "clip_coupon_amount": 0.0
     },
     "glad_forceflex_110": {
-      "current_price": 19.27,
-      "msrp": 29.98,
+      "current_price": 21.97,
+      "msrp": 21.97,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047196+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515839+00:00",
       "price_history": [
         29.98,
-        19.27
+        19.27,
+        21.97
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 21.97,
+          "source": "antigravity_automation",
+          "note": "Home Depot retail price (110-count box)"
+        },
         {
           "date": "2026-11-21",
           "price": 19.27,
@@ -356,17 +370,24 @@
       "clip_coupon_amount": 0.0
     },
     "puzzle_gravitrax": {
-      "current_price": 34.99,
-      "msrp": 49.99,
+      "current_price": 48.99,
+      "msrp": 69.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T04:57:10.291797+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515861+00:00",
       "price_history": [
         67.64,
         59.99,
         48.99,
-        34.99
+        34.99,
+        48.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 48.99,
+          "source": "antigravity_automation",
+          "note": "Amazon deal"
+        },
         {
           "date": "2026-11-23",
           "price": 34.99,
@@ -510,16 +531,23 @@
       ]
     },
     "path_a_adapter_split": {
-      "current_price": 163.87,
-      "msrp": 348.0,
+      "current_price": 179.83,
+      "msrp": 357.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T05:15:23.754964+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515882+00:00",
       "price_history": [
         167.88,
-        163.87
+        163.87,
+        179.83
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 179.83,
+          "source": "antigravity_automation",
+          "note": "Combined bundle verified: DCA1820 $39.88 + DCB205-2C $139.95"
+        },
         {
           "date": "2026-11-23",
           "price": 163.87,
@@ -537,12 +565,12 @@
         "dca1820": {
           "sku_or_asin": "B016K1UD0E / DCA1820",
           "current_price": 39.88,
-          "note": "The Home Depot"
+          "note": "Home Depot"
         },
         "dcb205_2c": {
           "sku_or_asin": "DCB205-2C",
-          "current_price": 123.99,
-          "note": "Walmart US (MSRP $299)"
+          "current_price": 139.95,
+          "note": "Walmart"
         }
       }
     },
@@ -551,7 +579,7 @@
       "msrp": 289.0,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T04:57:10.291763+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515781+00:00",
       "price_history": [
         179.91,
         199.0,
@@ -598,19 +626,26 @@
       ]
     },
     "dyson_v8_convertible": {
-      "current_price": 299.99,
-      "msrp": 399.99,
+      "current_price": 349.0,
+      "msrp": 469.99,
       "all_time_low": 299.0,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T04:57:10.291773+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515805+00:00",
       "price_history": [
         299.0,
         299.99,
         349.0,
-        299.99
+        299.99,
+        349.0
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 349.0,
+          "source": "antigravity_automation",
+          "note": "Amazon retail price"
+        },
         {
           "date": "2026-11-23",
           "price": 299.99,
@@ -663,16 +698,23 @@
       ]
     },
     "diy_metamucil_vital": {
-      "current_price": 60.74,
+      "current_price": 68.69,
       "msrp": 83.33,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T05:15:23.754994+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515892+00:00",
       "price_history": [
         66.94,
-        60.74
+        60.74,
+        68.69
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 68.69,
+          "source": "antigravity_automation",
+          "note": "Combined bundle verified: B00K6JUG4K $36.72 + VITAL-20OZ $31.97"
+        },
         {
           "date": "2026-11-23",
           "price": 60.74,
@@ -689,13 +731,13 @@
       "components": {
         "metamucil_180": {
           "sku_or_asin": "B00K6JUG4K",
-          "current_price": 28.77,
-          "note": "Walmart US (was $36.33)"
+          "current_price": 36.72,
+          "note": "Walmart"
         },
         "vital_proteins_20oz": {
           "sku_or_asin": "VITAL-20OZ",
           "current_price": 31.97,
-          "note": "Walmart US (MSRP $47.00)"
+          "note": "Walmart"
         }
       }
     },
@@ -704,7 +746,7 @@
       "msrp": 43.49,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T04:57:10.291781+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515816+00:00",
       "price_history": [
         35.99,
         43.49
@@ -738,14 +780,20 @@
     },
     "charmin_ultra_soft": {
       "current_price": 39.72,
-      "msrp": 39.99,
+      "msrp": 41.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047188+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515823+00:00",
       "price_history": [
         39.72
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 39.72,
+          "source": "antigravity_automation",
+          "note": "Walmart / retail price for 24 Mega XL Rolls"
+        },
         {
           "date": "2026-11-21",
           "price": 39.72,
@@ -759,7 +807,7 @@
       "msrp": 49.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-23T04:57:10.291793+00:00",
+      "last_checked_at": "2026-11-23T05:48:12.515853+00:00",
       "price_history": [
         29.99,
         39.99,
