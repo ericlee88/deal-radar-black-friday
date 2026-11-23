@@ -3,6 +3,7 @@ import random
 import re
 from typing import Dict, Any, Optional
 import httpx
+from app.composite_bundles import is_composite_bundle, validate_price_update
 from app.config import settings
 from app.engine.deal_scorer import extract_amazon_asin
 from app.models import DealOptionNode
@@ -29,6 +30,16 @@ class PriceDataProvider:
     async def refresh_node_price(self, node: DealOptionNode, simulate_drop: bool = False) -> Dict[str, Any]:
         if simulate_drop:
             return self._simulate_price_tick(node, simulate_drop=True)
+
+        # Multi-SKU composite bundles cannot be priced by scraping a single component ASIN.
+        # Preserve their verified combined price (updated via component-summed Gemini search).
+        if is_composite_bundle(node.branch_key, node.asin_or_sku):
+            return {
+                "current_price": node.current_price,
+                "avg_90d_price": node.avg_90d_price,
+                "clip_coupon_amount": node.clip_coupon_amount,
+                "provider": "composite_bundle_preserved",
+            }
 
         mode = settings.active_price_mode
         if mode == "keepa" and settings.keepa_api_key:
@@ -57,6 +68,9 @@ class PriceDataProvider:
         }
 
     async def _fetch_amazon_direct(self, node: DealOptionNode) -> Optional[Dict[str, Any]]:
+        if is_composite_bundle(node.branch_key, node.asin_or_sku):
+            return None
+
         asin = extract_amazon_asin(node.asin_or_sku)
         url = (
             f"https://www.amazon.com/dp/{asin}"
@@ -80,8 +94,19 @@ class PriceDataProvider:
             if m:
                 try:
                     candidate = round(float(m.group(1)), 2)
-                    # Sanity check against huge third-party outlier errors (within 0.25x - 2.5x MSRP)
-                    if node.msrp * 0.20 <= candidate <= node.msrp * 2.50:
+                    msrp_ok = (
+                        True
+                        if node.msrp <= 0
+                        else (node.msrp * 0.20 <= candidate <= node.msrp * 2.50)
+                    )
+                    valid, _ = validate_price_update(
+                        node.branch_key,
+                        candidate,
+                        prev_price=node.current_price or 0.0,
+                        msrp=node.msrp or 0.0,
+                        strike_price=node.strike_price or 0.0,
+                    )
+                    if msrp_ok and valid:
                         price_val = candidate
                         break
                 except ValueError:

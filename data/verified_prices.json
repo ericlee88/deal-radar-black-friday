@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-23T04:57:10.291803+00:00",
+  "updated_at": "2026-11-23T05:15:23.755001+00:00",
   "items": {
     "dyson_car_boat": {
       "current_price": 229.95,
@@ -510,21 +510,21 @@
       ]
     },
     "path_a_adapter_split": {
-      "current_price": 39.88,
-      "msrp": 49.0,
+      "current_price": 163.87,
+      "msrp": 348.0,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-22T23:16:40.137863+00:00",
+      "last_checked_at": "2026-11-23T05:15:23.754964+00:00",
       "price_history": [
         167.88,
-        39.88
+        163.87
       ],
       "price_log": [
         {
-          "date": "2026-11-22",
-          "price": 39.88,
+          "date": "2026-11-23",
+          "price": 163.87,
           "source": "antigravity_automation",
-          "note": "The Home Depot retail price for DeWalt DCA1820"
+          "note": "Combined bundle verified: DCA1820 $39.88 (Home Depot) + DCB205-2C $123.99 (Walmart)"
         },
         {
           "date": "2026-11-21",
@@ -532,7 +532,19 @@
           "source": "antigravity_automation",
           "note": "Combined US split verified: DCA1820 $39.88 (Home Depot) + DCB205-2C $128.00 (Walmart)"
         }
-      ]
+      ],
+      "components": {
+        "dca1820": {
+          "sku_or_asin": "B016K1UD0E / DCA1820",
+          "current_price": 39.88,
+          "note": "The Home Depot"
+        },
+        "dcb205_2c": {
+          "sku_or_asin": "DCB205-2C",
+          "current_price": 123.99,
+          "note": "Walmart US (MSRP $299)"
+        }
+      }
     },
     "path_b_new_hammer_drill": {
       "current_price": 199.0,
@@ -651,22 +663,41 @@
       ]
     },
     "diy_metamucil_vital": {
-      "current_price": 66.94,
-      "msrp": 74.96,
+      "current_price": 60.74,
+      "msrp": 83.33,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-21T04:36:33.047178+00:00",
+      "last_checked_at": "2026-11-23T05:15:23.754994+00:00",
       "price_history": [
-        66.94
+        66.94,
+        60.74
       ],
       "price_log": [
+        {
+          "date": "2026-11-23",
+          "price": 60.74,
+          "source": "antigravity_automation",
+          "note": "Combined bundle verified: B00K6JUG4K $28.77 (Walmart) + VITAL-20OZ $31.97 (Walmart)"
+        },
         {
           "date": "2026-11-21",
           "price": 66.94,
           "source": "antigravity_automation",
           "note": "Combined 2-tub stack verified: Metamucil 180-srv $34.97 + Vital Proteins 20oz $31.97 (Walmart)"
         }
-      ]
+      ],
+      "components": {
+        "metamucil_180": {
+          "sku_or_asin": "B00K6JUG4K",
+          "current_price": 28.77,
+          "note": "Walmart US (was $36.33)"
+        },
+        "vital_proteins_20oz": {
+          "sku_or_asin": "VITAL-20OZ",
+          "current_price": 31.97,
+          "note": "Walmart US (MSRP $47.00)"
+        }
+      }
     },
     "bounty_paper_towels": {
       "current_price": 43.49,

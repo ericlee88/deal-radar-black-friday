@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-23T04:57:18.332292+00:00",
+  "generated_at": "2026-11-23T05:15:23.979062+00:00",
   "missions": [
     {
       "id": 1,
@@ -300,9 +300,9 @@
           "title": "DeWalt DCA1820 18V-to-20V MAX Adapter + DCB205-2C (2x 5.0Ah XR Battery & Charger Kit)",
           "asin_or_sku": "B016K1UD0E / DCA1820 + DCB205-2C",
           "amazon_query": "DeWalt+DCA1820+adapter+DCB205-2C+battery+kit",
-          "msrp": 49.0,
+          "msrp": 348.0,
           "avg_90d_price": 0.0,
-          "current_price": 39.88,
+          "current_price": 163.87,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -315,24 +315,24 @@
           "unit_quantity": 10.0,
           "price_history": [
             167.88,
-            39.88
+            163.87
           ],
           "scout_notes": "Best if you own 4+ legacy 18V tools. Always remove adapter from battery when stored to prevent parasitic Vampire drain!",
-          "effective_price": 39.88,
-          "unit_effective_price": 3.99,
-          "discount_pct_off_msrp": 19,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-19%)",
-          "is_below_strike": true,
+          "effective_price": 163.87,
+          "unit_effective_price": 16.39,
+          "discount_pct_off_msrp": 53,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B016K1UD0E?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E",
           "price_source": "antigravity_automation",
           "price_log": [
             {
-              "date": "2026-11-22",
-              "price": 39.88,
+              "date": "2026-11-23",
+              "price": 163.87,
               "source": "antigravity_automation",
-              "note": "The Home Depot retail price for DeWalt DCA1820"
+              "note": "Combined bundle verified: DCA1820 $39.88 (Home Depot) + DCB205-2C $123.99 (Walmart)"
             },
             {
               "date": "2026-11-21",
@@ -768,9 +768,9 @@
           "title": "DIY Stack: Metamucil 4-in-1 Sugar-Free (180 Servings) + Vital Proteins Collagen Peptides (20 oz)",
           "asin_or_sku": "B00K6JUG4K / METAMUCIL-180 + VITAL-20OZ",
           "amazon_query": "Vital+Proteins+Collagen+Peptides+20oz+Metamucil+180",
-          "msrp": 74.96,
+          "msrp": 83.33,
           "avg_90d_price": 0.0,
-          "current_price": 38.99,
+          "current_price": 60.74,
           "clip_coupon_amount": 0.0,
           "strike_price": 36.0,
           "all_time_low": 0.0,
@@ -782,19 +782,26 @@
           "unit_name": "serving",
           "unit_quantity": 150.0,
           "price_history": [
-            33.14
+            66.94,
+            51.63
           ],
           "scout_notes": "Vital Proteins drops 35% on Black Friday; mixing 1 scoop with standard Metamucil cuts cost per gram of collagen + psyllium by 48%.",
-          "effective_price": 33.14,
-          "unit_effective_price": 0.22,
-          "discount_pct_off_msrp": 56,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-56%)",
-          "is_below_strike": true,
+          "effective_price": 51.63,
+          "unit_effective_price": 0.34,
+          "discount_pct_off_msrp": 38,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00K6JUG4K?psc=1",
           "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 60.74,
+              "source": "antigravity_automation",
+              "note": "Combined bundle verified: B00K6JUG4K $28.77 (Walmart) + VITAL-20OZ $31.97 (Walmart)"
+            },
             {
               "date": "2026-11-21",
               "price": 66.94,
@@ -891,7 +898,7 @@
           "amazon_query": "Charmin+Ultra+Soft+24+Mega+XL+Rolls",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 35.58,
+          "current_price": 39.72,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.5,
           "all_time_low": 0.0,
@@ -903,12 +910,12 @@
           "unit_name": "mega XL roll",
           "unit_quantity": 24.0,
           "price_history": [
-            30.24
+            33.76
           ],
           "scout_notes": "P&G stock-up eligible; target <$0.20 per 100 sheets after 15% S&S.",
-          "effective_price": 30.24,
-          "unit_effective_price": 1.26,
-          "discount_pct_off_msrp": 24,
+          "effective_price": 33.76,
+          "unit_effective_price": 1.41,
+          "discount_pct_off_msrp": 16,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1412,13 +1419,13 @@
   "alerts": [
     {
       "id": 1,
-      "option_id": 12,
-      "option_title": "DIY Stack: Metamucil 4-in-1 Sugar-Free (180 Servings) + Vital Proteins Collagen Peptides (20 oz)",
-      "effective_price": 33.14,
-      "strike_price": 36.0,
+      "option_id": 4,
+      "option_title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
+      "effective_price": 52.0,
+      "strike_price": 56.0,
       "channel": "local_inbox",
       "status": "logged_locally",
-      "created_at": "2026-11-23T04:57:16.013726+00:00"
+      "created_at": "2026-11-23T05:10:36.744489+00:00"
     }
   ],
   "image_map": {

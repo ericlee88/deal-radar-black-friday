@@ -30,9 +30,28 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict
 
+from app.composite_bundles import validate_price_update
 from scripts.export_snapshot import SNAPSHOT_OUTPUT, VERIFIED_PRICES_FILE, run_export
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+
+
+def _load_strike_targets() -> Dict[str, float]:
+    """Load strike targets keyed by branch_key from deals_snapshot.json if present."""
+    if not SNAPSHOT_OUTPUT.is_file():
+        return {}
+    try:
+        data = json.loads(SNAPSHOT_OUTPUT.read_text(encoding="utf-8"))
+        strikes: Dict[str, float] = {}
+        for m in data.get("missions", []):
+            for o in m.get("options", []):
+                bk = o.get("branch_key")
+                sp = o.get("strike_price")
+                if bk and isinstance(sp, (int, float)) and sp > 0:
+                    strikes[bk] = float(sp)
+        return strikes
+    except Exception:
+        return {}
 
 
 def _list_tracked_items() -> None:
@@ -54,7 +73,11 @@ def _list_tracked_items() -> None:
             print(f"{bk:26s} {asin:12s} {cur_s:>9s} ${strike:>8.2f}  {title}")
 
 
-def _apply_updates(updates: Dict[str, Dict[str, Any]], rebuild_snapshot: bool = True) -> None:
+def _apply_updates(
+    updates: Dict[str, Dict[str, Any]],
+    rebuild_snapshot: bool = True,
+    force: bool = False,
+) -> int:
     existing_doc: Dict[str, Any] = {"schema_version": 1, "updated_at": "", "items": {}}
     if VERIFIED_PRICES_FILE.is_file():
         try:
@@ -65,6 +88,7 @@ def _apply_updates(updates: Dict[str, Dict[str, Any]], rebuild_snapshot: bool = 
             pass
 
     items: Dict[str, Dict[str, Any]] = existing_doc.setdefault("items", {})
+    strike_targets = _load_strike_targets()
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     updated_count = 0
 
@@ -77,6 +101,22 @@ def _apply_updates(updates: Dict[str, Dict[str, Any]], rebuild_snapshot: bool = 
 
         cur_val = round(float(cur), 2)
         entry = items.get(branch_key, {})
+
+        if not force:
+            prev_price = float(entry.get("current_price") or 0.0)
+            ref_msrp = float(patch.get("msrp") or entry.get("msrp") or 0.0)
+            strike_price = strike_targets.get(branch_key, 0.0)
+            ok, reason = validate_price_update(
+                branch_key,
+                cur_val,
+                prev_price=prev_price,
+                msrp=ref_msrp,
+                strike_price=strike_price,
+            )
+            if not ok:
+                print(f"[GUARD] Skipped {branch_key} (${cur_val:.2f}): {reason}")
+                continue
+
         entry["current_price"] = cur_val
         for field in ("msrp", "avg_90d_price", "all_time_low"):
             v = patch.get(field)
@@ -85,6 +125,8 @@ def _apply_updates(updates: Dict[str, Dict[str, Any]], rebuild_snapshot: bool = 
         coupon = patch.get("clip_coupon_amount")
         if isinstance(coupon, (int, float)) and coupon >= 0:
             entry["clip_coupon_amount"] = round(float(coupon), 2)
+        if isinstance(patch.get("components"), dict):
+            entry["components"] = patch["components"]
 
         source = str(patch.get("price_source") or "antigravity_automation")
         note = str(patch.get("note") or "Verified via scheduled Antigravity price check")
@@ -121,7 +163,7 @@ def _apply_updates(updates: Dict[str, Dict[str, Any]], rebuild_snapshot: bool = 
     print(f"Saved {updated_count} verified price updates to {VERIFIED_PRICES_FILE}.")
 
     if not rebuild_snapshot:
-        return
+        return updated_count
 
     # Rebuild static snapshot immediately
     asyncio.run(run_export(poll_live=False))
@@ -143,6 +185,7 @@ def _apply_updates(updates: Dict[str, Dict[str, Any]], rebuild_snapshot: bool = 
             )
     else:
         print("\nNo items are currently below their strike target.")
+    return updated_count
 
 
 def main() -> None:
@@ -150,6 +193,11 @@ def main() -> None:
     parser.add_argument("--list", action="store_true", help="List tracked items & ASINs.")
     parser.add_argument("--input", type=str, help="Path to JSON file with price updates.")
     parser.add_argument("--stdin", action="store_true", help="Read JSON price updates from stdin.")
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Bypass composite bundle and outlier sanity guards.",
+    )
     args = parser.parse_args()
 
     if args.list:
@@ -167,7 +215,7 @@ def main() -> None:
     payload = json.loads(raw)
     if not isinstance(payload, dict):
         raise SystemExit("Expected a JSON object keyed by branch_key.")
-    _apply_updates(payload)
+    _apply_updates(payload, force=args.force)
 
 
 if __name__ == "__main__":
