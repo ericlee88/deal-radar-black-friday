@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-23T05:54:42.705026+00:00",
+  "generated_at": "2026-11-23T17:27:17.631190+00:00",
   "missions": [
     {
       "id": 1,
@@ -310,7 +310,7 @@
           "amazon_query": "DeWalt+DCA1820+adapter+DCB205-2C+battery+kit",
           "msrp": 357.99,
           "avg_90d_price": 0.0,
-          "current_price": 179.83,
+          "current_price": 255.31,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -324,12 +324,13 @@
           "price_history": [
             167.88,
             163.87,
-            179.83
+            179.83,
+            255.31
           ],
           "scout_notes": "Best if you own 4+ legacy 18V tools. Always remove adapter from battery when stored to prevent parasitic Vampire drain!",
-          "effective_price": 179.83,
-          "unit_effective_price": 17.98,
-          "discount_pct_off_msrp": 50,
+          "effective_price": 255.31,
+          "unit_effective_price": 25.53,
+          "discount_pct_off_msrp": 29,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -339,6 +340,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 255.31,
+              "source": "antigravity_automation",
+              "note": "Combined bundle verified: DCA1820 $39.88 + DCB205-2C $215.43"
+            },
             {
               "date": "2026-11-23",
               "price": 179.83,
@@ -369,7 +376,7 @@
           "title": "DeWalt 20V MAX XR Brushless 1/2\" Cordless Hammer Drill Kit (DCD805D2 / DCD798D1)",
           "asin_or_sku": "B09YXSNV98 / DCD805D2",
           "amazon_query": "DeWalt+DCD805D2+OR+DCD798D1+20V+MAX+Brushless+Hammer+Drill+Kit",
-          "msrp": 289.0,
+          "msrp": 299.0,
           "avg_90d_price": 0.0,
           "current_price": 199.0,
           "clip_coupon_amount": 0.0,
@@ -391,7 +398,7 @@
           "scout_notes": "During Black Friday Week, getting a brand-new brushless XR 1/2\" hammer drill + 2 batteries + charger costs the same as batteries alone! Add a $16 adapter for old 18V tools.",
           "effective_price": 199.0,
           "unit_effective_price": 199.0,
-          "discount_pct_off_msrp": 31,
+          "discount_pct_off_msrp": 33,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -499,7 +506,7 @@
           "title": "Dyson Car+Boat Handheld Vacuum (50-Min Run Time + Mini Motorized Hair Screw Tool)",
           "asin_or_sku": "B0DLXGDHBX / DYSON-CAR-BOAT",
           "amazon_query": "Dyson+Car+Boat+Handheld+Vacuum",
-          "msrp": 299.95,
+          "msrp": 299.99,
           "avg_90d_price": 0.0,
           "current_price": 229.95,
           "clip_coupon_amount": 0.0,
@@ -804,7 +811,7 @@
           "title": "DIY Stack: Metamucil 4-in-1 Sugar-Free (180 Servings) + Vital Proteins Collagen Peptides (20 oz)",
           "asin_or_sku": "B00K6JUG4K / METAMUCIL-180 + VITAL-20OZ",
           "amazon_query": "Vital+Proteins+Collagen+Peptides+20oz+Metamucil+180",
-          "msrp": 83.33,
+          "msrp": 79.71,
           "avg_90d_price": 0.0,
           "current_price": 68.69,
           "clip_coupon_amount": 0.0,
@@ -825,7 +832,7 @@
           "scout_notes": "Vital Proteins drops 35% on Black Friday; mixing 1 scoop with standard Metamucil cuts cost per gram of collagen + psyllium by 48%.",
           "effective_price": 58.39,
           "unit_effective_price": 0.39,
-          "discount_pct_off_msrp": 30,
+          "discount_pct_off_msrp": 27,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -943,7 +950,7 @@
           "title": "Charmin Ultra Soft Cushiony Touch Toilet Paper (24 Mega XL Rolls = 144 Regular)",
           "asin_or_sku": "B0D87QKHHP",
           "amazon_query": "Charmin+Ultra+Soft+24+Mega+XL+Rolls",
-          "msrp": 41.99,
+          "msrp": 39.99,
           "avg_90d_price": 0.0,
           "current_price": 39.72,
           "clip_coupon_amount": 0.0,
@@ -962,7 +969,7 @@
           "scout_notes": "P&G stock-up eligible; target <$0.20 per 100 sheets after 15% S&S.",
           "effective_price": 33.76,
           "unit_effective_price": 1.41,
-          "discount_pct_off_msrp": 20,
+          "discount_pct_off_msrp": 16,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1092,9 +1099,9 @@
           "title": "Glad ForceFlexPlus 13-Gallon Tall Kitchen Drawstring Trash Bags (110 Count)",
           "asin_or_sku": "B00ASBOT2Q",
           "amazon_query": "Glad+ForceFlexPlus+13+Gallon+110+Count",
-          "msrp": 21.97,
+          "msrp": 20.85,
           "avg_90d_price": 0.0,
-          "current_price": 21.97,
+          "current_price": 18.5,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.5,
           "all_time_low": 0.0,
@@ -1108,12 +1115,13 @@
           "price_history": [
             29.98,
             19.27,
-            18.67
+            21.97,
+            15.72
           ],
           "scout_notes": "5th item in the box\u2014locks in the full 15% Subscribe & Save discount across all items.",
-          "effective_price": 18.67,
-          "unit_effective_price": 0.17,
-          "discount_pct_off_msrp": 15,
+          "effective_price": 15.72,
+          "unit_effective_price": 0.14,
+          "discount_pct_off_msrp": 25,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1123,6 +1131,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B00ASBOT2Q",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 18.5,
+              "source": "antigravity_automation",
+              "note": "Walmart rollback price (reg. $20.85)"
+            },
             {
               "date": "2026-11-23",
               "price": 21.97,
@@ -1167,7 +1181,7 @@
           "amazon_query": "Cascadia+Board+Game+AEG",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 37.05,
+          "current_price": 29.64,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.0,
           "all_time_low": 0.0,
@@ -1185,12 +1199,12 @@
             37.47,
             37.05,
             29.64,
-            37.05
+            29.64
           ],
           "scout_notes": "BGG 8.0/10. Zero mean blocking; kids draft wildlife tokens and spatial habitat tiles.",
-          "effective_price": 37.05,
-          "unit_effective_price": 37.05,
-          "discount_pct_off_msrp": 7,
+          "effective_price": 29.64,
+          "unit_effective_price": 29.64,
+          "discount_pct_off_msrp": 26,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1423,9 +1437,9 @@
           "title": "ThinkFun Gravity Maze Falling Marble Logic Maze Game (60 Challenges, Ages 8+)",
           "asin_or_sku": "B00IUAAK2A",
           "amazon_query": "ThinkFun+Gravity+Maze+Marble+Run",
-          "msrp": 29.99,
+          "msrp": 24.99,
           "avg_90d_price": 0.0,
-          "current_price": 19.97,
+          "current_price": 17.49,
           "clip_coupon_amount": 0.0,
           "strike_price": 19.5,
           "all_time_low": 0.0,
@@ -1442,21 +1456,28 @@
             17.49,
             19.97,
             17.49,
-            19.97
+            19.97,
+            17.49
           ],
           "scout_notes": "Brilliant solo/co-op spatial logic tower puzzle for 8+ year olds.",
-          "effective_price": 19.97,
-          "unit_effective_price": 0.33,
-          "discount_pct_off_msrp": 33,
-          "deal_grade_code": "WAIT",
-          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
-          "is_below_strike": false,
+          "effective_price": 17.49,
+          "unit_effective_price": 0.29,
+          "discount_pct_off_msrp": 30,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-30%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B00IUAAK2A?psc=1",
           "product_url": "https://www.amazon.com/dp/B00IUAAK2A?psc=1",
           "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B00IUAAK2A",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-23",
+              "price": 17.49,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-23",
               "price": 19.97,
@@ -1504,48 +1525,7 @@
       ]
     }
   ],
-  "alerts": [
-    {
-      "id": 4,
-      "option_id": 21,
-      "option_title": "Ninja CREAMi Ice Cream Maker",
-      "effective_price": 139.99,
-      "strike_price": 149.99,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-23T05:54:19.120983+00:00"
-    },
-    {
-      "id": 3,
-      "option_id": 21,
-      "option_title": "Ninja CREAMi Ice Cream Maker",
-      "effective_price": 139.99,
-      "strike_price": 149.99,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-23T05:47:03.945683+00:00"
-    },
-    {
-      "id": 2,
-      "option_id": 21,
-      "option_title": "Ninja CREAMi Ice Cream Maker",
-      "effective_price": 139.99,
-      "strike_price": 149.99,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-23T05:46:29.508274+00:00"
-    },
-    {
-      "id": 1,
-      "option_id": 4,
-      "option_title": "Work Sharp Precision Adjust Upgrade Kit (7 Abrasive Grit Rods + Leather Strop + Carry Case)",
-      "effective_price": 52.0,
-      "strike_price": 56.0,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-23T05:10:36.744489+00:00"
-    }
-  ],
+  "alerts": [],
   "image_map": {
     "1": "images/products/spatula_mercer.jpg",
     "spatula_mercer": "images/products/spatula_mercer.jpg",
