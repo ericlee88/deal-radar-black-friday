@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-24T03:53:48.652357+00:00",
+  "generated_at": "2026-11-24T17:01:38.685193+00:00",
   "missions": [
     {
       "id": 1,
@@ -173,7 +173,7 @@
           "amazon_query": "304+stainless+steel+rice+washing+bowl+strainer+colander+basin+set",
           "msrp": 21.98,
           "avg_90d_price": 0.0,
-          "current_price": 31.99,
+          "current_price": 21.98,
           "clip_coupon_amount": 0.0,
           "strike_price": 18.0,
           "all_time_low": 0.0,
@@ -185,14 +185,14 @@
           "unit_name": "piece",
           "unit_quantity": 2.0,
           "price_history": [
-            31.99
+            21.98
           ],
           "scout_notes": "Laser-drilled 1.5mm side-drain perforations retain short/medium grain rice while draining starchy water rapidly; dishwasher safe without rusting.",
-          "effective_price": 31.99,
-          "unit_effective_price": 15.99,
-          "discount_pct_off_msrp": -46,
-          "deal_grade_code": "TRAP",
-          "deal_grade_label": "\u26a0\ufe0f SCALPER / TRAP \u2014 DO NOT BUY",
+          "effective_price": 21.98,
+          "unit_effective_price": 10.99,
+          "discount_pct_off_msrp": 0,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0H4QL9G8M?psc=1",
           "product_url": "https://www.amazon.com/dp/B0H4QL9G8M?psc=1",
@@ -314,9 +314,9 @@
           "title": "DeWalt DCA1820 18V-to-20V MAX Adapter + DCB205-2C (2x 5.0Ah XR Battery & Charger Kit)",
           "asin_or_sku": "B016K1UD0E / DCA1820 + DCB205-2C",
           "amazon_query": "DeWalt+DCA1820+adapter+DCB205-2C+battery+kit",
-          "msrp": 357.99,
+          "msrp": 358.0,
           "avg_90d_price": 0.0,
-          "current_price": 238.88,
+          "current_price": 255.31,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -332,12 +332,13 @@
             163.87,
             179.83,
             255.31,
-            238.88
+            238.88,
+            255.31
           ],
           "scout_notes": "Best if you own 4+ legacy 18V tools. Always remove adapter from battery when stored to prevent parasitic Vampire drain!",
-          "effective_price": 238.88,
-          "unit_effective_price": 23.89,
-          "discount_pct_off_msrp": 33,
+          "effective_price": 255.31,
+          "unit_effective_price": 25.53,
+          "discount_pct_off_msrp": 29,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -347,6 +348,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-24",
+              "price": 255.31,
+              "source": "antigravity_automation",
+              "note": "Combined bundle verified: DCA1820 $39.88 + DCB205-2C $215.43"
+            },
             {
               "date": "2026-11-24",
               "price": 238.88,
@@ -406,6 +413,7 @@
             179.91,
             199.0,
             289.0,
+            199.0,
             289.0
           ],
           "scout_notes": "During Black Friday Week, getting a brand-new brushless XR 1/2\" hammer drill + 2 batteries + charger costs the same as batteries alone! Add a $16 adapter for old 18V tools.",
@@ -421,6 +429,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-24",
+              "price": 289.0,
+              "source": "antigravity_automation",
+              "note": "Ace Hardware / Amazon"
+            },
             {
               "date": "2026-11-24",
               "price": 199.0,
@@ -629,7 +643,7 @@
           "amazon_query": "Dyson+V8+Cordless+Vacuum",
           "msrp": 469.99,
           "avg_90d_price": 0.0,
-          "current_price": 394.99,
+          "current_price": 349.0,
           "clip_coupon_amount": 0.0,
           "strike_price": 299.0,
           "all_time_low": 299.0,
@@ -645,12 +659,12 @@
             299.99,
             349.0,
             299.99,
-            394.99
+            349.0
           ],
           "scout_notes": "The V8 powerhead IS the Car+Boat handheld unit\u2014detaching the wand takes 1 click, and you get the full floor Motorbar head & wall dock for $69 more.",
-          "effective_price": 394.99,
-          "unit_effective_price": 9.87,
-          "discount_pct_off_msrp": 16,
+          "effective_price": 349.0,
+          "unit_effective_price": 8.72,
+          "discount_pct_off_msrp": 26,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -710,7 +724,7 @@
           "amazon_query": "Dyson+V12+Detect+Slim+Cordless+Vacuum",
           "msrp": 649.99,
           "avg_90d_price": 0.0,
-          "current_price": 328.69,
+          "current_price": 449.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 399.99,
           "all_time_low": 0.0,
@@ -725,15 +739,15 @@
             399.99,
             429.99,
             399.99,
-            328.69
+            449.99
           ],
           "scout_notes": "30% lighter in handheld mode (2.2 lbs vs 3.3 lbs) and uses a push-button ON/OFF switch so you don't hold a trigger while detailing car seats.",
-          "effective_price": 328.69,
-          "unit_effective_price": 5.48,
-          "discount_pct_off_msrp": 49,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-49%)",
-          "is_below_strike": true,
+          "effective_price": 449.99,
+          "unit_effective_price": 7.5,
+          "discount_pct_off_msrp": 31,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0B4X3H4MZ?psc=1",
           "product_url": "https://www.amazon.com/dp/B0B4X3H4MZ?psc=1",
           "site_name": "Amazon",
@@ -790,7 +804,7 @@
           "amazon_query": "Metamucil+Fiber+Collagen+Rejuvenation+Blend",
           "msrp": 48.83,
           "avg_90d_price": 0.0,
-          "current_price": 28.79,
+          "current_price": 48.83,
           "clip_coupon_amount": 0.0,
           "strike_price": 19.5,
           "all_time_low": 0.0,
@@ -804,12 +818,12 @@
           "price_history": [
             30.48,
             32.99,
-            24.47
+            41.51
           ],
           "scout_notes": "Clip the $5 first-delivery coupon + 15% S&S to drop net cost to $17.94 ($0.34/serving). Qualifies for P&G Spend $100 Get $25 credit.",
-          "effective_price": 24.47,
-          "unit_effective_price": 0.47,
-          "discount_pct_off_msrp": 50,
+          "effective_price": 41.51,
+          "unit_effective_price": 0.8,
+          "discount_pct_off_msrp": 15,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -849,9 +863,9 @@
           "title": "DIY Stack: Metamucil 4-in-1 Sugar-Free (180 Servings) + Vital Proteins Collagen Peptides (20 oz)",
           "asin_or_sku": "B00K6JUG4K / METAMUCIL-180 + VITAL-20OZ",
           "amazon_query": "Vital+Proteins+Collagen+Peptides+20oz+Metamucil+180",
-          "msrp": 83.71,
+          "msrp": 92.99,
           "avg_90d_price": 0.0,
-          "current_price": 66.94,
+          "current_price": 68.69,
           "clip_coupon_amount": 0.0,
           "strike_price": 36.0,
           "all_time_low": 0.0,
@@ -866,12 +880,13 @@
             66.94,
             60.74,
             68.69,
-            56.9
+            66.94,
+            58.39
           ],
           "scout_notes": "Vital Proteins drops 35% on Black Friday; mixing 1 scoop with standard Metamucil cuts cost per gram of collagen + psyllium by 48%.",
-          "effective_price": 56.9,
-          "unit_effective_price": 0.38,
-          "discount_pct_off_msrp": 32,
+          "effective_price": 58.39,
+          "unit_effective_price": 0.39,
+          "discount_pct_off_msrp": 37,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -881,6 +896,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-24",
+              "price": 68.69,
+              "source": "antigravity_automation",
+              "note": "Combined bundle verified: B00K6JUG4K $36.72 + VITAL-20OZ $31.97"
+            },
             {
               "date": "2026-11-24",
               "price": 66.94,
@@ -929,7 +950,7 @@
           "title": "Bounty Quick-Size Paper Towels (16 Family Rolls = 40 Regular Rolls)",
           "asin_or_sku": "B079VP6DH5",
           "amazon_query": "Bounty+Quick+Size+Paper+Towels+16+Family+Rolls",
-          "msrp": 43.49,
+          "msrp": 58.99,
           "avg_90d_price": 0.0,
           "current_price": 43.49,
           "clip_coupon_amount": 0.0,
@@ -949,7 +970,7 @@
           "scout_notes": "Counts $36.49 toward the $100 P&G threshold before coupon/S&S deductions.",
           "effective_price": 36.97,
           "unit_effective_price": 2.31,
-          "discount_pct_off_msrp": 15,
+          "discount_pct_off_msrp": 37,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1001,9 +1022,9 @@
           "title": "Charmin Ultra Soft Cushiony Touch Toilet Paper (24 Mega XL Rolls = 144 Regular)",
           "asin_or_sku": "B0D87QKHHP",
           "amazon_query": "Charmin+Ultra+Soft+24+Mega+XL+Rolls",
-          "msrp": 39.99,
+          "msrp": 39.72,
           "avg_90d_price": 0.0,
-          "current_price": 35.58,
+          "current_price": 39.72,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.5,
           "all_time_low": 0.0,
@@ -1015,12 +1036,12 @@
           "unit_name": "mega XL roll",
           "unit_quantity": 24.0,
           "price_history": [
-            30.24
+            33.76
           ],
           "scout_notes": "P&G stock-up eligible; target <$0.20 per 100 sheets after 15% S&S.",
-          "effective_price": 30.24,
-          "unit_effective_price": 1.26,
-          "discount_pct_off_msrp": 24,
+          "effective_price": 33.76,
+          "unit_effective_price": 1.41,
+          "discount_pct_off_msrp": 15,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1060,9 +1081,9 @@
           "title": "Cascade Platinum Plus ActionPacs Dishwasher Detergent Pods (81 Count Tub)",
           "asin_or_sku": "B0CHD7GLN9",
           "amazon_query": "Cascade+Platinum+Plus+ActionPacs+81+Count",
-          "msrp": 33.29,
+          "msrp": 33.19,
           "avg_90d_price": 0.0,
-          "current_price": 33.29,
+          "current_price": 27.78,
           "clip_coupon_amount": 0.0,
           "strike_price": 18.0,
           "all_time_low": 0.0,
@@ -1082,12 +1103,13 @@
             33.29,
             29.42,
             27.78,
-            28.3
+            33.29,
+            23.61
           ],
           "scout_notes": "Pushes your P&G subtotal over $100 when paired with Metamucil, Bounty, and Charmin!",
-          "effective_price": 28.3,
-          "unit_effective_price": 0.35,
-          "discount_pct_off_msrp": 15,
+          "effective_price": 23.61,
+          "unit_effective_price": 0.29,
+          "discount_pct_off_msrp": 29,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1097,6 +1119,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0CHD7GLN9",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-24",
+              "price": 27.78,
+              "source": "antigravity_automation",
+              "note": "Walmart sale price on 81-count tub (was $33.19)"
+            },
             {
               "date": "2026-11-24",
               "price": 33.29,
@@ -1163,9 +1191,9 @@
           "title": "Glad ForceFlexPlus 13-Gallon Tall Kitchen Drawstring Trash Bags (110 Count)",
           "asin_or_sku": "B00ASBOT2Q",
           "amazon_query": "Glad+ForceFlexPlus+13+Gallon+110+Count",
-          "msrp": 20.85,
+          "msrp": 23.49,
           "avg_90d_price": 0.0,
-          "current_price": 15.83,
+          "current_price": 19.97,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.5,
           "all_time_low": 0.0,
@@ -1180,21 +1208,28 @@
             29.98,
             19.27,
             21.97,
-            13.46
+            18.5,
+            16.97
           ],
           "scout_notes": "5th item in the box\u2014locks in the full 15% Subscribe & Save discount across all items.",
-          "effective_price": 13.46,
-          "unit_effective_price": 0.12,
-          "discount_pct_off_msrp": 35,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-35%)",
-          "is_below_strike": true,
+          "effective_price": 16.97,
+          "unit_effective_price": 0.15,
+          "discount_pct_off_msrp": 28,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00ASBOT2Q?psc=1",
           "product_url": "https://www.amazon.com/dp/B00ASBOT2Q?psc=1",
           "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B00ASBOT2Q",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-24",
+              "price": 19.97,
+              "source": "antigravity_automation",
+              "note": "Amazon sale price for 110-count box (list $23.49)"
+            },
             {
               "date": "2026-11-23",
               "price": 18.5,
@@ -1245,7 +1280,7 @@
           "amazon_query": "Cascadia+Board+Game+AEG",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 29.64,
+          "current_price": 37.05,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.0,
           "all_time_low": 0.0,
@@ -1263,12 +1298,12 @@
             37.47,
             37.05,
             29.64,
-            29.64
+            37.05
           ],
           "scout_notes": "BGG 8.0/10. Zero mean blocking; kids draft wildlife tokens and spatial habitat tiles.",
-          "effective_price": 29.64,
-          "unit_effective_price": 29.64,
-          "discount_pct_off_msrp": 26,
+          "effective_price": 37.05,
+          "unit_effective_price": 37.05,
+          "discount_pct_off_msrp": 7,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1346,7 +1381,7 @@
           "amazon_query": "Ticket+to+Ride+Board+Game",
           "msrp": 49.99,
           "avg_90d_price": 0.0,
-          "current_price": 29.99,
+          "current_price": 37.49,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -1363,12 +1398,13 @@
             49.99,
             39.99,
             29.99,
-            29.99
+            39.99,
+            37.49
           ],
           "scout_notes": "Gold-standard family game for 8yo+. Pairs with Cascadia & GraviTrax in the $24\u2013$26 3-for-2 sweet spot.",
-          "effective_price": 29.99,
-          "unit_effective_price": 29.99,
-          "discount_pct_off_msrp": 40,
+          "effective_price": 37.49,
+          "unit_effective_price": 37.49,
+          "discount_pct_off_msrp": 25,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1378,6 +1414,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B000809OAO",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-24",
+              "price": 37.49,
+              "source": "antigravity_automation",
+              "note": "Target sale price for Ticket to Ride Europe (regular $49.99)"
+            },
             {
               "date": "2026-11-24",
               "price": 39.99,
@@ -1613,28 +1655,7 @@
       ]
     }
   ],
-  "alerts": [
-    {
-      "id": 2,
-      "option_id": 16,
-      "option_title": "Glad ForceFlexPlus 13-Gallon Tall Kitchen Drawstring Trash Bags (110 Count)",
-      "effective_price": 13.46,
-      "strike_price": 14.5,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-24T03:53:41.893061+00:00"
-    },
-    {
-      "id": 1,
-      "option_id": 10,
-      "option_title": "Dyson V12 Detect Slim / Humdinger (Single-Button Power, No Trigger Hold, 2.2 lb Handheld)",
-      "effective_price": 328.69,
-      "strike_price": 399.99,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-24T03:53:33.249038+00:00"
-    }
-  ],
+  "alerts": [],
   "image_map": {
     "1": "images/products/spatula_mercer.jpg",
     "spatula_mercer": "images/products/spatula_mercer.jpg",
