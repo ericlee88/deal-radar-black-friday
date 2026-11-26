@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-26T01:36:56.513625+00:00",
+  "generated_at": "2026-11-26T16:27:53.365241+00:00",
   "missions": [
     {
       "id": 1,
@@ -22,9 +22,9 @@
           "title": "Mercer Culinary Hell's Handle Heavy-Duty Stainless Steel Fish/Slotted Turner (M18320)",
           "asin_or_sku": "B001E17ZYS / M18320",
           "amazon_query": "Mercer+Culinary+Hells+Handle+Stainless+Steel+Turner+Spatula",
-          "msrp": 38.48,
+          "msrp": 24.95,
           "avg_90d_price": 0.0,
-          "current_price": 18.99,
+          "current_price": 17.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 17.5,
           "all_time_low": 0.0,
@@ -40,12 +40,13 @@
             24.93,
             17.99,
             24.93,
-            18.99
+            18.99,
+            17.99
           ],
           "scout_notes": "Precision-ground Japanese stainless steel blade flexes cleanly under fish, eggs, or smash burgers; dual-textured handle resists 450\u00b0F.",
-          "effective_price": 18.99,
-          "unit_effective_price": 18.99,
-          "discount_pct_off_msrp": 51,
+          "effective_price": 17.99,
+          "unit_effective_price": 17.99,
+          "discount_pct_off_msrp": 28,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -55,6 +56,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B001E17ZYS",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 17.99,
+              "source": "antigravity_automation",
+              "note": "WebstaurantStore / Amazon"
+            },
             {
               "date": "2026-11-23",
               "price": 18.99,
@@ -97,9 +104,9 @@
           "title": "OXO Good Grips Restaurant Stainless Steel Turner & Brushed Steel Spatula Set",
           "asin_or_sku": "B082N73YPV",
           "amazon_query": "OXO+Good+Grips+Restaurant+Stainless+Steel+Turner",
-          "msrp": 16.99,
+          "msrp": 13.99,
           "avg_90d_price": 0.0,
-          "current_price": 13.99,
+          "current_price": 11.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.99,
           "all_time_low": 0.0,
@@ -114,14 +121,15 @@
             17.0,
             13.99,
             11.99,
-            13.99
+            13.99,
+            11.99
           ],
           "scout_notes": "Stiff beveled edge ideal for deglazing stainless/cast-iron pans and flipping heavy cuts.",
-          "effective_price": 13.99,
-          "unit_effective_price": 13.99,
-          "discount_pct_off_msrp": 18,
+          "effective_price": 11.99,
+          "unit_effective_price": 11.99,
+          "discount_pct_off_msrp": 14,
           "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-18%)",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-14%)",
           "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B082N73YPV?psc=1",
           "product_url": "https://www.amazon.com/dp/B082N73YPV?psc=1",
@@ -129,6 +137,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B082N73YPV",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 11.99,
+              "source": "antigravity_automation",
+              "note": "Amazon / OXO"
+            },
             {
               "date": "2026-11-23",
               "price": 13.99,
@@ -326,9 +340,9 @@
           "title": "DeWalt DCA1820 18V-to-20V MAX Adapter + DCB205-2C (2x 5.0Ah XR Battery & Charger Kit)",
           "asin_or_sku": "B016K1UD0E / DCA1820 + DCB205-2C",
           "amazon_query": "DeWalt+DCA1820+adapter+DCB205-2C+battery+kit",
-          "msrp": 357.99,
+          "msrp": 358.99,
           "avg_90d_price": 0.0,
-          "current_price": 179.83,
+          "current_price": 198.95,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -347,12 +361,13 @@
             238.88,
             255.31,
             181.88,
-            179.83
+            179.83,
+            198.95
           ],
           "scout_notes": "Best if you own 4+ legacy 18V tools. Always remove adapter from battery when stored to prevent parasitic Vampire drain!",
-          "effective_price": 179.83,
-          "unit_effective_price": 17.98,
-          "discount_pct_off_msrp": 50,
+          "effective_price": 198.95,
+          "unit_effective_price": 19.89,
+          "discount_pct_off_msrp": 45,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -362,6 +377,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 198.95,
+              "source": "antigravity_automation",
+              "note": "Combined bundle verified: DCA1820 $59.00 + DCB205-2C $139.95"
+            },
             {
               "date": "2026-11-26",
               "price": 179.83,
@@ -428,9 +449,9 @@
           "title": "DeWalt 20V MAX XR Brushless 1/2\" Cordless Hammer Drill Kit (DCD805D2 / DCD798D1)",
           "asin_or_sku": "B09YXSNV98 / DCD805D2",
           "amazon_query": "DeWalt+DCD805D2+OR+DCD798D1+20V+MAX+Brushless+Hammer+Drill+Kit",
-          "msrp": 299.0,
+          "msrp": 289.0,
           "avg_90d_price": 0.0,
-          "current_price": 199.0,
+          "current_price": 289.0,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -447,12 +468,13 @@
             289.0,
             199.0,
             289.0,
-            199.0
+            199.0,
+            289.0
           ],
           "scout_notes": "During Black Friday Week, getting a brand-new brushless XR 1/2\" hammer drill + 2 batteries + charger costs the same as batteries alone! Add a $16 adapter for old 18V tools.",
-          "effective_price": 199.0,
-          "unit_effective_price": 199.0,
-          "discount_pct_off_msrp": 33,
+          "effective_price": 289.0,
+          "unit_effective_price": 289.0,
+          "discount_pct_off_msrp": 0,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -462,6 +484,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 289.0,
+              "source": "antigravity_automation",
+              "note": "Ace Hardware / DeWalt retailers"
+            },
             {
               "date": "2026-11-26",
               "price": 199.0,
@@ -586,7 +614,7 @@
           "amazon_query": "Dyson+Car+Boat+Handheld+Vacuum",
           "msrp": 299.99,
           "avg_90d_price": 0.0,
-          "current_price": 229.95,
+          "current_price": 229.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 229.99,
           "all_time_low": 0.0,
@@ -608,10 +636,11 @@
             229.95,
             229.99,
             269.99,
-            229.95
+            229.95,
+            229.99
           ],
           "scout_notes": "Live early Black Friday drop at $229.99 (-23%). Includes anti-tangle conical brush bar, crevice tool, and combination tool.",
-          "effective_price": 229.95,
+          "effective_price": 229.99,
           "unit_effective_price": 4.6,
           "discount_pct_off_msrp": 23,
           "deal_grade_code": "STRIKE",
@@ -623,6 +652,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 229.99,
+              "source": "antigravity_automation",
+              "note": "Amazon / Lowe's deal"
+            },
             {
               "date": "2026-11-26",
               "price": 229.95,
@@ -707,9 +742,9 @@
           "title": "Dyson V8 Cyclone Cordless Vacuum (1-Click Detachable Handheld + Full Floor Wand)",
           "asin_or_sku": "B09YS9N7H2 / DYSON-V8-CYCLONE",
           "amazon_query": "Dyson+V8+Cordless+Vacuum",
-          "msrp": 389.99,
+          "msrp": 539.99,
           "avg_90d_price": 0.0,
-          "current_price": 279.99,
+          "current_price": 299.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 299.0,
           "all_time_low": 299.0,
@@ -727,21 +762,28 @@
             299.99,
             349.0,
             299.99,
-            279.99
+            279.99,
+            299.99
           ],
           "scout_notes": "The V8 powerhead IS the Car+Boat handheld unit\u2014detaching the wand takes 1 click, and you get the full floor Motorbar head & wall dock for $69 more.",
-          "effective_price": 279.99,
-          "unit_effective_price": 7.0,
-          "discount_pct_off_msrp": 28,
-          "deal_grade_code": "ATL",
-          "deal_grade_label": "\ud83d\udd25 ALL-TIME LOW ZONE (-28%)",
-          "is_below_strike": true,
+          "effective_price": 299.99,
+          "unit_effective_price": 7.5,
+          "discount_pct_off_msrp": 44,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B09YS9N7H2?psc=1",
           "product_url": "https://www.amazon.com/dp/B09YS9N7H2?psc=1",
           "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B09YS9N7H2",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 299.99,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-26",
               "price": 279.99,
@@ -952,7 +994,7 @@
           "amazon_query": "Vital+Proteins+Collagen+Peptides+20oz+Metamucil+180",
           "msrp": 81.99,
           "avg_90d_price": 0.0,
-          "current_price": 68.69,
+          "current_price": 66.94,
           "clip_coupon_amount": 0.0,
           "strike_price": 36.0,
           "all_time_low": 0.0,
@@ -968,12 +1010,13 @@
             60.74,
             68.69,
             66.94,
-            58.39
+            68.69,
+            56.9
           ],
           "scout_notes": "Vital Proteins drops 35% on Black Friday; mixing 1 scoop with standard Metamucil cuts cost per gram of collagen + psyllium by 48%.",
-          "effective_price": 58.39,
-          "unit_effective_price": 0.39,
-          "discount_pct_off_msrp": 29,
+          "effective_price": 56.9,
+          "unit_effective_price": 0.38,
+          "discount_pct_off_msrp": 31,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -983,6 +1026,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 66.94,
+              "source": "antigravity_automation",
+              "note": "Combined bundle verified: B00K6JUG4K $34.97 + VITAL-20OZ $31.97"
+            },
             {
               "date": "2026-11-26",
               "price": 68.69,
@@ -1163,6 +1212,12 @@
           "price_source": "antigravity_automation",
           "price_log": [
             {
+              "date": "2026-11-26",
+              "price": 39.72,
+              "source": "antigravity_automation",
+              "note": "Walmart / Target price for 24 Mega XL Rolls"
+            },
+            {
               "date": "2026-11-25",
               "price": 39.72,
               "source": "antigravity_automation",
@@ -1198,9 +1253,9 @@
           "title": "Cascade Platinum Plus ActionPacs Dishwasher Detergent Pods (81 Count Tub)",
           "asin_or_sku": "B0CHD7GLN9",
           "amazon_query": "Cascade+Platinum+Plus+ActionPacs+81+Count",
-          "msrp": 32.69,
+          "msrp": 27.49,
           "avg_90d_price": 0.0,
-          "current_price": 29.42,
+          "current_price": 22.98,
           "clip_coupon_amount": 0.0,
           "strike_price": 18.0,
           "all_time_low": 0.0,
@@ -1222,12 +1277,13 @@
             27.78,
             33.29,
             27.78,
-            25.01
+            29.42,
+            19.53
           ],
           "scout_notes": "Pushes your P&G subtotal over $100 when paired with Metamucil, Bounty, and Charmin!",
-          "effective_price": 25.01,
-          "unit_effective_price": 0.31,
-          "discount_pct_off_msrp": 23,
+          "effective_price": 19.53,
+          "unit_effective_price": 0.24,
+          "discount_pct_off_msrp": 29,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1237,6 +1293,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0CHD7GLN9",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 22.98,
+              "source": "antigravity_automation",
+              "note": "Sam's Club price for 81-count tub"
+            },
             {
               "date": "2026-11-26",
               "price": 29.42,
@@ -1321,9 +1383,9 @@
           "title": "Glad ForceFlexPlus 13-Gallon Tall Kitchen Drawstring Trash Bags (110 Count)",
           "asin_or_sku": "B00ASBOT2Q",
           "amazon_query": "Glad+ForceFlexPlus+13+Gallon+110+Count",
-          "msrp": 23.49,
+          "msrp": 20.85,
           "avg_90d_price": 0.0,
-          "current_price": 19.97,
+          "current_price": 18.5,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.5,
           "all_time_low": 0.0,
@@ -1339,12 +1401,13 @@
             19.27,
             21.97,
             18.5,
-            16.97
+            19.97,
+            15.72
           ],
           "scout_notes": "5th item in the box\u2014locks in the full 15% Subscribe & Save discount across all items.",
-          "effective_price": 16.97,
-          "unit_effective_price": 0.15,
-          "discount_pct_off_msrp": 28,
+          "effective_price": 15.72,
+          "unit_effective_price": 0.14,
+          "discount_pct_off_msrp": 25,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1354,6 +1417,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B00ASBOT2Q",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 18.5,
+              "source": "antigravity_automation",
+              "note": "Walmart rollback price for 110-count pack"
+            },
             {
               "date": "2026-11-24",
               "price": 19.97,
@@ -1410,7 +1479,7 @@
           "amazon_query": "Cascadia+Board+Game+AEG",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 29.64,
+          "current_price": 37.05,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.0,
           "all_time_low": 0.0,
@@ -1429,12 +1498,13 @@
             37.05,
             29.64,
             37.05,
-            29.64
+            29.64,
+            37.05
           ],
           "scout_notes": "BGG 8.0/10. Zero mean blocking; kids draft wildlife tokens and spatial habitat tiles.",
-          "effective_price": 29.64,
-          "unit_effective_price": 29.64,
-          "discount_pct_off_msrp": 26,
+          "effective_price": 37.05,
+          "unit_effective_price": 37.05,
+          "discount_pct_off_msrp": 7,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1444,6 +1514,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B093H8RGXX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 37.05,
+              "source": "antigravity_automation",
+              "note": "Walmart price for Cascadia Board Game"
+            },
             {
               "date": "2026-11-26",
               "price": 29.64,
@@ -1524,7 +1600,7 @@
           "amazon_query": "Ticket+to+Ride+Board+Game",
           "msrp": 49.99,
           "avg_90d_price": 0.0,
-          "current_price": 29.99,
+          "current_price": 37.49,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -1543,12 +1619,13 @@
             29.99,
             39.99,
             37.49,
-            29.99
+            29.99,
+            37.49
           ],
           "scout_notes": "Gold-standard family game for 8yo+. Pairs with Cascadia & GraviTrax in the $24\u2013$26 3-for-2 sweet spot.",
-          "effective_price": 29.99,
-          "unit_effective_price": 29.99,
-          "discount_pct_off_msrp": 40,
+          "effective_price": 37.49,
+          "unit_effective_price": 37.49,
+          "discount_pct_off_msrp": 25,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1558,6 +1635,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B000809OAO",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-26",
+              "price": 37.49,
+              "source": "antigravity_automation",
+              "note": "Target sale price for Ticket to Ride Europe (regular $49.99)"
+            },
             {
               "date": "2026-11-26",
               "price": 29.99,
