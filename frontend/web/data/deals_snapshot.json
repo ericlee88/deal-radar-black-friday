@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-27T01:34:12.473305+00:00",
+  "generated_at": "2026-11-27T16:11:50.036986+00:00",
   "missions": [
     {
       "id": 1,
@@ -275,6 +275,12 @@
           "price_source": "antigravity_automation",
           "price_log": [
             {
+              "date": "2026-11-27",
+              "price": 79.95,
+              "source": "antigravity_automation",
+              "note": "Amazon / KnifeCenter"
+            },
+            {
               "date": "2026-11-26",
               "price": 79.95,
               "source": "antigravity_automation",
@@ -340,9 +346,9 @@
           "title": "DeWalt DCA1820 18V-to-20V MAX Adapter + DCB205-2C (2x 5.0Ah XR Battery & Charger Kit)",
           "asin_or_sku": "B016K1UD0E / DCA1820 + DCB205-2C",
           "amazon_query": "DeWalt+DCA1820+adapter+DCB205-2C+battery+kit",
-          "msrp": 357.99,
+          "msrp": 358.0,
           "avg_90d_price": 0.0,
-          "current_price": 158.88,
+          "current_price": 238.88,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -363,12 +369,13 @@
             181.88,
             179.83,
             198.95,
-            158.88
+            158.88,
+            238.88
           ],
           "scout_notes": "Best if you own 4+ legacy 18V tools. Always remove adapter from battery when stored to prevent parasitic Vampire drain!",
-          "effective_price": 158.88,
-          "unit_effective_price": 15.89,
-          "discount_pct_off_msrp": 56,
+          "effective_price": 238.88,
+          "unit_effective_price": 23.89,
+          "discount_pct_off_msrp": 33,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -378,6 +385,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 238.88,
+              "source": "antigravity_automation",
+              "note": "Combined bundle verified: DCA1820 $39.88 + DCB205-2C $199.00"
+            },
             {
               "date": "2026-11-27",
               "price": 158.88,
@@ -456,9 +469,9 @@
           "title": "DeWalt 20V MAX XR Brushless 1/2\" Cordless Hammer Drill Kit (DCD805D2 / DCD798D1)",
           "asin_or_sku": "B09YXSNV98 / DCD805D2",
           "amazon_query": "DeWalt+DCD805D2+OR+DCD798D1+20V+MAX+Brushless+Hammer+Drill+Kit",
-          "msrp": 289.0,
+          "msrp": 249.0,
           "avg_90d_price": 0.0,
-          "current_price": 289.0,
+          "current_price": 199.0,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -476,12 +489,13 @@
             199.0,
             289.0,
             199.0,
-            289.0
+            289.0,
+            199.0
           ],
           "scout_notes": "During Black Friday Week, getting a brand-new brushless XR 1/2\" hammer drill + 2 batteries + charger costs the same as batteries alone! Add a $16 adapter for old 18V tools.",
-          "effective_price": 289.0,
-          "unit_effective_price": 289.0,
-          "discount_pct_off_msrp": 0,
+          "effective_price": 199.0,
+          "unit_effective_price": 199.0,
+          "discount_pct_off_msrp": 20,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -491,6 +505,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09YXSNV98",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 199.0,
+              "source": "antigravity_automation",
+              "note": "Amazon"
+            },
             {
               "date": "2026-11-26",
               "price": 289.0,
@@ -621,7 +641,7 @@
           "amazon_query": "Dyson+Car+Boat+Handheld+Vacuum",
           "msrp": 299.99,
           "avg_90d_price": 0.0,
-          "current_price": 229.99,
+          "current_price": 230.0,
           "clip_coupon_amount": 0.0,
           "strike_price": 229.99,
           "all_time_low": 0.0,
@@ -644,21 +664,28 @@
             229.99,
             269.99,
             229.95,
-            229.99
+            229.99,
+            230.0
           ],
           "scout_notes": "Live early Black Friday drop at $229.99 (-23%). Includes anti-tangle conical brush bar, crevice tool, and combination tool.",
-          "effective_price": 229.99,
+          "effective_price": 230.0,
           "unit_effective_price": 4.6,
           "discount_pct_off_msrp": 23,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-23%)",
-          "is_below_strike": true,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B0DLXGDHBX?psc=1",
           "product_url": "https://www.amazon.com/dp/B0DLXGDHBX?psc=1",
           "site_name": "Amazon",
           "camel_url": "https://camelcamelcamel.com/product/B0DLXGDHBX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 230.0,
+              "source": "antigravity_automation",
+              "note": "Amazon Black Friday deal"
+            },
             {
               "date": "2026-11-27",
               "price": 229.99,
@@ -757,7 +784,7 @@
           "amazon_query": "Dyson+V8+Cordless+Vacuum",
           "msrp": 399.99,
           "avg_90d_price": 0.0,
-          "current_price": 382.0,
+          "current_price": 299.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 299.0,
           "all_time_low": 299.0,
@@ -776,12 +803,12 @@
             349.0,
             299.99,
             279.99,
-            382.0
+            299.99
           ],
           "scout_notes": "The V8 powerhead IS the Car+Boat handheld unit\u2014detaching the wand takes 1 click, and you get the full floor Motorbar head & wall dock for $69 more.",
-          "effective_price": 382.0,
-          "unit_effective_price": 9.55,
-          "discount_pct_off_msrp": 4,
+          "effective_price": 299.99,
+          "unit_effective_price": 7.5,
+          "discount_pct_off_msrp": 25,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1017,9 +1044,9 @@
           "title": "DIY Stack: Metamucil 4-in-1 Sugar-Free (180 Servings) + Vital Proteins Collagen Peptides (20 oz)",
           "asin_or_sku": "B00K6JUG4K / METAMUCIL-180 + VITAL-20OZ",
           "amazon_query": "Vital+Proteins+Collagen+Peptides+20oz+Metamucil+180",
-          "msrp": 81.99,
+          "msrp": 79.71,
           "avg_90d_price": 0.0,
-          "current_price": 68.69,
+          "current_price": 66.94,
           "clip_coupon_amount": 0.0,
           "strike_price": 36.0,
           "all_time_low": 0.0,
@@ -1037,11 +1064,12 @@
             66.94,
             68.69,
             66.94,
-            58.39
+            68.69,
+            56.9
           ],
           "scout_notes": "Vital Proteins drops 35% on Black Friday; mixing 1 scoop with standard Metamucil cuts cost per gram of collagen + psyllium by 48%.",
-          "effective_price": 58.39,
-          "unit_effective_price": 0.39,
+          "effective_price": 56.9,
+          "unit_effective_price": 0.38,
           "discount_pct_off_msrp": 29,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
@@ -1052,6 +1080,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 66.94,
+              "source": "antigravity_automation",
+              "note": "Combined bundle verified: B00K6JUG4K $34.97 + VITAL-20OZ $31.97"
+            },
             {
               "date": "2026-11-27",
               "price": 68.69,
@@ -1423,7 +1457,7 @@
           "amazon_query": "Glad+ForceFlexPlus+13+Gallon+110+Count",
           "msrp": 20.85,
           "avg_90d_price": 0.0,
-          "current_price": 15.83,
+          "current_price": 18.5,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.5,
           "all_time_low": 0.0,
@@ -1440,15 +1474,15 @@
             21.97,
             18.5,
             19.97,
-            13.46
+            15.72
           ],
           "scout_notes": "5th item in the box\u2014locks in the full 15% Subscribe & Save discount across all items.",
-          "effective_price": 13.46,
-          "unit_effective_price": 0.12,
-          "discount_pct_off_msrp": 35,
-          "deal_grade_code": "STRIKE",
-          "deal_grade_label": "\u2705 AT STRIKE TARGET (-35%)",
-          "is_below_strike": true,
+          "effective_price": 15.72,
+          "unit_effective_price": 0.14,
+          "discount_pct_off_msrp": 25,
+          "deal_grade_code": "WAIT",
+          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
+          "is_below_strike": false,
           "amazon_url": "https://www.amazon.com/dp/B00ASBOT2Q?psc=1",
           "product_url": "https://www.amazon.com/dp/B00ASBOT2Q?psc=1",
           "site_name": "Amazon",
@@ -1988,18 +2022,7 @@
       ]
     }
   ],
-  "alerts": [
-    {
-      "id": 1,
-      "option_id": 16,
-      "option_title": "Glad ForceFlexPlus 13-Gallon Tall Kitchen Drawstring Trash Bags (110 Count)",
-      "effective_price": 13.46,
-      "strike_price": 14.5,
-      "channel": "local_inbox",
-      "status": "logged_locally",
-      "created_at": "2026-11-27T01:34:12.155177+00:00"
-    }
-  ],
+  "alerts": [],
   "image_map": {
     "1": "images/products/spatula_mercer.jpg",
     "spatula_mercer": "images/products/spatula_mercer.jpg",
