@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-26T16:27:53.365241+00:00",
+  "generated_at": "2026-11-27T01:34:12.473305+00:00",
   "missions": [
     {
       "id": 1,
@@ -340,9 +340,9 @@
           "title": "DeWalt DCA1820 18V-to-20V MAX Adapter + DCB205-2C (2x 5.0Ah XR Battery & Charger Kit)",
           "asin_or_sku": "B016K1UD0E / DCA1820 + DCB205-2C",
           "amazon_query": "DeWalt+DCA1820+adapter+DCB205-2C+battery+kit",
-          "msrp": 358.99,
+          "msrp": 357.99,
           "avg_90d_price": 0.0,
-          "current_price": 198.95,
+          "current_price": 158.88,
           "clip_coupon_amount": 0.0,
           "strike_price": 149.0,
           "all_time_low": 0.0,
@@ -362,12 +362,13 @@
             255.31,
             181.88,
             179.83,
-            198.95
+            198.95,
+            158.88
           ],
           "scout_notes": "Best if you own 4+ legacy 18V tools. Always remove adapter from battery when stored to prevent parasitic Vampire drain!",
-          "effective_price": 198.95,
-          "unit_effective_price": 19.89,
-          "discount_pct_off_msrp": 45,
+          "effective_price": 158.88,
+          "unit_effective_price": 15.89,
+          "discount_pct_off_msrp": 56,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -377,6 +378,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B016K1UD0E",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 158.88,
+              "source": "antigravity_automation",
+              "note": "Combined bundle verified: DCA1820 $39.88 + DCB205-2C $119.00"
+            },
             {
               "date": "2026-11-26",
               "price": 198.95,
@@ -653,6 +660,12 @@
           "price_source": "antigravity_automation",
           "price_log": [
             {
+              "date": "2026-11-27",
+              "price": 229.99,
+              "source": "antigravity_automation",
+              "note": "Best Buy / Chewy / Williams Sonoma deal"
+            },
+            {
               "date": "2026-11-26",
               "price": 229.99,
               "source": "antigravity_automation",
@@ -742,9 +755,9 @@
           "title": "Dyson V8 Cyclone Cordless Vacuum (1-Click Detachable Handheld + Full Floor Wand)",
           "asin_or_sku": "B09YS9N7H2 / DYSON-V8-CYCLONE",
           "amazon_query": "Dyson+V8+Cordless+Vacuum",
-          "msrp": 539.99,
+          "msrp": 399.99,
           "avg_90d_price": 0.0,
-          "current_price": 299.99,
+          "current_price": 382.0,
           "clip_coupon_amount": 0.0,
           "strike_price": 299.0,
           "all_time_low": 299.0,
@@ -763,12 +776,12 @@
             349.0,
             299.99,
             279.99,
-            299.99
+            382.0
           ],
           "scout_notes": "The V8 powerhead IS the Car+Boat handheld unit\u2014detaching the wand takes 1 click, and you get the full floor Motorbar head & wall dock for $69 more.",
-          "effective_price": 299.99,
-          "unit_effective_price": 7.5,
-          "discount_pct_off_msrp": 44,
+          "effective_price": 382.0,
+          "unit_effective_price": 9.55,
+          "discount_pct_off_msrp": 4,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -778,6 +791,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B09YS9N7H2",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 299.99,
+              "source": "antigravity_automation",
+              "note": "Dyson / Best Buy / Amazon deal"
+            },
             {
               "date": "2026-11-26",
               "price": 299.99,
@@ -877,6 +896,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B0B4X3H4MZ",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 399.99,
+              "source": "antigravity_automation",
+              "note": "Dyson official deal"
+            },
             {
               "date": "2026-11-26",
               "price": 399.99,
@@ -994,7 +1019,7 @@
           "amazon_query": "Vital+Proteins+Collagen+Peptides+20oz+Metamucil+180",
           "msrp": 81.99,
           "avg_90d_price": 0.0,
-          "current_price": 66.94,
+          "current_price": 68.69,
           "clip_coupon_amount": 0.0,
           "strike_price": 36.0,
           "all_time_low": 0.0,
@@ -1011,12 +1036,13 @@
             68.69,
             66.94,
             68.69,
-            56.9
+            66.94,
+            58.39
           ],
           "scout_notes": "Vital Proteins drops 35% on Black Friday; mixing 1 scoop with standard Metamucil cuts cost per gram of collagen + psyllium by 48%.",
-          "effective_price": 56.9,
-          "unit_effective_price": 0.38,
-          "discount_pct_off_msrp": 31,
+          "effective_price": 58.39,
+          "unit_effective_price": 0.39,
+          "discount_pct_off_msrp": 29,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1026,6 +1052,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B00K6JUG4K",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 68.69,
+              "source": "antigravity_automation",
+              "note": "Combined bundle verified: B00K6JUG4K $36.72 + VITAL-20OZ $31.97"
+            },
             {
               "date": "2026-11-26",
               "price": 66.94,
@@ -1128,6 +1160,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B079VP6DH5",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 43.49,
+              "source": "antigravity_automation",
+              "note": "Amazon"
+            },
             {
               "date": "2026-11-26",
               "price": 43.49,
@@ -1385,7 +1423,7 @@
           "amazon_query": "Glad+ForceFlexPlus+13+Gallon+110+Count",
           "msrp": 20.85,
           "avg_90d_price": 0.0,
-          "current_price": 18.5,
+          "current_price": 15.83,
           "clip_coupon_amount": 0.0,
           "strike_price": 14.5,
           "all_time_low": 0.0,
@@ -1402,15 +1440,15 @@
             21.97,
             18.5,
             19.97,
-            15.72
+            13.46
           ],
           "scout_notes": "5th item in the box\u2014locks in the full 15% Subscribe & Save discount across all items.",
-          "effective_price": 15.72,
-          "unit_effective_price": 0.14,
-          "discount_pct_off_msrp": 25,
-          "deal_grade_code": "WAIT",
-          "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
-          "is_below_strike": false,
+          "effective_price": 13.46,
+          "unit_effective_price": 0.12,
+          "discount_pct_off_msrp": 35,
+          "deal_grade_code": "STRIKE",
+          "deal_grade_label": "\u2705 AT STRIKE TARGET (-35%)",
+          "is_below_strike": true,
           "amazon_url": "https://www.amazon.com/dp/B00ASBOT2Q?psc=1",
           "product_url": "https://www.amazon.com/dp/B00ASBOT2Q?psc=1",
           "site_name": "Amazon",
@@ -1479,7 +1517,7 @@
           "amazon_query": "Cascadia+Board+Game+AEG",
           "msrp": 39.99,
           "avg_90d_price": 0.0,
-          "current_price": 37.05,
+          "current_price": 29.64,
           "clip_coupon_amount": 0.0,
           "strike_price": 24.0,
           "all_time_low": 0.0,
@@ -1499,12 +1537,13 @@
             29.64,
             37.05,
             29.64,
-            37.05
+            37.05,
+            29.64
           ],
           "scout_notes": "BGG 8.0/10. Zero mean blocking; kids draft wildlife tokens and spatial habitat tiles.",
-          "effective_price": 37.05,
-          "unit_effective_price": 37.05,
-          "discount_pct_off_msrp": 7,
+          "effective_price": 29.64,
+          "unit_effective_price": 29.64,
+          "discount_pct_off_msrp": 26,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1514,6 +1553,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B093H8RGXX",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 29.64,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
             {
               "date": "2026-11-26",
               "price": 37.05,
@@ -1600,7 +1645,7 @@
           "amazon_query": "Ticket+to+Ride+Board+Game",
           "msrp": 49.99,
           "avg_90d_price": 0.0,
-          "current_price": 37.49,
+          "current_price": 29.99,
           "clip_coupon_amount": 0.0,
           "strike_price": 26.99,
           "all_time_low": 0.0,
@@ -1620,12 +1665,13 @@
             39.99,
             37.49,
             29.99,
-            37.49
+            37.49,
+            29.99
           ],
           "scout_notes": "Gold-standard family game for 8yo+. Pairs with Cascadia & GraviTrax in the $24\u2013$26 3-for-2 sweet spot.",
-          "effective_price": 37.49,
-          "unit_effective_price": 37.49,
-          "discount_pct_off_msrp": 25,
+          "effective_price": 29.99,
+          "unit_effective_price": 29.99,
+          "discount_pct_off_msrp": 40,
           "deal_grade_code": "WAIT",
           "deal_grade_label": "\u26a0\ufe0f ABOVE STRIKE (Wait for Next Wave)",
           "is_below_strike": false,
@@ -1635,6 +1681,12 @@
           "camel_url": "https://camelcamelcamel.com/product/B000809OAO",
           "price_source": "antigravity_automation",
           "price_log": [
+            {
+              "date": "2026-11-27",
+              "price": 29.99,
+              "source": "antigravity_automation",
+              "note": "Amazon deal (Ticket to Ride Europe)"
+            },
             {
               "date": "2026-11-26",
               "price": 37.49,
@@ -1753,6 +1805,12 @@
           "price_source": "antigravity_automation",
           "price_log": [
             {
+              "date": "2026-11-27",
+              "price": 48.99,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
+            {
               "date": "2026-11-26",
               "price": 48.99,
               "source": "antigravity_automation",
@@ -1854,6 +1912,12 @@
           "price_source": "antigravity_automation",
           "price_log": [
             {
+              "date": "2026-11-27",
+              "price": 17.49,
+              "source": "antigravity_automation",
+              "note": "Amazon deal"
+            },
+            {
               "date": "2026-11-26",
               "price": 17.49,
               "source": "antigravity_automation",
@@ -1924,7 +1988,18 @@
       ]
     }
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "id": 1,
+      "option_id": 16,
+      "option_title": "Glad ForceFlexPlus 13-Gallon Tall Kitchen Drawstring Trash Bags (110 Count)",
+      "effective_price": 13.46,
+      "strike_price": 14.5,
+      "channel": "local_inbox",
+      "status": "logged_locally",
+      "created_at": "2026-11-27T01:34:12.155177+00:00"
+    }
+  ],
   "image_map": {
     "1": "images/products/spatula_mercer.jpg",
     "spatula_mercer": "images/products/spatula_mercer.jpg",
