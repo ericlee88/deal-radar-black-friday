@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-28T01:09:18.442974+00:00",
+  "updated_at": "2026-11-28T15:06:53.161793+00:00",
   "items": {
     "dyson_car_boat": {
       "current_price": 229.99,
       "msrp": 299.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-28T01:09:18.442865+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161668+00:00",
       "price_history": [
         229.95,
         200.0,
@@ -185,7 +185,7 @@
       "current_price": 17.49,
       "msrp": 24.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-28T01:09:18.442937+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161757+00:00",
       "price_history": [
         17.99,
         19.97,
@@ -281,7 +281,7 @@
       "current_price": 29.64,
       "msrp": 39.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-28T01:09:18.442908+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161727+00:00",
       "price_history": [
         29.64,
         37.05,
@@ -386,7 +386,7 @@
       "current_price": 79.95,
       "msrp": 89.95,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-28T01:09:18.442838+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161608+00:00",
       "price_history": [
         99.99,
         79.95
@@ -450,10 +450,10 @@
       "clip_coupon_amount": 0.0
     },
     "cascade_platinum_plus": {
-      "current_price": 22.98,
-      "msrp": 27.49,
+      "current_price": 27.78,
+      "msrp": 33.19,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-26T16:27:50.793000+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161707+00:00",
       "price_history": [
         34.99,
         34.5,
@@ -466,9 +466,16 @@
         33.29,
         27.78,
         29.42,
-        22.98
+        22.98,
+        27.78
       ],
       "price_log": [
+        {
+          "date": "2026-11-28",
+          "price": 27.78,
+          "source": "antigravity_automation",
+          "note": "Walmart deal for 81-count tub"
+        },
         {
           "date": "2026-11-26",
           "price": 22.98,
@@ -551,19 +558,26 @@
       "clip_coupon_amount": 0.0
     },
     "glad_forceflex_110": {
-      "current_price": 18.5,
-      "msrp": 20.85,
+      "current_price": 28.99,
+      "msrp": 28.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-26T16:27:50.793010+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161719+00:00",
       "price_history": [
         29.98,
         19.27,
         21.97,
         18.5,
         19.97,
-        18.5
+        18.5,
+        28.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-28",
+          "price": 28.99,
+          "source": "antigravity_automation",
+          "note": "Amazon price for 110-count box"
+        },
         {
           "date": "2026-11-26",
           "price": 18.5,
@@ -604,19 +618,26 @@
       "clip_coupon_amount": 0.0
     },
     "puzzle_gravitrax": {
-      "current_price": 59.99,
-      "msrp": 59.99,
+      "current_price": 48.99,
+      "msrp": 69.99,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-28T01:09:18.442929+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161748+00:00",
       "price_history": [
         67.64,
         59.99,
         48.99,
         34.99,
         48.99,
-        59.99
+        59.99,
+        48.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-28",
+          "price": 48.99,
+          "source": "antigravity_automation",
+          "note": "Amazon deal"
+        },
         {
           "date": "2026-11-28",
           "price": 59.99,
@@ -746,19 +767,26 @@
       ]
     },
     "spatula_oxo": {
-      "current_price": 11.99,
-      "msrp": 13.99,
+      "current_price": 13.99,
+      "msrp": 16.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-26T16:27:50.792927+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161585+00:00",
       "price_history": [
         17.0,
         13.99,
         11.99,
         13.99,
-        11.99
+        11.99,
+        13.99
       ],
       "price_log": [
+        {
+          "date": "2026-11-28",
+          "price": 13.99,
+          "source": "antigravity_automation",
+          "note": "Amazon"
+        },
         {
           "date": "2026-11-26",
           "price": 11.99,
@@ -816,11 +844,11 @@
       ]
     },
     "path_a_adapter_split": {
-      "current_price": 238.88,
+      "current_price": 255.31,
       "msrp": 357.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-28T01:09:18.442952+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161772+00:00",
       "price_history": [
         167.88,
         163.87,
@@ -832,9 +860,16 @@
         179.83,
         198.95,
         158.88,
-        238.88
+        238.88,
+        255.31
       ],
       "price_log": [
+        {
+          "date": "2026-11-28",
+          "price": 255.31,
+          "source": "antigravity_automation",
+          "note": "Combined bundle verified: DCA1820 $39.88 + DCB205-2C $215.43"
+        },
         {
           "date": "2026-11-28",
           "price": 238.88,
@@ -922,17 +957,17 @@
         },
         "dcb205_2c": {
           "sku_or_asin": "DCB205-2C",
-          "current_price": 199.0,
-          "note": "Lowe's"
+          "current_price": 215.43,
+          "note": "Home Depot"
         }
       }
     },
     "path_b_new_hammer_drill": {
-      "current_price": 289.0,
+      "current_price": 199.0,
       "msrp": 289.0,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-28T01:09:18.442852+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161620+00:00",
       "price_history": [
         179.91,
         199.0,
@@ -942,9 +977,16 @@
         199.0,
         289.0,
         199.0,
-        289.0
+        289.0,
+        199.0
       ],
       "price_log": [
+        {
+          "date": "2026-11-28",
+          "price": 199.0,
+          "source": "antigravity_automation",
+          "note": "Amazon"
+        },
         {
           "date": "2026-11-28",
           "price": 289.0,
@@ -1146,10 +1188,10 @@
     },
     "diy_metamucil_vital": {
       "current_price": 68.69,
-      "msrp": 87.72,
+      "msrp": 81.21,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-28T01:09:18.442967+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161786+00:00",
       "price_history": [
         66.94,
         60.74,
@@ -1244,10 +1286,10 @@
     },
     "bounty_paper_towels": {
       "current_price": 43.49,
-      "msrp": 43.49,
+      "msrp": 58.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-28T01:09:18.442899+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161690+00:00",
       "price_history": [
         35.99,
         43.49
@@ -1310,15 +1352,22 @@
       ]
     },
     "charmin_ultra_soft": {
-      "current_price": 39.72,
-      "msrp": 39.99,
+      "current_price": 32.5,
+      "msrp": 39.72,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-26T16:27:50.792993+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161699+00:00",
       "price_history": [
-        39.72
+        39.72,
+        32.5
       ],
       "price_log": [
+        {
+          "date": "2026-11-28",
+          "price": 32.5,
+          "source": "antigravity_automation",
+          "note": "Walmart rollback price for 24 Mega XL Rolls"
+        },
         {
           "date": "2026-11-26",
           "price": 39.72,
@@ -1356,7 +1405,7 @@
       "msrp": 49.99,
       "clip_coupon_amount": 0.0,
       "price_source": "antigravity_automation",
-      "last_checked_at": "2026-11-28T01:09:18.442918+00:00",
+      "last_checked_at": "2026-11-28T15:06:53.161738+00:00",
       "price_history": [
         29.99,
         39.99,
